@@ -1,0 +1,61 @@
+
+.navbar {
+    /*text-transform: uppercase;*/
+    /*letter-spacing: .1rem;*/
+    background-color: #4DB2F1;
+    border-bottom: 4px solid #ea6725;
+    align-items: center;
+}
+
+.navbar-brand {
+    /*padding: .75em!important;*/
+    font-size: 5em;
+    font-family: 'Grand Hotel', cursive;
+
+}
+
+.nav-link {
+    font-size: 2em;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+
+nav a {
+    color: white;
+    padding: .75em;
+
+}
+
+.nav-link:hover,
+.navbar-brand:hover {
+    color:#ea6725;
+}
+
+nav a:active,
+/*nav a:link,*/
+nav a:visited {
+    color: white;
+}
+
+
+#searchbutton{
+    background-color: #ea6725!important;
+    border: 1px solid white;
+    border-radius:  5px;
+    font-size: 2em;
+    color: white;
+    font-family: 'Grand Hotel', cursive;
+
+}
+
+#searchbutton:hover{
+    color: #4DB2F1;
+}
+#searchfield{
+    border: 1px solid #ea6725!important;
+    border-radius: 5px;
+    margin: .25em;
+    font-size: 2em;
+}
+

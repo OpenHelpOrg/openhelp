@@ -1,0 +1,83 @@
+*{
+  margin: 5px !important;
+}
+
+body {
+  /*margin-left: 1px !important;*/
+  padding-top: 60px;
+}
+/*.container{*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*}*/
+
+nav{
+  background-color: lightblue;
+}
+
+.navbar-brand {font-size: 30px;}
+.navbar-toggle {margin: 15px 15px 15px 0;}
+
+.navbar li {
+  padding-bottom: 20px !important;
+  padding-top: 20px !important;
+  transition: all 0.3s ease;
+
+}
+.navbar .btn-link {
+  font-size: 22px;
+}
+
+/*Cards*/
+
+.card{
+  border: 1px solid blue;
+  box-sizing: border-box;
+  min-height: 400px;
+  max-width: 400px;
+}
+.card-title{
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid blue;
+  font-size: 25px;
+}
+.card-body{
+  border-bottom: 1px solid blue;
+  min-height: 200px;
+}
+.btn-div{
+  margin-top: auto;
+}
+
+form{
+  display: inline !important;
+}
+
+
+
+
+/*.navbar{*/
+/*  text-transform: uppercase;*/
+/*  font-weight: 700;*/
+/*  font-size: .9rem;*/
+/*  letter-spacing: .1rem;*/
+/*  background-color: rgba(0, 0, 0, 0.6) !important;*/
+/*}*/
+/*.navbar-brand img {*/
+/*  height: 5rem; !* Change image size*!*/
+/*}*/
+
+/*.navbar-nav li{*/
+/*  padding: .7rem;*/
+/*}*/
+
+/*.navbar-dark .navbar-nav .nav-link{*/
+/*  color: white;*/
+/*  padding-top: .8rem;*/
+/*}*/
+
+/*.navbar-dark .navbar-nav .nav-link.active,*/
+/*.navbar-dark .navbar-nav .nav-link:hover {*/
+/*  color: #1EBBA3;*/
+/*}*/

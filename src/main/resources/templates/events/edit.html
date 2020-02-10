@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <th:block th:insert="partials/head :: head"></th:block>
+    <title>Edit Event</title>
+</head>
+
+<body>
+<br>
+
+<div class="wrapper">
+    <nav th:include="partials/navbar :: navbar"></nav>
+    <header class="container my-5">
+        <div class="jumbotron">
+            <h1 class="text-center display-1">Edit Event:</h1>
+        </div>
+    </header>
+<!--    <form class="container bg-warning" th:action="@{/event/edit}" method="post" th:object="${post}">-->
+<!--        <div class="row container">-->
+<!--            <div class="input-field ">-->
+<!--                <label for="title">Title</label>-->
+<!--                <br>-->
+<!--                <input th:value="${event.title}" id="title" type="text" th:field="*{title}">-->
+<!--            </div>-->
+<!--            <div class="input-field ">-->
+<!--                <label for="description">Description</label>-->
+<!--                <br>-->
+<!--                <textarea th:value="${event.description}" id="description" type="text" rows="4" cols="50"-->
+<!--                          th:field="*{description}"></textarea>-->
+<!--                <input type="hidden" name="id" th:value="${event.id}">-->
+<!--            </div>-->
+<!--            <button class="btn btn-primary" type="submit" name="action">-->
+<!--                Submit-->
+<!--            </button>-->
+<!--        </div>-->
+<!--    </form>-->
+</div>
+</body>
+</html>

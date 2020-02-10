@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="partials/head :: head"></th:block>
+    <title>Coming Soon</title>
+    <style>
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        body {
+            /*height: 100%;*/
+            background-color: black;
+            background-image: url("https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            color: white;
+
+        }
+        a:active {
+            color: white;
+        }
+        a:visited {
+            color: white;
+        }
+        .side-items {
+            list-style: none;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            margin-left: -40px;
+            justify-content: space-around;
+            padding-top: 10px;
+            font-size: 1.5em;
+        }
+        .list-item {
+
+        }
+        #logo {
+            position: absolute;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 10px;
+            margin-left: 10px;
+            margin-bottom: auto;
+            font-size: 2em;
+        }
+        .text {
+            text-align: center;
+            position: absolute;
+            margin-top: 300px;
+            /*left: calc(50% - 287px);*/
+            margin-left: 38%;
+            /*margin-right: auto;*/
+            color: white;
+            font-family: 'Raleway', sans-serif;
+            align-self: center;
+        }
+        h1 {
+            font-size: 80px;
+        }
+        hr {
+            width: 200px;
+
+            color: darkgray;
+        }
+    </style>
+</head>
+<body>
+
+<ul class="side-items">
+    <li class="">
+        <a href="http://www.github.com/roger-mayer">
+            <i class="fab fa-github"></i>
+            Github/Roger-Mayer
+        </a>
+    </li>
+    <li class="">
+        <a href="http://www.github.com/walshcbryan">
+            <i class="fab fa-github"></i>
+            Github/WalshCBryan
+        </a>
+    </li>
+    <li class="">
+        <a href="http://www.github.com/evaleriog">
+            <i class="fab fa-github"></i>
+            Github/EValerioG
+        </a>
+    </li>
+    <li class="">
+        <a href="http://www.github.com/christiancrousser">
+            <i class="fab fa-github"></i>
+            Github/ChristianCrousser
+        </a>
+    </li>
+</ul>
+<div class="text">
+    <h1>COMING</h1>
+    <h1>SOON</h1>
+    <hr>
+    <h2>OpenHelp</h2>
+    <hr>
+    <h3>5 days left</h3>
+</div>
+</body>
+</html>
+</body>
+</html>
