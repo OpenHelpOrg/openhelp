@@ -2,93 +2,89 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="partials/head :: head"></th:block>
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/events.css">
     <title>Create</title>
 </head>
 <body>
-<div class="wrapper">
-    <nav th:include="partials/navbar :: navbar"></nav>
+<nav th:insert="partials/navbar :: navbar"></nav>
+<!--<header class="jumbotron">-->
+<!--    <h1 class="text-center display-1">Create Event: <span th:text="${name}">holder</span></h1>-->
+<!--</header>-->
+<section class="forms-section">
+    <div class="forms">
+            <form class="forms" th:action="@{/events/create}" th:method="post" th:object="${event}">
+                <fieldset>
+                    <legend class="section-title">Enter your event details below</legend>
+                    <!--                event title-->
+                    <div class="input-block">
+                        <label for="title">Title</label>
+                        <input th:placeholder="Title" id="title" type="text" th:field="*{title}" required>
+                    </div>
+                    <!--                event address-->
+                    <div class="input-block">
+                        <label for="address">Address</label>
+                        <input th:placeholder="Address" id="address" type="text" th:field="*{address}" required>
+                    </div>
 
-    <header class="jumbotron">
+                    <!--                event date-->
+                    <div class="input-block">
+                        <label for="datetime">Choose Date/time YYYY/MM/DDT00:00</label>
+                        <!--                    <input class="form-control" id="datetime" th:placeholder="" style="width:100%;"/>-->
+                        <!--                    <input class="form-control" id="datetime" th:placeholder="${getDate_time()}" style="width:100%;"/>-->
+                        <input type='text' placeholder="Date" th:field="*{date_time}" id="datetime">
+                    </div>
+                    <!--                &lt;!&ndash;                event date&ndash;&gt;-->
+                    <!--                                <div class="input-block">-->
+                    <!--                                    <label for="date">Date</label>-->
+                    <!--                                    <input th:placeholder="Date" id="date" type="date" th:field="*{date}" required>-->
+                    <!--                                </div>-->
+                    <!--                &lt;!&ndash;                event time&ndash;&gt;-->
+                    <!--                <div class="input-block">-->
+                    <!--                    <label for="time">Time</label>-->
+                    <!--                    <input th:placeholder="Time" id="time" type="time" th:field="*{time}" required>-->
+                    <!--                </div>-->
+                    <!--                event location-->
 
-        <h1 class="text-center display-1">Create Event:</h1>
-        <!--            <h1 class="text-center display-1"><span th:text="${name}">holder</span></h1>-->
+                    <div class="input-block">
+                        <label for="volume">Max people</label>
+                        <input th:placeholder="max" id="volume" type="text" th:field="*{vol_limit}" required>
+                    </div>
 
-    </header>
-
-    <div class="form-wrapper">
-<!--        <button type="button" class="">-->
-<!--            Create Event-->
-<!--            <span class="underline"></span>-->
-<!--        </button>-->
-        <form class="form form-signup" th:action="@{/events/create}" th:method="post" th:object="${event}">
-            <fieldset>
-                <legend>Enter your event details below</legend>
-                <!--                event title-->
-                <div class="input-block">
-                    <label for="title">Title</label>
-                    <input th:placeholder="Title" id="title" type="text" th:field="*{title}" required>
-                </div>
-                <!--                event address-->
-                <div class="input-block">
-                    <label for="address">Address</label>
-                    <input th:placeholder="Address" id="address" type="text" th:field="*{address}" required>
-                </div>
-
-                <!--                event date-->
-                <div class="input-block">
-                    <label for="datetime">Choose Date/time YYYY/MM/DDT00:00</label>
-<!--                    <input class="form-control" id="datetime" th:placeholder="" style="width:100%;"/>-->
-<!--                    <input class="form-control" id="datetime" th:placeholder="${getDate_time()}" style="width:100%;"/>-->
-                    <input type='text' placeholder="Date" th:field="*{date_time}" id="datetime">
-                </div>
-
-<!--                &lt;!&ndash;                event date&ndash;&gt;-->
-<!--                                <div class="input-block">-->
-<!--                                    <label for="date">Date</label>-->
-<!--                                    <input th:placeholder="Date" id="date" type="date" th:field="*{date}" required>-->
-<!--                                </div>-->
-<!--                &lt;!&ndash;                event time&ndash;&gt;-->
-<!--                <div class="input-block">-->
-<!--                    <label for="time">Time</label>-->
-<!--                    <input th:placeholder="Time" id="time" type="time" th:field="*{time}" required>-->
-<!--                </div>-->
-
-                <!--                event notes-->
-                <div class="input-block">
-                    <label for="notes">Notes</label>
-                    <textarea th:placeholder="Notes" id="notes" type="textarea" th:field="*{notes}" required></textarea>
-                </div>
-                <!--                event summary-->
-                <div class="input-block">
-                    <label for="summary">Summary</label>
-                    <textarea th:placeholder="Address" id="summary" th:field="*{summary}" required></textarea>
-                </div>
-                <!--                event details-->
-                <div class="input-block">
-                    <label for="details">Details</label>
-                    <textarea th:placeholder="Details" id="details" th:field="*{details}" required></textarea>
-                </div>
-                <!--                event location-->
-                <div class="input-block">
-                    <label for="location">Location</label>
-                    <textarea th:placeholder="Location" id="location" th:field="*{location}" required></textarea>
-                </div>
-                <!--                event location-->
-                <div class="input-block">
-                    <label for="volume">Max people</label>
-                    <input th:placeholder="max" id="volume" type="text" th:field="*{vol_limit}" required>
-                </div>
-
-<!--                image-->
-                <div class="input-block">
-                    <label for="image">Image URL</label>
-                    <input th:placeholder="image" id="image" type="url" th:field="*{images}" required>
-                </div>
-
-            </fieldset>
-            <button type="submit" class="btn-signup">Continue</button>
-        </form>
-    </div>
-</div>
+                    <!--                image-->
+                    <div class="input-block">
+                        <label for="image">Image URL</label>
+                        <input th:placeholder="image" id="image" type="url" th:field="*{images}" required>
+                    </div>
+                    <!--                event notes-->
+                    <div class="input-block">
+                        <label for="notes">Notes</label><br>
+                        <textarea th:placeholder="Notes" id="notes" type="textarea" th:field="*{notes}"
+                                  required></textarea>
+                    </div>
+                    <!--                event summary-->
+                    <div class="input-block">
+                        <label for="summary">Summary</label><br>
+                        <textarea th:placeholder="Address" id="summary" th:field="*{summary}" required></textarea>
+                    </div>
+                    <!--                event details-->
+                    <div class="input-block">
+                        <label for="details">Details</label><br>
+                        <textarea th:placeholder="Details" id="details" th:field="*{details}" required></textarea>
+                    </div>
+                    <!--                event location-->
+                    <div class="input-block">
+                        <label for="location">Location</label><br>
+                        <textarea th:placeholder="Location" id="location" th:field="*{location}" required></textarea>
+                    </div>
+                    <div class="d-inline-block m-auto">
+                        <button type="submit" class="btn-submit">Continue</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+</section>
+<!--    </div>-->
 </body>
 </html>
+

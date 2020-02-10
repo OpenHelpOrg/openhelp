@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <th:block th:insert="partials/head :: head"></th:block>
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/events.css">
     <title>Edit Event</title>
 </head>
 
@@ -9,7 +11,7 @@
 <br>
 
 <div class="wrapper">
-    <nav th:include="partials/navbar :: navbar"></nav>
+    <nav th:insert="partials/navbar :: navbar"></nav>
     <header class="container my-5">
         <div class="jumbotron">
             <h1 class="text-center display-1">Edit Event:</h1>
