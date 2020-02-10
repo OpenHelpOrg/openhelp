@@ -1,17 +1,61 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <th:block th:insert="partials/head :: head"></th:block>
-        <link rel="stylesheet" href="css/navbar.css">
-        <link rel="stylesheet" href="css/login.css">
-
+<head>
+    <th:block th:insert="partials/head :: head"></th:block>
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/home.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js" type="text/javascript"></script>
     <title>Home</title>
 </head>
 <body>
 
-    <nav th:insert="partials/navbar :: navbar"></nav>
-    <h1>Open help Home Page</h1>
+<nav th:insert="partials/navbar :: navbar"></nav>
 
+<div class="mx-auto" style="width:80%; height: 20%;">
+    <div id="carouselmain" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active" style="height: 100%;">
+                <img class="d-block w-100 carimg" src="images/vol1.png" alt="First slide">
+            </div>
+            <div class="carousel-item" style="height: 100%;">
+                <img class="d-block w-100 carimg" src="images/vol2.jpg" alt="Second slide">
+            </div>
+            <div class="carousel-item" style="height: 100%;">
+                <img class="d-block w-100 carimg" src="images/vol3.jpg" alt="Third slide">
+            </div>
+            <div class="carousel-item" style="height: 100%;">
+                <img class="d-block w-100 carimg" src="images/vol3.png" alt="Third slide">
+            </div>
+            <div class="carousel-item" style="height: 100%;">
+                <img class="d-block w-100 carimg" src="images/vol4.jpg" alt="Third slide">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="roboto center white lgtext" style="margin-top: 125px;">
+    <h1><span class="ul">GIVE</span> where you <span class="ul">LIVE!</span></h1>
+    <br>
+    <h2>Connecting the community one step at a time!</h2>
+    <br>
+    <h2> Don't wait, sign up to volunteer today!</h2>
+    <br>
+    <hr class="orange w-50 mx-auto">
+</div>
+
+<div id="upcoming" class="roboto center white lgtext w-50 mx-auto">
+    <h1>Upcoming Events</h1>
+    <p> (placeholder for upcoming events)</p>
+
+
+</div>
+
+<script>
+    $('#carousalmain').carousel({
+        interval: 1000
+    })
+</script>
 
 </body>
 </html>

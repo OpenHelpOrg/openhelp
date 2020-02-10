@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <th:block th:insert="partials/head :: head"></th:block>
-        <link rel="stylesheet" href="css/navbar.css">
+<head>
+    <th:block th:insert="partials/head :: head"></th:block>
+    <link rel="stylesheet" href="css/navbar.css">
 
-        <title>Home</title>
+    <title>Home</title>
     <title>NavBar</title>
 
 </head>
@@ -33,14 +33,15 @@
                 <a class="nav-link" href="/sign-up">Login/Signup</a>
             </li>
 
+
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" id="searchfield" type="search" placeholder="Search"
+                       aria-label="Search">
+                <button class="btn my-2 my-sm-0" id="searchbutton" type="submit">Search</button>
+            </form>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" id="searchfield" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn my-2 my-sm-0" id="searchbutton" type="submit">Search</button>
-        </form>
     </div>
 </nav>
-
 
 
 <div class="mt-auto" th:fragment="footer">
@@ -48,7 +49,6 @@
         <button style="border:none !important" class="btn-link btn p-0">About</button>
     </a>
 </div>
-
 
 
 </body>
