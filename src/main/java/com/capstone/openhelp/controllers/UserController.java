@@ -2,10 +2,8 @@ package com.capstone.openhelp.controllers;
 
 
 import com.capstone.openhelp.models.User;
-import com.capstone.openhelp.models.UserEvents;
 import com.capstone.openhelp.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
