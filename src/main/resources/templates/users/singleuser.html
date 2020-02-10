@@ -3,85 +3,78 @@
 <head>
     <th:block th:insert="partials/head :: head"></th:block>
     <title>create-user</title>
+    <style>
+        body{
+            background-color: #4DB2F1;
+        }
+
+        a{
+            color: #EA6725;
+        }
+
+        img{
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
 <nav th:include="partials/navbar :: navbar"></nav>
-<h1 th:text="${user.getName()}"></h1>
-<h3>About</h3>
-<p th:text="${user.getAbout()}"></p>
-<h3>Address</h3>
-<p th:text="${user.getAddress()}"></p>
-<h3>Email</h3>
-<p th:text="${user.getEmail()}"></p>
-<h3>Phone</h3>
-<p th:text="${user.getPhone()}"></p>
-<h3>Website</h3>
-<p th:text="${user.getWebsite()}"></p>
-<img th:src="@{${user.getImage()}}" alt="User avatar">
 
-<div th:each="event : ${user.getUserEvents()}">
-    <p th:text="${event.getEvent().getTitle()}"></p>
+<div class="row">
+    <div class="col-sm-12 col-md-8">
+        <div class="card mb-3" style="width: 100%;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img th:src="@{${user.getImage()}}" alt="user avatar" class="card-img">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h1 class="card-title" th:text="${user.getName()}"></h1>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <h3>About</h3>
+                                <span th:text="${user.getAbout()}"></span>
+                            </li>
+                            <li class="list-group-item">
+                                <h3>Address</h3>
+                                <span th:text="${user.getAddress()}"></span>
+                            </li>
+                            <li class="list-group-item">
+                                <h3>Phone</h3>
+                                <span th:text="${user.getPhone()}"></span>
+                            </li>
+                            <li class="list-group-item">
+                                <a th:href="@{'mailto:' + ${user.getEmail()}}" th:text="${user.getEmail()}"></a>
+                            </li>
+                            <li class="list-group-item">
+                                <a th:href="@{${user.getWebsite()}}" target="_blank">Website</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-4">
+        <div class="card mb-3" style="width: 100%">
+            <div class="card-body">
+                <h1 class="card-title">Events Created by <span th:text="${user.getName()}"></span></h1>
+                <ul class="list-group list-group-flush" th:each="event : ${user.getUserEvents()}">
+                    <li class="list-group-item" th:if="${event.isIs_creator() == true}">
+                        <a th:href="@{'/events/details/' + ${event.getEvent().getId()}}">
+                            <img th:src="@{${event.getEvent().getImages()}}" alt="event image">
+                            <span th:text="${event.getEvent().getTitle()}"></span>
+                            <span th:text="${event.getEvent().getDate_time()}"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
 
-<!--<h1 th:text="${user.username}" class="">One User</h1>-->
 
-<!--<div class="row">-->
-<!--    <div class="card col-6" >-->
-<!--&lt;!&ndash;        <div class="card-body">&ndash;&gt;-->
-<!--            <div class="card-title">-->
-<!--                <h2 class=""><span th:text="${user.email}">holder</span></h2>-->
-<!--            </div>-->
-<!--&lt;!&ndash;        <div th:each="image : ${post.images}">&ndash;&gt;-->
-<!--&lt;!&ndash;            <div>&ndash;&gt;-->
-<!--&lt;!&ndash;                <img th:src="${image.url}" style="height: 200px; margin: auto"/>&ndash;&gt;-->
-<!--&lt;!&ndash;            </div>&ndash;&gt;-->
-<!--&lt;!&ndash;        </div>&ndash;&gt;-->
-<!--            &lt;!&ndash;            action&ndash;&gt;-->
-<!--            <div class="card-action" style="padding-top: 300px">-->
-<!--                <a class=""-->
-<!--                   th:href="@{'/user/edit/'+ ${user.id}}">-->
-<!--                    Edit Profile</a>-->
 
-<!--                &lt;!&ndash; Modal Trigger &ndash;&gt;-->
-<!--                <a class="btn" href="#modal1">Delete Profile</a>-->
-<!--                &lt;!&ndash; Modal Structure &ndash;&gt;-->
-<!--                <div id="modal1" class="modal">-->
-<!--                    <div class="modal-content">-->
-<!--                        <h4>Confirm</h4>-->
-<!--                        <p>Are you sure you want to delete your profile?</p>-->
-<!--                    </div>-->
-<!--                    <div class="modal-footer">-->
-<!--                        <form th:action="@{'/user/delete/'+ ${user.id}}"-->
-<!--                              method="post">-->
-<!--                            <a href="#!"-->
-<!--                               class=""> No</a>-->
-<!--                            <button type="submit"-->
-<!--                                    class="btn"-->
-<!--                            >Yes-->
-<!--                            </button>-->
-<!--                        </form>-->
 
-<!--                    </div>-->
-<!--&lt;!&ndash;                </div>&ndash;&gt;-->
-
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    &lt;!&ndash;            end action&ndash;&gt;-->
-<!--    <th:block th:each="post : ${user.posts}">-->
-<!--        <div class="card">-->
-<!--            <div class="card-content">-->
-<!--                <div class="card-title" th:text="${post.title}"></div>-->
-<!--                <a th:href="@{'/posts/details/'+${post.id}}" class="btn ">-->
-<!--                    <button>View Post</button>-->
-<!--                </a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </th:block>-->
-
-<!--</div>-->
-
-<!--</div>-->
-<!--</div>-->
 </body>
 </html>
