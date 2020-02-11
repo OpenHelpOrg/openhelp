@@ -27,7 +27,7 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
 
 
-//    public UserController(UserRepository userDao) {
+    //    public UserController(UserRepository userDao) {
 //        this.userDao = userDao;
 //    }
     public UserController(UserRepository userDao, PasswordEncoder passwordEncoder) {
@@ -36,7 +36,7 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public String showIndex(Model model){
+    public String showIndex(Model model) {
         List<User> users = userDao.findAll();
         model.addAttribute("users", users);
         return "users/users";
@@ -84,10 +84,12 @@ public class UserController {
 //        return "users/edit";
 //    }
 
-    @PostMapping("/users/edit/{id}")
-    public String editUser(@ModelAttribute User user, @PathVariable long id){
+    @PostMapping("/users/profile")
+    public String editUser(@ModelAttribute User user) {
+        User log = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        user.setId(log.getId());
         userDao.save(user);
-        return "users/profile";
+        return ("users/profile");
     }
 
     //! DELETE
@@ -98,6 +100,7 @@ public class UserController {
         model.addAttribute("id", id);
         return "users/delete";
     }
+
     @PostMapping("/users/delete/{id}")
     public String deleteUser(
             @PathVariable long id) {
@@ -107,15 +110,14 @@ public class UserController {
     }
 
 
-
     @GetMapping("/sign-up")
-    public String showSignupForm(Model model){
+    public String showSignupForm(Model model) {
         model.addAttribute("user", new User());
         return "login";
     }
 
     @PostMapping("/sign-up")
-    public String saveUser(@ModelAttribute User user){
+    public String saveUser(@ModelAttribute User user) {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         userDao.save(user);
@@ -123,10 +125,11 @@ public class UserController {
     }
 
     @GetMapping("/users/profile")
-    public String showUserProfile(Model model){
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public String showUserProfile(Model model) {
+        User log = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.findById(log.getId());
         model.addAttribute("user", user);
-        return("users/profile");
+        return ("users/profile");
     }
 }
 
