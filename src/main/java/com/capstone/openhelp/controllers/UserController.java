@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -35,10 +36,19 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
+    //displays all organization on our db
     @GetMapping("/users")
     public String showIndex(Model model) {
         List<User> users = userDao.findAll();
-        model.addAttribute("users", users);
+        List<User> corporations = new ArrayList<>();
+
+        for(int i=0; i < users.size(); i++){
+            if(users.get(i).isIs_org()){
+                corporations.add(users.get(i));
+            }
+        }
+
+        model.addAttribute("organizations", corporations);
         return "users/users";
     }
 
