@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class ComingSoonController {
 
-    @GetMapping("/comingsoon")
+    @GetMapping("/")
     public String comingSoon(){
 
         return "comingsoon";

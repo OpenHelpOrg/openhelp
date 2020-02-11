@@ -2,12 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="partials/head :: head"></th:block>
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/events.css">
     <title>Event Index</title>
 </head>
 <body>
 <div class="wrapper">
-    <nav th:include="partials/navbar :: navbar"></nav>
-    <h1 class="d-flex ml-auto bg-danger"> showing all posts index.html </h1>
+    <nav th:insert="partials/navbar :: navbar"></nav>
+    <h1 class="d-flex ml-auto bg-danger"> showing all events eventsindex.html </h1>
 
     <br><br>
 
