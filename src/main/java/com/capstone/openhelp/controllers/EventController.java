@@ -50,7 +50,6 @@ public class EventController {
             (@PathVariable Long id,
              Model model){
         model.addAttribute("event", eventDao.getOne(id));
-
         return "events/edit";
     }
 
@@ -58,7 +57,8 @@ public class EventController {
     @PostMapping("/events/edit")
     public String editEvent(@ModelAttribute Event event){
         eventDao.save(event);
-        return "redirect:/events";
+        return "redirect:/users/profile";
+//        return "redirect:/events/eventsindex";
     }
 
 
@@ -98,7 +98,7 @@ public class EventController {
         return "redirect:/events";
     }
 
-    @GetMapping("/events/details/{id}")
+    @GetMapping("/events/singleevent/{id}")
     public String returnOneToOneView(@PathVariable long id, Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("userId", user.getId());

@@ -15,7 +15,7 @@
             <h1 class=""> Showing All Events</h1>
     </div>
     <br><br>
-    <div class="d-flex flex-nowrap row">
+    <div class="d-flex flex-nowrap row justify-content-around">
         <div th:each="event : ${events}" class="card col-3 d-inline">
             <a th:text="${event.title}" class="card-title"></a>
             <div class="card-body ">
@@ -25,7 +25,7 @@
 <!--                <p th:text="${event.time}"></p>-->
 <!--                <p> created by user with email <span th:text="${event.user.email}"> </span></p>-->
             </div>
-            <div style="display: flex; margin: auto">
+            <div class="d-flex justify-content-center">
                 <div th:each="image : ${event.images}">
                     <div>
                         <img th:src="${image}" style="height: 200px; margin: auto"/>

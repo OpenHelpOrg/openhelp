@@ -7,50 +7,60 @@
     <title>Single Event</title>
 </head>
 <body>
-<div class="wrapper">
-    <nav th:insert="partials/navbar :: navbar"></nav>
-    <div class="container">
-
-        <h1>Single Event</h1>
-
-<!--        <h3 th:text="${event.title}"></h3>-->
-<!--        <h5 th:text="${event.description}"></h5>-->
-<!--        <h3> created by: <span th:text="${event.user.username}"></span></h3>-->
-<!--        <h3> created by user with id <span th:text="${event.user.id}"> </span></h3>-->
-
-
-
-<!--        <div th:if="${event.eventDetails != null}">-->
-<!--            <h3 th:text="${event.eventDetails.topicDescription}"></h3>-->
-<!--            <p>History of post:-->
-<!--                <span th:text="${event.eventDetails.historyOfEvent}"></span>-->
-<!--            </p>-->
-<!--        </div>-->
+<nav th:insert="partials/navbar :: navbar"></nav>
+<div class="jumbotron">
+    <h1 class=""> Showing Single Events</h1>
+</div>
+<div class="container">
+    <div class="card mx-auto" style="width: 100%;">
+        <div class="card-title">
+            <h3 th:text="${event.title}"></h3>
+        </div>
+        <div class="card-body">
+            <h5>Address:</h5>
+            <h5 th:text="${event.address}"></h5>
+            <h5>Summary:</h5>
+            <h5 th:text="${event.summary}"></h5>
+        </div>
 
 
-<!--        <div th:if="${event.user.id == userId}">-->
-<!--            &lt;!&ndash;edit post&ndash;&gt;-->
-<!--            <a th:href="@{'/event/edit/'+${event.id}}" class="btn">-->
-<!--                <button>Edit Even</button>-->
-<!--            </a>-->
-<!--            &lt;!&ndash;delete post&ndash;&gt;-->
-<!--            <a th:href="@{'/event/delete/'+ ${event.id}}" class="btn">-->
-<!--                <button>Delete Event</button>-->
-<!--            </a>-->
-<!--        </div>-->
+        <!--    !!!!!!!!!!!!!!!!! NEED TO ATTACH USER TO SINGLE EVENT !!!!!!!!!!!!!!!!!!!!!!!!-->
 
-<!--    </div>-->
+        <!--        <h3> created by: <span th:text="${event.user.email}"></span></h3>-->
+        <!--        <h3> created by user with id <span th:text="${event.user.id}"> </span></h3>-->
 
 
-<!--</div>-->
+        <!--        <div th:if="${event.details != null}">-->
+        <!--            <h3 th:text="${event.eventDetails.topicDescription}"></h3>-->
+        <!--            <p>History of post:-->
+        <!--                <span th:text="${event.eventDetails.historyOfEvent}"></span>-->
+        <!--            </p>-->
+        <!--        </div>-->
 
-<!--<div style="display: flex; flex-wrap: wrap">-->
-<!--    <div th:each="image : ${event.images}">-->
-<!--        <div>-->
-<!--            <img th:src="${image.url}" style="height: 300px; margin-left: 10px; margin-right: 10px;"/>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+        <div class="mx-auto">
+            <div th:each="image : ${event.images}">
+                <div>
+                    <img th:src="${image}" style="height: 300px; margin-left: 10px; margin-right: 10px;"/>
+                </div>
+            </div>
+        </div>
+
+        <!--                    <div th:if="${event.user.id == userId}">-->
+        <!--edit post-->
+        <div class="d-flex">
+            <a th:href="@{'/events/edit/'+${event.id}}" class="btn">
+                <button>Edit Event</button>
+            </a>
+            <!--delete post-->
+            <a th:href="@{'/events/delete/'+ ${event.id}}" class="btn">
+                <button>Delete Event</button>
+            </a>
+        </div>
+        <!--                    </div>-->
+
+
+    </div>
+</div>
 
 
 </body>
