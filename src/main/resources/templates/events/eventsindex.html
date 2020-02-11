@@ -2,48 +2,45 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="partials/head :: head"></th:block>
-    <link rel="stylesheet" href="css/navbar.css">
-    <link rel="stylesheet" href="css/events.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/events.css">
+    <link rel="stylesheet" href="../css/openhelp.css">
+
     <title>Event Index</title>
 </head>
 <body>
 <div class="wrapper">
     <nav th:insert="partials/navbar :: navbar"></nav>
-    <h1 class="d-flex ml-auto bg-danger"> showing all events eventsindex.html </h1>
-
+    <div class="jumbotron">
+            <h1 class=""> Showing All Events</h1>
+    </div>
     <br><br>
+    <div class="d-flex flex-nowrap row">
+        <div th:each="event : ${events}" class="card col-3 d-inline">
+            <a th:text="${event.title}" class="card-title"></a>
+            <div class="card-body ">
+                <p th:text="${event.details}"></p>
+                <p th:text="${event.address}"></p>
+<!--                <p th:text="${event.date}"></p>-->
+<!--                <p th:text="${event.time}"></p>-->
+<!--                <p> created by user with email <span th:text="${event.user.email}"> </span></p>-->
+            </div>
+            <div style="display: flex; margin: auto">
+                <div th:each="image : ${event.images}">
+                    <div>
+                        <img th:src="${image}" style="height: 200px; margin: auto"/>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-nowrap btn-div justify-content-around">
+                <!--view post-->
+                <a th:href="@{'/events/singleevent/'+${event.id}}" class="btn ">
+                    <button>View Event</button>
+                </a>
 
-<!--    <div class="d-flex flex-nowrap row">-->
-<!--        <div th:each="event : ${events}" class="card col-3 d-inline">-->
-<!--            <a th:text="${events.title}" class="card-title"></a>-->
-<!--            <div class="card-body ">-->
-<!--                <p th:text="${events.details}"></p>-->
-<!--                <p th:text="${events.address}"></p>-->
-<!--                <p th:text="${events.date}"></p>-->
-<!--                <p th:text="${events.time}"></p>-->
-
-
-
-
-<!--                &lt;!&ndash;                <p> created by: <span th:text="${username}"></span></p>&ndash;&gt;-->
-<!--                &lt;!&ndash;                <p> created by user with id <span th:text="${post.user.userId}"> </span></p>&ndash;&gt;-->
-<!--            </div>-->
-<!--            <div style="display: flex; margin: auto">-->
-<!--                <div th:each="image : ${events.images}">-->
-<!--                    <div>-->
-<!--                        <img th:src="${images.url}" style="height: 200px; margin: auto"/>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="d-flex flex-nowrap btn-div justify-content-around">-->
-<!--                &lt;!&ndash;view post&ndash;&gt;-->
-<!--                <a th:href="@{'/events/singleevent/'+${event.id}}" class="btn ">-->
-<!--                    <button>View Event</button>-->
-<!--                </a>-->
-
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
