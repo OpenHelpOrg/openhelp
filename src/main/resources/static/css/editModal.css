@@ -1,0 +1,43 @@
+.modal {
+    border: 2px solid #ea6725 !important;
+    border-radius: 5px !important;
+}
+
+.modal-content {
+    background-color: #4DB2F1 !important;
+}
+
+.modal label,
+.modal-title {
+    font-size: 1.25em;
+    color: white !important;
+}
+
+.modal input,
+.modal textarea {
+    border: 1px solid #ea6725 !important;
+}
+
+.btn-close {
+    background-color: gray !important;
+    color: white !important;
+    border: 1px solid white !important;
+}
+
+.btn-doEdit {
+    background-color: #ea6725 !important;
+    color: white !important;
+    border: 1px solid white !important;
+
+}
+
+.btn-doEdit,
+.btn-close {
+    min-width: 120px;
+    margin: 30px auto 10px;
+    font-size: 18px;
+    line-height: 40px;
+    border-radius: 25px;
+    border: none;
+    transition: all .3s ease-out;
+}
