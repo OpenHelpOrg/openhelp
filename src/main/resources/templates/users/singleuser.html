@@ -2,7 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="partials/head :: head"></th:block>
-    <title>create-user</title>
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/home.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <title th:text="${user.getName()} + ' Profile'"></title>
     <style>
         body{
             background-color: #4DB2F1;
@@ -18,7 +22,7 @@
     </style>
 </head>
 <body>
-<nav th:include="partials/navbar :: navbar"></nav>
+<nav th:insert="partials/navbar :: navbar"></nav>
 
 <div class="row">
     <div class="col-sm-12 col-md-8">
