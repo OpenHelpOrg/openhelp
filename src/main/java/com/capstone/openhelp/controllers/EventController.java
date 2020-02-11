@@ -57,8 +57,8 @@ public class EventController {
     @PostMapping("/events/edit")
     public String editEvent(@ModelAttribute Event event){
         eventDao.save(event);
-        return "redirect:/users/profile";
-//        return "redirect:/events/eventsindex";
+//        return "redirect:/users/profile";
+        return "redirect:/index";
     }
 
 
