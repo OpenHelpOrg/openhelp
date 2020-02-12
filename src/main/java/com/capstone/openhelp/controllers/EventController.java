@@ -108,9 +108,15 @@ public class EventController {
 
     @GetMapping("/events/singleevent/{id}")
     public String returnOneToOneView(@PathVariable long id, Model model){
+        for(int x=0; x < eventDao.findById(id).getUserEvents().size(); x++){
+            if(eventDao.findById(id).getUserEvents().get(x).isIs_creator()){
+                model.addAttribute("creator", eventDao.findById(id).getUserEvents().get(x).getUser());
+            }
+        }
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("userId", user.getId());
         model.addAttribute("event", eventDao.findById(id));
+
         return "events/singleevent";
     }
 
