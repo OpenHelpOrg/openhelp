@@ -47,8 +47,12 @@
                                 <span th:text="${event.getVol_limit()}"></span>
                             </li>
                             <li class="list-group-item">
-                                <p>Created by: </p>  <a th:href="@{'mailto:' + ${event.getUser().getEmail()}}"
-                                                        th:text="${event.getUser().getEmail()}"></a>
+                                <div th:each="ev : ${event.getUserEvents()}">
+                                    <div th:if="${ev.isIs_creator()}">
+                                        <p>Created by: </p>  <a th:href="@{'mailto:' + ${ev.getUser().getEmail()}}"
+                                                                th:text="${ev.getUser().getEmail()}"></a>
+                                    </div>
+                                </div>
                             </li>
 
                         </ul>
@@ -80,7 +84,7 @@
     <!--            </div>-->
     <!--        </div>-->
 
-    <div th:if="${event.user.id == userId}">
+    <div th:if="${creator.getId() == userId}">
         <!--edit post-->
         <div class="d-flex">
             <a th:href="@{'/events/edit/'+${event.id}}" class="btn">
