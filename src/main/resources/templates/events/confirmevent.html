@@ -10,8 +10,18 @@
 </head>
 <body>
 <nav th:insert="partials/navbar :: navbar"></nav>
-<p th:text="${response}"></p>
-<p th:text="${user.getName()}"></p>
-<p th:text="${event.getTitle()}"></p>
+
+<div th:if="${response == 'yes'}">
+    <h1>Thank you</h1>
+    <p th:text="'Thank you ' + ${user.getName()} + ', you are now register to volunteer in the event ' + ${event.getTitle()} + '.'"></p>
+    <p>If you have any questions, please contact <a th:href="@{'/user/' + ${creator.getId()}}" th:text="${creator.getName()}"></a> at <a th:href="@{'mailto:' + ${creator.getEmail()}}" th:text="${creator.getEmail()}"></a>.</p>
+</div>
+
+<div th:if="${response == 'no'}">
+    <h1>We Apologize</h1>
+    <p>Looks like the event has reached its maximum amount of volunteers.</p>
+    <p>For more questions about this contact the event creator <a th:href="@{'/user/' + ${creator.getId()}}" th:text="${creator.getName()}"></a> at <a th:href="@{'mailto:' + ${creator.getEmail()}}" th:text="${creator.getEmail()}"></a>.</p>
+</div>
+
 </body>
 </html>

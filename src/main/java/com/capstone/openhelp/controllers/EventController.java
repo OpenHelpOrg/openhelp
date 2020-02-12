@@ -122,15 +122,14 @@ public class EventController {
         for (int x =0; x < event.getUserEvents().size(); x++){
             if(!event.getUserEvents().get(x).isIs_creator()){
                 current++;
+            }else {
+                model.addAttribute("creator", event.getUserEvents().get(x).getUser());
             }
         }
 
         if(current < limit){
-//            List<UserEvents> enroll = new ArrayList<>();
-//            enroll.add(new UserEvents(user,event, false));
-//            event.setUserEvents(enroll);
-
             userEventDao.save(new UserEvents(user,event, false));
+
             model.addAttribute("response", "yes");
         }else {
             model.addAttribute("response", "no");
