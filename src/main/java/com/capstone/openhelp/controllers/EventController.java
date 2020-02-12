@@ -82,9 +82,10 @@ public class EventController {
     @PostMapping("/events/create")
     public String createEvent(@ModelAttribute Event event){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        event.setUser(user); //event model- set user to specific event
+//        event.setUser(user); //event model- set user to specific event
         eventDao.save(event); //event repo extends jpa repo
 //        emailService.prepareAndSend(event,"You just made a event","you just made a event"); //EmailService.java model
+        userEventDao.save(new UserEvents(user,event, true));
         return "redirect:/events";
     }
 
