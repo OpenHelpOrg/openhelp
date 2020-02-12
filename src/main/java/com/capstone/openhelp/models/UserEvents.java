@@ -7,11 +7,13 @@ import java.io.Serializable;
 @Table(name = "user_event")
 public class UserEvents implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
     @ManyToOne
     @JoinColumn
     private User user;
 
-    @Id
     @ManyToOne
     @JoinColumn
     private Event event;
@@ -30,6 +32,20 @@ public class UserEvents implements Serializable {
         this.event = event;
         this.is_creator = is_creator;
         this.story = story;
+    }
+
+    public UserEvents(User user, Event event, boolean is_creator){
+        this.user = user;
+        this.event = event;
+        this.is_creator = is_creator;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public User getUser() {
