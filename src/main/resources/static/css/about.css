@@ -1,6 +1,7 @@
 .card-img {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     height: 400px;
     width: 350px;
 }
