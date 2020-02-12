@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<<<<<<< HEAD
     <th:block th:insert="partials/head :: head"></th:block>
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/home.css">
-=======
-    <th:block th:insert="/partials/head :: head"></th:block>
-    <link rel="stylesheet" href="css/navbar.css">
-    <link rel="stylesheet" href="css/home.css">
->>>>>>> master
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js" type="text/javascript"></script>
     <title th:text="${user.getName()} + ' Profile'"></title>
@@ -18,12 +13,12 @@
             background-color: #4DB2F1;
         }
 
-        a{
+        .singleuserlink a {
             color: #EA6725!important;
             text-decoration: none!important;
         }
 
-        a:hover{
+        .singleuserlink a:hover{
             color: #4DB2F1!important;
         }
 
@@ -71,10 +66,10 @@
                                 <h3>Phone</h3>
                                 <span th:text="${user.getPhone()}"></span>
                             </li>
-                            <li class="list-group-item">
+                            <li class="list-group-item singleuserlink">
                                 <a th:href="@{'mailto:' + ${user.getEmail()}}" th:text="${user.getEmail()}"></a>
                             </li>
-                            <li class="list-group-item">
+                            <li class="list-group-item singleuserlink">
                                 <a th:href="@{${user.getWebsite()}}" target="_blank">Website</a>
                             </li>
                         </ul>

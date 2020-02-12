@@ -5,7 +5,7 @@ body {
 }
 
 .headshot {
-    height: 250px;
+    height: 260px;
     width: 250px;
     margin-top: 10px;
     border: 1px solid black;
@@ -24,6 +24,8 @@ body {
     list-style-type: none;
     align-items: flex-end!important;
     margin-top: auto;
+    /*position: absolute;*/
+    /*bottom: 2px;*/
 }
 
 .card {
@@ -31,4 +33,5 @@ body {
     border: 1px solid #EA6725;
     border-radius: 5px;
     margin: 10px;
+    /*position: relative;*/
 }
