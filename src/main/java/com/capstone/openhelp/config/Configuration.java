@@ -20,7 +20,7 @@ public class Configuration {
                 .basicAuth("api", APIK.API_KEY)
                 .field("from", "Excited User <test@openhelp.com>")
                 .field("to", "walsh.c.bryan@gmail.com")
-                .field("subject", "hello, this system is a pain in the a**")
+                .field("subject", "hello, and have a nice day!")
                 .field("text", "testing")
                 .asJson();
 
