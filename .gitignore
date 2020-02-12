@@ -31,4 +31,4 @@ build/
 .vscode/
 
 src/main/resources/application.properties
-src/main/java/com/capstone/openhelp/config/APIK
+src/main/java/com/capstone/openhelp/config/APIK.java
