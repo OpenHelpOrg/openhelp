@@ -4,85 +4,117 @@
     <th:block th:insert="partials/head :: head"></th:block>
     <title>About</title>
     <link rel="stylesheet" href="/css/about.css">
+    <link rel="stylesheet" href="/css/navbar.css">
 </head>
 <body>
-<div class="wrapper">
-    <nav th:include="partials/navbar :: navbar"></nav>
-    <h1>About Us</h1>
+<nav th:insert="partials/navbar :: navbar"></nav>
+<h1 class="text-center">About Us</h1>
+
+<div id="holder" class="d-flex flex-wrap justify-content-center">
+    <!--    Christian   -->
+    <div class="card mx-2">
+        <img class="card-img-top headshot mx-auto" src="images/christian-headshot.jpeg" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Christian Crousser Kaiman</h5>
+            <p class="card-text">As a web developer I desire to develop and build applications that will entertain and
+                bring happiness to others. I want to grow and expand my horizons with new ways of being able to achieve
+                my goals. I want to have the ability to be able to solve real world problems with the skills I will
+                learn.</p>
+
+            <ul class="aboutlinksUL d-flex  justify-content-evenly ">
+                <li>
+                    <a class="whoIs-links" href="https://github.com/ChristianCrousser"><i
+                            class="fab fa-github-square fa-3x"></i></a>
+                </li>
+                <li>
+                    <a class="whoIs-links" href="https://www.linkedin.com/in/christian-crousser-kaiman/"><i
+                            class="fab fa-linkedin fa-3x"></i></a>
+                </li>
+                <li>
+                    <a class="whoIs-links" href="mailto:christian.crousserkaiman@gmail.com"><i
+                            class="fas fa-envelope fa-3x"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--    Roger   -->
+    <div class="card mx-2">
+        <img class="card-img-top headshot mx-auto" src="images/roger-headshot.png" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Roger Mayer</h5>
+            <p class="card-text">I am a former store manager/barista currently pursuing a lifelong career in programming
+                with full stack web development. There is something really interesting and gratifying about finding the
+                sweet spot between design and function! </p>
+            <ul class="aboutlinksUL d-flex  justify-content-evenly">
+                <li>
+                    <a class="whoIs-links" href="https://github.com/roger-mayer"><i
+                            class="fab fa-github-square fa-3x"></i></a>
+                </li>
+                <li>
+                    <a class="whoIs-links" href="https://www.linkedin.com/in/roger-mayer/"><i
+                            class="fab fa-linkedin fa-3x"></i></a>
+                </li>
+                <li>
+                    <a class="whoIs-links" href="mailto:rmayer1984@gmail.com"><i class="fas fa-envelope fa-3x"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--    Eduardo   -->
+    <div class="card mx-2">
+        <img class="card-img-top headshot mx-auto" src="images/eduardo-headshot.jpeg" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Eduardo Valerio Gamez</h5>
+            <p class="card-text">A detail-oriented software developer with proven leadership skills, working with teams
+                & coaching skills. Strong desire to expand knowledge in software development and translate it to better
+                coding skills, while providing solutions to complex problems. An independent, self-driven, very
+                responsible developer with a strong work ethic who likes to deliver solutions to help people. </p>
+            <ul class="aboutlinksUL d-flex  justify-content-evenly">
+                <li>
+                    <a class="whoIs-links" href="https://github.com/evaleriog"><i
+                            class="fab fa-github-square fa-3x"></i></a>
+                </li>
+                <li>
+                    <a class="whoIs-links" href="https://www.linkedin.com/in/eduardovalerio/"><i
+                            class="fab fa-linkedin fa-3x"></i></a>
+                </li>
+                <li>
+                    <a class="whoIs-links" href="mailto:eduardo.valerio.g@gmail.com"><i class="fas fa-envelope fa-3x"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+<!--    Bryan   -->
+    <div class="card mx-2">
+        <img class="card-img-top headshot mx-auto" src="images/bryan-headshot.png" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Bryan Walsh</h5>
+            <p class="card-text">A resourceful software developer who constantly strives to solve problems from unique
+                perspectives. I am motivated by the fact that complex problems can be solved by applying this
+                mindset and principles of software development. I am inspired by those around me, and seek
+                to inspire others to achieve success and growth. Personable and professional under pressure with a passion for creating excellent customer and end-user experiences. </p>
+            <ul class="aboutlinksUL d-flex justify-content-evenly">
+                <li>
+                    <a class="whoIs-links" href="https://github.com/WalshCBryan"><i
+                            class="fab fa-github-square fa-3x"></i></a>
+                </li>
+                <li>
+                    <a class="whoIs-links" href="https://www.linkedin.com/in/WalshCBryan/"><i
+                            class="fab fa-linkedin fa-3x"></i></a>
+                </li>
+                <li>
+                    <a class="whoIs-links" href="mailto:Walsh.C.Bryan@gmail.com"><i class="fas fa-envelope fa-3x"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
 </div>
 
-<main class="container contentBg main-panel">
-    <!-- About Section -->
-    <section class="row row-noMargin">
-        <div class="whoIs contentBg">
-            <a name="aboutus"></a>
-            <h3 class="about-text">About Us</h3>
-            <div class="card_view">
 
-                <!-- Eduardo -->
-                <div class="card">
-                    <h4 class="card-text">Eduardo Gamez</h4>
-                    <img class="card-img mb-4" alt="" src="images/eduardo-headshot.jpeg">
-                    <div class="icons">
-                        <a class="whoIs-links" href="">
-                            <img class="img" src="" alt="codeup">
-                        </a>
-                        <a class="whoIs-links" href="https://github.com/evaleriog"><i
-                                class="fab fa-github-square fa-3x"></i></a>
-                        <a class="whoIs-links" href="https://www.linkedin.com/in/eduardovalerio/"><i
-                                class="fab fa-linkedin fa-3x"></i></a>
-                    </div>
-                </div>
-
-                <!-- Bryan -->
-                <div class="card">
-                    <h4 class="card-text">Bryan Walsh</h4>
-                    <img class="card-img mb-4" alt="" src="images/bryan-headshot.jpeg">
-                    <div class="icons">
-                        <a class="whoIs-links" href="">
-                            <img class="img" src="" alt="codeup">
-                        </a>
-                        <a class="whoIs-links" href="https://github.com/WalshCBryan"><i
-                                class="fab fa-github-square fa-3x"></i>
-                        </a>
-                        <a class="whoIs-links" href="https://www.linkedin.com/in/walsh-bryan/"><i
-                                class="fab fa-linkedin fa-3x"></i></a>
-                    </div>
-                </div>
-
-                <!-- Roger -->
-                <div class="card">
-                    <h4 class="card-text">Roger Mayer</h4>
-                    <img class="card-img mb-4" alt="" src="images/roger-headshot.jpg">
-                    <div class="icons">
-                        <a class="whoIs-links" href="">
-                            <img class="img" src="" alt="codeup">
-                        </a>
-                        <a class="whoIs-links" href="https://github.com/roger-mayer"><i
-                                class="fab fa-github-square fa-3x"></i></a>
-                        <a class="whoIs-links" href="https://www.linkedin.com/in/roger-mayer/"><i
-                                class="fab fa-linkedin fa-3x"></i></a>
-                    </div>
-                </div>
-
-                <!-- Christian -->
-                <div class="card">
-                    <h4 class="card-text">Christian Crousser Kaiman</h4>
-                    <img class="card-img mb-4" alt="" src="images/christian-headshot.jpeg">
-                    <div class="icons">
-                        <a class="whoIs-links" href="">
-                            <img class="img" src="" alt="codeup">
-                        </a>
-                        <a class="whoIs-links" href="https://github.com/ChristianCrousser"><i
-                                class="fab fa-github-square fa-3x"></i></a>
-                        <a class="whoIs-links" href="https://www.linkedin.com/in/christian-crousser-kaiman/"><i
-                                class="fab fa-linkedin fa-3x"></i></a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-</main>
 </body>
 </html>
