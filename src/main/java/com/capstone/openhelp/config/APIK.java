@@ -5,7 +5,7 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 public class APIK {
-    public static final String API_KEY = "";
+    public static final String API_KEY = "test";
 
     public static void main(String[] args) {
 
