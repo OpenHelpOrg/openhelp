@@ -4,6 +4,8 @@ package com.capstone.openhelp.controllers;
 import com.capstone.openhelp.models.Event;
 import com.capstone.openhelp.models.User;
 //import com.capstone.openhelp.services.EmailService;
+import com.capstone.openhelp.models.UserEvents;
+import com.capstone.openhelp.repositories.UserEventRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import com.capstone.openhelp.repositories.EventRepository;
 import com.capstone.openhelp.repositories.UserRepository;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -24,12 +27,14 @@ public class EventController {
 
     private final EventRepository eventDao;
     private final UserRepository userDao;
+    private final UserEventRepository userEventDao;
 //    private final EmailService emailService;
 
 
-    public EventController(EventRepository eventDao, UserRepository userDao) {
+    public EventController(EventRepository eventDao, UserRepository userDao, UserEventRepository userEventDao) {
         this.eventDao = eventDao;
         this.userDao = userDao;
+        this.userEventDao = userEventDao;
 //        this.emailService = emailService;
     }
 
@@ -104,6 +109,37 @@ public class EventController {
         model.addAttribute("userId", user.getId());
         model.addAttribute("event", eventDao.findById(id));
         return "events/singleevent";
+    }
+
+    @GetMapping("/events/singleevent/{id}/enroll")
+    public String enrollEnvent(@PathVariable long id, Model model){
+        Event event = eventDao.findById(id);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        int limit = event.getVol_limit();
+        int current = 0;
+
+        for (int x =0; x < event.getUserEvents().size(); x++){
+            if(!event.getUserEvents().get(x).isIs_creator()){
+                current++;
+            }
+        }
+
+        if(current < limit){
+//            List<UserEvents> enroll = new ArrayList<>();
+//            enroll.add(new UserEvents(user,event, false));
+//            event.setUserEvents(enroll);
+
+            userEventDao.save(new UserEvents(user,event, false));
+            model.addAttribute("response", "yes");
+        }else {
+            model.addAttribute("response", "no");
+        }
+
+        model.addAttribute("user", user);
+        model.addAttribute("event", event);
+
+        return "/events/confirmevent";
     }
 
 }
