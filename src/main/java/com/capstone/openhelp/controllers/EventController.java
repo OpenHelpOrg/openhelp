@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 @Controller
@@ -27,7 +27,9 @@ public class EventController {
 
     private final EventRepository eventDao;
     private final UserRepository userDao;
+
     private final UserEventRepository userEventDao;
+
 //    private final EmailService emailService;
 
 
@@ -71,9 +73,9 @@ public class EventController {
     @GetMapping("/events/create")
     public String createForm(Model model) {
         model.addAttribute("event", new Event());
+
         return "events/create";
     }
-
 
 
     //NEED TO ATTACH USER TO EVENT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -140,5 +142,6 @@ public class EventController {
 
         return "/events/confirmevent";
     }
+
 
 }

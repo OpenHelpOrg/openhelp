@@ -2,50 +2,85 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="partials/head :: head"></th:block>
-    <link rel="stylesheet" href="css/navbar.css">
-    <link rel="stylesheet" href="css/events.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/events.css">
+    <link rel="stylesheet" href="../css/openhelp.css">
+
     <title>Single Event</title>
 </head>
 <body>
 <nav th:insert="partials/navbar :: navbar"></nav>
+
 <div class="jumbotron">
     <h1 class=""> Showing Single Events</h1>
 </div>
-<div class="container">
-    <div class="card mx-auto" style="width: 100%;">
-        <div class="card-title">
-            <h3 th:text="${event.title}"></h3>
-        </div>
-        <div class="card-body">
-            <h5>Address:</h5>
-            <h5 th:text="${event.address}"></h5>
-            <h5>Summary:</h5>
-            <h5 th:text="${event.summary}"></h5>
-        </div>
 
+<div class="row p-5 justify-content-center">
+    <div class="col-sm-12 col-md-8">
+        <div class="card mb-3 p-2 border-dark" style="width: 100%;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img th:src="@{${event.getImages()}}" alt="user avatar" class="card-img">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h1 class="card-title" th:text="${event.getTitle()}"></h1>
+                        <hr>
+                        <h3 th:text="${event.getLocation()}"></h3>
+                        <h3 th:text="${event.getAddress()}"></h3>
+                        <h3 th:text="${event.getDate_time()}"></h3>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <h3>Event Summary</h3>
+                                <span th:text="${event.getSummary()}"></span>
+                            </li>
+                            <li class="list-group-item">
+                                <h3>Details</h3>
+                                <span th:text="${event.getDetails()}"></span>
+                            </li>
+                            <li class="list-group-item">
+                                <h3>Notes</h3>
+                                <span th:text="${event.getNotes()}"></span>
+                            </li>
+                            <li class="list-group-item">
+                                <h3>Volunteer Limit</h3>
+                                <span th:text="${event.getVol_limit()}"></span>
+                            </li>
+                            <li class="list-group-item">
+                                <p>Created by: </p>  <a th:href="@{'mailto:' + ${event.getUser().getEmail()}}"
+                                                        th:text="${event.getUser().getEmail()}"></a>
+                            </li>
 
-        <!--    !!!!!!!!!!!!!!!!! NEED TO ATTACH USER TO SINGLE EVENT !!!!!!!!!!!!!!!!!!!!!!!!-->
-
-        <!--        <h3> created by: <span th:text="${event.user.email}"></span></h3>-->
-        <!--        <h3> created by user with id <span th:text="${event.user.id}"> </span></h3>-->
-
-
-        <!--        <div th:if="${event.details != null}">-->
-        <!--            <h3 th:text="${event.eventDetails.topicDescription}"></h3>-->
-        <!--            <p>History of post:-->
-        <!--                <span th:text="${event.eventDetails.historyOfEvent}"></span>-->
-        <!--            </p>-->
-        <!--        </div>-->
-
-        <div class="mx-auto">
-            <div th:each="image : ${event.images}">
-                <div>
-                    <img th:src="${image}" style="height: 300px; margin-left: 10px; margin-right: 10px;"/>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!--                    <div th:if="${event.user.id == userId}">-->
+
+    <!--    !!!!!!!!!!!!!!!!! NEED TO ATTACH USER TO SINGLE EVENT !!!!!!!!!!!!!!!!!!!!!!!!-->
+
+    <!--        <h3> created by: <span th:text="${event.user.email}"></span></h3>-->
+    <!--        <h3> created by user with id <span th:text="${event.user.id}"> </span></h3>-->
+
+
+    <!--        <div th:if="${event.details != null}">-->
+    <!--            <h3 th:text="${event.eventDetails.topicDescription}"></h3>-->
+    <!--            <p>History of post:-->
+    <!--                <span th:text="${event.eventDetails.historyOfEvent}"></span>-->
+    <!--            </p>-->
+    <!--        </div>-->
+
+    <!--        <div class="mx-auto">-->
+    <!--            <div th:each="image : ${event.images}">-->
+    <!--                <div>-->
+    <!--                    <img th:src="${image}" style="height: 300px; margin-left: 10px; margin-right: 10px;"/>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+
+    <div th:if="${event.user.id == userId}">
         <!--edit post-->
         <div class="d-flex">
             <a th:href="@{'/events/edit/'+${event.id}}" class="btn">
@@ -56,10 +91,10 @@
                 <button>Delete Event</button>
             </a>
         </div>
-        <!--                    </div>-->
-
-
     </div>
+
+
+</div>
 </div>
 
 
