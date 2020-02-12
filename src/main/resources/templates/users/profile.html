@@ -73,7 +73,7 @@
             <h1 class="card-title">Your events </h1>
             <ul class="list-group list-group-flush" th:each="event : ${user.getUserEvents()}">
                 <li class="list-group-item" th:if="${event.isIs_creator() == true}">
-                    <a th:href="@{'/events/details/' + ${event.getEvent().getId()}}">
+                    <a th:href="@{'/events/edit/' + ${event.getEvent().getId()}}">
                         <img th:src="@{${event.getEvent().getImages()}}" alt="event image">
                         <span th:text="${event.getEvent().getTitle()}"></span>
                         <span th:text="${event.getEvent().getDate_time()}"></span>
