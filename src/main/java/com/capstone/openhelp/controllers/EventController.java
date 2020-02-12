@@ -73,9 +73,6 @@ public class EventController {
     }
 
 
-
-
-
     //NEED TO ATTACH USER TO EVENT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     @PostMapping("/events/create")
     public String createEvent(@ModelAttribute Event event){
