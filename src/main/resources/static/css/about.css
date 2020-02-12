@@ -1,0 +1,10 @@
+.card-img {
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    width: 350px;
+}
+
+body {
+    background: #4DB2F1;
+}
