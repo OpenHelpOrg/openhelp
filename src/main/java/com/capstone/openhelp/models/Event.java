@@ -1,8 +1,11 @@
 package com.capstone.openhelp.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Entity
 @Table(name = "events")
@@ -53,7 +56,7 @@ public class Event {
     private List<Category> categories;
 
     @OneToMany(mappedBy = "event")
-    private List<UserEvents> userEvents;
+    private List<UserEvents> userEvents = new ArrayList<>();
 
     public Event() {
 
@@ -70,6 +73,20 @@ public class Event {
         this.notes = notes;
         this.vol_limit = limit;
 
+    }
+
+    public Event(Event event,List<UserEvents> userEvents){
+        this.id = event.id;
+        this.title = event.title;
+        this.location = event.location;
+        this.address = event.address;
+        this.details = event.details;
+        this.date_time = event.date_time;
+        this.summary = event.summary;
+        this.images = event.images;
+        this.notes = event.notes;
+        this.vol_limit = event.vol_limit;
+        this.userEvents.addAll(userEvents);
     }
 
     public Event(String title, String location, String address, String details, String date_time, String summary, String images, String notes, int vol_limit) {
@@ -162,6 +179,7 @@ public class Event {
     public void setUserEvents(List<UserEvents> userEvents) {
         this.userEvents = userEvents;
     }
+
 
     public String getSummary() {
         return summary;

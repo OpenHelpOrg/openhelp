@@ -28,3 +28,21 @@ insert into users (about, address, email, image, is_org, name, password, phone, 
 insert into users (about, address, email, image, is_org, name, password, phone, website) values ('Seal, common', '86 Raven Parkway', 'sklimochkin8@google.com.br', 'https://robohash.org/quiearumcorrupti.bmp?size=50x50&set=set1', true, 'Sloan Klimochkin', '7rsNRjQ2YS', '350-560-8749', 'http://zimbio.com/tortor/id/nulla/ultrices.jpg');
 insert into users (about, address, email, image, is_org, name, password, phone, website) values ('Gray heron', '9832 Delladonna Street', 'mtippler9@multiply.com', 'https://robohash.org/sedeiusaut.jpg?size=50x50&set=set1', true, 'Maureene Tippler', 'aFJ87vgOs3', '617-392-8409', 'https://webnode.com/congue/diam/id/ornare/imperdiet.png');
 
+insert into user_event(event_id, user_id, is_creator) values (1,1,false);
+insert into user_event(event_id, user_id, is_creator) values (1,2,false);
+insert into user_event(event_id, user_id, is_creator) values (1,3,false);
+insert into user_event(event_id, user_id, is_creator) values (1,4,true);
+insert into user_event(event_id, user_id, is_creator) values (2,5,true);
+insert into user_event(event_id, user_id, is_creator) values (2,15,false);
+insert into user_event(event_id, user_id, is_creator) values (3,6,false);
+insert into user_event(event_id, user_id, is_creator) values (4,7,true);
+insert into user_event(event_id, user_id, is_creator) values (5,8,true);
+insert into user_event(event_id, user_id, is_creator) values (6,9,true);
+insert into user_event(event_id, user_id, is_creator) values (10,13,true);
+insert into user_event(event_id, user_id, is_creator) values (11,14,true);
+insert into user_event(event_id, user_id, is_creator) values (12,5,true);
+insert into user_event(event_id, user_id, is_creator) values (13,6,true);
+insert into user_event(event_id, user_id, is_creator) values (14,7,true);
+insert into user_event(event_id, user_id, is_creator) values (15,8,true);
+insert into user_event(event_id, user_id, is_creator) values (16,9,true);
+insert into user_event(event_id, user_id, is_creator) values (17,10,true);
