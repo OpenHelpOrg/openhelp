@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head></head>
+<body>
+<h1>Hello World!</h1>
+<form th:action="@{/dateTest}" th:object="${dateContainer}">
+    <label>Name: </label><input type="text" th:field="*{name}"/>
+    <label>Date Time: </label><input type="datetime-local" th:field="*{dateTime}"/>
+    <input type="submit" value="Submit"/>
+</form>
+</body>
+</html>

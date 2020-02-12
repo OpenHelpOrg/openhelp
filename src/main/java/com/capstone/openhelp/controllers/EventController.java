@@ -4,6 +4,7 @@ package com.capstone.openhelp.controllers;
 import com.capstone.openhelp.models.Event;
 import com.capstone.openhelp.models.User;
 //import com.capstone.openhelp.services.EmailService;
+import com.capstone.openhelp.services.DateContainer;
 import org.springframework.security.core.context.SecurityContextHolder;
 import com.capstone.openhelp.repositories.EventRepository;
 import com.capstone.openhelp.repositories.UserRepository;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -24,6 +26,9 @@ public class EventController {
 
     private final EventRepository eventDao;
     private final UserRepository userDao;
+    public DateContainer dateContainer;
+//    private final  userDao;
+//    private dateContainer dateContainer;
 //    private final EmailService emailService;
 
 
@@ -64,9 +69,21 @@ public class EventController {
 
     //CREATE
     @GetMapping("/events/create")
-    public String createForm(Model model) {
+    public String createForm(Model model, DateContainer dateContainer) {
         model.addAttribute("event", new Event());
+        if (dateContainer.getDateTime() == null) {
+            dateContainer.setDateTime(LocalDateTime.now());
+        }
+        model.addAttribute("dateContainer", dateContainer.getDateTime());
         return "events/create";
+    }
+
+    @RequestMapping("/dateTest")
+    public String dateTest(final DateContainer dateContainer) {
+        if (dateContainer.getDateTime() == null) {
+            dateContainer.setDateTime(LocalDateTime.now());
+        }
+        return "dateTest";
     }
 
 
@@ -105,5 +122,7 @@ public class EventController {
         model.addAttribute("event", eventDao.findById(id));
         return "events/singleevent";
     }
+
+
 
 }

@@ -2,21 +2,22 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="partials/head :: head"></th:block>
-    <link rel="stylesheet" href="../css/navbar.css">
-    <link rel="stylesheet" href="../css/events.css">
-    <link rel="stylesheet" href="../css/openhelp.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/home.css">
 
     <title>Event Index</title>
 </head>
 <body>
-<div class="wrapper">
     <nav th:insert="partials/navbar :: navbar"></nav>
-    <div class="jumbotron">
-            <h1 class=""> Showing All Events</h1>
-    </div>
+
+    <h1 class="text-center">All Upcoming Events</h1>
+
     <br><br>
-    <div class="d-flex flex-nowrap row justify-content-around">
-        <div th:each="event : ${events}" class="card col-3 d-inline">
+
+    <div class="d-flex flex-wrap p-4 justify-content-center">
+
+<!--    <div class="d-flex flex-wrap row justify-content-between">-->
+        <div th:each="event : ${events}" class="card col-3 d-inline mr-5 mb-5">
             <a th:text="${event.title}" class="card-title"></a>
             <div class="card-body ">
                 <p th:text="${event.details}"></p>
@@ -41,6 +42,26 @@
             </div>
         </div>
     </div>
-</div>
+
+    <style>
+        h5{
+            color: #EA6725;
+        }
+
+        h1{
+            color: white;
+            text-shadow: 2px 2px 4px #000000
+        }
+
+        a{
+            text-decoration: none!important;
+        }
+
+        .card:hover{
+            border: 1px solid #EA6725;
+            box-shadow: 0 15px 6px -8px #EA6725;
+        }
+
+    </style>
 </body>
 </html>
