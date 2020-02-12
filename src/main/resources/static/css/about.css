@@ -1,9 +1,16 @@
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .card-img {
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+    flex-direction: row;
     height: 400px;
     width: 350px;
+    justify-content: center;
+    align-items: center;
 }
 
 body {
