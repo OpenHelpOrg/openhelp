@@ -57,6 +57,11 @@
 
                         </ul>
                     </div>
+                    <div class="card-footer">
+                        <div th:each="category : ${event.getCategories()}">
+                            <span class="badge badge-pill badge-light" th:text="${category.getName()}"></span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

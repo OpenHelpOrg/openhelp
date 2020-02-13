@@ -87,7 +87,7 @@
                 <ul class="list-group">
                     <div th:each="event : ${user.getUserEvents()}">
                         <li class=" event_list list-group-item border-dark" th:if="${event.isIs_creator() == true}">
-                            <a th:href="@{'/events/details/' + ${event.getEvent().getId()}}">
+                            <a th:href="@{'/events/singleevent/' + ${event.getEvent().getId()}}">
                                 <img th:src="@{'../' + ${event.getEvent().getImages()}}" alt="event image" width="50px" height="50px">
                                 <span th:text="${event.getEvent().getTitle()}" class="event_title"></span>
                                 <span th:text="${event.getEvent().getDate_time()}"></span>

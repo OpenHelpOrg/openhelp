@@ -82,6 +82,12 @@
                     <label for="location">Location</label><br>
                     <textarea th:placeholder="Location" id="location" th:field="*{location}" required></textarea>
                 </div>
+                <div class="input-block">
+                    <label>Categories</label>
+                    <div th:each="category : ${ categories}">
+                        <input th:field="*{categories}" type="checkbox" th:value="${category.getId()}" th:text="${category.getName()}">
+                    </div>
+                </div>
                 <div>
                     <input type="hidden" name="id" th:value="${event.id}"/>
                 </div>

@@ -5,6 +5,7 @@ import com.capstone.openhelp.models.Event;
 import com.capstone.openhelp.models.User;
 //import com.capstone.openhelp.services.EmailService;
 import com.capstone.openhelp.models.UserEvents;
+import com.capstone.openhelp.repositories.CategoryRespository;
 import com.capstone.openhelp.repositories.UserEventRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import com.capstone.openhelp.repositories.EventRepository;
@@ -27,16 +28,17 @@ public class EventController {
 
     private final EventRepository eventDao;
     private final UserRepository userDao;
-
+    private final CategoryRespository categoryDao;
     private final UserEventRepository userEventDao;
 
 //    private final EmailService emailService;
 
 
-    public EventController(EventRepository eventDao, UserRepository userDao, UserEventRepository userEventDao) {
+    public EventController(EventRepository eventDao, UserRepository userDao, UserEventRepository userEventDao, CategoryRespository categoryDao) {
         this.eventDao = eventDao;
         this.userDao = userDao;
         this.userEventDao = userEventDao;
+        this.categoryDao = categoryDao;
 //        this.emailService = emailService;
     }
 
@@ -57,6 +59,7 @@ public class EventController {
             (@PathVariable Long id,
              Model model){
         model.addAttribute("event", eventDao.getOne(id));
+        model.addAttribute("categories", categoryDao.findAll());
         return "events/edit";
     }
 
@@ -73,7 +76,7 @@ public class EventController {
     @GetMapping("/events/create")
     public String createForm(Model model) {
         model.addAttribute("event", new Event());
-
+        model.addAttribute("categories", categoryDao.findAll());
         return "events/create";
     }
 
