@@ -2,9 +2,9 @@
 .navbar {
     /*text-transform: uppercase;*/
     /*letter-spacing: .1rem;*/
-    background-color: #0080d1;
-    /*background-image: linear-gradient(90deg, #0080d1, darkblue);*/
-    border-bottom: 4px solid #ff7b00;
+    background-color: #4db2f1;
+    /*background-image: linear-gradient(90deg, #4db2f1, darkblue);*/
+    border-bottom: 4px solid #ea6725;
     align-items: center;
     margin-bottom: 40px;
 }
@@ -31,11 +31,11 @@ nav a {
 }
 
 .nav-link:hover {
-    color:#ff7b00;
+    color:#ea6725;
     text-shadow: 1px 1px black;
 }
 .navbar-brand:hover {
-    color:#ff7b00;
+    color:#ea6725;
     text-shadow: 1px 1px white;
 
 }
@@ -48,7 +48,7 @@ nav a:visited {
 
 
 nav #searchbutton{
-    background-color: #ff7b00!important;
+    background-color: #ea6725!important;
     border: 1px solid white;
     border-radius:  5px;
     font-size: 2em;
@@ -57,7 +57,7 @@ nav #searchbutton{
 }
 
 nav #searchbutton:hover{
-    color: #0080d1;
+    color: #4db2f1;
 }
 nav #searchfield{
     border: 1px solid #ff6a00!important;
