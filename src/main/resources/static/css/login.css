@@ -75,13 +75,13 @@ body {
 }
 
 .form-wrapper.is-active .switcher-login {
-    color: #fff;
-    transform: translateX(90px);
+    color: lightgrey;
+    /*transform: translateX(90px);*/
 }
 
 .form-wrapper.is-active .switcher-signup {
-    color: #fff;
-    transform: translateX(-90px);
+    color: grey;
+    /*transform: translateX(-90px);*/
 }
 
 .underline {
@@ -277,9 +277,30 @@ body {
     transform: translateX(-30%);
 }
 
+
 .btn-signup {
     color: #fbfdff;
     background: #EA6725;
     box-shadow: inset 0 0 0 2px #fbfdff;
     transform: translateX(30%);
 }
+
+.loginerrortext {
+    position: relative;
+    cursor: pointer;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 0;
+    text-transform: uppercase;
+    font-family: inherit;
+    font-size: 16px;
+    letter-spacing: .5px;
+    color: lightgrey;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    transform: translateX(0);
+    transition: all .3s ease-out;}
+
+

@@ -26,7 +26,7 @@
             </button>
             <form class="form form-login" th:action="@{/login}" th:method="post">
                 <fieldset>
-                    <legend>Please, enter your email and password for login.</legend>
+<!--                    <legend>Please, enter your email and password for login.</legend>-->
                     <div class="input-block">
                         <label for="login-email">E-mail</label>
                         <input id="login-email" type="email" name="email" required>
@@ -36,10 +36,10 @@
                         <input id="login-password" type="password" name="password" required>
                     </div>
                 </fieldset>
-                <div th:if="${param.error}" class="switcher switcher-loginh">
+                <div th:if="${param.error}" class="switcher-login loginerrortext">
                     Invalid Email and Password.
                 </div>
-                <div th:if="${param.logout}" class="switcher switcher-login">
+                <div th:if="${param.logout}" class="switcher-login loginerrortext">
                     You have been logged out.
                 </div>
                 <button type="submit" class="btn-login">Login</button>
@@ -55,7 +55,7 @@
             </button>
             <form class="form form-signup" th:action="@{/sign-up}" th:method="post" th:object="${user}">
                 <fieldset>
-                    <legend>Please, enter your email, name, password and password confirmation for sign up.</legend>
+<!--                    <legend>Please, enter your email, name, password and password confirmation for sign up.</legend>-->
                     <div class="input-block">
                         <label for="signup-email">E-mail</label>
                         <input id="signup-email" type="email" th:field="*{email}" required>
