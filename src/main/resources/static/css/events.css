@@ -55,7 +55,7 @@ body {
 
 .input-block label {
   font-size: 20px;
-  color: #a1b4b4;
+  color: black;
 }
 
 .input-block input {
@@ -64,7 +64,7 @@ body {
   margin-top: 8px;
   padding-right: 15px;
   padding-left: 15px;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 40px;
   color: #4DB2F1;
   background: #eef9fe;
@@ -73,11 +73,12 @@ body {
 }
 .input-block textarea {
   /*this background color does not match other input blocks*/
-  background-color: #a1b4b4;
+  background-color: #eef9fe;
   min-width: 100%;
   min-height: 150px;
   border: 1px solid #EA6725;
   border-radius: 2px;
+  font-size: 20px;
 }
 
 

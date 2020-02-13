@@ -12,9 +12,12 @@
 <!--<header class="jumbotron">-->
 <!--    <h1 class="text-center display-1">Create Event: <span th:text="${email}">holder</span></h1>-->
 <!--</header>-->
+
+<h1 class="text-center">Create an Event</h1>
+
 <section class="forms-section">
-    <div class="forms">
-        <form class="forms" th:action="@{/events/create}" th:method="post" th:object="${event}">
+    <div class="forms mx-auto">
+        <form class="forms mx-auto" th:action="@{/events/create}" th:method="post" th:object="${event}">
             <fieldset>
                 <legend class="section-title">Enter your event details below</legend>
                 <!--                event title-->
@@ -27,60 +30,43 @@
                     <label for="address">Address</label>
                     <input th:placeholder="Address" id="address" type="text" th:field="*{address}" required>
                 </div>
-
-                <!--                event date-->
-<!--                <div class="input-block">-->
-<!--                    <label for="datetime">Choose Date/time YYYY/MM/DDT00:00</label>-->
-<!--                    &lt;!&ndash;                    <input class="form-control" id="datetime" th:placeholder="" style="width:100%;"/>&ndash;&gt;-->
-<!--                    &lt;!&ndash;                    <input class="form-control" id="datetime" th:placeholder="${getDate_time()}" style="width:100%;"/>&ndash;&gt;-->
-<!--                    <input type='text' placeholder="Date" th:field="*{date_time}" id="datetime">-->
-<!--                </div>-->
-                <!--                event date-->
+                <!--                event location-->
+                <div class="input-block">
+                    <label for="location">Location</label><br>
+                    <input th:placeholder="Location" id="location" th:field="*{location}" required>
+                </div>
                 <div class="input-block">
                     <label for="date">Date</label>
                     <input id="date" type="datetime-local" th:field="*{date_time}" value="2020-02-12T09:30"
                            min="2020-01-01T00:00"/>
-
-                    <!--                    <input th:placeholder="Date" id="date" type="date" th:field="*{date}" required>-->
-<!--                </div>-->
-<!--                &lt;!&ndash;                event time&ndash;&gt;-->
-<!--                <div class="input-block">-->
-<!--                    <label for="time">Time</label>-->
-<!--                    <input th:placeholder="Time" id="time" type="time" th:field="*{time}" required>-->
                 </div>
-                event location
-
+                <!--                max volunteers-->
                 <div class="input-block">
                     <label for="volume">Max people</label>
                     <input th:placeholder="max" id="volume" type="text" th:field="*{vol_limit}" required>
                 </div>
-
                 <!--                image-->
                 <div class="input-block">
                     <label for="image">Image URL</label>
                     <input th:placeholder="image" id="image" type="url" th:field="*{images}" required>
                 </div>
-                <!--                event notes-->
-                <div class="input-block">
-                    <label for="notes">Notes</label><br>
-                    <textarea th:placeholder="Notes" id="notes" type="textarea" th:field="*{notes}"
-                              required></textarea>
-                </div>
                 <!--                event summary-->
                 <div class="input-block">
                     <label for="summary">Summary</label><br>
-                    <textarea th:placeholder="Address" id="summary" th:field="*{summary}" required></textarea>
+                    <textarea placeholder=" Tell us a little about your event!" id="summary" th:field="*{summary}" required></textarea>
                 </div>
+                <!--                event notes-->
+                <div class="input-block">
+                    <label for="notes">Notes</label><br>
+                    <textarea placeholder=" Is there anything that visitors or volunteers know? Rain or shine, bring comfy shoes, etc..." id="notes" type="textarea" th:field="*{notes}"
+                              required></textarea>
+                </div>
+
                 <!--                event details-->
-                <div class="input-block">
-                    <label for="details">Details</label><br>
-                    <textarea th:placeholder="Details" id="details" th:field="*{details}" required></textarea>
-                </div>
-                <!--                event location-->
-                <div class="input-block">
-                    <label for="location">Location</label><br>
-                    <textarea th:placeholder="Location" id="location" th:field="*{location}" required></textarea>
-                </div>
+<!--                <div class="input-block">-->
+<!--                    <label for="details">Details</label><br>-->
+<!--                    <textarea th:placeholder="  Details" id="details" th:field="*{details}" required></textarea>-->
+<!--                </div>-->
                 <div class="d-inline-block m-auto">
                     <button type="submit" class="btn-submit">Continue</button>
                 </div>
@@ -88,7 +74,6 @@
         </form>
     </div>
 </section>
-<!--    </div>-->
 </body>
 
 

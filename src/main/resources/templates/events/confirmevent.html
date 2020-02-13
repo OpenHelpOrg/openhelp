@@ -11,6 +11,9 @@
 <body>
 <nav th:insert="partials/navbar :: navbar"></nav>
 
+<h1 class="text-center">Event Confirmation</h1>
+
+
 <div th:if="${response == 'yes'}">
     <h1>Thank you</h1>
     <p th:text="'Thank you ' + ${user.getName()} + ', you are now register to volunteer in the event ' + ${event.getTitle()} + '.'"></p>
