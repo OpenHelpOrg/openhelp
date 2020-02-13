@@ -81,6 +81,13 @@
                     <label for="location">Location</label><br>
                     <textarea th:placeholder="Location" id="location" th:field="*{location}" required></textarea>
                 </div>
+                <!-- categories -->
+                <div class="input-block">
+                    <div th:each="category : ${ categories}">
+                        <input name="categories" type="checkbox" th:value="${category.getId()}" th:text="${category.getName()}">
+                    </div>
+                </div>
+
                 <div class="d-inline-block m-auto">
                     <button type="submit" class="btn-submit">Continue</button>
                 </div>
