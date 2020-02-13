@@ -66,3 +66,15 @@ nav #searchfield{
     font-size: 2em;
 }
 
+/*FOOTER*/
+
+.footer {
+    background-color: #ff6a00!important;
+    width: 100%!important;
+    position: fixed;
+    bottom: 0!important;
+    margin-top: 10px;
+    border-top: 4px solid white;
+
+}
+

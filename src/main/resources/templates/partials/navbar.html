@@ -4,7 +4,6 @@
     <th:block th:insert="partials/head :: head"></th:block>
     <link rel="stylesheet" href="css/navbar.css">
 
-    <title>Home</title>
     <title>NavBar</title>
 
 </head>
@@ -48,12 +47,14 @@
     </div>
 </nav>
 
-
-<div class="mt-auto" th:fragment="footer">
-    <a th:href="@{/about}">
-        <button style="border:none !important" class="btn-link btn p-0">About</button>
-    </a>
-</div>
+<!-- FOOTER -->
+<footer class="footer fixed-footer mt-auto" th:fragment="footer" style="background-color: white" >
+    <div class="navbar-header" >
+        <a href="/about">
+            <img src="images/code_icon.png" class="my-1" style="height: 40px; width: 40px;">
+        </a>
+    </div>
+</footer>
 
 
 </body>
