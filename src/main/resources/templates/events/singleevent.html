@@ -49,12 +49,21 @@
                             <li class="list-group-item">
                                 <div th:each="ev : ${event.getUserEvents()}">
                                     <div th:if="${ev.isIs_creator()}">
-                                        <p>Created by: </p>  <a th:href="@{'mailto:' + ${ev.getUser().getEmail()}}"
-                                                                th:text="${ev.getUser().getEmail()}"></a>
+                                        <p>Created by: </p>
+                                        <p>
+                                            <a th:href="@{'mailto:' + ${ev.getUser().getEmail()}}"
+                                               th:text="${ev.getUser().getEmail()}"></a>
+                                            <a th:href="@{'/user/' + ${ev.getUser().getId()}}" th:text="${ev.getUser().getName()}"></a>
+                                        </p>
+
                                     </div>
                                 </div>
                             </li>
-
+                            <li class="list-group-itme">
+                                <div th:if="${event.getUserEvents().size() <= event.getLimit()}">
+                                    <a th:href="@{'/events/singleevent/' + ${event.getId()} + '/enroll'}">Enroll</a>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                     <div class="card-footer">
