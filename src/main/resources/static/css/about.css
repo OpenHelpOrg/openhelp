@@ -1,7 +1,7 @@
 
 
 body {
-    background: #0080d1;
+    background: #4db2f1;
 }
 
 .headshot {
@@ -30,7 +30,7 @@ body {
 
 .card {
     width: 300px;
-    border: 1px solid #ff7b00;
+    border: 1px solid #ea6725;
     border-radius: 5px;
     margin: 10px;
     /*position: relative;*/
