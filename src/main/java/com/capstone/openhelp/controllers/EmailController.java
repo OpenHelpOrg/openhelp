@@ -1,13 +1,3 @@
-//package com.capstone.openhelp.controllers;
-//
-//import com.capstone.openhelp.services.EmailConfig;
-//import org.springframework.mail.SimpleMailMessage;
-//import org.springframework.mail.javamail.JavaMailSenderImpl;
-//import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RestController;
-//
-//@RestController
-//public class EmailController {
 
     //private EmailConfig emailConfig;
 
