@@ -5,8 +5,8 @@
 }
 
 body {
-    /*background-image: linear-gradient(135deg, #4DB2F1, darkblue);*/
-    background-color: #4DB2F1;
+    /*background-image: linear-gradient(135deg, #0080d1, darkblue);*/
+    background-color: #0080d1;
     height: 100%;
 }
 
@@ -38,14 +38,14 @@ font-size: 4em;
 }
 
 .ul {
-    text-decoration: underline double #ea6725;
+    text-decoration: underline double #ff6a00;
 }
 
 .orange {
-background-color: #ea6725;
+background-color: #ff6a00;
 }
 
 #upcoming {
-    border: 2px solid #ea6725;
+    border: 2px solid #ff6a00;
     border-radius: 5px;
 }

@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="../css/home.css">
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/editModal.css">
+    <script src="../js/keys.js"></script>
+    <script src="../js/filestack.js"></script>
+
 </head>
 <body>
 <nav th:insert="partials/navbar :: navbar"></nav>
@@ -32,7 +35,7 @@
             <div class="row no-gutters">
                 <div class="col-md-4">
                     <!--                    <img th:src="@{${user.getImage()}}" alt="user avatar" class="card-img">-->
-                    <img src="https://storage.jewnetwork.com/content/users/avatars/3746/avatar_3746_500.jpg?1558628223"
+                    <img th:src="${user.getImage()}"
                          alt="user avatar" class="card-img">
                 </div>
                 <div class="col-md-8">
