@@ -32,3 +32,8 @@ build/
 
 src/main/resources/application.properties
 src/main/java/com/capstone/openhelp/config/APIK.java
+
+# filestack test
+src/main/resources/templates/filestacktest.html
+src/main/resources/static/js/keys.js
+
