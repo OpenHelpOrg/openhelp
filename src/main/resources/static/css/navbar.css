@@ -3,6 +3,7 @@
     /*text-transform: uppercase;*/
     /*letter-spacing: .1rem;*/
     background-color: #4DB2F1;
+    /*background-image: linear-gradient(90deg, #4DB2F1, darkblue);*/
     border-bottom: 4px solid #ea6725;
     align-items: center;
     margin-bottom: 40px;
@@ -10,22 +11,23 @@
 
 .navbar-brand {
     /*padding: .75em!important;*/
-    font-size: 5em;
+    font-size: 6em;
     font-family: 'Grand Hotel', cursive;
-
+    text-shadow: 1px 1px black;
+    margin-top: -5px;
+    padding-top: 0;
 }
 
 .nav-link {
     font-size: 2em;
     font-family: 'Roboto', sans-serif;
-
+    text-shadow: 1px 2px black;
 }
 
 
 nav a {
     color: white;
     padding: .75em;
-
 }
 
 .nav-link:hover,
@@ -40,20 +42,19 @@ nav a:visited {
 }
 
 
-#searchbutton{
+nav #searchbutton{
     background-color: #ea6725!important;
     border: 1px solid white;
     border-radius:  5px;
     font-size: 2em;
     color: white;
     font-family: 'Grand Hotel', cursive;
-
 }
 
-#searchbutton:hover{
+nav #searchbutton:hover{
     color: #4DB2F1;
 }
-#searchfield{
+nav #searchfield{
     border: 1px solid #ea6725!important;
     border-radius: 5px;
     margin: .25em;

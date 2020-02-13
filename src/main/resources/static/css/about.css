@@ -1,18 +1,37 @@
-.card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-.card-img {
-    display: flex;
-    flex-direction: row;
-    height: 400px;
-    width: 350px;
-    justify-content: center;
-    align-items: center;
-}
 
 body {
     background: #4DB2F1;
+}
+
+.headshot {
+    height: 260px;
+    width: 250px;
+    margin-top: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+
+}
+
+.whoIs-links {
+    font-size: 18px;
+    line-height: 18px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.aboutlinksUL {
+    list-style-type: none;
+    align-items: flex-end!important;
+    margin-top: auto;
+    /*position: absolute;*/
+    /*bottom: 2px;*/
+}
+
+.card {
+    width: 300px;
+    border: 1px solid #EA6725;
+    border-radius: 5px;
+    margin: 10px;
+    /*position: relative;*/
 }

@@ -9,12 +9,12 @@
 <body>
 <nav th:insert="partials/navbar :: navbar"></nav>
 
-<div class="jumbotron">
-    <h1 class=""> Are you sure you want to delete event?</h1>
-</div>
+<h1 class="text-center">Event Delete</h1>
+
 
 <div class="container">
     <div class="row">
+        <h1 class="text-center"> Are you sure you want to delete event?</h1>
         <form th:action="@{'/events/delete/'+ ${id}}" method="post">
             <a th:href="@{'events/singleevent/'+ ${id}}" class="">
                 Go Back</a>
