@@ -133,6 +133,7 @@
                 <!--modal pops up when user wants to edit?-->
                 <!--@{|/posts/${post.id}|}"-->
                 <form th:action="@{/users/profile}" th:method="post" th:object="${user}">
+                    <input type="hidden" th:field="*{username}">
                     <div class="form-group">
                         <label for="edit-email">Email address</label>
                         <input type="email" class="form-control" id="edit-email" th:value="${user.email}"

@@ -1,5 +1,7 @@
 package com.capstone.openhelp.models;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,6 +14,9 @@ public class User {
 
     @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
+    private String username;
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -49,9 +54,10 @@ public class User {
     public User() {
     }
 
-    public User(long id, String name, String email, String password, boolean is_org, String phone, String image, String about, String address, String website) {
+    public User(long id, String name, String username, String email, String password, boolean is_org, String phone, String image, String about, String address, String website) {
         this.id = id;
         this.name = name;
+        this.username = username;
         this.email = email;
         this.password = password;
         this.is_org = is_org;
@@ -62,8 +68,9 @@ public class User {
         this.website = website;
     }
 
-    public User(String name, String email, String password, boolean is_org, String phone, String image, String about, String address, String website) {
+    public User(String name, String username, String email, String password, boolean is_org, String phone, String image, String about, String address, String website) {
         this.name = name;
+        this.username = username;
         this.email = email;
         this.password = password;
         this.is_org = is_org;
@@ -79,8 +86,15 @@ public class User {
     public User(User copy) {
         id = copy.id; // This line is SUPER important! Many things won't work if it's absent
         email = copy.email;
+        username = copy.username;
         name = copy.name;
         password = copy.password;
+        about = copy.about;
+        address = copy.address;
+        image = copy.image;
+        is_org = copy.is_org;
+        phone = copy.phone;
+        website =copy.website;
     }
 
     public long getId() {
@@ -97,6 +111,14 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {

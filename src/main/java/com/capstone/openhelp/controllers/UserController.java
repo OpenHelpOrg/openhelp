@@ -130,6 +130,7 @@ public class UserController {
     public String saveUser(@ModelAttribute User user) {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
+        user.setUsername(user.getEmail());
         userDao.save(user);
         return "login";
     }
