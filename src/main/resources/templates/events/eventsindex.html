@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta name="mapbox" th:content="${mapbox}">
     <th:block th:insert="partials/head :: head"></th:block>
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/home.css">
+    <link href='../core/main.css' rel='stylesheet' />
+    <link href='../daygrid/main.css' rel='stylesheet' />
+    <script src='../core/main.js'></script>
+    <script src='../daygrid/main.js'></script>
 
     <title>Event Index</title>
+    <style>
+        #map{
+            width: 500px;
+            height: 500px;
+        }
+    </style>
 </head>
 <body>
 <nav th:insert="partials/navbar :: navbar"></nav>
@@ -41,9 +52,12 @@
         </div>
 
     </div>
-</div>
-</div>
 
+</div>
+</div>
+ <div id="map"></div>
+    <div id="calendar"></div>
+    <style>
 <style>
     h5 {
         color: #ea6725;
@@ -63,8 +77,64 @@
         box-shadow: 0 15px 6px -8px #ea6725;
     }
 
-</style>
-<nav th:insert="partials/navbar :: footer"></nav>
+    </style>
+    <nav th:insert="partials/navbar :: footer"></nav>
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <!-- Mapbox JS -->
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+    <script src="/js/mapbox-geocoder-utils.js"></script>
+    <!-- Custom JS -->
+    <script>
+        var token = document.querySelector('meta').content;
 
+        mapboxgl.accessToken = token;
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v9',
+            zoom: 15
+        });
+
+        geocode("600 Navarro St #600, San Antonio, TX 78205",token).then(function (result) {
+            map.setCenter(result);
+        });
+
+        var request = $.ajax({'url': '/event/events.json'});
+        request.done(function (events) {
+            events.forEach(function (event) {
+                console.log(event.date_time);
+                geocode(event.address, token).then(function (result) {
+                    var marker = new mapboxgl.Marker()
+                        .setLngLat(result)
+                        .addTo(map);
+                });
+            });
+        });
+
+        $(document).ready(function() {
+            var request = $.ajax({'url': '/event/events.json'});
+            request.done(function (events) {
+                var calEvents = [];
+                events.forEach(function (event) {
+                    console.log(event.date_time);
+
+                    calEvents.push({
+                        title: event.title,
+                        start: event.date_time
+
+                    });
+                    var calendarEl = $('#calendar');
+                    var calendar =  new FullCalendar.Calendar(calendarEl, {
+                        plugins: [ 'dayGrid' ],
+                        defaultView: 'dayGridMonth',
+                        events: calEvents
+                    });
+
+                    calendar.render();
+                });
+            });
+        });
+
+
+    </script>
 </body>
 </html>

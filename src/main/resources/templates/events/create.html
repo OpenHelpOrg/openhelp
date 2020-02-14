@@ -16,7 +16,7 @@
 
 <h1 class="text-center">Create an Event</h1>
 
-<div class="forms-section">
+<div class="forms-section  " style="margin-bottom: 300px;">
     <div class="forms mx-auto">
         <form class="forms mx-auto" th:action="@{/events/create}" th:method="post" th:object="${event}">
             <fieldset>
@@ -80,6 +80,12 @@
 
 <nav th:insert="partials/navbar :: footer"></nav>
 
+
+<style>
+    body {
+        padding-bottom: 300px;
+    }
+</style>
 </body>
 
 

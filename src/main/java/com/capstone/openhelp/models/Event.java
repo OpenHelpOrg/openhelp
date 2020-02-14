@@ -1,5 +1,7 @@
 package com.capstone.openhelp.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,26 +26,37 @@ public class Event {
     @Column(nullable = false, length = 500)
     private String address;
 
+    @Column(columnDefinition = "TEXT NOT NULL")
+    @JsonIgnore
+    private String details;
 
     @Column(columnDefinition = "DATETIME NOT NULL")
     private String date_time;
 
     @Column(columnDefinition = "TEXT NOT NULL")
+    @JsonIgnore
     private String summary;
 
-   // @Column(nullable = false)
-   @Column(columnDefinition="VARCHAR(500)")
+
+
+
+    @Column(columnDefinition="VARCHAR(500) DEFAULT 'https://storage.jewnetwork.com/content/users/avatars/3746/avatar_3746_500.jpg'")
+    @JsonIgnore
+
     private String images;
 
     @Column(columnDefinition = "TEXT")
+    @JsonIgnore
     private String notes;
 
     @Column
+    @JsonIgnore
     private int vol_limit;
 
     //relates to User Model
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -52,9 +65,11 @@ public class Event {
             joinColumns={@JoinColumn(name="event_id")},
             inverseJoinColumns={@JoinColumn(name="category_id")}
     )
+    @JsonIgnore
     private List<Category> categories;
 
     @OneToMany(mappedBy = "event")
+    @JsonIgnore
     private List<UserEvents> userEvents = new ArrayList<>();
 
     public Event() {
@@ -203,5 +218,6 @@ public class Event {
     public void setLimit(int limit) {
         this.vol_limit = limit;
     }
+
 
 }

@@ -1,12 +1,13 @@
 package com.capstone.openhelp.controllers;
 
 
-import com.capstone.openhelp.models.Event;
-import com.capstone.openhelp.models.User;
+import com.capstone.openhelp.models.*;
 //import com.capstone.openhelp.services.EmailService;
-import com.capstone.openhelp.models.UserEvents;
 import com.capstone.openhelp.repositories.CategoryRespository;
 import com.capstone.openhelp.repositories.UserEventRepository;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import com.capstone.openhelp.repositories.EventRepository;
 import com.capstone.openhelp.repositories.UserRepository;
@@ -15,10 +16,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
 public class EventController {
+    @Value("${spring.mail.mapbox}")
+    private String mapbox;
 
 //    MINIMUM MAPPING !!!!!!
     @GetMapping("/index")
@@ -51,7 +61,14 @@ public class EventController {
         model.addAttribute("events", events);
         List<User> users = userDao.findAll();
         model.addAttribute("users", users);
+        model.addAttribute("mapbox", mapbox);
         return "events/eventsindex";
+    }
+
+    //Send all the events as json objects
+    @GetMapping("/event/events.json")
+    public @ResponseBody List<Event> viewAllEventsInJSON(){
+        return eventDao.findAll();
     }
 
     @GetMapping("/events/edit/{id}")
@@ -120,16 +137,25 @@ public class EventController {
 
     @GetMapping("/events/singleevent/{id}")
     public String returnOneToOneView(@PathVariable long id, Model model){
-        for(int x=0; x < eventDao.findById(id).getUserEvents().size(); x++){
-            if(eventDao.findById(id).getUserEvents().get(x).isIs_creator()){
-                model.addAttribute("creator", eventDao.findById(id).getUserEvents().get(x).getUser());
+        Event event = eventDao.findById(id);
+
+        for(int x=0; x < event.getUserEvents().size(); x++){
+            if(event.getUserEvents().get(x).isIs_creator()){
+                model.addAttribute("creator", event.getUserEvents().get(x).getUser());
             }
         }
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("userId", user.getId());
-        model.addAttribute("event", eventDao.findById(id));
+        model.addAttribute("event", event);
+        model.addAttribute("mapbox", mapbox);
 
         return "events/singleevent";
+    }
+
+    //creates a json file for the event selected
+    @GetMapping("/event/{id}/event.json")
+    public @ResponseBody Event viewEventInJSON(@PathVariable long id){
+        return eventDao.findById(id);
     }
 
     @GetMapping("/events/singleevent/{id}/enroll")

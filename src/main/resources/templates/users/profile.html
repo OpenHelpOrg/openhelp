@@ -74,26 +74,38 @@
                 </div>
             </div>
         </div>
+        <div class="box">
+            <form id="pick-form" th:action="@{/users/imageupload}" th:method="post">
+                <div class="field">
+                    <div class="control">
+                        <button class="button btn-doEdit mt-1 mr-2" type="button" id="picker">Change Image</button>
+                        <input type="hidden" name="filetoupload" id="fileupload">
+                        <button class="button btn-doUpload mt-1" type="submit">Submit Image</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
     </div>
 </div>
 
-<div class="box">
-    <form id="pick-form" th:action="@{/users/imageupload}" th:method="post">
-        <div class="field">
-            <div class="control">
-                <button class="button" type="button" id="picker">Pick file</button>
-                <input type="hidden" name="filetoupload" id="fileupload">
-            </div>
-            <div class="control" id="nameBox"></div>
-            <div class="control" id="urlBox"></div>
-        </div>
-        <div class="field">
-            <div class="control">
-                <button class="button" type="submit">Submit Image</button>
-            </div>
-        </div>
-    </form>
-</div>
+<!--<div class="box">-->
+<!--    <form id="pick-form" th:action="@{/users/imageupload}" th:method="post">-->
+<!--        <div class="field">-->
+<!--            <div class="control">-->
+<!--                <button class="button" type="button" id="picker">Pick file</button>-->
+<!--                <input type="hidden" name="filetoupload" id="fileupload">-->
+<!--            </div>-->
+<!--            <div class="control" id="nameBox"></div>-->
+<!--            <div class="control" id="urlBox"></div>-->
+<!--        </div>-->
+<!--        <div class="field">-->
+<!--            <div class="control">-->
+<!--                <button class="button" type="submit">Submit Image</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </form>-->
+<!--</div>-->
 
 <!--events div-->
 <div class="col-sm-12 col-md-4">
@@ -142,7 +154,7 @@
             </div>
             <div class="modal-body">
                 <!--modal pops up when user wants to edit?-->
-                <!--@{|/posts/${post.id}|}"-->
+                <!--"@{|/posts/${post.id}|}"-->
                 <form th:action="@{/users/profile}" th:method="post" th:object="${user}">
                     <input type="hidden" th:field="*{username}">
                     <div class="form-group">
@@ -210,7 +222,7 @@
     });
 
     // Set up the picker
-    const client = filestack.init(filestackKey);
+    const client = filestack.init("AChLkyrSmK6VdYPhk8lw9z");
 
     //set up picker options
     const options = {
@@ -229,19 +241,6 @@
     const nameBox = document.getElementById('nameBox');
     const urlBox = document.getElementById('urlBox');
 
-    // Add our event listeners
-    // Open modal
-    // btn.addEventListener('click', function (e) {
-    //     e.preventDefault();
-    //     picker.open();
-    // });
-
-    //submit
-    // form.addEventListener('submit'){
-    //     // document.getElementById("fileupload").value = (url);
-    //     $('#fileupload').attr('value', fileInput.value);
-    //     alert('Submitting: ' + fileInput.value);
-    // });
 
     // Helper to overwrite the field input value
 

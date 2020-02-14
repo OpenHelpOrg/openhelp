@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
     <th:block th:insert="partials/head :: head"></th:block>
     <link rel="stylesheet" href="css/navbar.css">
@@ -22,21 +22,18 @@
             <li class="nav-item mx-2">
                 <a class="nav-link" href="/events">Events</a>
             </li>
-            <li class="nav-item mx-2">
+            <li class="nav-item mx-2" sec:authorize="isAuthenticated()">
                 <a class="nav-link" href="/users/profile">View My Profile</a>
             </li>
-            <li class="nav-item mx-2">
+            <li class="nav-item mx-2" sec:authorize="isAuthenticated()">
                 <a class="nav-link" href="/events/create">Create an Event</a>
             </li>
-            <li class="nav-item mx-2">
+            <li class="nav-item mx-2" sec:authorize="isAuthenticated()">
+                <a class="nav-link" href="/logout">Logout</a>
+            </li>
+            <li class="nav-item mx-2" sec:authorize="!isAuthenticated()">
                 <a class="nav-link" href="/sign-up">Login/Signup</a>
             </li>
-            <li class="nav-item mx-2">
-                <form th:action="@{/logout}" th:method="post">
-                    <button class="button is-light is-hovered m-r-sm" style="margin-top: 8px">Logout</button>
-                </form>
-            </li>
-
 
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" id="searchfield" type="search" placeholder="Search"
@@ -49,10 +46,10 @@
 </nav>
 
 <!-- FOOTER -->
-<footer class="footer fixed-footer mt-auto" th:fragment="footer" style="background-color: white" >
-    <div class="navbar-header" >
+<footer class="footer fixed-footer mt-auto" th:fragment="footer" style="background-color: white">
+    <div class="navbar-header">
         <a href="/about">
-            <img src="images/code_icon.png" class="my-1" style="height: 40px; width: 40px;">
+            <img src="/images/code_icon.png" class="my-1" style="height: 40px; width: 40px;">
         </a>
     </div>
 </footer>
