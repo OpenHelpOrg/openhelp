@@ -138,6 +138,7 @@ public class UserController {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         user.setUsername(user.getEmail());
+        user.setImage("https://storage.jewnetwork.com/content/users/avatars/3746/avatar_3746_500.jpg");
         userDao.save(user);
         return "login";
     }
