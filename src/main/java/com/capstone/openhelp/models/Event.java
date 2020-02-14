@@ -37,7 +37,8 @@ public class Event {
     @JsonIgnore
     private String summary;
 
-    @Column(nullable = false)
+
+    @Column(columnDefinition="VARCHAR(500) DEFAULT 'https://storage.jewnetwork.com/content/users/avatars/3746/avatar_3746_500.jpg'")
     @JsonIgnore
     private String images;
 
@@ -71,12 +72,12 @@ public class Event {
     public Event() {
 
     }
-    public Event(long id, String title, String location, String address, String details, String date, String summary, String images, String notes, int limit) {
+
+    public Event(long id, String title, String location, String address, String date, String summary, String images, String notes, int limit) {
         this.id = id;
         this.title = title;
         this.location = location;
         this.address = address;
-        this.details = details;
         this.date_time = date;
         this.summary = summary;
         this.images = images;
@@ -90,7 +91,7 @@ public class Event {
         this.title = event.title;
         this.location = event.location;
         this.address = event.address;
-        this.details = event.details;
+
         this.date_time = event.date_time;
         this.summary = event.summary;
         this.images = event.images;
@@ -99,11 +100,11 @@ public class Event {
         this.userEvents.addAll(userEvents);
     }
 
-    public Event(String title, String location, String address, String details, String date_time, String summary, String images, String notes, int vol_limit) {
+    public Event(String title, String location, String address, String date_time, String summary, String images, String notes, int vol_limit) {
         this.title = title;
         this.location = location;
         this.address = address;
-        this.details = details;
+
         this.date_time = date_time;
         this.summary = summary;
         this.images = images;
@@ -150,12 +151,12 @@ public class Event {
         this.address = address;
     }
 
-    public String getDetails() {
-        return details;
+    public String getImages() {
+        return images;
     }
 
-    public void setDetails(String details) {
-        this.details = details;
+    public void setImages(String images) {
+        this.images = images;
     }
 
     public String getDate_time() {
@@ -199,14 +200,6 @@ public class Event {
         this.summary = summary;
     }
 
-    public String getImages() {
-        return images;
-    }
-
-    public void setImages(String images) {
-        this.images = images;
-    }
-
     public String getNotes() {
         return notes;
     }
@@ -223,15 +216,5 @@ public class Event {
         this.vol_limit = limit;
     }
 
-//    public Event convertToJson(Event event){
-//        Event bucket = new Event();
-//        bucket.id = event.id;
-//        bucket.title = event.title;
-//        bucket.location = event.location;
-//        bucket.address = event.address;
-//        bucket.date_time = event.date_time;
-//
-//        return bucket;
-//    }
 
 }

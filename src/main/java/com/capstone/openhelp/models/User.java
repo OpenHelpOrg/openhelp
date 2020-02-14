@@ -27,9 +27,11 @@ public class User {
     @Column(columnDefinition = "bit(1) DEFAULT 0", nullable = false)
     private boolean is_org;
 
+//    @Column(columnDefinition="text default 'https://i.ya-webdesign.com/images/default-avatar-png-2.png'")
+    private String image;
+
     private String phone;
 
-    private String image;
 
     private String about;
 

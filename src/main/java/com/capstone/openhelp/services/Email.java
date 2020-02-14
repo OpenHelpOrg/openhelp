@@ -21,6 +21,9 @@ public class Email {
     @Size(min = 10)
     private String messageText;
 
+    public Email(String s) {
+    }
+
 
     public String getName() {
         return name;
