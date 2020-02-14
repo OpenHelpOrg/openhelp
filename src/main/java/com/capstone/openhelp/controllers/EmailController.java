@@ -1,11 +1,13 @@
-
-    //private EmailConfig emailConfig;
-
+//import org.springframework.web.bind.annotation.PostMapping;
+//import org.springframework.web.bind.annotation.GetMapping;
+//
+//private EmailConfig emailConfig;
+//
 //    // this constructor performs autowired DIa
 //    public EmailController(EmailConfig emailConfig) {
 //        this.emailConfig = emailConfig;
 //    }
-
+//
 //    @PostMapping("/sendEmail")
 //    public void sendFeedback() {
 //        // create mail sender
