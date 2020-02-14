@@ -20,7 +20,8 @@
         <div class="card mb-3 p-2 border-dark" style="width: 100%;">
             <div class="row no-gutters">
                 <div class="col-md-4">
-                    <img th:src="@{${event.getImages()}}" alt="user avatar" class="card-img">
+                    <img th:src="${event.getImages()}" alt="user avatar" class="card-img">
+<!--                    <img th:src="@{${event.getimages()}}" alt="user avatar" class="card-img">-->
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
@@ -33,10 +34,6 @@
                             <li class="list-group-item">
                                 <h3>Event Summary</h3>
                                 <span th:text="${event.getSummary()}"></span>
-                            </li>
-                            <li class="list-group-item">
-                                <h3>Details</h3>
-                                <span th:text="${event.getDetails()}"></span>
                             </li>
                             <li class="list-group-item">
                                 <h3>Notes</h3>
