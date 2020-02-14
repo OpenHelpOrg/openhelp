@@ -33,7 +33,8 @@ public class Event {
     @Column(columnDefinition = "TEXT NOT NULL")
     private String summary;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
+    @Column(columnDefinition="text default 'https://storage.jewnetwork.com/content/users/avatars/3746/avatar_3746_500.jpg'")
     private String images;
 
     @Column(columnDefinition = "TEXT")
