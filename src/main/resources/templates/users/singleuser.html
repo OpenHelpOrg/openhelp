@@ -10,16 +10,16 @@
     <title th:text="${user.getName()} + ' Profile'"></title>
     <style>
         body{
-            background-color: #0080d1;
+            background-color: #4db2f1;
         }
 
         .singleuserlink a {
-            color: #ff7b00!important;
+            color: #ea6725!important;
             text-decoration: none!important;
         }
 
         .singleuserlink a:hover{
-            color: #0080d1!important;
+            color: #4db2f1!important;
         }
 
         img{
@@ -31,7 +31,7 @@
         }
 
         .event_title{
-            color: #ff7b00;
+            color: #ea6725;
         }
 
         .event_list:hover{
@@ -99,6 +99,7 @@
         </div>
     </div>
 </div>
+<nav th:insert="partials/navbar :: footer"></nav>
 
 </body>
 </html>

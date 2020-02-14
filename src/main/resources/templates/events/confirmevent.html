@@ -26,5 +26,7 @@
     <p>For more questions about this contact the event creator <a th:href="@{'/user/' + ${creator.getId()}}" th:text="${creator.getName()}"></a> at <a th:href="@{'mailto:' + ${creator.getEmail()}}" th:text="${creator.getEmail()}"></a>.</p>
 </div>
 
+<nav th:insert="partials/navbar :: footer"></nav>
+
 </body>
 </html>
