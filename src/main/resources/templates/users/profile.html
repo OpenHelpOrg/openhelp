@@ -154,7 +154,7 @@
             </div>
             <div class="modal-body">
                 <!--modal pops up when user wants to edit?-->
-                <!--@{|/posts/${post.id}|}"-->
+                <!--"@{|/posts/${post.id}|}"-->
                 <form th:action="@{/users/profile}" th:method="post" th:object="${user}">
                     <input type="hidden" th:field="*{username}">
                     <div class="form-group">
