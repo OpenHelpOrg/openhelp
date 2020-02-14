@@ -38,8 +38,11 @@ public class Event {
     private String summary;
 
 
+
+
     @Column(columnDefinition="VARCHAR(500) DEFAULT 'https://storage.jewnetwork.com/content/users/avatars/3746/avatar_3746_500.jpg'")
     @JsonIgnore
+
     private String images;
 
     @Column(columnDefinition = "TEXT")

@@ -6,3 +6,7 @@ use openhelp_db;
 #one as an owner and another as an attendee
 insert into user_event (is_creator, user_id, event_id) values (false,1,1);
 insert into user_event (is_creator, user_id, event_id) values (true,1,2);
+
+insert into events (address, date_time, location, notes, summary, title, vol_limit) values ('testaddy', '2020-05-05T13:55', 'teatloc','testnot','testsumm','testtitle',5);
+
+# drop database openhelp_db;
