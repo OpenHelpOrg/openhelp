@@ -77,22 +77,31 @@ public class EventController {
     public String createForm(Model model) {
         model.addAttribute("event", new Event());
         model.addAttribute("categories", categoryDao.findAll());
+        System.out.println("create get");
         return "events/create";
     }
 
 
-    //NEED TO ATTACH USER TO EVENT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //NEED TO ATTACH DEFAULT IMAGE TO EVENT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     @PostMapping("/events/create")
-    public String createEvent(@ModelAttribute Event event){
+    public String createEvent(@ModelAttribute Event event, @RequestParam(required = false) String image){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        event.setUser(user); //event model- set user to specific event
-        eventDao.save(event); //event repo extends jpa repo
-//        emailService.prepareAndSend(event,"You just made a event","you just made a event"); //EmailService.java model
+        System.out.println("image :" + image);
+        if (image == null) {
+            event.setImages("https://storage.jewnetwork.com/content/users/avatars/3746/avatar_3746_500.jpg");
+
+        } else {
+            event.setImages(image);
+        }
+
+        eventDao.save(event);
         userEventDao.save(new UserEvents(user,event, true));
+//        emailService.prepareAndSend(event,"You just made a event","you just made a event"); //EmailService.java model
         return "redirect:/events";
     }
 
-    //DELETE  *** NOT SURE ON RETURN PATH !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    //DELETE
     @GetMapping("/events/delete/{id}")
     public String showDelete(
             @PathVariable long id,

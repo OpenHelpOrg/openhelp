@@ -32,7 +32,7 @@ public class Event {
     private String summary;
 
    // @Column(nullable = false)
-   @Column(columnDefinition="VARCHAR(500) DEFAULT 'https://storage.jewnetwork.com/content/users/avatars/3746/avatar_3746_500.jpg'")
+   @Column(columnDefinition="VARCHAR(500)")
     private String images;
 
     @Column(columnDefinition = "TEXT")
