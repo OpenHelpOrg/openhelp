@@ -20,10 +20,10 @@ public class UserDetailsLoader implements UserDetailsService {
     //IS THIS CORRECT??? -ROGER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //we're not using name for authentication, so will need to refactor to search for email
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userDao.findByEmail(email);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userDao.findByUsername(username);
         if (user == null) {
-            throw new UsernameNotFoundException("No user found for " + email);
+            throw new UsernameNotFoundException("No user found for " + username);
         }
         return new UserWithRoles(user);
     }

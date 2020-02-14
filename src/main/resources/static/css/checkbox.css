@@ -1,0 +1,6 @@
+#checkbox {
+    display: inline-flex;
+    justify-content: space-between;
+    align-content: center;
+    flex-wrap: wrap;
+}

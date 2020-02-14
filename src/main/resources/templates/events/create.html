@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/events.css">
     <link rel="stylesheet" href="../css/openhelp.css">
+    <link rel="stylesheet" href="../css/checkbox.css">
     <title>Create</title>
 </head>
 <body>
@@ -53,19 +54,19 @@
                 <!--                event summary-->
                 <div class="input-block">
                     <label for="summary">Summary</label><br>
-                    <textarea placeholder=" Tell us a little about your event!" id="summary" th:field="*{summary}" required></textarea>
+                    <textarea placeholder="Tell us a little about your event!" id="summary" th:field="*{summary}" required></textarea>
                 </div>
                 <!--                event notes-->
                 <div class="input-block">
                     <label for="notes">Notes</label><br>
-                    <textarea placeholder=" Is there anything that visitors or volunteers know? Rain or shine, bring comfy shoes, etc..." id="notes" type="textarea" th:field="*{notes}"
+                    <textarea placeholder="Is there anything that visitors or volunteers know? Rain or shine, bring comfy shoes, etc..." id="notes" type="textarea" th:field="*{notes}"
                               required></textarea>
                 </div>
 
                 <!-- categories -->
                 <div class="input-block" id="checkbox">
                     <div th:each="category : ${ categories}">
-                        <input name="categories" type="checkbox" th:value="${category.getId()}" th:text="${category.getName()}">
+                        <input name="categories" type="checkbox" th:value="${category.getId()}" th:text="${category.getName()}"></li>
                     </div>
                 </div>
 
