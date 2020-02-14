@@ -1,5 +1,7 @@
 package com.capstone.openhelp.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,26 +27,33 @@ public class Event {
     private String address;
 
     @Column(columnDefinition = "TEXT NOT NULL")
+    @JsonIgnore
     private String details;
 
     @Column(columnDefinition = "DATETIME NOT NULL")
     private String date_time;
 
     @Column(columnDefinition = "TEXT NOT NULL")
+    @JsonIgnore
     private String summary;
 
-    @Column(nullable = false)
+
+    @Column(columnDefinition="VARCHAR(500) DEFAULT 'https://storage.jewnetwork.com/content/users/avatars/3746/avatar_3746_500.jpg'")
+    @JsonIgnore
     private String images;
 
     @Column(columnDefinition = "TEXT")
+    @JsonIgnore
     private String notes;
 
     @Column
+    @JsonIgnore
     private int vol_limit;
 
     //relates to User Model
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -53,20 +62,22 @@ public class Event {
             joinColumns={@JoinColumn(name="event_id")},
             inverseJoinColumns={@JoinColumn(name="category_id")}
     )
+    @JsonIgnore
     private List<Category> categories;
 
     @OneToMany(mappedBy = "event")
+    @JsonIgnore
     private List<UserEvents> userEvents = new ArrayList<>();
 
     public Event() {
 
     }
-    public Event(long id, String title, String location, String address, String details, String date, String summary, String images, String notes, int limit) {
+
+    public Event(long id, String title, String location, String address, String date, String summary, String images, String notes, int limit) {
         this.id = id;
         this.title = title;
         this.location = location;
         this.address = address;
-        this.details = details;
         this.date_time = date;
         this.summary = summary;
         this.images = images;
@@ -80,7 +91,7 @@ public class Event {
         this.title = event.title;
         this.location = event.location;
         this.address = event.address;
-        this.details = event.details;
+
         this.date_time = event.date_time;
         this.summary = event.summary;
         this.images = event.images;
@@ -89,11 +100,11 @@ public class Event {
         this.userEvents.addAll(userEvents);
     }
 
-    public Event(String title, String location, String address, String details, String date_time, String summary, String images, String notes, int vol_limit) {
+    public Event(String title, String location, String address, String date_time, String summary, String images, String notes, int vol_limit) {
         this.title = title;
         this.location = location;
         this.address = address;
-        this.details = details;
+
         this.date_time = date_time;
         this.summary = summary;
         this.images = images;
@@ -140,12 +151,12 @@ public class Event {
         this.address = address;
     }
 
-    public String getDetails() {
-        return details;
+    public String getImages() {
+        return images;
     }
 
-    public void setDetails(String details) {
-        this.details = details;
+    public void setImages(String images) {
+        this.images = images;
     }
 
     public String getDate_time() {
@@ -189,14 +200,6 @@ public class Event {
         this.summary = summary;
     }
 
-    public String getImages() {
-        return images;
-    }
-
-    public void setImages(String images) {
-        this.images = images;
-    }
-
     public String getNotes() {
         return notes;
     }
@@ -212,5 +215,6 @@ public class Event {
     public void setLimit(int limit) {
         this.vol_limit = limit;
     }
+
 
 }
