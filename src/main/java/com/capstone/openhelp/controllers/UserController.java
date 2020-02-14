@@ -3,13 +3,23 @@ package com.capstone.openhelp.controllers;
 
 import com.capstone.openhelp.models.User;
 import com.capstone.openhelp.repositories.UserRepository;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -35,7 +45,7 @@ public class UserController {
 
     //displays all organization on our db
     @GetMapping("/users")
-    public String showIndex(Model model) {
+    public String showIndex(Model model){
         List<User> users = userDao.findAll();
         List<User> corporations = new ArrayList<>();
 
@@ -44,8 +54,8 @@ public class UserController {
                 corporations.add(users.get(i));
             }
         }
-
         model.addAttribute("organizations", corporations);
+
         return "users/users";
     }
 

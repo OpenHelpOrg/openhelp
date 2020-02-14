@@ -1,5 +1,7 @@
 package com.capstone.openhelp.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,26 +27,32 @@ public class Event {
     private String address;
 
     @Column(columnDefinition = "TEXT NOT NULL")
+    @JsonIgnore
     private String details;
 
     @Column(columnDefinition = "DATETIME NOT NULL")
     private String date_time;
 
     @Column(columnDefinition = "TEXT NOT NULL")
+    @JsonIgnore
     private String summary;
 
     @Column(nullable = false)
+    @JsonIgnore
     private String images;
 
     @Column(columnDefinition = "TEXT")
+    @JsonIgnore
     private String notes;
 
     @Column
+    @JsonIgnore
     private int vol_limit;
 
     //relates to User Model
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -53,9 +61,11 @@ public class Event {
             joinColumns={@JoinColumn(name="event_id")},
             inverseJoinColumns={@JoinColumn(name="category_id")}
     )
+    @JsonIgnore
     private List<Category> categories;
 
     @OneToMany(mappedBy = "event")
+    @JsonIgnore
     private List<UserEvents> userEvents = new ArrayList<>();
 
     public Event() {
@@ -212,5 +222,16 @@ public class Event {
     public void setLimit(int limit) {
         this.vol_limit = limit;
     }
+
+//    public Event convertToJson(Event event){
+//        Event bucket = new Event();
+//        bucket.id = event.id;
+//        bucket.title = event.title;
+//        bucket.location = event.location;
+//        bucket.address = event.address;
+//        bucket.date_time = event.date_time;
+//
+//        return bucket;
+//    }
 
 }
