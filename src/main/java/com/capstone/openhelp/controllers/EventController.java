@@ -68,7 +68,15 @@ public class EventController {
     //Send all the events as json objects
     @GetMapping("/event/events.json")
     public @ResponseBody List<Event> viewAllEventsInJSON(){
-        return eventDao.findAll();
+        List<Event> events = eventDao.findAll();
+
+        for(int x = 0; x < events.size(); x++){
+            String date = events.get(x).getDate_time();
+            date = date.replace(" ", "T");
+            events.get(x).setDate_time(date);
+        }
+
+        return events;
     }
 
     @GetMapping("/events/edit/{id}")
