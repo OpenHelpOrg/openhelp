@@ -2,10 +2,12 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
+
   font-family: Roboto, -apple-system, 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
   background: #4db2f1;
 }
@@ -71,6 +73,7 @@ body {
   border: 1px solid #ea6725;
   border-radius: 2px;
 }
+
 .input-block textarea {
   /*this background color does not match other input blocks*/
   background-color: #eef9fe;
@@ -94,4 +97,5 @@ body {
 #checkbox {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
 }
