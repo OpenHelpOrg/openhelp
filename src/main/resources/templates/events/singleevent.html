@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta name="mapbox" th:content="${mapbox}">
     <th:block th:insert="partials/head :: head"></th:block>
+    <!-- Mapbox CSS -->
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/events.css">
     <link rel="stylesheet" href="../css/openhelp.css">
 
     <title>Single Event</title>
+    <style>
+        #map{
+            width: 500px;
+            height: 500px;
+        }
+    </style>
 </head>
 <body>
 <nav th:insert="partials/navbar :: navbar"></nav>
@@ -111,8 +121,38 @@
 
 </div>
 </div>
+<div id="map"></div>
 
 <nav th:insert="partials/navbar :: footer"></nav>
+<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+<!-- Mapbox JS -->
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+<script src="/js/mapbox-geocoder-utils.js"></script>
+<!-- Custom JS -->
+<script>
+    var token = document.querySelector('meta').content;
+    mapboxgl.accessToken = token;
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v9',
+        zoom: 15
+    });
 
+    var url = window.location.href;
+    var id = url.substring(url.lastIndexOf('/') + 1, url.length);
+    var urlJson = '/event/' + id + '/event.json';
+
+    var request = $.ajax({'url':urlJson});
+    request.done(function (event) {
+        console.log(event);
+        geocode(event.address, token).then(function (result) {
+            map.setCenter(result);
+            var marker = new mapboxgl.Marker()
+                .setLngLat(result)
+                .addTo(map);
+        });
+    });
+
+</script>
 </body>
 </html>
