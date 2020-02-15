@@ -53,10 +53,17 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<UserEvents> userEvents;
 
+    //this is for email verification
+    @Column
+    private boolean enabled;
+
+
+
     public User() {
+        this.enabled = false;
     }
 
-    public User(long id, String name, String username, String email, String password, boolean is_org, String phone, String image, String about, String address, String website) {
+    public User(long id, String name, String username, String email, String password, boolean is_org, String phone, String image, String about, String address, String website, boolean enabled) {
         this.id = id;
         this.name = name;
         this.username = username;
@@ -68,9 +75,10 @@ public class User {
         this.about = about;
         this.address = address;
         this.website = website;
+        this.enabled = enabled;
     }
 
-    public User(String name, String username, String email, String password, boolean is_org, String phone, String image, String about, String address, String website) {
+    public User(String name, String username, String email, String password, boolean is_org, String phone, String image, String about, String address, String website, boolean enabled) {
         this.name = name;
         this.username = username;
         this.email = email;
@@ -81,6 +89,7 @@ public class User {
         this.about = about;
         this.address = address;
         this.website = website;
+        this.enabled = enabled;
     }
 
 
@@ -97,6 +106,7 @@ public class User {
         is_org = copy.is_org;
         phone = copy.phone;
         website =copy.website;
+        enabled = copy.enabled;
     }
 
     public long getId() {
@@ -209,5 +219,13 @@ public class User {
 
     public void setOrganizations(List<User> organizations) {
         this.organizations = organizations;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }
