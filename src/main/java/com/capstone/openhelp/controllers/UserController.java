@@ -2,7 +2,9 @@ package com.capstone.openhelp.controllers;
 
 
 import com.capstone.openhelp.models.User;
+import com.capstone.openhelp.models.VerificationToken;
 import com.capstone.openhelp.repositories.UserRepository;
+import com.capstone.openhelp.repositories.VerificationTokenRespository;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,13 +36,16 @@ public class UserController {
 
     private PasswordEncoder passwordEncoder;
 
+    private VerificationTokenRespository verificationDao;
+
 
     //    public UserController(UserRepository userDao) {
 //        this.userDao = userDao;
 //    }
-    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder) {
+    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, VerificationTokenRespository verificationDao) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
+        this.verificationDao = verificationDao;
     }
 
     //displays all organization on our db
@@ -140,6 +145,27 @@ public class UserController {
         user.setUsername(user.getEmail());
         user.setImage("https://storage.jewnetwork.com/content/users/avatars/3746/avatar_3746_500.jpg");
         userDao.save(user);
+
+        //this is for email verification
+        VerificationToken verificationToken = new VerificationToken(user);
+        verificationDao.save(verificationToken);
+        /////////
+        //this is ther section to send an email with the confirmation token
+        return "login";
+    }
+
+    @GetMapping("/confirm-account")
+    public String confirmUserAccount(@RequestParam String token, Model model){
+        VerificationToken confirm = verificationDao.findByConfirmationToken(token);
+
+        if(confirm != null){
+            User user = userDao.findByEmail(confirm.getUser().getEmail());
+            user.setEnabled(true);
+            userDao.save(user);
+        }else {
+            model.addAttribute("message", "Link is invalid or broken");
+        }
+
         return "login";
     }
 
