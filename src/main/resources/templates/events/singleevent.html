@@ -34,15 +34,6 @@
 <body>
 <nav th:insert="partials/navbar :: navbar"></nav>
 <h1 class="text-center"> Showing Single Event</h1>
-
-
-<button type="button" class="btn btn-doEdit d-inline mr-0" data-toggle="modal"
-        data-target="#editInfoModal"
-        id="modalButton">
-    Edit Profile
-</button>
-
-
 <div class="row p-5 justify-content-center">
     <div class="col-sm-12 col-md-8">
         <div class="card mb-3 p-2 border-dark" style="width: 100%;">
@@ -140,77 +131,6 @@
 </div>
 
 
-
-<!--edit single event modal=======================-->
-
-<div class="modal editprofilemodal" tabindex="-1" role="dialog" id="editInfoModal">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content editprofilemodal-content">
-            <div class="modal-header editprofilemodal-header">
-                <h5 class="modal-title editprofilemodal-title">Edit event information...</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!--modal pops up when user wants to edit?-->
-                <!--"@{|/posts/${post.id}|}"-->
-                <form class="forms" th:action="@{/events/edit}" method="post" th:object="${event}">
-<!--                    <input type="hidden" th:field="*{username}">-->
-                    <div class="form-group">
-                        <label for="edit-title">Title</label>
-                        <input type="text" class="form-control" id="edit-title" th:value="${event.title}"
-                               th:field="*{event.title}" required>
-                        <!--        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
-                    </div>
-                    <div class="form-group">
-                        <label for="edit-address">Address</label>
-                        <input type="text" class="form-control" id="edit-name" th:value="${user.name}"
-                               th:field="*{name}" required>
-                    </div>
-                    <div class="form-group">
-                        <!--        <label for="edit-password">Password</label>-->
-                        <input type="hidden" class="form-control" id="edit-password" th:value="${user.password}"
-                               th:field="*{password}">
-                    </div>
-                    <div class="form-group">
-                        <label for="edit-phone">Telephone</label>
-                        <input type="tel" class="form-control" id="edit-phone" th:value="${user.phone}"
-                               th:field="*{phone}">
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="edit-isOrg" th:field="*{is_org}">
-                        <label class="form-check-label ml-5" for="edit-isOrg">Are you representing an
-                            Organization?</label>
-                    </div>
-                    <div class="form-group">
-                        <label for="edit-address">Address</label>
-                        <input type="text" class="form-control" id="edit-address" th:value="${user.address}"
-                               th:field="*{address}">
-                    </div>
-                    <div class="form-group">
-                        <label for="edit-website">Website</label>
-                        <input type="url" class="form-control" id="edit-website" th:value="${user.website}"
-                               th:field="*{website}">
-                    </div>
-                    <div class="form-group">
-                        <label for="edit-about">Tell us about you!</label>
-                        <textarea class="form-control" id="edit-about" th:text="${user.about}"
-                                  th:field="*{about}"></textarea>
-                    </div>
-                    <!--                    <button type="submit" class="btn btn-primary">Submit</button>-->
-                    <button type="submit" class="btn btn-doEdit">Save changes</button>
-                    <button type="button" class="btn btn-close" data-dismiss="modal">Close</button>
-                </form>
-            </div>
-            <div class="modal-footer">
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
 <nav th:insert="partials/navbar :: footer"></nav>
 <!--<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>-->
 <!-- Mapbox JS -->
@@ -240,56 +160,6 @@
                 .addTo(map);
         });
     });
-
-
-    $('#editInfoModal').on('shown.bs.modal', function () {
-        $('#modalButton').trigger('focus')
-    });
-
-    document.getElementById('picker').addEventListener('click', function (e) {
-        e.preventDefault();
-        picker.open();
-    });
-
-    // Set up the picker
-    const client = filestack.init("AChLkyrSmK6VdYPhk8lw9z");
-
-    //set up picker options
-    const options = {
-        onUploadDone: updateForm,
-        maxSize: 10 * 500 * 500,
-        accept: 'image/*',
-        uploadInBackground: false,
-    };
-    const picker = client.picker(options);
-
-    // Get references to the DOM elements
-
-    const form = document.getElementById('pick-form');
-    const fileInput = document.getElementById('fileupload');
-    // const btn = document.getElementById('picker');
-    const nameBox = document.getElementById('nameBox');
-    const urlBox = document.getElementById('urlBox');
-
-
-    // Helper to overwrite the field input value
-
-    function updateForm(result) {
-        const fileData = result.filesUploaded[0];
-        fileInput.value = fileData.url;
-
-        // Some ugly DOM code to show some data.
-        const name = document.createTextNode('Selected: ' + fileData.filename);
-        const url = document.createElement('a');
-        url.href = fileData.url;
-        url.appendChild(document.createTextNode(fileData.url));
-        nameBox.appendChild(name);
-        // urlBox.appendChild(document.createTextNode('Uploaded to: '));
-        // urlBox.appendChild(url);
-        $('#fileupload').attr('value', url);
-
-    }
-
 
 </script>
 </body>
