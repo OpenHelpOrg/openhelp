@@ -10,32 +10,35 @@ body {
     background: #4db2f1;
 }
 
-.forms-section {
+/*good to int*/
+/*LOGIN SWITCHER FORM*/
+
+.loginform {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.section-title {
+.loginform .section-title {
     font-size: 32px;
     letter-spacing: 1px;
     color: #fff;
 }
 
-.forms {
+.loginform .forms {
     display: flex;
     align-items: flex-start;
     margin-top: 30px;
 
 }
 
-.form-wrapper {
+.loginform .form-wrapper {
     animation: hideLayer .3s ease-out forwards;
 
 }
 
-.form-wrapper.is-active {
+.loginform .form-wrapper.is-active {
     animation: showLayer .3s ease-in forwards;
 }
 
@@ -57,7 +60,7 @@ body {
     }
 }
 
-.switcher {
+.loginform .switcher {
     position: relative;
     cursor: pointer;
     display: block;
@@ -76,17 +79,17 @@ body {
     transition: all .3s ease-out;
 }
 
-.form-wrapper.is-active .switcher-login {
+.loginform .form-wrapper.is-active .switcher-login {
     color: lightgrey;
     /*transform: translateX(90px);*/
 }
 
-.form-wrapper.is-active .switcher-signup {
+.loginform .form-wrapper.is-active .switcher-signup {
     color: lightgrey;
     /*transform: translateX(-90px);*/
 }
 
-.underline {
+.loginform .underline {
     position: absolute;
     bottom: -5px;
     left: 0;
@@ -96,7 +99,7 @@ body {
     height: 2px;
 }
 
-.underline::before {
+.loginform .underline::before {
     content: '';
     position: absolute;
     top: 0;
@@ -108,19 +111,19 @@ body {
     transition: transform .2s ease-out;
 }
 
-.switcher-login .underline::before {
+.loginform .switcher-login .underline::before {
     transform: translateX(101%);
 }
 
-.switcher-signup .underline::before {
+.loginform .switcher-signup .underline::before {
     transform: translateX(-101%);
 }
 
-.form-wrapper.is-active .underline::before {
+.loginform .form-wrapper.is-active .underline::before {
     transform: translateX(0);
 }
 
-.form {
+.loginform .form {
     overflow: hidden;
     min-width: 260px;
     margin-top: 50px;
@@ -129,13 +132,13 @@ body {
     transform-origin: top;
 }
 
-.form-login {
+.loginform .form-login {
     animation: hideLogin .3s ease-out forwards;
     border: 1px solid #ea6725;
     border-radius: 5px;
 }
 
-.form-wrapper.is-active .form-login {
+.loginform .form-wrapper.is-active .form-login {
     animation: showLogin .3s ease-in forwards;
 }
 
@@ -155,25 +158,25 @@ body {
 
 @keyframes hideLogin {
     0% {
-        background-color: dimgrey;
+        background-color: lightgrey;
         transform: translate(35%, -20px);
     }
     50% {
         transform: translate(0, 0);
     }
     100% {
-        background: dimgrey;
+        background: lightgrey;
         transform: translate(40%, 10px);
     }
 }
 
-.form-signup {
+.loginform .form-signup {
     animation: hideSignup .3s ease-out forwards;
     border: 1px solid #ea6725;
     border-radius: 5px;
 }
 
-.form-wrapper.is-active .form-signup {
+.loginform .form-wrapper.is-active .form-signup {
     animation: showSignup .3s ease-in forwards;
 }
 
@@ -193,19 +196,19 @@ body {
 
 @keyframes hideSignup {
     0% {
-        background-color: dimgrey;
+        background-color: lightgrey;
         transform: translate(-35%, -20px) scaleY(1);
     }
     50% {
         transform: translate(0, 0) scaleY(.8);
     }
     100% {
-        background: dimgrey;
+        background: lightgrey;
         transform: translate(-40%, 10px) scaleY(.8);
     }
 }
 
-.form fieldset {
+.loginform .form fieldset {
     position: relative;
     opacity: 0;
     margin: 0;
@@ -214,21 +217,21 @@ body {
     transition: all .3s ease-out;
 }
 
-.form-login fieldset {
+.loginform .form-login fieldset {
     transform: translateX(-50%);
 }
 
-.form-signup fieldset {
+.loginform .form-signup fieldset {
     transform: translateX(50%);
 }
 
-.form-wrapper.is-active fieldset {
+.loginform .form-wrapper.is-active fieldset {
     opacity: 1;
     transform: translateX(0);
     transition: opacity .4s ease-in, transform .35s ease-in;
 }
 
-.form legend {
+.loginform .form legend {
     position: absolute;
     overflow: hidden;
     width: 1px;
@@ -236,18 +239,18 @@ body {
     clip: rect(0 0 0 0);
 }
 
-.input-block {
+.loginform .input-block {
     margin-bottom: 20px;
 }
 
-.input-block label {
+.loginform .input-block label {
     font-size: 14px;
     color: dimgrey;
 }
 
 /*4db2f1*/
 /*ea6725*/
-.input-block input {
+.loginform .input-block input {
     display: block;
     width: 100%;
     margin-top: 8px;
@@ -261,7 +264,7 @@ body {
     border-radius: 2px;
 }
 
-.form [type='submit'] {
+.loginform .form [type='submit'] {
     opacity: 0;
     display: block;
     min-width: 120px;
@@ -273,27 +276,27 @@ body {
     transition: all .3s ease-out;
 }
 
-.form-wrapper.is-active .form [type='submit'] {
+.loginform .form-wrapper.is-active .form [type='submit'] {
     opacity: 1;
     transform: translateX(0);
     transition: all .4s ease-in;
 }
 
-.btn-login {
+.loginform .btn-login {
     color: #fbfdff;
     background: #ea6725;
     transform: translateX(-30%);
 }
 
 
-.btn-signup {
+.loginform .btn-signup {
     color: #fbfdff;
     background: #ea6725;
     box-shadow: inset 0 0 0 2px #fbfdff;
     transform: translateX(30%);
 }
 
-.loginerrortext {
+.loginform .loginerrortext {
     position: relative;
     cursor: pointer;
     display: block;
