@@ -3,9 +3,11 @@
 <head>
     <th:block th:insert="partials/head :: head"></th:block>
     <link rel="stylesheet" href="../css/navbar.css">
+
     <link rel="stylesheet" href="../css/events.css">
     <link rel="stylesheet" href="../css/openhelp.css">
     <link rel="stylesheet" href="../css/checkbox.css">
+
     <title>Create</title>
 </head>
 <body>
@@ -16,8 +18,8 @@
 
 <h1 class="text-center">Create an Event</h1>
 
-<div class="forms-section  " style="margin-bottom: 300px;">
-    <div class="forms mx-auto">
+<div class="forms-section container" style="margin-bottom: 300px;">
+
         <form class="forms mx-auto" th:action="@{/events/create}" th:method="post" th:object="${event}">
             <fieldset>
                 <legend class="section-title">Enter your event details below</legend>
@@ -76,16 +78,15 @@
                     </div>
                 </div>
 
-                <div class="d-inline-block m-auto">
-                    <button type="submit" class="btn-submit">Continue</button>
+                <div class="d-flex m-auto p-1">
+                    <button type="submit" class="btn-submit p-2">Continue</button>
                 </div>
             </fieldset>
         </form>
-    </div>
 </div>
-<br>
-<nav th:insert="partials/navbar :: footer"></nav>
 
+
+<nav th:insert="partials/navbar :: footer"></nav>
 
 <!--<style>-->
 <!--    body {-->
