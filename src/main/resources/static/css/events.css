@@ -3,11 +3,11 @@
 *::after {
   box-sizing: border-box;
   margin: 0;
-  padding: 0;
+  /*padding: 0;*/
 }
 
 body {
-
+  height: 100%;
   font-family: Roboto, -apple-system, 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
   background: #4db2f1;
 }
