@@ -17,10 +17,6 @@ public class Email {
     @NotNull
     private String url;
 
-    @NotNull
-    @Size(min = 10)
-    private String messageText;
-
     public Email(String s) {
     }
 
@@ -47,14 +43,6 @@ public class Email {
 
     public void setUrl(String url) {
         this.url = url;
-    }
-
-    public String getMessageText() {
-        return messageText;
-    }
-
-    public void setMessageText(String messageText) {
-        this.messageText = messageText;
     }
 
     public String getSubject() {

@@ -2,6 +2,7 @@ package com.capstone.openhelp.services;
 
 import com.capstone.openhelp.models.Event;
 
+import com.sendgrid.helpers.mail.objects.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
@@ -19,11 +20,10 @@ public class EmailService {
     @Value("${spring.mail.from}")
     private String from;
 
-    //NEED TO FIGURE OUT HOW TO ATTACH USER TO EVENT -ROGER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public void prepareAndSend(Event event, String subject, String description) {
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setFrom(from);
-        msg.setTo("ccrousserk@gmail.com");
+        msg.setTo("christian.crousserkaiman@gmail.com");
         msg.setSubject(subject);
         msg.setText(description);
 
