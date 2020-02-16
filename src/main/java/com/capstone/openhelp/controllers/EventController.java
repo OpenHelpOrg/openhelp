@@ -24,6 +24,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class EventController {
@@ -93,7 +94,7 @@ public class EventController {
     public String editEvent(@ModelAttribute Event event){
         eventDao.save(event);
 //        return "redirect:/users/profile";
-        return "redirect:/index";
+        return "redirect:/events";
     }
 
 
@@ -112,12 +113,7 @@ public class EventController {
     public String createEvent(@ModelAttribute Event event, @RequestParam(required = false) String image){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println("image :" + image);
-        if (image == null) {
-            event.setImages("https://storage.jewnetwork.com/content/users/avatars/3746/avatar_3746_500.jpg");
-
-        } else {
-            event.setImages(image);
-        }
+        event.setImages(Objects.requireNonNullElse(image, "https://storage.jewnetwork.com/content/users/avatars/3746/avatar_3746_500.jpg"));
 
         eventDao.save(event);
         userEventDao.save(new UserEvents(user,event, true));

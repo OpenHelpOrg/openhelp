@@ -16,10 +16,10 @@
     <link rel="stylesheet" href="../css/editModal.css">
 
     <!--    attempting to link filestack externally-->
-<!--        <script src="../js/keys.js"></script>-->
-        <script src="/js/keys.js"></script>
+    <!--        <script src="../js/keys.js"></script>-->
+    <script src="/js/keys.js"></script>
     <!--    <script src="../js/filestack.js"></script>-->
-        <script src="/js/filestack.js"></script>
+    <script src="/js/filestack.js"></script>
 
 </head>
 <body>
@@ -139,7 +139,6 @@
         </div>
     </div>
 </div>
-</div>
 
 
 
@@ -209,8 +208,9 @@
         </div>
     </div>
 </div>
-
-
+<div>
+    <nav th:insert="partials/navbar :: footer"></nav>
+</div>
 <script>
     $('#editInfoModal').on('shown.bs.modal', function () {
         $('#modalButton').trigger('focus')
@@ -261,7 +261,7 @@
     }
 
 </script>
-<nav th:insert="partials/navbar :: footer"></nav>
+<!--<nav th:insert="partials/navbar :: footer"></nav>-->
 
 </body>
 </html>

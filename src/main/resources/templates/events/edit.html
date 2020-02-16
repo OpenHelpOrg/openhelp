@@ -67,6 +67,11 @@
                         <textarea th:placeholder="Notes" id="notes" type="textarea" th:field="*{notes}"
                                   required></textarea>
                     </div>
+                    <div class="input-block">
+                        <label for="details">Details</label><br>
+                        <textarea placeholder="details? " id="details" type="textarea" th:field="*{details}"
+                                  required></textarea>
+                    </div>
                     <!--                event summary-->
                     <div class="input-block">
                         <label for="summary">Summary</label><br>
@@ -85,6 +90,7 @@
                                    th:text="${category.getName()}">
                         </div>
                     </div>
+
                     <div>
                         <input type="hidden" name="id" th:value="${event.id}"/>
                     </div>
