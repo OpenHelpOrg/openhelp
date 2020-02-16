@@ -2,18 +2,12 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
 }
 
 body {
-  height: 100%;
-  font-family: Roboto, -apple-system, 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  /*this font breaks nav bar on create event page*/
+  /*font-family: Roboto, -apple-system, 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;*/
   background: #4db2f1;
 }
 
@@ -27,7 +21,6 @@ body {
   justify-content: center;
   min-width: 100% !important;
   /*padding-bottom: 20px;*/
-
   height: auto;
   /* Negative indent footer by its height */
   margin: 0 auto -60px;
@@ -57,9 +50,6 @@ body {
   margin-top: auto;
 }
 
-form{
-  display: inline !important;
-}
 
 /*possible universal styling*/
 #mapShow{
