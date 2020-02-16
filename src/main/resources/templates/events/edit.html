@@ -2,9 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <th:block th:insert="partials/head :: head"></th:block>
-    <link rel="stylesheet" href="/css/navbar.css">
-    <link rel="stylesheet" href="/css/events.css">
-    <link rel="stylesheet" href="/css/openhelp.css">
+<!--    <link rel="stylesheet" href="/css/navbar.css">-->
+<!--    <link rel="stylesheet" href="/css/events.css">-->
+<!--    <link rel="stylesheet" href="/css/openhelp.css">-->
+    <link rel="stylesheet" href="css/main.css">
+
     <title>Edit Event</title>
 </head>
 
@@ -15,7 +17,7 @@
 <h1 class="text-center"> Edit Event</h1>
 
 
-<div class="container">
+<div class="container editevent">
     <div class="forms-section">
         <div class="forms">
             <form class="forms" th:action="@{/events/edit}" method="post" th:object="${event}">
