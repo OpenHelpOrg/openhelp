@@ -114,8 +114,10 @@ public class UserController {
     public String editUser(@ModelAttribute User user) {
         User log = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user.setId(log.getId());
+        String currentImg = user.getImage();
+
         userDao.save(user);
-        return ("users/profile");
+        return ("redirect:users/profile");
     }
 
     //! DELETE
