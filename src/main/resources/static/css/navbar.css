@@ -97,29 +97,31 @@ nav #searchfield{
 }
 
 .footer-link{
-    color: #ffffff;
+
     font-size: 1.5em;
     margin-right: 1%;
     margin-left: 1%;
     /*width: 15%;*/
 }
 /* unvisited link */
-/*a:link {*/
-/*    color: #FDFF02;*/
-/*}*/
+.footer-link a:link {
+    color: #ffffff;
+}
 
 /* visited link */
-/*a:visited {*/
-/*    color: #00aced;*/
-/*}*/
+.footer-link a:visited {
+    color: #00aced;
+}
 
 /* mouse over link */
-a:hover {
-    color: #ff1493;
+.footer-link a:hover {
+    color:#ea6725;
 }
 
 /* selected link */
-a:active {
-    color: #01a0ca;
+.footer-link a:active {
+    color: #ffffff;
 }
+
+/*LINKS CAN BE CONSOLIDATED AFTER COLORS ARE DECIDED*/
 
