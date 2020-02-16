@@ -11,12 +11,16 @@ body {
   background: #4db2f1;
 }
 
+/*good to integrate */
+
+/*for text jumbo*/
 .jumbotron {
   display: flex;
   justify-content: center;
   background-color: #ffffff;
 }
-.container{
+
+.editevent{
   display: flex;
   justify-content: center;
   min-width: 100% !important;
@@ -30,23 +34,24 @@ body {
 
 /*Cards*/
 
-.card{
+.eventcard{
   border: 1px solid blue;
   box-sizing: border-box;
   min-height: 400px;
   max-width: 400px;
 }
-.card-title{
+.eventcard .card-title{
   display: flex;
   justify-content: center;
   border-bottom: 1px solid blue;
   font-size: 25px;
 }
-.card-body{
+.eventcard .card-body{
   border-bottom: 1px solid blue;
   min-height: 200px;
 }
-.btn-div{
+
+.eventcard .btn-div{
   margin-top: auto;
 }
 
@@ -88,7 +93,8 @@ a {
   text-decoration: none !important;
 }
 
-.card:hover {
+
+.hovercard:hover {
   border: 1px solid #ea6725;
   box-shadow: 0 15px 6px -8px #ea6725;
 }

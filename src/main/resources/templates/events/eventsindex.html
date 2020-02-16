@@ -3,8 +3,10 @@
 <head>
     <meta name="mapbox" th:content="${mapbox}">
     <th:block th:insert="partials/head :: head"></th:block>
-    <link rel="stylesheet" href="css/navbar.css">
-    <link rel="stylesheet" href="css/home.css">
+<!--    <link rel="stylesheet" href="css/navbar.css">-->
+<!--    <link rel="stylesheet" href="css/home.css">-->
+    <link rel="stylesheet" href="css/main.css">
+
     <link href='../core/main.css' rel='stylesheet' />
     <link href='../daygrid/main.css' rel='stylesheet' />
     <link href="../bootstrap/main.css" rel="stylesheet" />
@@ -89,7 +91,7 @@
         <div class="d-flex flex-wrap p-4 justify-content-center">
 
             <!--    <div class="d-flex flex-wrap row justify-content-between">-->
-            <div th:each="event : ${events}" class="card col-3 d-inline mr-5 mb-5">
+            <div th:each="event : ${events}" class="card hovercard eventcard col-3 d-inline mr-5 mb-5">
                 <a th:text="${event.title}" class="card-title"></a>
                 <div class="card-body ">
                     <p th:text="${event.address}"></p>
@@ -98,7 +100,8 @@
                     <!--                <p> created by user with email <span th:text="${event.user.email}"> </span></p>-->
                 </div>
                 <div class="d-flex justify-content-center">
-                    <img th:src="${event.getImages()}" alt="edit event to add image" style="height: 200px; margin: auto"class="card-img">
+
+                    <img th:src="${event.getImages()}" alt="edit event to add image" class="card-img">
 
                     <!--                <div th:each="image : ${event.images}">-->
                     <!--                    <div>-->

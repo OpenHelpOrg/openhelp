@@ -3,8 +3,10 @@
 <head>
     <th:block th:insert="partials/head :: head"></th:block>
     <title>About</title>
-    <link rel="stylesheet" href="/css/about.css">
-    <link rel="stylesheet" href="/css/navbar.css">
+<!--    <link rel="stylesheet" href="/css/about.css">-->
+<!--    <link rel="stylesheet" href="/css/navbar.css">-->
+    <link rel="stylesheet" href="css/main.css">
+
 </head>
 <body>
 <nav th:insert="partials/navbar :: navbar"></nav>
@@ -12,7 +14,7 @@
 
 <div id="holder" class="d-flex flex-wrap justify-content-center ">
     <!--    Christian   -->
-    <div class="card mx-2">
+    <div class="card aboutcard mx-2">
         <img class="card-img-top headshot mx-auto" src="images/christian-headshot.jpeg" alt="Card image cap">
         <div class="card-body">
             <h1 class="card-title">Christian Crousser Kaiman</h1>
@@ -24,22 +26,22 @@
             <ul class="aboutlinksUL d-flex  justify-content-evenly align-text-bottom">
                 <li>
                     <a class="whoIs-links" href="https://github.com/ChristianCrousser"><i
-                            class="fab fa-github-square fa-3x"></i></a>
+                            class="fab fa-github-square fa-2x"></i></a>
                 </li>
                 <li>
                     <a class="whoIs-links" href="https://www.linkedin.com/in/christian-crousser-kaiman/"><i
-                            class="fab fa-linkedin fa-3x"></i></a>
+                            class="fab fa-linkedin fa-2x"></i></a>
                 </li>
                 <li>
                     <a class="whoIs-links" href="mailto:christian.crousserkaiman@gmail.com"><i
-                            class="fas fa-envelope fa-3x"></i></a>
+                            class="fas fa-envelope fa-2x"></i></a>
                 </li>
             </ul>
         </div>
     </div>
 
     <!--    Roger   -->
-    <div class="card mx-2">
+    <div class="card aboutcard mx-2">
         <img class="card-img-top headshot mx-auto" src="images/roger-headshot.png" alt="Card image cap">
         <div class="card-body">
             <h1 class="card-title">Roger Mayer</h1>
@@ -49,21 +51,21 @@
             <ul class="aboutlinksUL d-flex  justify-content-evenly">
                 <li>
                     <a class="whoIs-links" href="https://github.com/roger-mayer"><i
-                            class="fab fa-github-square fa-3x"></i></a>
+                            class="fab fa-github-square fa-2x"></i></a>
                 </li>
                 <li>
                     <a class="whoIs-links" href="https://www.linkedin.com/in/roger-mayer/"><i
-                            class="fab fa-linkedin fa-3x"></i></a>
+                            class="fab fa-linkedin fa-2x"></i></a>
                 </li>
                 <li>
-                    <a class="whoIs-links" href="mailto:rmayer1984@gmail.com"><i class="fas fa-envelope fa-3x"></i></a>
+                    <a class="whoIs-links" href="mailto:rmayer1984@gmail.com"><i class="fas fa-envelope fa-2x"></i></a>
                 </li>
             </ul>
         </div>
     </div>
 
     <!--    Eduardo   -->
-    <div class="card mx-2">
+    <div class="card aboutcard mx-2">
         <img class="card-img-top headshot mx-auto" src="images/eduardo-headshot.jpeg" alt="Card image cap">
         <div class="card-body">
             <h1 class="card-title">Eduardo Valerio Gamez</h1>
@@ -74,21 +76,21 @@
             <ul class="aboutlinksUL d-flex  justify-content-evenly">
                 <li>
                     <a class="whoIs-links" href="https://github.com/evaleriog"><i
-                            class="fab fa-github-square fa-3x"></i></a>
+                            class="fab fa-github-square fa-2x"></i></a>
                 </li>
                 <li>
                     <a class="whoIs-links" href="https://www.linkedin.com/in/eduardovalerio/"><i
-                            class="fab fa-linkedin fa-3x"></i></a>
+                            class="fab fa-linkedin fa-2x"></i></a>
                 </li>
                 <li>
-                    <a class="whoIs-links" href="mailto:eduardo.valerio.g@gmail.com"><i class="fas fa-envelope fa-3x"></i></a>
+                    <a class="whoIs-links" href="mailto:eduardo.valerio.g@gmail.com"><i class="fas fa-envelope fa-2x"></i></a>
                 </li>
             </ul>
         </div>
     </div>
 
 <!--    Bryan   -->
-    <div class="card mx-2">
+    <div class="card aboutcard mx-2">
         <img class="card-img-top headshot mx-auto" src="images/bryan-headshot.png" alt="Card image cap">
         <div class="card-body">
             <h1 class="card-title">Bryan Walsh</h1>
@@ -99,14 +101,14 @@
             <ul class="aboutlinksUL d-flex justify-content-evenly align-self-end">
                 <li>
                     <a class="whoIs-links" href="https://github.com/WalshCBryan"><i
-                            class="fab fa-github-square fa-3x"></i></a>
+                            class="fab fa-github-square fa-2x"></i></a>
                 </li>
                 <li>
                     <a class="whoIs-links" href="https://www.linkedin.com/in/WalshCBryan/"><i
-                            class="fab fa-linkedin fa-3x"></i></a>
+                            class="fab fa-linkedin fa-2x"></i></a>
                 </li>
                 <li>
-                    <a class="whoIs-links" href="mailto:Walsh.C.Bryan@gmail.com"><i class="fas fa-envelope fa-3x"></i></a>
+                    <a class="whoIs-links" href="mailto:Walsh.C.Bryan@gmail.com"><i class="fas fa-envelope fa-2x"></i></a>
                 </li>
             </ul>
         </div>
@@ -115,7 +117,7 @@
 
 </div>
 
-<nav th:insert="partials/navbar :: footer"></nav>
+<footer th:insert="partials/navbar :: footer"></footer>
 
 </body>
 </html>

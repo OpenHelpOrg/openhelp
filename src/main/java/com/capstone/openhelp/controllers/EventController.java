@@ -108,12 +108,9 @@ public class EventController {
     }
 
 
-    //NEED TO ATTACH DEFAULT IMAGE TO EVENT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     @PostMapping("/events/create")
     public String createEvent(@ModelAttribute Event event, @RequestParam(required = false) String image){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        System.out.println("image :" + image);
-        event.setImages(Objects.requireNonNullElse(image, "https://storage.jewnetwork.com/content/users/avatars/3746/avatar_3746_500.jpg"));
 
         eventDao.save(event);
         userEventDao.save(new UserEvents(user,event, true));
