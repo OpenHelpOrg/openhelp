@@ -4,43 +4,74 @@
     <meta name="mapbox" th:content="${mapbox}">
     <th:block th:insert="partials/head :: head"></th:block>
     <!-- Mapbox CSS -->
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet'/>
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="../css/navbar.css">
-    <link rel="stylesheet" href="../css/events.css">
-    <link rel="stylesheet" href="../css/openhelp.css">
-
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/openhelp.css">
+    <!--    <link href='../core/main.css' rel='stylesheet' />-->
+    <!--    <link href='../daygrid/main.css' rel='stylesheet' />-->
+    <!--    <link href="../bootstrap/main.css" rel="stylesheet" />-->
+    <!--    <link href='../timegrid/main.css' rel='stylesheet' />-->
+    <!--    <link href='../list/main.css' rel='stylesheet' />-->
+    <!--    <script src='../core/main.js'></script>-->
+    <!--    <script src='../daygrid/main.js'></script>-->
+    <!--    <script src='../bootstrap/main.js'></script>-->
+    <!--    <script src='../timegrid/main.js'></script>-->
+    <!--    <script src='../list/main.js'></script>-->
+    <!--    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>-->
+    <!--    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js" type="text/javascript"></script>-->
     <title>Single Event</title>
     <style>
-        #map{
-            width: 500px;
-            height: 500px;
+        #map {
+            height: auto;
+            max-width: 100%;
+
         }
     </style>
 </head>
 <body>
 <nav th:insert="partials/navbar :: navbar"></nav>
-
-
-    <h1 class="text-center"> Showing Single Event</h1>
-
-
+<h1 class="text-center"> Showing Single Event</h1>
 <div class="row p-5 justify-content-center">
     <div class="col-sm-12 col-md-8">
         <div class="card mb-3 p-2 border-dark" style="width: 100%;">
             <div class="row no-gutters">
                 <div class="col-md-4">
-                    <img th:src="${event.getImages()}" alt="user avatar" class="card-img">
-<!--                    <img th:src="@{${event.getimages()}}" alt="user avatar" class="card-img">-->
+                    <img th:src="${event.getImages()}" alt="img" class="card-img">
+                    <!--    !!!!!!!!!!!!!!!!! Crashing if viewing event not created !!!!!!!!!!!!!!!!!!!!!!!!-->
+                    <div class="row">
+                        <ul th:if="${creator.getId() == userId}">
+                            <li>
+                                <!--edit post-->
+                                <div class="d-flex">
+                                    <a th:href="@{'/events/edit/'+${event.id}}" class="btn">
+                                        <button>Edit Event</button>
+                                    </a>
+                                    <!--delete post-->
+                                    <a th:href="@{'/events/delete/'+ ${event.id}}" class="btn">
+                                        <button>Delete Event</button>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
                         <h1 class="card-title" th:text="${event.getTitle()}"></h1>
                         <hr>
-                        <h3 th:text="${event.getLocation()}"></h3>
-                        <h3 th:text="${event.getAddress()}"></h3>
-                        <h3 th:text="${event.getDate_time()}"></h3>
                         <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <h3>Event Location</h3>
+                                <span th:text="${event.getLocation()}"></span>
+                            </li>
+
+                            <li class="list-group-item">
+                                <h3>Event Date</h3>
+                                <span th:text="${event.getLocation()}"></span>
+                            </li>
+
                             <li class="list-group-item">
                                 <h3>Event Summary</h3>
                                 <span th:text="${event.getSummary()}"></span>
@@ -60,7 +91,8 @@
                                         <p>
                                             <a th:href="@{'mailto:' + ${ev.getUser().getEmail()}}"
                                                th:text="${ev.getUser().getEmail()}"></a>
-                                            <a th:href="@{'/user/' + ${ev.getUser().getId()}}" th:text="${ev.getUser().getName()}"></a>
+                                            <a th:href="@{'/user/' + ${ev.getUser().getId()}}"
+                                               th:text="${ev.getUser().getName()}"></a>
                                         </p>
 
                                     </div>
@@ -71,12 +103,13 @@
                                     <a th:href="@{'/events/singleevent/' + ${event.getId()} + '/enroll'}">Enroll</a>
                                 </div>
                             </li>
+
+                            <li class="card-footer">
+                                <div th:each="category : ${event.getCategories()}">
+                                    <span class="badge badge-pill badge-light" th:text="${category.getName()}"></span>
+                                </div>
+                            </li>
                         </ul>
-                    </div>
-                    <div class="card-footer">
-                        <div th:each="category : ${event.getCategories()}">
-                            <span class="badge badge-pill badge-light" th:text="${category.getName()}"></span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -84,47 +117,21 @@
     </div>
 
 
-    <!--    !!!!!!!!!!!!!!!!! NEED TO ATTACH USER TO SINGLE EVENT !!!!!!!!!!!!!!!!!!!!!!!!-->
-
-    <!--        <h3> created by: <span th:text="${event.user.email}"></span></h3>-->
-    <!--        <h3> created by user with id <span th:text="${event.user.id}"> </span></h3>-->
-
-
-    <!--        <div th:if="${event.details != null}">-->
-    <!--            <h3 th:text="${event.eventDetails.topicDescription}"></h3>-->
-    <!--            <p>History of post:-->
-    <!--                <span th:text="${event.eventDetails.historyOfEvent}"></span>-->
-    <!--            </p>-->
-    <!--        </div>-->
-
-    <!--        <div class="mx-auto">-->
-    <!--            <div th:each="image : ${event.images}">-->
-    <!--                <div>-->
-    <!--                    <img th:src="${image}" style="height: 300px; margin-left: 10px; margin-right: 10px;"/>-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--        </div>-->
-
-    <div th:if="${creator.getId() == userId}">
-        <!--edit post-->
-        <div class="d-flex">
-            <a th:href="@{'/events/edit/'+${event.id}}" class="btn">
-                <button>Edit Event</button>
-            </a>
-            <!--delete post-->
-            <a th:href="@{'/events/delete/'+ ${event.id}}" class="btn">
-                <button>Delete Event</button>
-            </a>
+    <div class="col-sm-12 col-md-4">
+        <div class="card mb-3 border-dark" style="width: 100%">
+            <div class="card-body">
+                <h1 class="card-title"><span th:text="${event.getAddress()}"></span></h1>
+                <div class="card-img-top img-fluid">
+                    <div id="map"></div>
+                </div>
+            </div>
         </div>
     </div>
-
-
 </div>
-</div>
-<div id="map"></div>
+
 
 <nav th:insert="partials/navbar :: footer"></nav>
-<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+<!--<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>-->
 <!-- Mapbox JS -->
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
 <script src="/js/mapbox-geocoder-utils.js"></script>
@@ -142,7 +149,7 @@
     var id = url.substring(url.lastIndexOf('/') + 1, url.length);
     var urlJson = '/event/' + id + '/event.json';
 
-    var request = $.ajax({'url':urlJson});
+    var request = $.ajax({'url': urlJson});
     request.done(function (event) {
         console.log(event);
         geocode(event.address, token).then(function (result) {
