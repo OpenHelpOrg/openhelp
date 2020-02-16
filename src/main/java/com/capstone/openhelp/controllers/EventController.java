@@ -38,7 +38,7 @@ public class EventController {
 
     private final EventRepository eventDao;
     private final UserRepository userDao;
-git     private final CategoryRespository categoryDao;
+    private final CategoryRespository categoryDao;
     private final UserEventRepository userEventDao;
 
 //    private final EmailService emailService;
