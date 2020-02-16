@@ -1,23 +1,24 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/**,*/
+/**::before,*/
+/**::after {*/
+/*  box-sizing: border-box;*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*}*/
 
 /*html {*/
 /*  position: relative;*/
 /*  min-height: 100%;*/
 /*}*/
 
-body {
-  height: 100%;
-  font-family: Roboto, -apple-system, 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
-  background: #4db2f1;
-  padding-bottom: 70px;
-}
+/*body {*/
+/*  height: 100%;*/
+/*  font-family: Roboto, -apple-system, 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;*/
+/*  background: #4db2f1;*/
+/*  padding-bottom: 70px;*/
+/*}*/
 
+/*duplicated from login.css. possibly move to openhelp.css*/
 .forms-section {
   display: flex;
   flex-direction: column;
@@ -28,7 +29,7 @@ body {
 .section-title {
   font-size: 32px;
   letter-spacing: 1px;
-  color: #4db2f1;
+  color: #4db2f1;  /*color is different than login.css*/
 }
 
 .forms {
@@ -48,7 +49,6 @@ body {
   transform-origin: top;
 }
 
-
 .form legend {
   position: absolute;
   overflow: hidden;
@@ -63,7 +63,7 @@ body {
 
 .input-block label {
   font-size: 20px;
-  color: black;
+  color: dimgrey;
 }
 
 .input-block input {
@@ -92,7 +92,7 @@ body {
 
 
 .btn-submit {
-  margin-left: auto;
+  margin-right: auto;
   color: #fbfdff;
   background: #ea6725;
   padding: 1em;
