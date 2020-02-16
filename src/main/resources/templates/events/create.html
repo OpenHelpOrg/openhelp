@@ -62,10 +62,16 @@
                     <textarea placeholder="Is there anything that visitors or volunteers know? Rain or shine, bring comfy shoes, etc..." id="notes" type="textarea" th:field="*{notes}"
                               required></textarea>
                 </div>
+<!--                event details-->
+                <div class="input-block">
+                    <label for="details">Details</label><br>
+                    <textarea placeholder="details? " id="details" type="textarea" th:field="*{details}"
+                              required></textarea>
+                </div>
 
                 <!-- categories -->
                 <div class="input-block" id="checkbox">
-                    <div th:each="category : ${ categories}">
+                    <div th:each="category : ${categories}">
                         <input name="categories" type="checkbox" th:value="${category.getId()}" th:text="${category.getName()}"></li>
                     </div>
                 </div>
@@ -77,15 +83,15 @@
         </form>
     </div>
 </div>
-
+<br>
 <nav th:insert="partials/navbar :: footer"></nav>
 
 
-<style>
-    body {
-        padding-bottom: 300px;
-    }
-</style>
+<!--<style>-->
+<!--    body {-->
+<!--        padding-bottom: 300px;-->
+<!--    }-->
+<!--</style>-->
 </body>
 
 
