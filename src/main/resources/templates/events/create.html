@@ -2,11 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="partials/head :: head"></th:block>
-    <link rel="stylesheet" href="../css/navbar.css">
+    <title>Create</title>
     <link rel="stylesheet" href="../css/events.css">
+    <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/openhelp.css">
     <link rel="stylesheet" href="../css/checkbox.css">
-    <title>Create</title>
+
 </head>
 <body>
 <nav th:insert="partials/navbar :: navbar"></nav>
@@ -14,11 +15,10 @@
 <!--    <h1 class="text-center display-1">Create Event: <span th:text="${email}">holder</span></h1>-->
 <!--</header>-->
 
-<h1 class="text-center">Create an Event</h1>
+<h1 class="text-center">Create An Event</h1>
 
-<div class="forms-section  " style="margin-bottom: 300px;">
-    <div class="forms mx-auto">
-        <form class="forms mx-auto" th:action="@{/events/create}" th:method="post" th:object="${event}">
+<div class="forms-section container">
+    <form class="forms mx-auto" th:action="@{/events/create}" th:method="post" th:object="${event}">
             <fieldset>
                 <legend class="section-title">Enter your event details below</legend>
                 <!--                event title-->
@@ -76,22 +76,15 @@
                     </div>
                 </div>
 
-                <div class="d-inline-block m-auto">
-                    <button type="submit" class="btn-submit">Continue</button>
+                <div class="d-flex m-auto p-1">
+                    <button type="submit" class="btn-submit p-2">Continue</button>
                 </div>
             </fieldset>
         </form>
-    </div>
 </div>
-<br>
+
 <nav th:insert="partials/navbar :: footer"></nav>
 
-
-<!--<style>-->
-<!--    body {-->
-<!--        padding-bottom: 300px;-->
-<!--    }-->
-<!--</style>-->
 </body>
 
 

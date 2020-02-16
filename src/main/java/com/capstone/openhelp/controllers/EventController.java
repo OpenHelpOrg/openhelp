@@ -28,8 +28,8 @@ import java.util.Objects;
 
 @Controller
 public class EventController {
-//    @Value("${spring.mail.mapbox}")
-//    private String mapbox;
+    @Value("${spring.mail.mapbox}")
+    private String mapbox;
 
 //    MINIMUM MAPPING !!!!!!
     @GetMapping("/index")
@@ -62,7 +62,7 @@ public class EventController {
         model.addAttribute("events", events);
         List<User> users = userDao.findAll();
         model.addAttribute("users", users);
-//        model.addAttribute("mapbox", mapbox);
+        model.addAttribute("mapbox", mapbox);
         return "events/eventsindex";
     }
 
@@ -151,7 +151,7 @@ public class EventController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("userId", user.getId());
         model.addAttribute("event", event);
-//        model.addAttribute("mapbox", mapbox);
+        model.addAttribute("mapbox", mapbox);
 
         return "events/singleevent";
     }
