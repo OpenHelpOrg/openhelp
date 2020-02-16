@@ -85,15 +85,13 @@ nav #searchfield{
     display: flex;
     justify-content: flex-end!important;
     margin:0;
-    /*padding-left: .25em;*/
-    color: #FDFF02;
     list-style: none;
     line-height: 4em;
 
 }
 #footer-left{
     margin-right: auto;
-    margin-left: 3%;
+    margin-left: .5%;
 }
 
 .footer-link{
@@ -110,7 +108,7 @@ nav #searchfield{
 
 /* visited link */
 .footer-link a:visited {
-    color: #00aced;
+    color: #ffffff;
 }
 
 /* mouse over link */
