@@ -2,13 +2,14 @@ body {
     background: #4db2f1;
 }
 
+/*good to integrate*/
+/*ABOUT US PAGE*/
 .headshot {
     height: 260px;
     width: 250px;
     margin-top: 10px;
     border: 1px solid black;
     border-radius: 5px;
-
 }
 
 .whoIs-links {
@@ -26,7 +27,7 @@ body {
     /*bottom: 2px;*/
 }
 
-.card {
+.aboutcard {
     width: 300px;
     border: 1px solid #ea6725;
     border-radius: 5px;

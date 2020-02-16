@@ -11,23 +11,25 @@
 /*}*/
 
 
-
-
 /*duplicated from login.css. possibly move to openhelp.css*/
-.forms-section {
+
+/*good to int*/
+/*CREATE EVENT*/
+
+.createeventform {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.section-title {
+.createeventform .section-title {
   font-size: 32px;
   letter-spacing: 1px;
   color: #4db2f1;  /*color is different than login.css*/
 }
 
-.forms {
+.createeventform .forms {
   display: flex;
   /*align-items: flex-start;*/
   /*margin-top: 20px;*/
@@ -35,7 +37,7 @@
   padding: 10px !important;
 }
 
-.form {
+.createeventform .form {
   overflow: hidden;
   min-width: 350px;
   margin-top: 10px;
@@ -44,7 +46,7 @@
   transform-origin: top;
 }
 
-.form legend {
+.createeventform .form legend {
   position: absolute;
   overflow: hidden;
   width: 1px;
@@ -52,16 +54,16 @@
   clip: rect(0 0 0 0);
 }
 
-.input-block {
+.createeventform .input-block {
   margin-bottom: 20px;
 }
 
-.input-block label {
+.createeventform .input-block label {
   font-size: 20px;
   color: dimgrey;
 }
 
-.input-block input {
+.createeventform .input-block input {
   display: block;
   width: 100%;
   margin-top: 8px;
@@ -75,7 +77,7 @@
   border-radius: 2px;
 }
 
-.input-block textarea {
+.createeventform .input-block textarea {
   /*this background color does not match other input blocks*/
   background-color: #eef9fe;
   min-width: 100%;
@@ -85,8 +87,7 @@
   font-size: 20px;
 }
 
-
-.btn-submit {
+.createeventform .btn-submit {
   margin-right: auto;
   color: #fbfdff;
   background: #ea6725;
@@ -95,9 +96,13 @@
   transform: translateX(30%);
 }
 
-#checkbox {
+.createeventform #checkbox {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  align-content: center;
 }
+
+
+
 
