@@ -2,6 +2,7 @@ package com.capstone.openhelp.services;
 
 import com.capstone.openhelp.models.Event;
 
+import com.capstone.openhelp.models.User;
 import com.sendgrid.helpers.mail.objects.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -34,5 +35,13 @@ public class EmailService {
             // simply log it and go on...
             System.err.println(ex.getMessage());
         }
+    }
+
+    public void MailEvent() {
+
+    }
+
+    public void EnrollEvent() {
+
     }
 }
