@@ -118,6 +118,12 @@ public class EventController {
         return "redirect:/events";
     }
 
+    @GetMapping("/events/create/confirm")
+    public String confirmEvent(Model model) {
+
+        return "events/create/confirm";
+    }
+
 
     //DELETE
     @GetMapping("/events/delete/{id}")

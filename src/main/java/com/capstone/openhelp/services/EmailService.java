@@ -1,5 +1,7 @@
 package com.capstone.openhelp.services;
 
+import com.capstone.openhelp.models.Event;
+import com.sendgrid.helpers.mail.objects.Email;
 import com.capstone.openhelp.models.User;
 import com.capstone.openhelp.models.VerificationToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,20 @@ public class EmailService {
     @Value("${spring.mail.from")
     private String from;
 
+
+    public void prepareAndSend(Event event, String subject, String description) {
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setFrom(from);
+        msg.setTo("christian.crousserkaiman@gmail.com");
+        msg.setSubject(subject);
+        msg.setText(description);
+      
+        try{
+            this.emailSender.send(msg);
+        }catch(MailException ex){
+            System.err.println(ex.getMessage());
+        }
+    }
     public void confirmEmail(User user, VerificationToken token){
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setFrom(from);
@@ -33,4 +49,16 @@ public class EmailService {
             System.err.println(ex.getMessage());
         }
     }
+
+
+    public void MailEvent() {
+
+    }
+
+    public void EnrollEvent() {
+
+    }
 }
+
+}
+
