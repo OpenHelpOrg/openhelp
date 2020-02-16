@@ -5,6 +5,7 @@ import com.capstone.openhelp.models.User;
 import com.capstone.openhelp.models.VerificationToken;
 import com.capstone.openhelp.repositories.UserRepository;
 import com.capstone.openhelp.repositories.VerificationTokenRespository;
+import com.capstone.openhelp.services.EmailService;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -38,14 +39,17 @@ public class UserController {
 
     private VerificationTokenRespository verificationDao;
 
+    private EmailService emailService;
+
 
     //    public UserController(UserRepository userDao) {
 //        this.userDao = userDao;
 //    }
-    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, VerificationTokenRespository verificationDao) {
+    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, VerificationTokenRespository verificationDao, EmailService emailService) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
         this.verificationDao = verificationDao;
+        this.emailService = emailService;
     }
 
     //displays all organization on our db
@@ -151,6 +155,7 @@ public class UserController {
         verificationDao.save(verificationToken);
         /////////
         //this is ther section to send an email with the confirmation token
+        emailService.confirmEmail(user, verificationToken);
         return "login";
     }
 
