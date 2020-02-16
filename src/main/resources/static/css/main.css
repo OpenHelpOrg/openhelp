@@ -702,3 +702,15 @@ nav #searchfield{
     border: 1px solid #ea6725;
     box-shadow: 0 15px 6px -8px #ea6725;
 }
+/*EDIT EVENT*/
+.editevent{
+    display: flex;
+    justify-content: center;
+    min-width: 100% !important;
+    /*padding-bottom: 20px;*/
+    height: auto;
+    /* Negative indent footer by its height */
+    margin: 0 auto -60px;
+    /* Pad bottom by footer height */
+    padding: 20px 0 60px;
+}
