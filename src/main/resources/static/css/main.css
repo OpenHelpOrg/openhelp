@@ -69,6 +69,15 @@ body {
     margin: 10px;
     /*position: relative;*/
 }
+/*USER PROFILE*/
+.profileeventimgholder {
+    height: 125px!important;
+    width: 125px!important;
+}
+. profileeventimg{
+    height: 100%;
+    width: auto;
+}
 
 /*EDIT PROFILE MODAL*/
 .editprofilemodal {
