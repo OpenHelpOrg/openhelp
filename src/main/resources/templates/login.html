@@ -14,7 +14,7 @@
 <nav th:insert="partials/navbar :: navbar"></nav>
 
 <h1 class="text-center">Hello!</h1>
-
+<p th:text="${message}"></p>
 <section class="forms-section loginform">
     <div class="forms">
         <!--        swap is-active  -->
@@ -53,29 +53,32 @@
                 Sign Up
                 <span class="underline"></span>
             </button>
-            <form class="form form-signup" th:action="@{/sign-up}" th:method="post" th:object="${user}">
-                <fieldset>
-<!--                    <legend>Please, enter your email, name, password and password confirmation for sign up.</legend>-->
-                    <div class="input-block">
-                        <label for="signup-email">E-mail</label>
-                        <input id="signup-email" type="email" th:field="*{email}" required>
-                    </div>
-                    <div class="input-block">
-                        <label for="signup-name">Name</label>
-                        <input id="signup-name" type="text" th:field="*{name}" required>
-                    </div>
-                    <div class="input-block">
-                        <label for="signup-password">Password</label>
-                        <input id="signup-password" type="password" th:field="*{password}" required>
-                    </div>
-<!--                    need to build in logic to ensure pass and passconfirm match-->
-                    <div class="input-block">
-                        <label for="signup-password-confirm">Confirm password</label>
-                        <input id="signup-password-confirm" type="password" required>
-                    </div>
-                </fieldset>
-                <button type="submit" class="btn-signup">Continue</button>
-            </form>
+            <div th:if="${user}">
+                <form class="form form-signup" th:action="@{/sign-up}" th:method="post" th:object="${user}">
+                    <fieldset>
+                        <!--                    <legend>Please, enter your email, name, password and password confirmation for sign up.</legend>-->
+                        <div class="input-block">
+                            <label for="signup-email">E-mail</label>
+                            <input id="signup-email" type="email" th:field="*{email}" required>
+                        </div>
+                        <div class="input-block">
+                            <label for="signup-name">Name</label>
+                            <input id="signup-name" type="text" th:field="*{name}" required>
+                        </div>
+                        <div class="input-block">
+                            <label for="signup-password">Password</label>
+                            <input id="signup-password" type="password" th:field="*{password}" required>
+                        </div>
+                        <!--                    need to build in logic to ensure pass and passconfirm match-->
+                        <div class="input-block">
+                            <label for="signup-password-confirm">Confirm password</label>
+                            <input id="signup-password-confirm" type="password" required>
+                        </div>
+                    </fieldset>
+                    <button type="submit" class="btn-signup">Continue</button>
+                </form>
+            </div>
+
         </div>
     </div>
 </section>
