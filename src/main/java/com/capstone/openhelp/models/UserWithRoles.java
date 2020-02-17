@@ -18,11 +18,6 @@ public class UserWithRoles extends User implements UserDetails{
         return AuthorityUtils.commaSeparatedStringToAuthorityList(roles);
     }
 
-//    @Override
-//    public String getUsername() {
-//        return "";
-//    }
-
     @Override
     public boolean isAccountNonExpired() {
         return true;
@@ -38,8 +33,10 @@ public class UserWithRoles extends User implements UserDetails{
         return true;
     }
 
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
+    //Eduardo - I commented this out for the security configuration to check if a user is enabled or not based
+    //          on the email confirmation. If this created problems while running the application let me know.
+//    @Override
+//    public boolean isEnabled() {
+//        return true;
+//    }
 }

@@ -127,13 +127,15 @@
 
 
 <nav th:insert="partials/navbar :: footer"></nav>
-<!--<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>-->
+<!-- need jquery for ajax request-->
+<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
 <!-- Mapbox JS -->
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
 <script src="/js/mapbox-geocoder-utils.js"></script>
 <!-- Custom JS -->
 <script>
     var token = document.querySelector('meta').content;
+
     mapboxgl.accessToken = token;
     var map = new mapboxgl.Map({
         container: 'map',
@@ -144,7 +146,7 @@
     var url = window.location.href;
     var id = url.substring(url.lastIndexOf('/') + 1, url.length);
     var urlJson = '/event/' + id + '/event.json';
-
+    console.log(urlJson);
     var request = $.ajax({'url': urlJson});
     request.done(function (event) {
         console.log(event);
