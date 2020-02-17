@@ -19,10 +19,49 @@
 
 <h1 class="text-center"> Edit Event</h1>
 
+<div class="d-flex justify-content-center">
+    <button type="button" class="btn btn-doEdit d-inline mr-0" data-toggle="modal"
+            data-target="#editInfoModal"
+            id="modalButton">
+        Send Message
+    </button>
+    <p>Send a message to all volunteers for this event.</p>
+    <p th:text="${confirmation}"></p>
+</div>
 
+<div class="modal editprofilemodal" tabindex="-1" role="dialog" id="editInfoModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content editprofilemodal-content">
+            <div class="modal-header editprofilemodal-header">
+                <h5 class="modal-title editprofilemodal-title">Send Message to Volunteers</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{'/events/edit/' + ${event.getId()} + '/send-message'}" th:method="post">
+                    <div class="input-block">
+                        <label for="subject">Subject</label>
+                        <input placeholder="Enter your subject" id="subject" name="subject" type="text" required>
+                    </div>
+
+                    <div class="input-block">
+                        <label for="body">Message</label>
+                        <textarea placeholder="Enter your message" id="body" name="body"required></textarea>
+                    </div>
+
+                    <div class="d-flex m-auto p-1">
+                        <button type="submit" class="btn-submit p-2">Send Message</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="forms-section createeventform container">
-                <form class="forms mx-auto" th:action="@{/events/edit}" method="post" th:object="${event}">
+    <form class="forms mx-auto" th:action="@{/events/edit}" method="post" th:object="${event}">
         <fieldset>
             <input type="hidden" th:field="*{id}">
             <legend class="section-title">Enter your event details below</legend>
