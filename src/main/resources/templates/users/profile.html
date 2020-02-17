@@ -96,60 +96,40 @@
 
 
 
-<!--need to break this up into two separate lists in the controller to more easily display-->
-<h1 class="center">Events you've created</h1>
-<div class="d-flex flex-wrap p-5 justify-content-between w-75 mx-auto">
-    <div class="card hovercard eventcard col-3 d-inline mx-1 my-2" th:each="event : ${user.getUserEvents()}">
-        <div th:if="${event.isIs_creator() == true}">
-            <a th:text="${event.getEvent().getTitle()}" class="card-title"></a>
-            <div class="card-body ">
-                <p th:text="${event.getEvent().getAddress()}"></p>
-                <p th:text="${event.getEvent().getSummary()}"></p>
-                <p th:text="${event.getEvent().getDate_time()}"></p>
-            </div>
-            <div class="d-flex justify-content-center eventindeximageholder">
-                <img th:src="${event.getEvent().getImages()}" alt="edit event to add image"
-                     class="card-img eventindeximg">
-            </div>
-            <div class="d-flex flex-nowrap btn-div justify-content-center">
-                <!--view post-->
-                <a th:href="@{'/events/singleevent/'+${event.getEvent().getId()}}" class="btn ">
-                    <button>View Event</button>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div th:each="event : ${results}">
-
-
-
-<h1 class="center">Events you're attending</h1>
-<div class="d-flex flex-wrap p-5 justify-content-between w-75 mx-auto">
-    <div th:each="event : ${user.getUserEvents()}">
-        <div class="card hovercard eventcard col-3 d-inline mx-1 my-2">
-            <div th:if="${event.isIs_creator() != true}">
-                <a th:text="${event.getEvent().getTitle()}" class="card-title"></a>
-                <div class="card-body ">
-                    <p th:text="${event.getEvent().getAddress()}"></p>
-                    <p th:text="${event.getEvent().getSummary()}"></p>
-                    <p th:text="${event.getEvent().getDate_time()}"></p>
-                </div>
-                <div class="d-flex justify-content-center eventindeximageholder">
-                    <img th:src="${event.getEvent().getImages()}" alt="edit event to add image"
-                         class="card-img eventindeximg">
-                </div>
-                <div class="d-flex flex-nowrap btn-div justify-content-center">
-                    <!--view post-->
-                    <a th:href="@{'/events/singleevent/'+${event.getEvent().getId()}}" class="btn ">
-                        <button>View Event</button>
+<!--events div-->
+<div class="col-sm-12 col-md-4">
+    <div class="card mb-3" style="width: 100%">
+        <div class="card-body">
+            <h1 class="card-title">Your events </h1>
+            <ul class="list-group list-group-flush" th:each="event : ${user.getUserEvents()}">
+                <li class="list-group-item" th:if="${event.isIs_creator() == true}">
+                    <a th:href="@{'/events/edit/' + ${event.getEvent().getId()}}">
+                        <img th:src="@{${event.getEvent().getImages()}}" alt="event image">
+                        <span th:text="${event.getEvent().getTitle()}"></span>
+                        <span th:text="${event.getEvent().getDate_time()}"></span>
                     </a>
-                </div>
-            </div>
+                </li>
+            </ul>
+            <br>
         </div>
     </div>
+    <!--     attending events     ---------->
+    <div class="attendingevents">
+        <h1 class="card-title">Other event you are attending </h1>
+
+        <ul class="list-group list-group-flush" th:each="event : ${user.getUserEvents()}">
+            <li class="list-group-item" th:if="${event.isIs_creator() != true}">
+                <a th:href="@{'/events/details/' + ${event.getEvent().getId()}}">
+                    <img th:src="@{${event.getEvent().getImages()}}" alt="event image">
+                    <span th:text="${event.getEvent().getTitle()}"></span>
+                    <span th:text="${event.getEvent().getDate_time()}"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
 </div>
+</div>
+
 
 
 <div class="modal editprofilemodal" tabindex="-1" role="dialog" id="editInfoModal">
