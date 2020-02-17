@@ -47,7 +47,7 @@ public class EventController {
     private final UserRepository userDao;
     private final CategoryRespository categoryDao;
     private final UserEventRepository userEventDao;
-    private EmailService emailService;
+//    private EmailService emailService;
 
 //    private final EmailService emailService;
 
@@ -217,6 +217,11 @@ public class EventController {
 
         return "/events/confirmevent";
     }
-
+    @GetMapping("/search")
+    public String eventsearch(@RequestParam String query,  Model model){
+        List<Event> results = eventDao.findByTitleContainsOrSummaryContainsAllIgnoreCase(query, query);
+        model.addAttribute("results", results);
+        return "events/eventsearch";
+    }
 
 }
