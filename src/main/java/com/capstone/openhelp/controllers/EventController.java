@@ -5,6 +5,7 @@ import com.capstone.openhelp.models.*;
 //import com.capstone.openhelp.services.EmailService;
 import com.capstone.openhelp.repositories.CategoryRespository;
 import com.capstone.openhelp.repositories.UserEventRepository;
+import com.capstone.openhelp.services.EmailService;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.springframework.beans.factory.annotation.Value;
@@ -42,16 +43,17 @@ public class EventController {
     private final UserRepository userDao;
     private final CategoryRespository categoryDao;
     private final UserEventRepository userEventDao;
+    private EmailService emailService;
 
 //    private final EmailService emailService;
 
 
-    public EventController(EventRepository eventDao, UserRepository userDao, UserEventRepository userEventDao, CategoryRespository categoryDao) {
+    public EventController(EventRepository eventDao, UserRepository userDao, UserEventRepository userEventDao, CategoryRespository categoryDao, EmailService emailService) {
         this.eventDao = eventDao;
         this.userDao = userDao;
         this.userEventDao = userEventDao;
         this.categoryDao = categoryDao;
-//        this.emailService = emailService;
+        this.emailService = emailService;
     }
 
 
@@ -81,6 +83,26 @@ public class EventController {
         return events;
     }
 
+    @PostMapping("/events/edit/{id}/send-message")
+    public String eventSendMessageAll(@PathVariable Long id,
+                                      Model model,
+                                      @RequestParam(name = "subject")String subject,
+                                      @RequestParam(name = "body")String body){
+        Event event = eventDao.getOne(id);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        List<UserEvents> combinations = event.getUserEvents();
+
+        for(int x = 0; x < combinations.size(); x++){
+            if(!combinations.get(x).isIs_creator()){
+                emailService.sendEmailAllVolunteers(user, combinations.get(x).getUser().getEmail(), subject, body);
+            }
+        }
+
+        model.addAttribute("confirmation", "Emails were sent to all volunteers");
+        return "redirect:/events/edit/" + id;
+    }
+
     @GetMapping("/events/edit/{id}")
     public String editEventForm
             (@PathVariable Long id,
@@ -89,7 +111,6 @@ public class EventController {
         model.addAttribute("categories", categoryDao.findAll());
         return "events/edit";
     }
-
 
     @PostMapping("/events/edit")
     public String editEvent(@ModelAttribute Event event){
