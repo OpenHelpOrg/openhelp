@@ -4,6 +4,7 @@ import com.capstone.openhelp.models.Event;
 import com.sendgrid.helpers.mail.objects.Email;
 import com.capstone.openhelp.models.User;
 import com.capstone.openhelp.models.VerificationToken;
+import javassist.Loader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
@@ -51,14 +52,37 @@ public class EmailService {
     }
 
 
-    public void MailEvent() {
+    public void createEventEmail(User user, Event event) {
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setFrom(from);
+        msg.setTo(user.getEmail());
+        msg.setSubject("Event Creation");
 
+        String body = "You have successfully created an event!  Here are the details.";
+        msg.setText(body);
     }
 
-    public void EnrollEvent() {
+
+    public void confirmEvent(User user, Event event) {
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setFrom(from);
+        msg.setTo(user.getEmail());
+        msg.setSubject("Confirm that you are attending this event");
+
+        String body = "Please click the link to confirm you event enrollment";
+        msg.setText(body);
+    }
+
+    public void enrollEvent(User user, Event event) {
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setFrom(from);
+        msg.setTo(user.getEmail());
+        msg.setSubject("Thank you for enrolling");
+
+        String body = "Thank you for enrolling in this event!  For more details please contact your event organizer.  Thank you for using OpenHelp!";
+        msg.setText(body);
 
     }
 }
 
-}
 
