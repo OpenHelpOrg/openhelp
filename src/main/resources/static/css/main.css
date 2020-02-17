@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 .center {
     text-align: center;
 }
@@ -15,11 +16,11 @@
     color: white;
 }
 
-.lgtext h1{
+.lgtext h1 {
     font-size: 4em;
 }
 
-.lgtext h2{
+.lgtext h2 {
     font-size: 3em;
 }
 
@@ -55,7 +56,7 @@ body {
 
 .aboutlinksUL {
     list-style-type: none;
-    align-items: flex-end!important;
+    align-items: flex-end !important;
     margin-top: auto;
     /*position: absolute;*/
     /*bottom: 2px;*/
@@ -108,6 +109,7 @@ body {
     border: 1px solid #ea6725 !important;
 
 }
+
 .btn-doEdit,
 .btn-close,
 .btn-doUpload {
@@ -132,7 +134,7 @@ body {
 .createeventform .section-title {
     font-size: 32px;
     letter-spacing: 1px;
-    color: #4db2f1;  /*color is different than login.css*/
+    color: #4db2f1; /*color is different than login.css*/
 }
 
 .createeventform .forms {
@@ -534,6 +536,8 @@ body {
     /*background-image: linear-gradient(90deg, #4db2f1, darkblue);*/
     border-bottom: 4px solid #ea6725;
     align-items: center;
+    top: 0!important;
+    margin-top: 0!important;
     /*margin-bottom: 20px !important;*/
 }
 
@@ -559,11 +563,12 @@ nav a {
 }
 
 .nav-link:hover {
-    color:#ea6725;
+    color: #ea6725;
     text-shadow: 1px 1px black;
 }
+
 .navbar-brand:hover {
-    color:#ea6725;
+    color: #ea6725;
     text-shadow: 1px 1px white;
 
 }
@@ -575,20 +580,21 @@ nav a:visited {
 }
 
 
-nav #searchbutton{
-    background-color: #ea6725!important;
+nav #searchbutton {
+    background-color: #ea6725 !important;
     border: 1px solid white;
-    border-radius:  5px;
+    border-radius: 5px;
     font-size: 2em;
     color: white;
     font-family: 'Grand Hotel', cursive;
 }
 
-nav #searchbutton:hover{
+nav #searchbutton:hover {
     color: #4db2f1;
 }
-nav #searchfield{
-    border: 1px solid #ff6a00!important;
+
+nav #searchfield {
+    border: 1px solid #ff6a00 !important;
     border-radius: 5px;
     margin: .25em;
     font-size: 2em;
@@ -598,37 +604,41 @@ nav #searchfield{
 
 .footer {
     /*background-color: #ff6a00!important;*/
-    width: 100%!important;
+    width: 100% !important;
     height: 5em;
     position: static;
-    bottom: 0!important;
-    margin-top: 10px!important;
+    bottom: 0 !important;
+    margin-top: 30px !important;
+    background-color:  #ea6725;
+    color: black;
+    border-top: 2px solid white;
     /*padding-top: 10px!important;*/
 }
 
 
-
-#footer-ul{
+#footer-ul {
     display: flex;
-    justify-content: flex-end!important;
-    margin:0;
+    justify-content: flex-end !important;
+    margin: 0;
     padding: 0;
     list-style: none;
     line-height: 4em;
 
 }
-#footer-left{
+
+#footer-left {
     margin-right: auto;
     margin-left: .5%;
 }
 
-.footer-link{
+.footer-link {
 
     font-size: 1.5em;
     margin-right: 1%;
     margin-left: 1%;
     /*width: 15%;*/
 }
+
 /* unvisited link */
 .footer-link a:link {
     color: #ffffff;
@@ -641,7 +651,7 @@ nav #searchfield{
 
 /* mouse over link */
 .footer-link a:hover {
-    color:#ea6725;
+    color: #4db2f1;
 }
 
 /* selected link */
@@ -653,47 +663,53 @@ nav #searchfield{
 /*EVENTS INDEX*/
 
 
-.eventcard{
+.eventcard {
     border: 1px solid blue;
     box-sizing: border-box;
-    min-height: 400px;
-    max-width: 400px;
+    height: 30%;
 }
-.eventcard .card-title{
+
+.eventcard .card-title {
     display: flex;
     justify-content: center;
     border-bottom: 1px solid blue;
     font-size: 25px;
 }
-.eventcard .card-body{
+
+.eventcard .card-body {
     border-bottom: 1px solid blue;
     min-height: 200px;
 }
 
-.eventcard .btn-div{
+.eventcard .btn-div {
     margin-top: auto;
 }
 
 /*MAP AND CALENDAR*/
-#mapShow{
+#mapShow {
     width: 500px;
     height: 500px;
 }
 
-#calendarShow{
+.singleeventmap {
+    height: 300px;
+    width: 300px;
+}
+
+#calendarShow {
     background-color: white;
 }
 
-.fc-header-toolbar{
+.fc-header-toolbar {
     background-color: #ea6725;
     color: white;
 }
 
-.fc-content{
-    color:white;
+.fc-content {
+    color: white;
 }
 
-.fc-content:hover{
+.fc-content:hover {
     background-color: #ea6725;
     cursor: pointer;
 }
@@ -702,8 +718,9 @@ nav #searchfield{
     border: 1px solid #ea6725;
     box-shadow: 0 15px 6px -8px #ea6725;
 }
+
 /*EDIT EVENT*/
-.editevent{
+.editevent {
     display: flex;
     justify-content: center;
     min-width: 100% !important;

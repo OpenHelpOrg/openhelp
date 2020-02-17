@@ -114,10 +114,10 @@ public class UserController {
     public String editUser(@ModelAttribute User user) {
         User log = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user.setId(log.getId());
-        String currentImg = user.getImage();
+//        String currentImg = user.getImage();
 
         userDao.save(user);
-        return ("redirect:users/profile");
+        return ("redirect:/users/profile");
     }
 
     //! DELETE
@@ -192,5 +192,11 @@ public class UserController {
         userDao.save(user);
         return("redirect:/users/profile");
     }
+
+@GetMapping("/test")
+    public String testlogin(Model model){
+    model.addAttribute("user", new User());
+    return "redirect:/login";
+}
 }
 
