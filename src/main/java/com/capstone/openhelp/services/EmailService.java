@@ -1,6 +1,7 @@
 package com.capstone.openhelp.services;
 
 import com.capstone.openhelp.models.Event;
+import com.sendgrid.helpers.mail.Mail;
 import com.sendgrid.helpers.mail.objects.Email;
 import com.capstone.openhelp.models.User;
 import com.capstone.openhelp.models.VerificationToken;
@@ -50,6 +51,22 @@ public class EmailService {
         }
     }
 
+    public void createAccountEmail(User user){
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setFrom(from);
+        msg.setTo(user.getEmail());
+        msg.setSubject("Thank you for register with OpenHelp");
+
+        String body = "Hello " + user.getName() + ", \n\nThank you for register with OpenHelp. Now you will be able to create events, and" +
+                " also volunteer as well. Remember that your email is your username. Enjoy the application. \n\nSincerely, \nOpenHelp Team.";
+        msg.setText(body);
+
+        try{
+            this.emailSender.send(msg);
+        }catch (MailException ex){
+            System.err.println(ex.getMessage());
+        }
+    }
 
     public void MailEvent() {
 
@@ -60,5 +77,4 @@ public class EmailService {
     }
 }
 
-}
 

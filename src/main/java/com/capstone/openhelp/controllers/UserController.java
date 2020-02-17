@@ -28,11 +28,6 @@ import java.util.List;
 @Controller
 public class UserController {
 
-//    @GetMapping("/users/profile")
-//    public String profile(){
-//        return "users/profile";
-//    }
-
     private UserRepository userDao;
 
     private PasswordEncoder passwordEncoder;
@@ -42,9 +37,6 @@ public class UserController {
     private EmailService emailService;
 
 
-    //    public UserController(UserRepository userDao) {
-//        this.userDao = userDao;
-//    }
     public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, VerificationTokenRespository verificationDao, EmailService emailService) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
@@ -76,39 +68,6 @@ public class UserController {
         model.addAttribute("user", user);
         return "users/singleuser";
     }
-
-    //HOME
-
-
-//    //CREATE
-//    @GetMapping("/users/create")
-//    public String showCreateView(Model model){
-//        model.addAttribute("user", new User());
-//        return "users/create";
-//    }
-//
-//    @PostMapping("users/create")
-//    public String createUser(
-//            @ModelAttribute User user
-//    ) {
-//        String hash = passwordEncoder.encode(user.getPassword());
-//        user.setPassword(hash);
-//        userDao.save(user);
-//        return "redirect:/user/"+user.getId();
-//    }
-//
-//    //!EDIT
-//    @GetMapping("/user/edit/{id}")
-//    public String showEditView(
-//            @PathVariable long id,
-//            Model model) {
-////        throws
-////     PostException {
-//        User user = userDao.findById(id);
-////                .orElseThrow(()-> new PostException());
-//        model.addAttribute("user", user);
-//        return "users/edit";
-//    }
 
     @PostMapping("/users/profile")
     public String editUser(@ModelAttribute User user) {
@@ -169,6 +128,8 @@ public class UserController {
             User user = userDao.findByEmail(confirm.getUser().getEmail());
             user.setEnabled(true);
             userDao.save(user);
+            emailService.createAccountEmail(user);
+            model.addAttribute("message", "Thank you for verifying your email. Please use now your credentials to login");
         }else {
             model.addAttribute("message", "Link is invalid or broken");
         }
