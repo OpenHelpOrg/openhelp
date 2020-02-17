@@ -1,6 +1,7 @@
 package com.capstone.openhelp.services;
 
 import com.capstone.openhelp.models.Event;
+import com.capstone.openhelp.repositories.EventRepository;
 import com.sendgrid.helpers.mail.Mail;
 import com.sendgrid.helpers.mail.objects.Email;
 import com.capstone.openhelp.models.User;
@@ -29,7 +30,7 @@ public class EmailService {
         msg.setTo("christian.crousserkaiman@gmail.com");
         msg.setSubject(subject);
         msg.setText(description);
-      
+
         try{
             this.emailSender.send(msg);
         }catch(MailException ex){
@@ -75,22 +76,23 @@ public class EmailService {
         msg.setTo(user.getEmail());
         msg.setSubject("Event Creation");
 
-        String body = "You have successfully created an event!  Here are the details.";
+        String body = "You have successfully created an event!" + user.getName() + " Here are the details.";
         msg.setText(body);
     }
 
 
-    public void confirmEvent(User user, Event event) {
+    public void confirmEventEmail(User user, Event event) {
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setFrom(from);
         msg.setTo(user.getEmail());
-        msg.setSubject("Confirm that you are attending this event");
+        msg.setSubject("Attendence confirmation");
 
-        String body = "Please click the link to confirm you event enrollment";
+        String body = "You have confirmed yourself for this event";
         msg.setText(body);
     }
 
-    public void enrollEvent(User user, Event event) {
+
+    public void enrollEventEmail(EventRepository eventDao, User user) {
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setFrom(from);
         msg.setTo(user.getEmail());

@@ -5,6 +5,7 @@ import com.capstone.openhelp.models.*;
 //import com.capstone.openhelp.services.EmailService;
 import com.capstone.openhelp.repositories.CategoryRespository;
 import com.capstone.openhelp.repositories.UserEventRepository;
+import com.capstone.openhelp.services.EmailService;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,6 +33,10 @@ public class EventController {
     @Value("${spring.mail.mapbox}")
     private String mapbox;
 
+    private EmailService emailService;
+
+    private EventRepository eventRepository;
+
 //    MINIMUM MAPPING !!!!!!
     @GetMapping("/index")
     public String eventsIndex(){
@@ -46,12 +51,12 @@ public class EventController {
 //    private final EmailService emailService;
 
 
-    public EventController(EventRepository eventDao, UserRepository userDao, UserEventRepository userEventDao, CategoryRespository categoryDao) {
+    public EventController(EventRepository eventDao, UserRepository userDao, UserEventRepository userEventDao, CategoryRespository categoryDao, EmailService emailService) {
         this.eventDao = eventDao;
         this.userDao = userDao;
         this.userEventDao = userEventDao;
         this.categoryDao = categoryDao;
-//        this.emailService = emailService;
+        this.emailService = emailService;
     }
 
 
@@ -118,9 +123,6 @@ public class EventController {
 //        emailService.prepareAndSend(event,"You just made a event","you just made a event"); //EmailService.java model
         return "redirect:/events";
 
-
-
-
     }
 
 
@@ -169,6 +171,7 @@ public class EventController {
     public String enrollEvent(@PathVariable long id, Model model){
         Event event = eventDao.findById(id);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        emailService.enrollEventEmail(eventDao);
 
         int limit = event.getVol_limit();
         int current = 0;
