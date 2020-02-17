@@ -2,6 +2,7 @@ package com.capstone.openhelp.controllers;
 
 
 import com.capstone.openhelp.models.User;
+import com.capstone.openhelp.models.UserWithRoles;
 import com.capstone.openhelp.models.VerificationToken;
 import com.capstone.openhelp.repositories.UserRepository;
 import com.capstone.openhelp.repositories.VerificationTokenRespository;
@@ -9,6 +10,7 @@ import com.capstone.openhelp.services.EmailService;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -104,7 +106,7 @@ public class UserController {
     }
 
     @PostMapping("/sign-up")
-    public String saveUser(@ModelAttribute User user) {
+    public String saveUser(@ModelAttribute User user, Model model) {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         user.setUsername(user.getEmail());
@@ -114,9 +116,9 @@ public class UserController {
         //this is for email verification
         VerificationToken verificationToken = new VerificationToken(user);
         verificationDao.save(verificationToken);
-        /////////
         //this is the section to send an email with the confirmation token
         emailService.confirmEmail(user, verificationToken);
+        model.addAttribute("message", "A confirmation email was sent to " + user.getEmail());
         return "login";
     }
 
@@ -155,10 +157,11 @@ public class UserController {
         return("redirect:/users/profile");
     }
 
-@GetMapping("/test")
-    public String testlogin(Model model){
-    model.addAttribute("user", new User());
-    return "redirect:/login";
-}
+    @GetMapping("/test")
+        public String testlogin(Model model){
+        model.addAttribute("user", new User());
+        return "redirect:/login";
+    }
+
 }
 
