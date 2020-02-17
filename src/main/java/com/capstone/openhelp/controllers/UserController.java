@@ -134,6 +134,7 @@ public class UserController {
             model.addAttribute("message", "Link is invalid or broken");
         }
 
+        model.addAttribute("user", new User());
         return "login";
     }
 
