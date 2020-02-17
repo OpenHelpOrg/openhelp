@@ -57,9 +57,9 @@ public class EmailService {
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setFrom(from);
         msg.setTo(user.getEmail());
-        msg.setSubject("Thank you for register with OpenHelp");
+        msg.setSubject("Thank you for registering with OpenHelp!");
 
-        String body = "Hello " + user.getName() + ", \n\nThank you for register with OpenHelp. Now you will be able to create events, and" +
+        String body = "Hello " + user.getName() + ", \n\nThank you for registering with OpenHelp. Now you will be able to create events, and" +
                 " also volunteer as well. Remember that your email is your username. Enjoy the application. \n\nSincerely, \nOpenHelp Team.";
         msg.setText(body);
 
@@ -76,7 +76,7 @@ public class EmailService {
         msg.setTo(user.getEmail());
         msg.setSubject("Event Creation");
 
-        String body = "You have successfully created an event!" + user.getName() + " Here are the details.";
+        String body = "You have successfully created an event! " + user.getName() + " Here are the details.";
         msg.setText(body);
     }
 
@@ -85,7 +85,7 @@ public class EmailService {
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setFrom(from);
         msg.setTo(user.getEmail());
-        msg.setSubject("Attendence confirmation");
+        msg.setSubject("Attendance confirmation");
 
         String body = "You have confirmed yourself for this event";
         msg.setText(body);
