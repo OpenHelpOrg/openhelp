@@ -24,6 +24,7 @@
 <div class="forms-section createeventform container">
                 <form class="forms mx-auto" th:action="@{/events/edit}" method="post" th:object="${event}">
         <fieldset>
+            <input type="hidden" th:field="*{id}">
             <legend class="section-title">Enter your event details below</legend>
             <!--                event title-->
             <div class="input-block">

@@ -685,6 +685,17 @@ nav #searchfield {
     margin-top: auto;
 }
 
+.eventindeximg {
+   height: 100%;
+    width: auto;
+margin-left: 30%;
+}
+
+.eventindeximageholder {
+    height: 125px;
+    width: 125px;
+}
+
 /*MAP AND CALENDAR*/
 #mapShow {
     width: 500px;
