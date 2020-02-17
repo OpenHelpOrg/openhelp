@@ -85,6 +85,33 @@ public class EmailService {
         }
     }
 
+    public void eventEditEmail(Event event, User user){
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setFrom(from);
+        msg.setTo(user.getEmail());
+        msg.setSubject("An Event you are attending made some changes");
+
+        User creator = new User();
+        for(int x = 0; x < event.getUserEvents().size(); x++){
+            if(event.getUserEvents().get(x).isIs_creator()){
+                creator = event.getUserEvents().get(x).getUser();
+            }
+        }
+
+        String body = "Hello " + user.getName() + ", \n\nLooks like an event you are attending, recently made some changes." +
+                " These are the new details fo the event for your information:\nTitle: " + event.getTitle() + "\nLocation: " + event.getLocation() +
+                "\nAddress: " + event.getAddress() + "\nSummary: " + event.getSummary() + "\nDate and Time: " + event.getDate_time() +
+                "\nDetails: " + event.getDetails() + "\nNotes: " + event.getNotes() + "\nIf you have any questions. Please contact the event creator for more "
+                + "details (" + creator.getName() + ") at " + creator.getEmail() + ".\n\nThank you,\n\nOpenHelp Team.";
+        msg.setText(body);
+
+        try{
+            this.emailSender.send(msg);
+        }catch (MailException ex){
+            System.err.println(ex.getMessage());
+        }
+    }
+
     public void createEventEmail(User user, Event event) {
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setFrom(from);
