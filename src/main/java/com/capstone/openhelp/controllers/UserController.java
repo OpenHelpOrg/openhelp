@@ -115,7 +115,7 @@ public class UserController {
         VerificationToken verificationToken = new VerificationToken(user);
         verificationDao.save(verificationToken);
         /////////
-        //this is ther section to send an email with the confirmation token
+        //this is the section to send an email with the confirmation token
         emailService.confirmEmail(user, verificationToken);
         return "login";
     }

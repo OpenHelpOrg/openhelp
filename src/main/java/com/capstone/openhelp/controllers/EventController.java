@@ -8,6 +8,7 @@ import com.capstone.openhelp.repositories.UserEventRepository;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.core.context.SecurityContextHolder;
 import com.capstone.openhelp.repositories.EventRepository;
 import com.capstone.openhelp.repositories.UserRepository;
@@ -116,13 +117,12 @@ public class EventController {
         userEventDao.save(new UserEvents(user,event, true));
 //        emailService.prepareAndSend(event,"You just made a event","you just made a event"); //EmailService.java model
         return "redirect:/events";
+
+
+
+
     }
 
-    @GetMapping("/events/create/confirm")
-    public String confirmEvent(Model model) {
-
-        return "events/create/confirm";
-    }
 
 
     //DELETE
@@ -166,7 +166,7 @@ public class EventController {
     }
 
     @GetMapping("/events/singleevent/{id}/enroll")
-    public String enrollEnvent(@PathVariable long id, Model model){
+    public String enrollEvent(@PathVariable long id, Model model){
         Event event = eventDao.findById(id);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
