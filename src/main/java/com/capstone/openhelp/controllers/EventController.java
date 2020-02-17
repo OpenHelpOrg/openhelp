@@ -33,6 +33,10 @@ public class EventController {
     @Value("${spring.mail.mapbox}")
     private String mapbox;
 
+    private EmailService emailService;
+
+    private EventRepository eventRepository;
+
 //    MINIMUM MAPPING !!!!!!
     @GetMapping("/index")
     public String eventsIndex(){
@@ -139,9 +143,6 @@ public class EventController {
 //        emailService.prepareAndSend(event,"You just made a event","you just made a event"); //EmailService.java model
         return "redirect:/events";
 
-
-
-
     }
 
 
@@ -190,6 +191,7 @@ public class EventController {
     public String enrollEvent(@PathVariable long id, Model model){
         Event event = eventDao.findById(id);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        emailService.enrollEventEmail(eventDao);
 
         int limit = event.getVol_limit();
         int current = 0;
