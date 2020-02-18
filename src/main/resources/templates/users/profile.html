@@ -35,8 +35,8 @@
 <br>
 <br>
 
-
 <div class="row">
+    <!--User Profile info -->
     <div class="col-sm-12 col-md-8 mx-auto">
         <div class="d-flex justify-content-end">
             <button type="button" class="btn btn-doEdit d-inline mr-0" data-toggle="modal"
@@ -92,46 +92,50 @@
         </div>
 
     </div>
-</div>
 
-
-
-<!--events div-->
-<div class="col-sm-12 col-md-4">
-    <div class="card mb-3" style="width: 100%">
-        <div class="card-body">
-            <h1 class="card-title">Your events </h1>
-            <ul class="list-group list-group-flush" th:each="event : ${user.getUserEvents()}">
-                <li class="list-group-item" th:if="${event.isIs_creator() == true}">
-                    <a th:href="@{'/events/edit/' + ${event.getEvent().getId()}}">
-                        <img th:src="@{${event.getEvent().getImages()}}" alt="event image">
-                        <span th:text="${event.getEvent().getTitle()}"></span>
-                        <span th:text="${event.getEvent().getDate_time()}"></span>
-                    </a>
-                </li>
-            </ul>
-            <br>
+    <!--User Events info-->
+    <div class="col-sm-12 col-md-4">
+        <div class="card mb-3" style="width: 100%">
+            <div class="card-body">
+                <h1 class="card-title">Your events </h1>
+                <ul class="list-group list-group-flush" th:each="event : ${user.getUserEvents()}">
+                    <li class="list-group-item" th:if="${event.isIs_creator() == true}">
+                        <a th:href="@{'/events/edit/' + ${event.getEvent().getId()}}">
+                            <img th:src="@{${event.getEvent().getImages()}}" alt="event image" width="50px" height="50px">
+                            <span th:text="${event.getEvent().getTitle()}"></span>
+                            <span th:text="${event.getEvent().getDate_time()}"></span>
+                        </a>
+                    </li>
+                </ul>
+                <br>
+            </div>
         </div>
-    </div>
-    <!--     attending events     ---------->
-    <div class="attendingevents">
-        <h1 class="card-title">Other event you are attending </h1>
+        <!--     attending events     ---------->
+        <div class="attendingevents card mb-3">
+            <div class="card-body">
+                <h1 class="card-title">Other event you are attending </h1>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" th:each="events : ${user.getUserEvents()}">
+                <span th:if="${events.isIs_creator() != true}">
+                    <a th:href="@{'/events/singleevent/' + ${events.getEvent().getId()}}">
+                        <img th:src="@{${events.getEvent().getImages()}}" alt="event image" />
+                        <span th:text="${events.getEvent().getTitle()}"></span>
+                        <span th:text="${events.getEvent().getDate_time()}"></span>
+                    </a>
+                    <form th:method="post" th:action="@{'/events/add-story/' + ${events.getId()}}">
+                        <textarea name="story" th:text="${events.getStory()}"></textarea>
+                        <button>Create Story</button>
+                    </form>
+                </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
-        <ul class="list-group list-group-flush" th:each="event : ${user.getUserEvents()}">
-            <li class="list-group-item" th:if="${event.isIs_creator() != true}">
-                <a th:href="@{'/events/details/' + ${event.getEvent().getId()}}">
-                    <img th:src="@{${event.getEvent().getImages()}}" alt="event image">
-                    <span th:text="${event.getEvent().getTitle()}"></span>
-                    <span th:text="${event.getEvent().getDate_time()}"></span>
-                </a>
-            </li>
-        </ul>
     </div>
 </div>
-</div>
 
-
-
+<!--Edit profile modal-->
 <div class="modal editprofilemodal" tabindex="-1" role="dialog" id="editInfoModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content editprofilemodal-content">
@@ -198,7 +202,7 @@
             </div>
         </div>
     </div>
-</div>
+</div><!-- end of modal-->
 
 <nav th:insert="partials/navbar :: footer"></nav>
 <script>
