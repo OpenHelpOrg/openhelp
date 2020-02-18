@@ -26,9 +26,9 @@ public class Event {
     @Column(nullable = false, length = 500)
     private String address;
 
-    @Column(columnDefinition = "TEXT NOT NULL")
-    @JsonIgnore
-    private String details;
+//    @Column(columnDefinition = "TEXT NOT NULL")
+//    @JsonIgnore
+//    private String details;
 
     @Column(columnDefinition = "DATETIME NOT NULL")
     private String date_time;
@@ -53,7 +53,7 @@ public class Event {
     @JsonIgnore
     private int vol_limit;
 
-    //relates to User Model
+    //    relates to User Model
 //    @ManyToOne
 //    @JoinColumn(name = "user_id")
 //    @JsonIgnore
@@ -94,7 +94,6 @@ public class Event {
         this.title = event.title;
         this.location = event.location;
         this.address = event.address;
-        this.details = event.details;
         this.date_time = event.date_time;
         this.summary = event.summary;
         this.images = event.images;
@@ -103,11 +102,10 @@ public class Event {
         this.userEvents.addAll(userEvents);
     }
 
-    public Event(String title, String location, String address, String details, String date_time, String summary, String images, String notes, int vol_limit) {
+    public Event(String title, String location, String address, String date_time, String summary, String images, String notes, int vol_limit) {
         this.title = title;
         this.location = location;
         this.address = address;
-        this.details = details;
         this.date_time = date_time;
         this.summary = summary;
         this.images = images;
@@ -219,11 +217,11 @@ public class Event {
         this.vol_limit = limit;
     }
 
-    public String getDetails() {
-        return details;
-    }
-
-    public void setDetails(String details) {
-        this.details = details;
-    }
+//    public String getDetails() {
+//        return details;
+//    }
+//
+//    public void setDetails(String details) {
+//        this.details = details;
+//    }
 }
