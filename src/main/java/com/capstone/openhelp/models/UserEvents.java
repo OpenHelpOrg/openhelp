@@ -27,6 +27,14 @@ public class UserEvents implements Serializable {
     public UserEvents() {
     }
 
+    public UserEvents(long id, User user, Event event, boolean is_creator, String story) {
+        this.id = id;
+        this.user = user;
+        this.event = event;
+        this.is_creator = is_creator;
+        this.story = story;
+    }
+
     public UserEvents(User user, Event event, boolean is_creator, String story) {
         this.user = user;
         this.event = event;

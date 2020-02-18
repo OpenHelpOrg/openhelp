@@ -137,13 +137,20 @@ public class EventController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         eventDao.save(event);
-        userEventDao.save(new UserEvents(user,event, true));
+        userEventDao.save(new UserEvents(user,event, true, ""));
 //        emailService.prepareAndSend(event,"You just made a event","you just made a event"); //EmailService.java model
         return "redirect:/events";
 
     }
 
-
+    @PostMapping("/events/add-story/{id}")
+    public String addEventStory(@RequestParam String story, @PathVariable long id, Model model){
+        UserEvents event = userEventDao.getOne(id);
+        event.setStory(story);
+        userEventDao.save(event);
+        model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        return "redirect:/users/profile";
+    }
 
     //DELETE
     @GetMapping("/events/delete/{id}")
@@ -203,7 +210,7 @@ public class EventController {
         }
 
         if(current < limit){
-            userEventDao.save(new UserEvents(user,event, false));
+            userEventDao.save(new UserEvents(user,event, false, ""));
 
             model.addAttribute("response", "yes");
         }else {
