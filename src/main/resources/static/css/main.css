@@ -752,6 +752,7 @@ margin-left: 30%;
     padding: 20px 0 60px;
 }
 
+
 /*SEARCH FILTER*/
 .searchFilter {
     margin-bottom: 20px;
@@ -914,4 +915,25 @@ margin-left: 30%;
     .searchFilter .dropdown-menu-right {
         right: 0px;
     }
+
+/*password helper modal on login page*/
+#passwordHelpModal .modal-content {
+    background-color: #4db2f1;
+    border: 1px solid #ea6725;
+    border-radius: 5px;
+    color: #303030;
+    font-family: 'Roboto', sans-serif;
+}
+
+#passwordHelpModal .modal-title {
+    font-size:2em;
+}
+
+#passwordHelpModal .modal-body {
+    font-size: 1.5em;
+}
+
+#passwordHelpModal #criteriaList {
+    list-style-type: none;
+
 }

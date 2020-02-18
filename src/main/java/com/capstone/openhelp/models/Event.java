@@ -54,10 +54,10 @@ public class Event {
     private int vol_limit;
 
     //relates to User Model
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    @JsonIgnore
-    private User user;
+//    @ManyToOne
+//    @JoinColumn(name = "user_id")
+//    @JsonIgnore
+//    private User user;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -114,13 +114,13 @@ public class Event {
         this.notes = notes;
         this.vol_limit = vol_limit;
     }
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
     public long getId() {
         return id;
