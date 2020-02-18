@@ -30,193 +30,177 @@
 
 <br>
 <br>
-<div class="container">
 
-    <h1 class="text-center">Welcome, <span th:text="${user.getName()}"></span></h1>
-    <br>
-    <br>
+<h1 class="text-center">Welcome, <span th:text="${user.getName()}"></span></h1>
+<br>
+<br>
 
 
-    <div class="row">
-        <div class="col-sm-12 col-md-8 mx-auto">
-            <div class="d-flex justify-content-end">
-                <button type="button" class="btn btn-doEdit d-inline mr-0" data-toggle="modal"
-                        data-target="#editInfoModal"
-                        id="modalButton">
-                    Edit Profile
+<div class="row">
+    <div class="col-sm-12 col-md-8 mx-auto">
+        <div class="d-flex justify-content-end">
+            <button type="button" class="btn btn-doEdit d-inline mr-0" data-toggle="modal"
+                    data-target="#editInfoModal"
+                    id="modalButton">
+                Edit Profile
+            </button>
+        </div>
+        <div class="card mb-3" style="width: 100%;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <!--                    <img th:src="@{${user.getImage()}}" alt="user avatar" class="card-img">-->
+                    <img th:src="${user.getImage()}"
+                         alt="user avatar" class="card-img">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h1 class="card-title" th:text="${user.getName()}"></h1>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <h3>About</h3>
+                                <span th:text="${user.getAbout()}"></span>
+                            </li>
+                            <li class="list-group-item">
+                                <h3>Address</h3>
+                                <span th:text="${user.getAddress()}"></span>
+                            </li>
+                            <li class="list-group-item">
+                                <h3>Phone</h3>
+                                <span th:text="${user.getPhone()}"></span>
+                            </li>
+                            <li class="list-group-item">
+                                <a th:href="@{'mailto:' + ${user.getEmail()}}" th:text="${user.getEmail()}"></a>
+                            </li>
+                            <li class="list-group-item">
+                                <a th:href="@{${user.getWebsite()}}" target="_blank">Website</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <form id="pick-form" th:action="@{/users/imageupload}" th:method="post">
+                <div class="field">
+                    <div class="control">
+                        <button class="button btn-doEdit mt-1 mr-2" type="button" id="picker">Change Image</button>
+                        <input type="hidden" name="filetoupload" id="fileupload">
+                        <button class="button btn-doUpload mt-1" type="submit">Submit Image</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+
+<!--events div-->
+<div class="col-sm-12 col-md-4">
+    <div class="card mb-3" style="width: 100%">
+        <div class="card-body">
+            <h1 class="card-title">Your events </h1>
+            <ul class="list-group list-group-flush" th:each="event : ${user.getUserEvents()}">
+                <li class="list-group-item" th:if="${event.isIs_creator() == true}">
+                    <a th:href="@{'/events/edit/' + ${event.getEvent().getId()}}">
+                        <img th:src="@{${event.getEvent().getImages()}}" alt="event image">
+                        <span th:text="${event.getEvent().getTitle()}"></span>
+                        <span th:text="${event.getEvent().getDate_time()}"></span>
+                    </a>
+                </li>
+            </ul>
+            <br>
+        </div>
+    </div>
+    <!--     attending events     ---------->
+    <div class="attendingevents">
+        <h1 class="card-title">Other event you are attending </h1>
+
+        <ul class="list-group list-group-flush" th:each="event : ${user.getUserEvents()}">
+            <li class="list-group-item" th:if="${event.isIs_creator() != true}">
+                <a th:href="@{'/events/details/' + ${event.getEvent().getId()}}">
+                    <img th:src="@{${event.getEvent().getImages()}}" alt="event image">
+                    <span th:text="${event.getEvent().getTitle()}"></span>
+                    <span th:text="${event.getEvent().getDate_time()}"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+
+
+
+<div class="modal editprofilemodal" tabindex="-1" role="dialog" id="editInfoModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content editprofilemodal-content">
+            <div class="modal-header editprofilemodal-header">
+                <h5 class="modal-title editprofilemodal-title">Edit your information...</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="card mb-3" style="width: 100%;">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <!--                    <img th:src="@{${user.getImage()}}" alt="user avatar" class="card-img">-->
-                        <img th:src="${user.getImage()}"
-                             alt="user avatar" class="card-img">
+            <div class="modal-body">
+                <!--modal pops up when user wants to edit?-->
+                <!--"@{|/posts/${post.id}|}"-->
+                <form th:action="@{/users/profile}" th:method="post" th:object="${user}">
+                    <input type="hidden" th:field="*{username}">
+                    <input type="hidden" th:field="*{image}">
+                    <div class="form-group">
+                        <label for="edit-email">Email address</label>
+                        <input type="email" class="form-control" id="edit-email" th:value="${user.email}"
+                               th:field="*{email}" required>
+                        <!--        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
                     </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h1 class="card-title" th:text="${user.getName()}"></h1>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">
-                                    <h3>About</h3>
-                                    <span th:text="${user.getAbout()}"></span>
-                                </li>
-                                <li class="list-group-item">
-                                    <h3>Address</h3>
-                                    <span th:text="${user.getAddress()}"></span>
-                                </li>
-                                <li class="list-group-item">
-                                    <h3>Phone</h3>
-                                    <span th:text="${user.getPhone()}"></span>
-                                </li>
-                                <li class="list-group-item">
-                                    <a th:href="@{'mailto:' + ${user.getEmail()}}" th:text="${user.getEmail()}"></a>
-                                </li>
-                                <li class="list-group-item">
-                                    <a th:href="@{${user.getWebsite()}}" target="_blank">Website</a>
-                                </li>
-                            </ul>
-                        </div>
+                    <div class="form-group">
+                        <label for="edit-name">Name</label>
+                        <input type="text" class="form-control" id="edit-name" th:value="${user.name}"
+                               th:field="*{name}" required>
                     </div>
-                </div>
-            </div>
-            <div class="box">
-                <form id="pick-form" th:action="@{/users/imageupload}" th:method="post">
-                    <div class="field">
-                        <div class="control">
-                            <button class="button btn-doEdit mt-1 mr-2" type="button" id="picker">Change Image</button>
-                            <input type="hidden" name="filetoupload" id="fileupload">
-                            <button class="button btn-doUpload mt-1" type="submit">Submit Image</button>
-                        </div>
+                    <div class="form-group">
+                        <!--        <label for="edit-password">Password</label>-->
+                        <input type="hidden" class="form-control" id="edit-password" th:value="${user.password}"
+                               th:field="*{password}">
                     </div>
+                    <div class="form-group">
+                        <label for="edit-phone">Telephone</label>
+                        <input type="tel" class="form-control" id="edit-phone" th:value="${user.phone}"
+                               th:field="*{phone}">
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="edit-isOrg" th:field="*{is_org}">
+                        <label class="form-check-label ml-5" for="edit-isOrg">Are you representing an
+                            Organization?</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-address">Address</label>
+                        <input type="text" class="form-control" id="edit-address" th:value="${user.address}"
+                               th:field="*{address}">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-website">Website</label>
+                        <input type="url" class="form-control" id="edit-website" th:value="${user.website}"
+                               th:field="*{website}">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-about">Tell us about you!</label>
+                        <textarea class="form-control" id="edit-about" th:text="${user.about}"
+                                  th:field="*{about}"></textarea>
+                    </div>
+                    <!--                    <button type="submit" class="btn btn-primary">Submit</button>-->
+                    <button type="submit" class="btn btn-doEdit">Save changes</button>
+                    <button type="button" class="btn btn-close" data-dismiss="modal">Close</button>
                 </form>
             </div>
+            <div class="modal-footer">
 
-        </div>
-    </div>
-
-    <!--<div class="box">-->
-    <!--    <form id="pick-form" th:action="@{/users/imageupload}" th:method="post">-->
-    <!--        <div class="field">-->
-    <!--            <div class="control">-->
-    <!--                <button class="button" type="button" id="picker">Pick file</button>-->
-    <!--                <input type="hidden" name="filetoupload" id="fileupload">-->
-    <!--            </div>-->
-    <!--            <div class="control" id="nameBox"></div>-->
-    <!--            <div class="control" id="urlBox"></div>-->
-    <!--        </div>-->
-    <!--        <div class="field">-->
-    <!--            <div class="control">-->
-    <!--                <button class="button" type="submit">Submit Image</button>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </form>-->
-    <!--</div>-->
-
-    <!--events div-->
-    <div class="col-sm-12 col-md-4">
-        <div class="card mb-3" style="width: 100%">
-            <div class="card-body">
-                <h1 class="card-title">Your events </h1>
-                <ul class="list-group list-group-flush" th:each="event : ${user.getUserEvents()}">
-                    <li class="list-group-item" th:if="${event.isIs_creator() == true}">
-                        <a th:href="@{'/events/edit/' + ${event.getEvent().getId()}}">
-                            <img th:src="@{${event.getEvent().getImages()}}" alt="event image">
-                            <span th:text="${event.getEvent().getTitle()}"></span>
-                            <span th:text="${event.getEvent().getDate_time()}"></span>
-                        </a>
-                    </li>
-                </ul>
-                <br>
-            </div>
-        </div>
-            <!--     attending events     ---------->
-            <div class="attendingevents">
-                <h1 class="card-title">Other event you are attending </h1>
-
-                <ul class="list-group list-group-flush" th:each="event : ${user.getUserEvents()}">
-                    <li class="list-group-item" th:if="${event.isIs_creator() != true}">
-                        <a th:href="@{'/events/details/' + ${event.getEvent().getId()}}">
-                            <img th:src="@{${event.getEvent().getImages()}}" alt="event image">
-                            <span th:text="${event.getEvent().getTitle()}"></span>
-                            <span th:text="${event.getEvent().getDate_time()}"></span>
-                        </a>
-                    </li>
-                </ul>
             </div>
         </div>
     </div>
+</div>
 
-
-    <div class="modal editprofilemodal" tabindex="-1" role="dialog" id="editInfoModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content editprofilemodal-content">
-                <div class="modal-header editprofilemodal-header">
-                    <h5 class="modal-title editprofilemodal-title">Edit your information...</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <!--modal pops up when user wants to edit?-->
-                    <!--"@{|/posts/${post.id}|}"-->
-                    <form th:action="@{/users/profile}" th:method="post" th:object="${user}">
-                        <input type="hidden" th:field="*{username}">
-                        <input type="hidden" th:field="*{image}">
-                        <div class="form-group">
-                            <label for="edit-email">Email address</label>
-                            <input type="email" class="form-control" id="edit-email" th:value="${user.email}"
-                                   th:field="*{email}" required>
-                            <!--        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
-                        </div>
-                        <div class="form-group">
-                            <label for="edit-name">Name</label>
-                            <input type="text" class="form-control" id="edit-name" th:value="${user.name}"
-                                   th:field="*{name}" required>
-                        </div>
-                        <div class="form-group">
-                            <!--        <label for="edit-password">Password</label>-->
-                            <input type="hidden" class="form-control" id="edit-password" th:value="${user.password}"
-                                   th:field="*{password}">
-                        </div>
-                        <div class="form-group">
-                            <label for="edit-phone">Telephone</label>
-                            <input type="tel" class="form-control" id="edit-phone" th:value="${user.phone}"
-                                   th:field="*{phone}">
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="edit-isOrg" th:field="*{is_org}">
-                            <label class="form-check-label ml-5" for="edit-isOrg">Are you representing an
-                                Organization?</label>
-                        </div>
-                        <div class="form-group">
-                            <label for="edit-address">Address</label>
-                            <input type="text" class="form-control" id="edit-address" th:value="${user.address}"
-                                   th:field="*{address}">
-                        </div>
-                        <div class="form-group">
-                            <label for="edit-website">Website</label>
-                            <input type="url" class="form-control" id="edit-website" th:value="${user.website}"
-                                   th:field="*{website}">
-                        </div>
-                        <div class="form-group">
-                            <label for="edit-about">Tell us about you!</label>
-                            <textarea class="form-control" id="edit-about" th:text="${user.about}"
-                                      th:field="*{about}"></textarea>
-                        </div>
-                        <!--                    <button type="submit" class="btn btn-primary">Submit</button>-->
-                        <button type="submit" class="btn btn-doEdit">Save changes</button>
-                        <button type="button" class="btn btn-close" data-dismiss="modal">Close</button>
-                    </form>
-                </div>
-                <div class="modal-footer">
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <nav th:insert="partials/navbar :: footer"></nav>
+<nav th:insert="partials/navbar :: footer"></nav>
 <script>
     $('#editInfoModal').on('shown.bs.modal', function () {
         $('#modalButton').trigger('focus')
@@ -268,6 +252,16 @@
 
 </script>
 <!--<nav th:insert="partials/navbar :: footer"></nav>-->
+<style>
+    .profileeventimgholder {
+        height: 125px !important;
+        width: 125px !important;
+    }
 
+    .profileeventimg {
+        height: 100%;
+        width: auto;
+    }
+</style>
 </body>
 </html>
