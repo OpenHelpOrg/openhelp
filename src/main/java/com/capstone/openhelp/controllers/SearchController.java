@@ -44,6 +44,7 @@ public class SearchController {
         } else if (search_param.equals("user")) {
             List<User> results = userDao.findByNameContainsOrEmailContainsAllIgnoreCase(query, query);
             model.addAttribute("results", results);
+//            System.out.println(model);
             return "users/usersearch";
 
         } else {

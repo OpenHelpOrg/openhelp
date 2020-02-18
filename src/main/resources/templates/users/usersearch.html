@@ -33,21 +33,21 @@
     </style>
 </head>
 <body>
-<h1 class="text-center">Search User Results</h1>
 <nav th:insert="partials/navbar :: navbar"></nav>
 
-<h1 class="text-center">All Participating Organizations</h1>
+<h1 class="text-center">Search User Results</h1>
+<!--<h1 class="text-center">All Participating Organizations</h1>-->
 
 <div class="d-flex flex-wrap p-4 justify-content-center">
-    <div th:each="user : ${users}">
+    <div th:each="user : ${results}">
 
-        <a th:href="@{'/user/' + ${users.getId()}}">
+        <a th:href="@{'/user/' + ${user.getId()}}">
             <div class="card hovercard mr-5 mb-5" style="width: 18rem;">
-                <img th:src="@{${users.getImage()}}" class="card-img-top" th:alt="${users.getName()} + 'avatar'" >
+                <img th:src="@{${user.getImage()}}" class="card-img-top" th:alt="${user.getName()} + 'avatar'" >
                 <div class="card-body">
-                    <h5 class="card-title" th:text="${users.getName()}"></h5>
+                    <h5 class="card-title" th:text="${user.getName()}"></h5>
                     <h6>About</h6>
-                    <p class="card-text" th:text="${users.getAbout()}"></p>
+                    <p class="card-text" th:text="${user.getAbout()}"></p>
                 </div>
             </div>
         </a>
