@@ -2,29 +2,18 @@ package com.capstone.openhelp.controllers;
 
 
 import com.capstone.openhelp.models.User;
-import com.capstone.openhelp.models.UserWithRoles;
 import com.capstone.openhelp.models.VerificationToken;
 import com.capstone.openhelp.repositories.UserRepository;
 import com.capstone.openhelp.repositories.VerificationTokenRespository;
 import com.capstone.openhelp.services.EmailService;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.capstone.openhelp.services.PasswordChecker;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.lang.reflect.Type;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -38,22 +27,29 @@ public class UserController {
 
     private EmailService emailService;
 
+    private PasswordChecker checkPassword;
 
-    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, VerificationTokenRespository verificationDao, EmailService emailService) {
+
+    public UserController(UserRepository userDao,
+                          PasswordEncoder passwordEncoder,
+                          VerificationTokenRespository verificationDao,
+                          EmailService emailService,
+                          PasswordChecker checkPassword) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
         this.verificationDao = verificationDao;
         this.emailService = emailService;
+        this.checkPassword = checkPassword;
     }
 
     //displays all organization on our db
     @GetMapping("/users")
-    public String showIndex(Model model){
+    public String showIndex(Model model) {
         List<User> users = userDao.findAll();
         List<User> corporations = new ArrayList<>();
 
-        for(int i=0; i < users.size(); i++){
-            if(users.get(i).isIs_org()){
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).isIs_org()) {
                 corporations.add(users.get(i));
             }
         }
@@ -101,42 +97,71 @@ public class UserController {
 
     @GetMapping("/sign-up")
     public String showSignupForm(Model model) {
-        model.addAttribute("user", new User());
+//        model.addAttribute("user", new User());
         return "login";
     }
 
     @PostMapping("/sign-up")
-    public String saveUser(@ModelAttribute User user, Model model) {
-        String hash = passwordEncoder.encode(user.getPassword());
-        user.setPassword(hash);
-        user.setUsername(user.getEmail());
-        user.setImage("https://storage.jewnetwork.com/content/users/avatars/3746/avatar_3746_500.jpg");
-        userDao.save(user);
+    public String saveUser(Model model,
+                           @RequestParam("regEmail") String regEmail,
+                           @RequestParam("regName") String regName,
+                           @RequestParam("regPassword") String regPassword,
+                           @RequestParam("regPasswordConfirm") String regPasswordConfirm) {
+        model.getAttribute(regEmail);
+        model.getAttribute(regName);
+        model.getAttribute(regPassword);
+        model.getAttribute(regPasswordConfirm);
 
-        //this is for email verification
-        VerificationToken verificationToken = new VerificationToken(user);
-        verificationDao.save(verificationToken);
-        //this is the section to send an email with the confirmation token
-        emailService.confirmEmail(user, verificationToken);
-        model.addAttribute("message", "A confirmation email was sent to " + user.getEmail());
-        return "login";
+//            checks if email already exists in DB
+        if (userDao.findByEmail(regEmail) != null) {
+            model.addAttribute("message", "A user with that email already exists");
+            return ("login");
+//            checks that password and password confirm match
+        } else if (!regPassword.equals(regPasswordConfirm)) {
+            model.addAttribute("message", "Please ensure your passwords match!");
+            return ("login");
+//            checks that password meets strength criteria
+        } else if (!checkPassword.CheckPassword(regPassword)) {
+            model.addAttribute("message", "Please ensure your password meets the criteria");
+            return ("login");
+        } else {
+
+
+            User user = new User();
+            user.setEmail(regEmail);
+            user.setUsername(user.getEmail());
+            user.setName(regName);
+            String hash = passwordEncoder.encode(regPassword);
+            user.setPassword(hash);
+            user.setImage("https://storage.jewnetwork.com/content/users/avatars/3746/avatar_3746_500.jpg");
+            userDao.save(user);
+
+            //this is for email verification
+            VerificationToken verificationToken = new VerificationToken(user);
+            verificationDao.save(verificationToken);
+            //this is the section to send an email with the confirmation token
+            emailService.confirmEmail(user, verificationToken);
+            model.addAttribute("message", "A confirmation email was sent to " + user.getEmail());
+            return "login";
+        }
     }
 
+
     @GetMapping("/confirm-account")
-    public String confirmUserAccount(@RequestParam String token, Model model){
+    public String confirmUserAccount(@RequestParam String token, Model model) {
         VerificationToken confirm = verificationDao.findByConfirmationToken(token);
 
-        if(confirm != null){
+        if (confirm != null) {
             User user = userDao.findByEmail(confirm.getUser().getEmail());
             user.setEnabled(true);
             userDao.save(user);
             emailService.createAccountEmail(user);
             model.addAttribute("message", "Thank you for verifying your email. Please use now your credentials to login");
-        }else {
+        } else {
             model.addAttribute("message", "Link is invalid or broken");
         }
 
-        model.addAttribute("user", new User());
+//        model.addAttribute("user", new User());
         return "login";
     }
 
@@ -149,17 +174,17 @@ public class UserController {
     }
 
     @PostMapping("/users/imageupload")
-    public String uploadUserImage(@RequestParam String filetoupload){
+    public String uploadUserImage(@RequestParam String filetoupload) {
         User log = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.findById(log.getId());
         user.setImage(filetoupload);
         userDao.save(user);
-        return("redirect:/users/profile");
+        return ("redirect:/users/profile");
     }
 
     @GetMapping("/test")
-        public String testlogin(Model model){
-        model.addAttribute("user", new User());
+    public String testlogin(Model model) {
+//        model.addAttribute("user", new User());
         return "redirect:/login";
     }
 
