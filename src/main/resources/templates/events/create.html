@@ -55,12 +55,12 @@
             <div class="input-block">
                 <button class="button btn-doEdit mt-1 mr-2" type="button" id="picker">Change Image</button>
                 <input type="text" name="image" id="fileupload" th:placeholder="image" th:field="*{images}">
-<!--                <button class="button btn-doUpload mt-1" type="submit">Submit Image</button>-->
+                <!--                <button class="button btn-doUpload mt-1" type="submit">Submit Image</button>-->
             </div>
-<!--            <div class="input-block">-->
-<!--                <label for="image">Image URL</label>-->
-<!--                <input th:placeholder="image" id="image" type="text" name="image" th:field="*{images}">-->
-<!--            </div>-->
+            <!--            <div class="input-block">-->
+            <!--                <label for="image">Image URL</label>-->
+            <!--                <input th:placeholder="image" id="image" type="text" name="image" th:field="*{images}">-->
+            <!--            </div>-->
             <!--                event summary-->
             <div class="input-block">
                 <label for="summary">Summary</label><br>
@@ -75,18 +75,19 @@
                         id="notes" type="textarea" th:field="*{notes}"
                         required></textarea>
             </div>
-            <!--                event details-->
-            <div class="input-block">
-                <label for="details">Details</label><br>
-                <textarea placeholder="details? " id="details" type="textarea" th:field="*{details}"
-                          required></textarea>
-            </div>
-
+            <!--            &lt;!&ndash;                event details&ndash;&gt;-->
+            <!--            <div class="input-block">-->
+            <!--                <label for="details">Details</label><br>-->
+            <!--                <textarea placeholder="details? " id="details" type="textarea" th:field="*{details}"-->
+            <!--                          required></textarea>-->
+            <!--            </div>-->
             <!-- categories -->
-            <div class="input-block" id="checkbox">
-                <div th:each="category : ${categories}">
-                    <input name="categories" type="checkbox" th:value="${category.getId()}"
-                           th:text="${category.getName()}"></li>
+            <div class="">
+                <div class="input-block" id="checkbox">
+                    <div th:each="category : ${categories}">
+                        <input name="categories" type="checkbox" th:value="${category.getId()}"
+                               th:text="${category.getName()}"></li>
+                    </div>
                 </div>
             </div>
 

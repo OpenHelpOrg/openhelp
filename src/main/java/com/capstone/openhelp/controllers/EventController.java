@@ -223,5 +223,12 @@ public class EventController {
         return "/events/confirmevent";
     }
 
+    @GetMapping("/timedEvents")
+    public String timedEvents(Model model){
+        model.addAttribute("futureevents", eventDao.findFutureEvents());
+        model.addAttribute("pastevents", eventDao.findPastEvents());
+        return("pastFutureTest");
+    }
+
 
 }

@@ -5,6 +5,7 @@ import com.capstone.openhelp.models.User;
 import com.capstone.openhelp.models.UserEvents;
 import com.capstone.openhelp.models.VerificationToken;
 import com.capstone.openhelp.repositories.UserEventRepository;
+import com.capstone.openhelp.repositories.EventRepository;
 import com.capstone.openhelp.repositories.UserRepository;
 import com.capstone.openhelp.repositories.VerificationTokenRespository;
 import com.capstone.openhelp.services.EmailService;
@@ -23,6 +24,8 @@ public class UserController {
 
     private UserRepository userDao;
 
+    private EventRepository eventDao;
+
     private PasswordEncoder passwordEncoder;
 
     private VerificationTokenRespository verificationDao;
@@ -40,12 +43,15 @@ public class UserController {
                           EmailService emailService,
                           PasswordChecker checkPassword,
                           UserEventRepository userEventDao) {
+                          EventRepository eventdao){
+
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
         this.verificationDao = verificationDao;
         this.emailService = emailService;
         this.checkPassword = checkPassword;
         this.userEventDao = userEventDao;
+        this.eventDao = eventdao;
     }
 
     //displays all organization on our db
@@ -176,6 +182,8 @@ public class UserController {
         User log = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.findById(log.getId());
         model.addAttribute("user", user);
+        model.addAttribute("futureevents", eventDao.findFutureEvents());
+        model.addAttribute("pastevents", eventDao.findPastEvents());
         return ("users/profile");
     }
 
