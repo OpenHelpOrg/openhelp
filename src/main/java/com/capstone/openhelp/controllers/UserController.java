@@ -2,7 +2,9 @@ package com.capstone.openhelp.controllers;
 
 
 import com.capstone.openhelp.models.User;
+import com.capstone.openhelp.models.UserEvents;
 import com.capstone.openhelp.models.VerificationToken;
+import com.capstone.openhelp.repositories.UserEventRepository;
 import com.capstone.openhelp.repositories.UserRepository;
 import com.capstone.openhelp.repositories.VerificationTokenRespository;
 import com.capstone.openhelp.services.EmailService;
@@ -29,17 +31,21 @@ public class UserController {
 
     private PasswordChecker checkPassword;
 
+    private final UserEventRepository userEventDao;
+
 
     public UserController(UserRepository userDao,
                           PasswordEncoder passwordEncoder,
                           VerificationTokenRespository verificationDao,
                           EmailService emailService,
-                          PasswordChecker checkPassword) {
+                          PasswordChecker checkPassword,
+                          UserEventRepository userEventDao) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
         this.verificationDao = verificationDao;
         this.emailService = emailService;
         this.checkPassword = checkPassword;
+        this.userEventDao = userEventDao;
     }
 
     //displays all organization on our db
@@ -188,5 +194,15 @@ public class UserController {
         return "redirect:/login";
     }
 
+    @PostMapping("/users/confirm-attendance")
+    public String confirmAttendance(@RequestParam("users") List<String> users, @RequestParam long id){
+        for(int x=0; x < users.size(); x++){
+            UserEvents event = userEventDao.getOne(Long.parseLong(users.get(x)));
+            event.setAttended(true);
+            userEventDao.save(event);
+            System.out.println(users.get(x));
+        }
+        return "redirect:/events/edit/" + id;
+    }
 }
 
