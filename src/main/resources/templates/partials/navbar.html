@@ -2,10 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
     <th:block th:insert="partials/head :: head"></th:block>
-<!--    <link rel="stylesheet" href="css/navbar.css">-->
+    <!--    <link rel="stylesheet" href="css/navbar.css">-->
     <link rel="stylesheet" href="css/main.css">
-
-
+    <!--    <link rel="stylesheet" href="css/search-filter.css">-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
     <title>NavBar</title>
 
 </head>
@@ -37,12 +38,30 @@
                 <a class="nav-link" href="/sign-up">Login/Signup</a>
             </li>
 
-            <form class="form-inline my-2 my-lg-0" th:action="@{/search}">
-                <input class="form-control mr-sm-2" id="searchfield" type="search" placeholder="Search"
-                       aria-label="Search" name="query">
-                <button class="btn my-2 my-sm-0" id="searchbutton" type="submit">Search</button>
-            </form>
+            <li>
+                <div class="container">
+                    <div class="row">
+                        <form class="form-inline my-2 my-lg-0" th:action="@{/search}">
+                            <div class="input-group-btn search-panel">
+                                <select name="search_param" id="search_param" class="btn btn-default dropdown-toggle"
+                                        data-toggle="dropdown">
+                                    <option value="all">All</option>
+                                    <option value="event">Events</option>
+                                    <option value="user">Users</option>
+                                </select>
+                            </div>
+                            <div>
 
+                                <input class="form-control mr-sm-2" id="searchfield" type="search" placeholder="Search"
+                                       aria-label="Search" name="query">
+                                <button class="btn my-2 my-sm-0" id="searchbutton" type="submit"><span
+                                        class="glyphicon glyphicon-search"></span>Search Events
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </li>
         </ul>
     </div>
 </nav>
@@ -82,6 +101,18 @@
     </ul>
 </footer>
 
+
+<script>
+    $(document).ready(function (e) {
+        $('.search-panel .dropdown-menu').find('a').click(function (e) {
+            e.preventDefault();
+            var param = $(this).attr("href").replace("#", "");
+            var concept = $(this).text();
+            $('.search-panel span#search_concept').text(concept);
+            $('.input-group #search_param').val(param);
+        });
+    });
+</script>
 
 </body>
 </html>

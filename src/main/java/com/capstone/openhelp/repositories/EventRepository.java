@@ -9,5 +9,6 @@ import java.util.List;
 public interface EventRepository extends JpaRepository<Event, Long> {
     Event findById(long id);
     Event deleteById(long id);
-    List<Event>  findByTitleContainsOrSummaryContainsAllIgnoreCase(String title, String summary);
+
+    List<Event> findByTitleContainsOrSummaryContainsAllIgnoreCase(String title, String summary);
 }

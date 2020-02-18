@@ -33,24 +33,11 @@ public class EventController {
     @Value("${spring.mail.mapbox}")
     private String mapbox;
 
-    private EmailService emailService;
-
-    private EventRepository eventRepository;
-
-//    MINIMUM MAPPING !!!!!!
-    @GetMapping("/index")
-    public String eventsIndex(){
-        return "index";
-    }
-
     private final EventRepository eventDao;
     private final UserRepository userDao;
     private final CategoryRespository categoryDao;
     private final UserEventRepository userEventDao;
-//    private EmailService emailService;
-
-//    private final EmailService emailService;
-
+    private final EmailService emailService;
 
     public EventController(EventRepository eventDao, UserRepository userDao, UserEventRepository userEventDao, CategoryRespository categoryDao, EmailService emailService) {
         this.eventDao = eventDao;
@@ -60,7 +47,11 @@ public class EventController {
         this.emailService = emailService;
     }
 
-
+    //    MINIMUM MAPPING !!!!!!
+    @GetMapping("/index")
+    public String eventsIndex(){
+        return "index";
+    }
 
     //SHOW ALL
     @GetMapping("/events")
@@ -104,7 +95,7 @@ public class EventController {
         }
 
         model.addAttribute("confirmation", "Emails were sent to all volunteers");
-        return "redirect:/events/edit/" + id;
+        return "/events/edit/" + id;
     }
 
     @GetMapping("/events/edit/{id}")
@@ -119,6 +110,13 @@ public class EventController {
     @PostMapping("/events/edit")
     public String editEvent(@ModelAttribute Event event){
         eventDao.save(event);
+
+        //sends an email to all volunteers of any changes in the event.
+        for(int x = 0; x < event.getUserEvents().size(); x++){
+            if(!event.getUserEvents().get(x).isIs_creator()){
+                emailService.eventEditEmail(event, event.getUserEvents().get(x).getUser());
+            }
+        }
 //        return "redirect:/users/profile";
         return "redirect:/events";
     }
@@ -139,13 +137,20 @@ public class EventController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         eventDao.save(event);
-        userEventDao.save(new UserEvents(user,event, true));
+        userEventDao.save(new UserEvents(user,event, true, ""));
 //        emailService.prepareAndSend(event,"You just made a event","you just made a event"); //EmailService.java model
         return "redirect:/events";
 
     }
 
-
+    @PostMapping("/events/add-story/{id}")
+    public String addEventStory(@RequestParam String story, @PathVariable long id, Model model){
+        UserEvents event = userEventDao.getOne(id);
+        event.setStory(story);
+        userEventDao.save(event);
+        model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        return "redirect:/users/profile";
+    }
 
     //DELETE
     @GetMapping("/events/delete/{id}")
@@ -205,7 +210,7 @@ public class EventController {
         }
 
         if(current < limit){
-            userEventDao.save(new UserEvents(user,event, false));
+            userEventDao.save(new UserEvents(user,event, false, ""));
 
             model.addAttribute("response", "yes");
         }else {
@@ -218,11 +223,5 @@ public class EventController {
         return "/events/confirmevent";
     }
 
-    @GetMapping("/search")
-    public String eventsearch(@RequestParam String query,  Model model){
-        List<Event> results = eventDao.findByTitleContainsOrSummaryContainsAllIgnoreCase(query, query);
-        model.addAttribute("results", results);
-        return "events/eventsearch";
-    }
 
 }

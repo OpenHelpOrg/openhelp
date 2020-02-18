@@ -24,8 +24,6 @@
     font-family: 'Roboto', sans-serif;
     text-shadow: 1px 2px black;
 }
-
-
 nav a {
     color: white;
     padding: .75em;
@@ -69,58 +67,58 @@ nav #searchfield{
 
 /*FOOTER*/
 
-.footer {
-    /*background-color: #ff6a00!important;*/
-    width: 100%!important;
-    height: 5em;
-    position: static;
-    bottom: 0!important;
-    margin-top: 10px!important;
-    /*padding-top: 10px!important;*/
-}
+/*.footer {*/
+/*    !*background-color: #ff6a00!important;*!*/
+/*    width: 100%!important;*/
+/*    height: 5em;*/
+/*    position: static;*/
+/*    bottom: 0!important;*/
+/*    margin-top: 10px!important;*/
+/*    !*padding-top: 10px!important;*!*/
+/*}*/
 
 
 
-#footer-ul{
-    display: flex;
-    justify-content: flex-end!important;
-    margin:0;
-    padding: 0;
-    list-style: none;
-    line-height: 4em;
+/*#footer-ul{*/
+/*    display: flex;*/
+/*    justify-content: flex-end!important;*/
+/*    margin:0;*/
+/*    padding: 0;*/
+/*    list-style: none;*/
+/*    line-height: 4em;*/
 
-}
-#footer-left{
-    margin-right: auto;
-    margin-left: .5%;
-}
+/*}*/
+/*#footer-left{*/
+/*    margin-right: auto;*/
+/*    margin-left: .5%;*/
+/*}*/
 
-.footer-link{
+/*.footer-link{*/
 
-    font-size: 1.5em;
-    margin-right: 1%;
-    margin-left: 1%;
-    /*width: 15%;*/
-}
-/* unvisited link */
-.footer-link a:link {
-    color: #ffffff;
-}
+/*    font-size: 1.5em;*/
+/*    margin-right: 1%;*/
+/*    margin-left: 1%;*/
+/*    !*width: 15%;*!*/
+/*}*/
+/*!* unvisited link *!*/
+/*.footer-link a:link {*/
+/*    color: #ffffff;*/
+/*}*/
 
-/* visited link */
-.footer-link a:visited {
-    color: #ffffff;
-}
+/*!* visited link *!*/
+/*.footer-link a:visited {*/
+/*    color: #ffffff;*/
+/*}*/
 
-/* mouse over link */
-.footer-link a:hover {
-    color:#ea6725;
-}
+/*!* mouse over link *!*/
+/*.footer-link a:hover {*/
+/*    color:#ea6725;*/
+/*}*/
 
-/* selected link */
-.footer-link a:active {
-    color: #ffffff;
-}
+/*!* selected link *!*/
+/*.footer-link a:active {*/
+/*    color: #ffffff;*/
+/*}*/
 
-/*LINKS CAN BE CONSOLIDATED AFTER COLORS ARE DECIDED*/
+
 
