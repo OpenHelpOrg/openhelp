@@ -48,9 +48,11 @@ public class SearchController {
             return "users/usersearch";
 
         } else {
-            System.out.println(search_param);
-            System.out.println(query);
-            return "home";
+            List<Event> results = eventDao.findByTitleContainsOrSummaryContainsAllIgnoreCase(query, query);
+            model.addAttribute("results", results);
+            List<User> resultsuser = userDao.findByNameContainsOrEmailContainsAllIgnoreCase(query, query);
+            model.addAttribute("resultsuser", resultsuser);
+            return "/index";
         }
     }
 }
