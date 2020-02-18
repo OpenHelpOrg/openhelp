@@ -35,7 +35,7 @@ public class EventController {
 
     private EmailService emailService;
 
-    private EventRepository eventRepository;
+
 
 //    MINIMUM MAPPING !!!!!!
     @GetMapping("/index")
@@ -217,11 +217,11 @@ public class EventController {
 
         return "/events/confirmevent";
     }
-    @GetMapping("/search")
-    public String eventsearch(@RequestParam String query,  Model model){
-        List<Event> results = eventDao.findByTitleContainsOrSummaryContainsAllIgnoreCase(query, query);
-        model.addAttribute("results", results);
-        return "events/eventsearch";
-    }
+//    @GetMapping("/search")
+//    public String eventsearch(@RequestParam String query,  Model model){
+//        List<Event> results = eventDao.findByTitleContainsOrSummaryContainsAllIgnoreCase(query, query);
+//        model.addAttribute("results", results);
+//        return "events/eventsearch";
+//    }
 
 }
