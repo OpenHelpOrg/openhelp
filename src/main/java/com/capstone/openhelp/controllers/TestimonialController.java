@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class TestimonialController {
 
         @GetMapping("/testimonials")
-        @ResponseBody
-        public String testimonials(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
-            model.addAttribute("name", name);
+        public String userStoryPage() {
             return "testimonials";
         }
 
