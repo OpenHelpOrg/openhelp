@@ -13,13 +13,13 @@
 </head>
 <body>
 <nav th:insert="partials/navbar :: navbar"></nav>
-<div class="wrapper">
+<div class="container">
     <h1 class="text-center">Open help Partner Index Page</h1>
     <div class="d-flex flex-wrap p-4 justify-content-center">
         <div th:each="user : ${resultsuser}">
             <a th:href="@{'/user/' + ${user.getId()}}">
                 <div class="card hovercard mr-5 mb-5" style="width: 18rem;">
-                    <img th:src="@{${user.getImage()}}" class="card-img-top" th:alt="${user.getName()} + 'avatar'" >
+                    <img th:src="@{${user.getImage()}}" class="card-img-top" th:alt="${user.getName()} + 'avatar'">
                     <div class="card-body">
                         <h5 class="card-title" th:text="${user.getName()}"></h5>
                         <h6>About</h6>
@@ -34,9 +34,9 @@
         <a th:text="${event.title}" class="card-title"></a>
         <div class="card-body ">
             <p th:text="${event.address}"></p>
-            <!--                <p th:text="${event.date}"></p>-->
-            <!--                <p th:text="${event.time}"></p>-->
-            <!--                <p> created by user with email <span th:text="${event.user.email}"> </span></p>-->
+            <p th:text="${event.date}"></p>
+            <p th:text="${event.time}"></p>
+            <p> created by user with email <span th:text="${event.user.email}"> </span></p>
         </div>
         <div class="d-flex justify-content-center eventindeximageholder">
 
@@ -53,10 +53,12 @@
                 <button>View Event</button>
             </a>
         </div>
-
     </div>
+
+
+
+
 </div>
 <nav th:insert="partials/navbar :: footer"></nav>
-
 </body>
 </html>

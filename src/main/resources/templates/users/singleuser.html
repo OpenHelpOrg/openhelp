@@ -2,8 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="partials/head :: head"></th:block>
-<!--    <link rel="stylesheet" href="../css/navbar.css">-->
-<!--    <link rel="stylesheet" href="../css/home.css">-->
+    <!--    <link rel="stylesheet" href="../css/navbar.css">-->
+    <!--    <link rel="stylesheet" href="../css/home.css">-->
     <link rel="stylesheet" href="css/main.css">
 
 
@@ -11,32 +11,32 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js" type="text/javascript"></script>
     <title th:text="${user.getName()} + ' Profile'"></title>
     <style>
-        body{
+        body {
             background-color: #4db2f1;
         }
 
         .singleuserlink a {
-            color: #ea6725!important;
-            text-decoration: none!important;
+            color: #ea6725 !important;
+            text-decoration: none !important;
         }
 
-        .singleuserlink a:hover{
-            color: #4db2f1!important;
+        .singleuserlink a:hover {
+            color: #4db2f1 !important;
         }
 
-        img{
+        img {
             border: 1px solid black;
         }
 
-        .list-group a{
+        .list-group a {
             color: black;
         }
 
-        .event_title{
+        .event_title {
             color: #ea6725;
         }
 
-        .event_list:hover{
+        .event_list:hover {
             border: 5px solid purple;
         }
 
@@ -44,43 +44,46 @@
 </head>
 <body>
 <nav th:insert="partials/navbar :: navbar"></nav>
+<div class="container">
 
-<h1 class="text-center">Viewing Single User</h1>
+    <h1 class="text-center">Viewing Single User</h1>
 
-<div class="row p-5 justify-content-center">
-    <div class="col-sm-12 col-md-8">
-        <div class="card mb-3 p-2 border-dark" style="width: 100%;">
-            <div class="row no-gutters">
-                <div class="col-md-4">
-                    <img th:src="@{${user.getImage()}}" alt="user avatar" class="card-img">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h1 class="card-title" th:text="${user.getName()}"></h1>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <h3>About</h3>
-                                <span th:text="${user.getAbout()}"></span>
-                            </li>
-                            <li class="list-group-item">
-                                <h3>Address</h3>
-                                <span th:text="${user.getAddress()}"></span>
-                            </li>
-                            <li class="list-group-item">
-                                <h3>Phone</h3>
-                                <span th:text="${user.getPhone()}"></span>
-                            </li>
-                            <li class="list-group-item singleuserlink">
-                                <a th:href="@{'mailto:' + ${user.getEmail()}}" th:text="${user.getEmail()}"></a>
-                            </li>
-                            <li class="list-group-item singleuserlink">
-                                <a th:href="@{${user.getWebsite()}}" target="_blank">Website</a>
-                            </li>
-                        </ul>
+    <div class="row p-5 justify-content-center">
+        <div class="col-sm-12 col-md-8">
+            <div class="card mb-3 p-2 border-dark" style="width: 100%;">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img th:src="@{${user.getImage()}}" alt="user avatar" class="card-img">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h1 class="card-title" th:text="${user.getName()}"></h1>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <h3>About</h3>
+                                    <span th:text="${user.getAbout()}"></span>
+                                </li>
+                                <li class="list-group-item">
+                                    <h3>Address</h3>
+                                    <span th:text="${user.getAddress()}"></span>
+                                </li>
+                                <li class="list-group-item">
+                                    <h3>Phone</h3>
+                                    <span th:text="${user.getPhone()}"></span>
+                                </li>
+                                <li class="list-group-item singleuserlink">
+                                    <a th:href="@{'mailto:' + ${user.getEmail()}}" th:text="${user.getEmail()}"></a>
+                                </li>
+                                <li class="list-group-item singleuserlink">
+                                    <a th:href="@{${user.getWebsite()}}" target="_blank">Website</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
     <div class="col-sm-12 col-md-4">
         <div class="card mb-3 border-dark" style="width: 100%">

@@ -1,8 +1,9 @@
 package com.capstone.openhelp.controllers;
 //import com.capstone.openhelp.services.EmailService;
+import com.capstone.openhelp.models.Category;
 import com.capstone.openhelp.models.Event;
 import com.capstone.openhelp.models.User;
-import com.capstone.openhelp.repositories.CategoryRespository;
+import com.capstone.openhelp.repositories.CategoryRepository;
 import com.capstone.openhelp.repositories.UserEventRepository;
 import com.capstone.openhelp.services.EmailService;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,13 +22,13 @@ public class SearchController {
 
     private final EventRepository eventDao;
     private final UserRepository userDao;
-    private final CategoryRespository categoryDao;
+    private final CategoryRepository categoryDao;
     private final UserEventRepository userEventDao;
 //    private EmailService emailService;
 //    private final EmailService emailService;
 
 
-    public SearchController(EventRepository eventDao, UserRepository userDao, CategoryRespository categoryDao, UserEventRepository userEventDao) {
+    public SearchController(EventRepository eventDao, UserRepository userDao, CategoryRepository categoryDao, UserEventRepository userEventDao) {
         this.eventDao = eventDao;
         this.userDao = userDao;
         this.categoryDao = categoryDao;
@@ -46,7 +47,11 @@ public class SearchController {
             model.addAttribute("results", results);
 //            System.out.println(model);
             return "users/usersearch";
+        } else if (search_param.equals("category")) {
+            List<Category> catresults = categoryDao.findByNameAllIgnoreCase(query);
 
+
+            return "events/eventsearch";
         } else {
             List<Event> results = eventDao.findByTitleContainsOrSummaryContainsAllIgnoreCase(query, query);
             model.addAttribute("results", results);
