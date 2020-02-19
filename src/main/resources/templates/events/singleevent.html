@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="/css/home.css">
     <link rel="stylesheet" href="/css/navbar.css">
-    <link rel="stylesheet" href="/css/openhelp.css">
+    <link rel="stylesheet" href="/css/main.css">
 
     <!--    <link href='../core/main.css' rel='stylesheet' />-->
     <!--    <link href='../daygrid/main.css' rel='stylesheet' />-->
@@ -28,107 +28,112 @@
 </head>
 <body>
 <nav th:insert="partials/navbar :: navbar"></nav>
-<h1 class="text-center"> Showing Single Event</h1>
-<div class="row p-5 justify-content-center">
-    <div class="col-sm-12 col-md-8">
-        <div class="card mb-3 p-2 border-dark" style="width: 100%;">
-            <div class="row no-gutters">
-                <div class="col-md-4">
-                    <img th:src="${event.getImages()}" alt="img" class="card-img">
-                    <!--    !!!!!!!!!!!!!!!!! Crashing if viewing event not created !!!!!!!!!!!!!!!!!!!!!!!!-->
-                    <div class="row">
-                        <ul th:if="${creator.getId() == userId}">
-                            <li>
-                                <!--edit post-->
-                                <div class="d-flex">
-                                    <a th:href="@{'/events/edit/'+${event.id}}" class="btn">
-                                        <button>Edit Event</button>
-                                    </a>
-                                    <!--delete post-->
-                                    <a th:href="@{'/events/delete/'+ ${event.id}}" class="btn">
-                                        <button>Delete Event</button>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h1 class="card-title" th:text="${event.getTitle()}"></h1>
-                        <hr>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <h3>Event Location</h3>
-                                <span th:text="${event.getLocation()}"></span>
-                            </li>
+<div class="container">
 
-                            <li class="list-group-item">
-                                <h3>Event Date</h3>
-                                <span th:text="${event.getLocation()}"></span>
-                            </li>
-
-                            <li class="list-group-item">
-                                <h3>Event Summary</h3>
-                                <span th:text="${event.getSummary()}"></span>
-                            </li>
-                            <li class="list-group-item">
-                                <h3>Notes</h3>
-                                <span th:text="${event.getNotes()}"></span>
-                            </li>
-                            <li class="list-group-item">
-                                <h3>Volunteer Limit</h3>
-                                <span th:text="${event.getVol_limit()}"></span>
-                            </li>
-                            <li class="list-group-item">
-                                <div th:each="ev : ${event.getUserEvents()}">
-                                    <div th:if="${ev.isIs_creator()}">
-                                        <p>Created by: </p>
-                                        <p>
-                                            <a th:href="@{'mailto:' + ${ev.getUser().getEmail()}}"
-                                               th:text="${ev.getUser().getEmail()}"></a>
-                                            <a th:href="@{'/user/' + ${ev.getUser().getId()}}"
-                                               th:text="${ev.getUser().getName()}"></a>
-                                        </p>
-
+    <h1 class="text-center"> Showing Single Event</h1>
+    <div class="row p-5 justify-content-center flex-wrap">
+        <div class="col-sm-12 col-md-8">
+            <div class="card mb-3 p-2 border-dark" style="width: 100%;">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img th:src="${event.getImages()}" alt="img" class="card-img">
+                        <!--    !!!!!!!!!!!!!!!!! Crashing if viewing event not created !!!!!!!!!!!!!!!!!!!!!!!!-->
+                        <div class="row m-1">
+                            <ul th:if="${creator.getId() == userId}">
+                                <li>
+                                    <!--edit post-->
+                                    <div class="d-flex">
+                                        <a th:href="@{'/events/edit/'+${event.id}}" class="btn">
+                                            <button>Edit Event</button>
+                                        </a>
+                                        <!--delete post-->
+                                        <a th:href="@{'/events/delete/'+ ${event.id}}" class="btn">
+                                            <button>Delete Event</button>
+                                        </a>
                                     </div>
-                                </div>
-                            </li>
-                            <li class="list-group-itme">
-                                <div th:if="${event.getUserEvents().size() <= event.getLimit()}">
-                                    <a th:href="@{'/events/singleevent/' + ${event.getId()} + '/enroll'}">Enroll</a>
-                                </div>
-                            </li>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h1 class="card-title" th:text="${event.getTitle()}"></h1>
+                            <hr>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <h3>Event Location</h3>
+                                    <span th:text="${event.getLocation()}"></span>
+                                </li>
 
-                            <li class="card-footer">
-                                <div th:each="category : ${event.getCategories()}">
-                                    <span class="badge badge-pill badge-light" th:text="${category.getName()}"></span>
-                                </div>
-                            </li>
-                        </ul>
+                                <li class="list-group-item">
+                                    <h3>Event Date</h3>
+                                    <span th:text="${event.getLocation()}"></span>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <h3>Event Summary</h3>
+                                    <span th:text="${event.getSummary()}"></span>
+                                </li>
+                                <li class="list-group-item">
+                                    <h3>Notes</h3>
+                                    <span th:text="${event.getNotes()}"></span>
+                                </li>
+                                <li class="list-group-item">
+                                    <h3>Volunteer Limit</h3>
+                                    <span th:text="${event.getVol_limit()}"></span>
+                                </li>
+                                <li class="list-group-item">
+                                    <div th:each="ev : ${event.getUserEvents()}">
+                                        <div th:if="${ev.isIs_creator()}">
+                                            <p>Created by: </p>
+                                            <p>
+                                                <a th:href="@{'mailto:' + ${ev.getUser().getEmail()}}"
+                                                   th:text="${ev.getUser().getEmail()}"></a>
+                                                <a th:href="@{'/user/' + ${ev.getUser().getId()}}"
+                                                   th:text="${ev.getUser().getName()}"></a>
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-itme">
+                                    <div th:if="${event.getUserEvents().size() <= event.getLimit()}">
+                                        <a th:href="@{'/events/singleevent/' + ${event.getId()} + '/enroll'}">Enroll</a>
+                                    </div>
+                                </li>
+
+                                <li class="card-footer">
+                                    <div th:each="category : ${event.getCategories()}">
+                                        <span class="badge badge-pill badge-light"
+                                              th:text="${category.getName()}"></span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
-    <div class="col-sm-12 col-md-4">
-        <div class="card mb-3 border-dark" style="width: 100%">
-            <div class="card-body">
-                <h1 class="card-title"><span th:text="${event.getAddress()}"></span></h1>
-                <div class="card-img-top img-fluid">
-                    <div id="map" class="singleeventmap"></div>
+        <div class="col-sm-12 col-md-4">
+            <div class="card mb-3 border-dark" style="height: 80%">
+                <div class="card-body">
+                    <h1 class="card-title"><span th:text="${event.getAddress()}"></span></h1>
+                    <div class="d-flex">
+                        <div class="card-img-top img-fluid justify-center mt-1" style="height: 100%">
+                            <div id="map" class="singleeventmap"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
 <nav th:insert="partials/navbar :: footer"></nav>
 <!-- need jquery for ajax request-->
-<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+        crossorigin="anonymous"></script>
 <!-- Mapbox JS -->
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
 <script src="/js/mapbox-geocoder-utils.js"></script>

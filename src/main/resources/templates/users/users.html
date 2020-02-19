@@ -2,8 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="partials/head :: head"></th:block>
-<!--    <link rel="stylesheet" href="css/navbar.css">-->
-<!--    <link rel="stylesheet" href="css/home.css">-->
+    <!--    <link rel="stylesheet" href="css/navbar.css">-->
+    <!--    <link rel="stylesheet" href="css/home.css">-->
     <link rel="stylesheet" href="css/main.css">
 
     <!--    <link rel="stylesheet" href="css/openhelp.css">-->
@@ -12,20 +12,20 @@
     <title>Organizations</title>
 
     <style>
-        h5{
+        h5 {
             color: #ea6725;
         }
 
-        h1{
+        h1 {
             color: white;
             text-shadow: 2px 2px 4px #000000
         }
 
-        a{
-            text-decoration: none!important;
+        a {
+            text-decoration: none !important;
         }
 
-        .card:hover{
+        .card:hover {
             border: 1px solid #ea6725;
             box-shadow: 0 15px 6px -8px #ea6725;
         }
@@ -34,26 +34,30 @@
 </head>
 <body>
 
-<nav th:insert="partials/navbar :: navbar"></nav>
+<div class="container">
 
-<h1 class="text-center">All Participating Organizations</h1>
+    <nav th:insert="partials/navbar :: navbar"></nav>
 
-<div class="d-flex flex-wrap p-4 justify-content-center">
-    <div th:each="corp : ${organizations}">
+    <h1 class="text-center">All Participating Organizations</h1>
 
-        <a th:href="@{'/user/' + ${corp.getId()}}">
-            <div class="card hovercard mr-5 mb-5" style="width: 18rem;">
-                <img th:src="@{${corp.getImage()}}" class="card-img-top" th:alt="${corp.getName()} + 'avatar'" >
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${corp.getName()}"></h5>
-                    <h6>About</h6>
-                    <p class="card-text" th:text="${corp.getAbout()}"></p>
+    <div class="d-flex flex-wrap p-4 justify-content-center">
+        <div th:each="corp : ${organizations}">
+
+            <a th:href="@{'/user/' + ${corp.getId()}}">
+                <div class="card hovercard mr-5 mb-5" style="width: 18rem;">
+                    <img th:src="@{${corp.getImage()}}" class="card-img-top" th:alt="${corp.getName()} + 'avatar'">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${corp.getName()}"></h5>
+                        <h6>About</h6>
+                        <p class="card-text" th:text="${corp.getAbout()}"></p>
+                    </div>
                 </div>
-            </div>
-        </a>
+            </a>
 
+        </div>
     </div>
 </div>
+
 <nav th:insert="partials/navbar :: footer"></nav>
 <script>
 
