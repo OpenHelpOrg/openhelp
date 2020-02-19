@@ -105,7 +105,7 @@
                                 <img th:src="@{${event.getEvent().getImages()}}" alt="event image" width="50px"
                                      height="50px">
                                 <span th:text="${event.getEvent().getTitle()}"></span>
-                                <span th:text="${event.getEvent().getDate_time()}"></span>
+                                <span class="thisDateTime" th:text="${event.getEvent().getDate_time()}"></span>
                             </a>
                         </li>
                     </ul>
@@ -122,7 +122,7 @@
                     <a th:href="@{'/events/singleevent/' + ${events.getEvent().getId()}}">
                         <img th:src="@{${events.getEvent().getImages()}}" alt="event image"/>
                         <span th:text="${events.getEvent().getTitle()}"></span>
-                        <span th:text="${events.getEvent().getDate_time()}"></span>
+                        <span class="thisDateTime" th:text="${events.getEvent().getDate_time()}"></span>
                     </a>
                     <form th:method="post" th:action="@{'/events/add-story/' + ${events.getId()}}">
                         <textarea name="story" th:text="${events.getStory()}"></textarea>
@@ -209,6 +209,8 @@
 
 <nav th:insert="partials/navbar :: footer"></nav>
 <script>
+    convertDateTime();
+
     $('#editInfoModal').on('shown.bs.modal', function () {
         $('#modalButton').trigger('focus')
     });
@@ -255,6 +257,18 @@
         // urlBox.appendChild(url);
         $('#fileupload').attr('value', url);
 
+    }
+
+
+    //    DATE CONVERSION LOGIC
+    function convertDateTime() {
+        $(".thisDateTime").each(function () {
+            var unformattedDate = $(this).text();
+            // console.log(unformattedDate);
+            var formattedDate = moment(unformattedDate).format('MMMM Do YYYY, h:mm a');
+            $(this).text(formattedDate);
+            // console.log(formattedDate);
+        });
     }
 
 </script>

@@ -95,6 +95,7 @@
                 <a th:text="${event.title}" class="card-title"></a>
                 <div class="card-body ">
                     <p th:text="${event.address}"></p>
+                    <p class="thisDateTime" th:text="${event.date_time}"></p>
                     <!--                <p th:text="${event.date}"></p>-->
                     <!--                <p th:text="${event.time}"></p>-->
                     <!--                <p> created by user with email <span th:text="${event.user.email}"> </span></p>-->
@@ -141,6 +142,8 @@
 <script src="/js/mapbox-geocoder-utils.js"></script>
 <!-- Custom JS -->
 <script>
+    convertDateTime();
+
     console.log(window.location.href);
     var token = document.querySelector('meta').content;
 
@@ -205,6 +208,17 @@
             calendar.render();
         });//end of done
     });
+
+    //    DATE CONVERSION LOGIC
+    function convertDateTime() {
+        $(".thisDateTime").each(function () {
+            var unformattedDate = $(this).text();
+            // console.log(unformattedDate);
+            var formattedDate = moment(unformattedDate).format('MMMM Do YYYY, h:mm a');
+            $(this).text(formattedDate);
+            // console.log(formattedDate);
+        });
+    }
 </script>
 <nav th:insert="partials/navbar :: footer"></nav>
 

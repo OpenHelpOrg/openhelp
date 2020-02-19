@@ -65,8 +65,9 @@
 
                             <li class="list-group-item">
                                 <h3>Event Date</h3>
-                                <span th:text="${event.getLocation()}"></span>
+                                <span class="thisDateTime" th:text="${event.getDate_time()}"></span>
                             </li>
+
 
                             <li class="list-group-item">
                                 <h3>Event Summary</h3>
@@ -134,6 +135,8 @@
 <script src="/js/mapbox-geocoder-utils.js"></script>
 <!-- Custom JS -->
 <script>
+    convertDateTime();
+
     var token = document.querySelector('meta').content;
 
     mapboxgl.accessToken = token;
@@ -158,6 +161,16 @@
         });
     });
 
+    //    DATE CONVERSION LOGIC
+    function convertDateTime() {
+        $(".thisDateTime").each(function () {
+            var unformattedDate = $(this).text();
+            // console.log(unformattedDate);
+            var formattedDate = moment(unformattedDate).format('MMMM Do YYYY, h:mm a');
+            $(this).text(formattedDate);
+            // console.log(formattedDate);
+        });
+    }
 </script>
 </body>
 </html>
