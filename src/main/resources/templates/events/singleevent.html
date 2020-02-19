@@ -55,6 +55,7 @@
 
                             <li class="list-group-item">
                                 <h3>Event Date</h3>
+
                                 <span class="thisDateTime" th:text="${event.getDate_time()}"></span>
                             </li>
 
@@ -84,12 +85,15 @@
 
                                         </div>
                                     </div>
-                                </li>
-                                <li class="list-group-itme">
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div th:if="${display} != false">
                                     <div th:if="${event.getUserEvents().size() <= event.getLimit()}">
                                         <a th:href="@{'/events/singleevent/' + ${event.getId()} + '/enroll'}">Enroll</a>
                                     </div>
-                                </li>
+                                </div>
+                            </li>
 
                                 <li class="card-footer">
                                     <div th:each="category : ${event.getCategories()}">

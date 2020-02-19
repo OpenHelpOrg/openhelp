@@ -1,33 +1,19 @@
 package com.capstone.openhelp.controllers;
 
-
 import com.capstone.openhelp.models.*;
-//import com.capstone.openhelp.services.EmailService;
-import com.capstone.openhelp.repositories.CategoryRepository;
+import com.capstone.openhelp.repositories.CategoryRespository;
 import com.capstone.openhelp.repositories.UserEventRepository;
 import com.capstone.openhelp.services.EmailService;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.core.context.SecurityContextHolder;
 import com.capstone.openhelp.repositories.EventRepository;
 import com.capstone.openhelp.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-
-import java.io.FileWriter;
-import java.io.IOException;
-import java.lang.reflect.Type;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @Controller
 public class EventController {
@@ -103,23 +89,33 @@ public class EventController {
     public String editEventForm
             (@PathVariable Long id,
              Model model){
+        LocalDateTime currDate = LocalDateTime.now();
         Event event = eventDao.getOne(id);
         String date = event.getDate_time();
         date = date.replace(" ", "T");
         event.setDate_time(date);
+
+        LocalDateTime eventDate = LocalDateTime.parse(event.getDate_time());
 
         model.addAttribute("event", event);
         model.addAttribute("categories", categoryDao.findAll());
 
         List<UserEvents> userevents = new ArrayList<>();
 
-        for(int x =0; x < eventDao.getOne(id).getUserEvents().size(); x++){
-            if(!eventDao.getOne(id).getUserEvents().get(x).isIs_creator()){
-                userevents.add(eventDao.getOne(id).getUserEvents().get(x));
+        for(int x =0; x < event.getUserEvents().size(); x++){
+            if(!event.getUserEvents().get(x).isIs_creator()){
+                userevents.add(event.getUserEvents().get(x));
             }
         }
 
         model.addAttribute("userevents", userevents);
+
+        if(eventDate.compareTo(currDate) < 0){
+            model.addAttribute("isDisabled", "disable");
+            model.addAttribute("titleMsg", "You cannot Edit this Event due to past date");
+        }else{
+            model.addAttribute("titleMsg", "Enter you event details below");
+        }
 
         return "events/edit";
     }
@@ -189,13 +185,29 @@ public class EventController {
     @GetMapping("/events/singleevent/{id}")
     public String returnOneToOneView(@PathVariable long id, Model model){
         Event event = eventDao.findById(id);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        LocalDateTime currDate = LocalDateTime.now();
+        String date = event.getDate_time();
+        Boolean isCreator = false;
 
         for(int x=0; x < event.getUserEvents().size(); x++){
             if(event.getUserEvents().get(x).isIs_creator()){
                 model.addAttribute("creator", event.getUserEvents().get(x).getUser());
+                if(user.getId() == event.getUserEvents().get(x).getUser().getId()){
+                    isCreator = true;
+                }
             }
         }
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        date = date.replace(" ", "T");
+        LocalDateTime eventDate = LocalDateTime.parse(date);
+
+        if(eventDate.compareTo(currDate) < 0 || isCreator){
+            model.addAttribute("display", false);
+        }else{
+            model.addAttribute("display", true);
+        }
+
         model.addAttribute("userId", user.getId());
         model.addAttribute("event", event);
         model.addAttribute("mapbox", mapbox);
