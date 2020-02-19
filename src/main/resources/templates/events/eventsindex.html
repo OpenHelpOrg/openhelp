@@ -166,9 +166,16 @@
         events.forEach(function (event) {
             console.log(event.date_time);
             geocode(event.address, token).then(function (result) {
+                var popupHTML = "<div class='card'><div class='card-header'>" + event.title + "</div><ul class='list-group list-group-flush'><li class='list-group-item'>" + event.summary + "</li><li class='list-group-item'><a href='/events/singleevent/"+ event.id +"'>View More</a></li></ul></div>";
+
+                var popup = new mapboxgl.Popup()
+                    .setHTML(popupHTML);
+
                 var marker = new mapboxgl.Marker()
                     .setLngLat(result)
-                    .addTo(map);
+                    .addTo(map)
+                    .setPopup(popup);
+
             });
         });
     });
