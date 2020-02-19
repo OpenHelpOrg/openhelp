@@ -1,5 +1,6 @@
 package com.capstone.openhelp.controllers;
 //import com.capstone.openhelp.services.EmailService;
+import com.capstone.openhelp.models.Category;
 import com.capstone.openhelp.models.Event;
 import com.capstone.openhelp.models.User;
 import com.capstone.openhelp.repositories.CategoryRespository;
@@ -46,7 +47,11 @@ public class SearchController {
             model.addAttribute("results", results);
 //            System.out.println(model);
             return "users/usersearch";
+        } else if (search_param.equals("category")) {
+            List<Category> catresults = categoryDao.findByNameAllIgnoreCase(query);
 
+
+            return "events/eventsearch";
         } else {
             List<Event> results = eventDao.findByTitleContainsOrSummaryContainsAllIgnoreCase(query, query);
             model.addAttribute("results", results);
