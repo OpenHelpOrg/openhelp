@@ -18,6 +18,12 @@
     <script src='../timegrid/main.js'></script>
     <script src='../list/main.js'></script>
 
+
+    <!--    <script src='/js/moment.js'></script>-->
+    <!--    <script src='js/moment.js'></script>-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>-->
+
+
     <title>Event Index</title>
     <!-- Mapbox CSS -->
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet'/>
@@ -123,6 +129,44 @@
                         </a>
                     </div>
 
+
+<h1 class="text-center">All Upcoming Events</h1>
+
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="events-tab" data-toggle="tab" href="#events" role="tab" aria-controls="events"
+           aria-selected="true">Events</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="map-tab" data-toggle="tab" href="#map" role="tab" aria-controls="map"
+           aria-selected="false">Map</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="calendar-tab" data-toggle="tab" href="#calendar" role="tab" aria-controls="calendar"
+           aria-selected="false">Calendar</a>
+    </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+    <!--Events Tab Content-->
+    <div class="tab-pane active" id="events" role="tabpanel" aria-labelledby="events-tab">
+        <!-- Dipplays all upcoming events in card form -->
+        <div class="d-flex flex-wrap p-4 justify-content-center">
+
+
+            <!--            FUTURE EVENTS-->
+            <h1>FUTURE EVENTS</h1>
+            <!--    <div class="d-flex flex-wrap row justify-content-between">-->
+            <div th:each="event : ${futureevents}" class="card hovercard eventcard col-3 d-inline mr-5 mb-5">
+                <a th:text="${event.title}" class="card-title"></a>
+                <div class="card-body ">
+                    <p th:text="${event.address}"></p>
+                    <p th:text="${event.summary}"></p>
+
+                    <p class="thisDateTime" th:text="${event.date_time}"></p>
+
                 </div>
 
                 <!--            PASTR EVENTS-->
@@ -154,6 +198,35 @@
                 </div>
 
             </div>
+
+            <!--            PASTR EVENTS-->
+            <h1> PAST EVENTS</h1>
+            <div th:each="event : ${pastevents}" class="card hovercard eventcard col-3 d-inline mr-5 mb-5">
+                <a th:text="${event.title}" class="card-title"></a>
+                <div class="card-body ">
+                    <p th:text="${event.address}"></p>
+                    <p th:text="${event.summary}"></p>
+
+                    <p class="thisDateTime" th:text="${event.date_time}"></p>
+                </div>
+                <div class="d-flex justify-content-center eventindeximageholder">
+
+                    <img th:src="${event.getImages()}" alt="edit event to add image" class="card-img eventindeximg">
+
+                    <!--                <div th:each="image : ${event.images}">-->
+                    <!--                    <div>-->
+                    <!--                        <img th:src="${image}" style="height: 200px; margin: auto"/>-->
+                    <!--                    </div>-->
+                </div>
+                <div class="d-flex flex-nowrap btn-div justify-content-center">
+                    <!--view post-->
+                    <a th:href="@{'/events/singleevent/'+${event.id}}" class="btn ">
+                        <button>View Event</button>
+                    </a>
+                </div>
+
+            </div>
+
             <!-- End of card display-->
         </div>
         <!--Map Tab Content-->
@@ -165,6 +238,7 @@
         <div class="tab-pane" id="calendar" role="tabpanel" aria-labelledby="calendar-tab">
             <!-- display events in a calendar-->
             <div id="calendarShow"></div>
+
         </div>
     </div>
 </div>
@@ -183,6 +257,7 @@
 <script src="/js/mapbox-geocoder-utils.js"></script>
 <!-- Custom JS -->
 <script>
+    convertDateTime();
     console.log(window.location.href);
     var token = document.querySelector('meta').content;
 
@@ -246,7 +321,46 @@
 
             calendar.render();
         });//end of done
+
+
     });
+
+    //    DATE CONVERSION LOGIC
+    function convertDateTime() {
+        $(".thisDateTime").each(function () {
+            var unformattedDate = $(this).text();
+            // console.log(unformattedDate);
+            var formattedDate = moment(unformattedDate).format('MMMM Do YYYY, h:mm a');
+            $(this).text(formattedDate);
+            var now = moment().format('MMMM Do YYYY, h:mm a');
+
+            // console.log(formattedDate);
+            console.log(moment(formattedDate).from(now));
+
+        });
+
+    }
+
+    function fromnow() {
+        $(".thisDateTime").each(function () {
+            var unformattedDate = $(this).text();
+            // var formattedDate = moment(unformattedDate).format('MMMM Do YYYY, h:mm a');
+            // var formattedDate = moment(unformattedDate, moment.ISO_8601);
+            // moment("2010-01-01T05:06:07", moment.ISO_8601);
+            var now = moment().format('MMMM Do YYYY, h:mm a');
+
+            console.log(unformattedDate);
+            console.log(now);
+            // console.log(now.diff(unformattedDate, 'days'));
+            // console.log(nowISO);
+            // console.log(now.diff(formattedDate, 'days'));
+            // console.log(moment(unformattedDate).fromNow());
+            console.log(moment(unformattedDate).from(now));
+            // console.log(moment().day(formattedDate));
+            // console.log(distance);
+        })
+    }
+
 </script>
 <nav th:insert="partials/navbar :: footer"></nav>
 
