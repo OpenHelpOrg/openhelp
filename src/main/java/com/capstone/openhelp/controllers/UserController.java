@@ -1,8 +1,12 @@
 package com.capstone.openhelp.controllers;
 
 
+import com.capstone.openhelp.models.Event;
 import com.capstone.openhelp.models.User;
+import com.capstone.openhelp.models.UserEvents;
 import com.capstone.openhelp.models.VerificationToken;
+import com.capstone.openhelp.repositories.UserEventRepository;
+import com.capstone.openhelp.repositories.EventRepository;
 import com.capstone.openhelp.repositories.UserRepository;
 import com.capstone.openhelp.repositories.VerificationTokenRespository;
 import com.capstone.openhelp.services.EmailService;
@@ -21,6 +25,8 @@ public class UserController {
 
     private UserRepository userDao;
 
+    private EventRepository eventDao;
+
     private PasswordEncoder passwordEncoder;
 
     private VerificationTokenRespository verificationDao;
@@ -29,17 +35,24 @@ public class UserController {
 
     private PasswordChecker checkPassword;
 
+    private final UserEventRepository userEventDao;
+
 
     public UserController(UserRepository userDao,
                           PasswordEncoder passwordEncoder,
                           VerificationTokenRespository verificationDao,
                           EmailService emailService,
-                          PasswordChecker checkPassword) {
+                          PasswordChecker checkPassword,
+                          UserEventRepository userEventDao,
+                          EventRepository eventdao){
+
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
         this.verificationDao = verificationDao;
         this.emailService = emailService;
         this.checkPassword = checkPassword;
+        this.userEventDao = userEventDao;
+        this.eventDao = eventdao;
     }
 
     //displays all organization on our db
@@ -170,6 +183,8 @@ public class UserController {
         User log = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.findById(log.getId());
         model.addAttribute("user", user);
+        model.addAttribute("futureevents", eventDao.findFutureEvents());
+        model.addAttribute("pastevents", eventDao.findPastEvents());
         return ("users/profile");
     }
 
@@ -188,5 +203,27 @@ public class UserController {
         return "redirect:/login";
     }
 
+    @PostMapping("/users/confirm-attendance")
+    public String confirmAttendance(@RequestParam("users") List<String> users, @RequestParam long id){
+       Event event = eventDao.getOne(id);
+
+       for(int x = 0; x < event.getUserEvents().size(); x++){
+           if(users.contains(Long.toString(event.getUserEvents().get(x).getId()))){
+               event.getUserEvents().get(x).setAttended(true);
+           }else {
+               event.getUserEvents().get(x).setAttended(false);
+           }
+
+           userEventDao.save(event.getUserEvents().get(x));
+       }
+
+//        for(int x=0; x < users.size(); x++){
+//            UserEvents event = userEventDao.getOne(Long.parseLong(users.get(x)));
+//            event.setAttended(true);
+//            userEventDao.save(event);
+//            System.out.println(users.get(x));
+//        }
+        return "redirect:/events/edit/" + id;
+    }
 }
 

@@ -24,6 +24,7 @@ import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -102,8 +103,24 @@ public class EventController {
     public String editEventForm
             (@PathVariable Long id,
              Model model){
-        model.addAttribute("event", eventDao.getOne(id));
+        Event event = eventDao.getOne(id);
+        String date = event.getDate_time();
+        date = date.replace(" ", "T");
+        event.setDate_time(date);
+
+        model.addAttribute("event", event);
         model.addAttribute("categories", categoryDao.findAll());
+
+        List<UserEvents> userevents = new ArrayList<>();
+
+        for(int x =0; x < eventDao.getOne(id).getUserEvents().size(); x++){
+            if(!eventDao.getOne(id).getUserEvents().get(x).isIs_creator()){
+                userevents.add(eventDao.getOne(id).getUserEvents().get(x));
+            }
+        }
+
+        model.addAttribute("userevents", userevents);
+
         return "events/edit";
     }
 
@@ -192,6 +209,25 @@ public class EventController {
         return eventDao.findById(id);
     }
 
+    //mapping to display user stories for a specific event
+    @GetMapping("/event/{id}/stories")
+    public String displayEventStories(@PathVariable long id, Model model){
+        Event event = eventDao.getOne(id);
+
+        List<UserEvents> userEvents = new ArrayList<>();
+
+        for(int x = 0; x < event.getUserEvents().size(); x++){
+            UserEvents userEvent = event.getUserEvents().get(x);
+
+            if(userEvent.getAttended() && !userEvent.getStory().equals(" ") && !userEvent.isIs_creator()){
+                userEvents.add(userEvent);
+            }
+        }
+
+        model.addAttribute("stories", userEvents);
+        return "/events/testimonials";
+    }
+
     @GetMapping("/events/singleevent/{id}/enroll")
     public String enrollEvent(@PathVariable long id, Model model){
         Event event = eventDao.findById(id);
@@ -221,6 +257,13 @@ public class EventController {
         model.addAttribute("event", event);
 
         return "/events/confirmevent";
+    }
+
+    @GetMapping("/timedEvents")
+    public String timedEvents(Model model){
+        model.addAttribute("futureevents", eventDao.findFutureEvents());
+        model.addAttribute("pastevents", eventDao.findPastEvents());
+        return("pastFutureTest");
     }
 
 

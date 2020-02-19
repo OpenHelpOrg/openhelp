@@ -93,8 +93,39 @@
         <!-- Dipplays all upcoming events in card form -->
         <div class="d-flex flex-wrap p-4 justify-content-center">
 
+
+<!--            FUTURE EVENTS-->
+            <h1>FUTURE EVENTS</h1>
             <!--    <div class="d-flex flex-wrap row justify-content-between">-->
-            <div th:each="event : ${events}" class="card hovercard eventcard col-3 d-inline mr-5 mb-5">
+            <div th:each="event : ${futureevents}" class="card hovercard eventcard col-3 d-inline mr-5 mb-5">
+                <a th:text="${event.title}" class="card-title"></a>
+                <div class="card-body ">
+                    <p th:text="${event.address}"></p>
+                    <p th:text="${event.summary}"></p>
+
+                    <p th:text="${event.date_time}"></p>
+                </div>
+                <div class="d-flex justify-content-center eventindeximageholder">
+
+                    <img th:src="${event.getImages()}" alt="edit event to add image" class="card-img eventindeximg">
+
+                    <!--                <div th:each="image : ${event.images}">-->
+                    <!--                    <div>-->
+                    <!--                        <img th:src="${image}" style="height: 200px; margin: auto"/>-->
+                    <!--                    </div>-->
+                </div>
+                <div class="d-flex flex-nowrap btn-div justify-content-center">
+                    <!--view post-->
+                    <a th:href="@{'/events/singleevent/'+${event.id}}" class="btn ">
+                        <button>View Event</button>
+                    </a>
+                </div>
+
+            </div>
+
+<!--            PASTR EVENTS-->
+            <h1> PAST EVENTS</h1>
+            <div th:each="event : ${pastevents}" class="card hovercard eventcard col-3 d-inline mr-5 mb-5">
                 <a th:text="${event.title}" class="card-title"></a>
                 <div class="card-body ">
                     <p th:text="${event.address}"></p>
@@ -134,6 +165,8 @@
         <div id="calendarShow"></div>
     </div>
 </div>
+
+
 <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
         crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
@@ -207,6 +240,7 @@
                     }
                 }
             });
+
             calendar.render();
         });//end of done
     });

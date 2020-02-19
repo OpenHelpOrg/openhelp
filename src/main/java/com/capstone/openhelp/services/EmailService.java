@@ -101,7 +101,7 @@ public class EmailService {
         String body = "Hello " + user.getName() + ", \n\nLooks like an event you are attending, recently made some changes." +
                 " These are the new details fo the event for your information:\nTitle: " + event.getTitle() + "\nLocation: " + event.getLocation() +
                 "\nAddress: " + event.getAddress() + "\nSummary: " + event.getSummary() + "\nDate and Time: " + event.getDate_time() +
-                "\nDetails: " + event.getDetails() + "\nNotes: " + event.getNotes() + "\nIf you have any questions. Please contact the event creator for more "
+                "\nNotes: " + event.getNotes() + "\nIf you have any questions. Please contact the event creator for more "
                 + "details (" + creator.getName() + ") at " + creator.getEmail() + ".\n\nThank you,\n\nOpenHelp Team.";
         msg.setText(body);
 

@@ -24,7 +24,11 @@ public class UserEvents implements Serializable {
     @Column(columnDefinition = "TEXT")
     private String story;
 
+    @Column
+    private boolean attended;
+
     public UserEvents() {
+        this.attended = false;
     }
 
     public UserEvents(long id, User user, Event event, boolean is_creator, String story) {
@@ -88,4 +92,11 @@ public class UserEvents implements Serializable {
         this.story = story;
     }
 
+    public boolean getAttended() {
+        return attended;
+    }
+
+    public void setAttended(boolean attended) {
+        this.attended = attended;
+    }
 }
