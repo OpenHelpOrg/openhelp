@@ -106,7 +106,7 @@
                                 <img th:src="@{${event.getEvent().getImages()}}" alt="event image" width="50px"
                                      height="50px">
                                 <span th:text="${event.getEvent().getTitle()}"></span>
-                                <span th:text="${event.getEvent().getDate_time()}"></span>
+                                <span class="thisDateTime" th:text="${event.getEvent().getDate_time()}"></span>
                             </a>
                         </li>
                     </ul>
@@ -123,7 +123,7 @@
                     <a th:href="@{'/events/singleevent/' + ${events.getEvent().getId()}}">
                         <img th:src="@{${events.getEvent().getImages()}}" alt="event image"/>
                         <span th:text="${events.getEvent().getTitle()}"></span>
-                        <span th:text="${events.getEvent().getDate_time()}"></span>
+                        <span class="thisDateTime" th:text="${events.getEvent().getDate_time()}"></span>
                     </a>
                     <form th:method="post" th:action="@{'/events/add-story/' + ${events.getId()}}">
                         <textarea name="story" th:text="${events.getStory()}"></textarea>
@@ -208,16 +208,20 @@
         </div><!-- end of modal-->
     </div>
 </div>
-    <nav th:insert="partials/navbar :: footer"></nav>
-    <script>
-        $('#editInfoModal').on('shown.bs.modal', function () {
-            $('#modalButton').trigger('focus')
-        });
+
+<nav th:insert="partials/navbar :: footer"></nav>
+<script>
+    convertDateTime();
+
+    $('#editInfoModal').on('shown.bs.modal', function () {
+        $('#modalButton').trigger('focus')
+    });
 
         document.getElementById('picker').addEventListener('click', function (e) {
             e.preventDefault();
             picker.open();
         });
+
 
         // Set up the picker
         const client = filestack.init("AChLkyrSmK6VdYPhk8lw9z");
@@ -258,13 +262,26 @@
 
         }
 
-    </script>
 
-    <style>
-        .profileeventimgholder {
-            height: 125px !important;
-            width: 125px !important;
-        }
+    //    DATE CONVERSION LOGIC
+    function convertDateTime() {
+        $(".thisDateTime").each(function () {
+            var unformattedDate = $(this).text();
+            // console.log(unformattedDate);
+            var formattedDate = moment(unformattedDate).format('MMMM Do YYYY, h:mm a');
+            $(this).text(formattedDate);
+            // console.log(formattedDate);
+        });
+    }
+
+</script>
+<!--<nav th:insert="partials/navbar :: footer"></nav>-->
+<style>
+    .profileeventimgholder {
+        height: 125px !important;
+        width: 125px !important;
+    }
+
 
         .profileeventimg {
             height: 100%;
