@@ -41,6 +41,15 @@
                                     </div>
                                 </li>
                             </ul>
+                            <ul th:if="${creator.getId() != userId}">
+                            <li class="list-group-itme">
+                                <div th:if="${event.getUserEvents().size() <= event.getLimit()}">
+                                    <a th:href="@{'/events/singleevent/' + ${event.getId()} + '/enroll'}"class="btn">
+                                        <button>Enroll</button>
+                                    </a>
+                                </div>
+                            </li>
+                            </ul>
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -85,6 +94,7 @@
 
                                         </div>
                                     </div>
+
                                 </div>
                             </li>
                             <li class="list-group-item">
