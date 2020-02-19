@@ -68,6 +68,7 @@
 </head>
 <body>
 <nav th:insert="partials/navbar :: navbar"></nav>
+
 <div class="container">
 
     <h1 class="text-center">All Upcoming Events</h1>
@@ -75,8 +76,7 @@
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" id="events-tab" data-toggle="tab" href="#events" role="tab"
-               aria-controls="events"
+            <a class="nav-link active" id="events-tab" data-toggle="tab" href="#events" role="tab" aria-controls="events"
                aria-selected="true">Events</a>
         </li>
         <li class="nav-item">
@@ -103,7 +103,7 @@
                         <p th:text="${event.address}"></p>
                         <p th:text="${event.summary}"></p>
 
-                        <p th:text="${event.date_time}"></p>
+                        <p class="thisDateTime" th:text="${event.date_time}"></p>
                     </div>
                     <div class="d-flex justify-content-center eventindeximageholder">
 
@@ -119,62 +119,12 @@
                         <a th:href="@{'/events/singleevent/'+${event.id}}" class="btn ">
                             <button>View Event</button>
                         </a>
+
                     </div>
 
-
-<h1 class="text-center">All Upcoming Events</h1>
-
-<!-- Nav tabs -->
-<ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item">
-        <a class="nav-link active" id="events-tab" data-toggle="tab" href="#events" role="tab" aria-controls="events"
-           aria-selected="true">Events</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" id="map-tab" data-toggle="tab" href="#map" role="tab" aria-controls="map"
-           aria-selected="false">Map</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" id="calendar-tab" data-toggle="tab" href="#calendar" role="tab" aria-controls="calendar"
-           aria-selected="false">Calendar</a>
-    </li>
-</ul>
-
-<!-- Tab panes -->
-<div class="tab-content">
-    <!--Events Tab Content-->
-    <div class="tab-pane active" id="events" role="tabpanel" aria-labelledby="events-tab">
-        <!-- Dipplays all upcoming events in card form -->
-        <div class="d-flex flex-wrap p-4 justify-content-center">
-
-            <!--    <div class="d-flex flex-wrap row justify-content-between">-->
-            <div th:each="event : ${events}" class="card hovercard eventcard col-3 d-inline mr-5 mb-5">
-                <a th:text="${event.title}" class="card-title"></a>
-                <div class="card-body ">
-                    <p th:text="${event.address}"></p>
-                    <p th:text="${event.summary}"></p>
-
-                    <p class="thisDateTime" th:text="${event.date_time}"></p>
                 </div>
-                <div class="d-flex justify-content-center eventindeximageholder">
-
-                    <img th:src="${event.getImages()}" alt="edit event to add image" class="card-img eventindeximg">
-
-                    <!--                <div th:each="image : ${event.images}">-->
-                    <!--                    <div>-->
-                    <!--                        <img th:src="${image}" style="height: 200px; margin: auto"/>-->
-                    <!--                    </div>-->
-                </div>
-                <div class="d-flex flex-nowrap btn-div justify-content-center">
-                    <!--view post-->
-                    <a th:href="@{'/events/singleevent/'+${event.id}}" class="btn ">
-                        <button>View Event</button>
-                    </a>
-
-                </div>
-
+                <!-- End of card display-->
             </div>
-            <!-- End of card display-->
         </div>
         <!--Map Tab Content-->
         <div class="tab-pane" id="map" role="tabpanel" aria-labelledby="map-tab">
@@ -188,6 +138,7 @@
         </div>
     </div>
 </div>
+
 <nav th:insert="partials/navbar :: footer"></nav>
 <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
         crossorigin="anonymous"></script>

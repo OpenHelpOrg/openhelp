@@ -1,7 +1,7 @@
 package com.capstone.openhelp.controllers;
 
 import com.capstone.openhelp.models.*;
-import com.capstone.openhelp.repositories.CategoryRespository;
+import com.capstone.openhelp.repositories.CategoryRepository;
 import com.capstone.openhelp.repositories.UserEventRepository;
 import com.capstone.openhelp.services.EmailService;
 import org.springframework.beans.factory.annotation.Value;
