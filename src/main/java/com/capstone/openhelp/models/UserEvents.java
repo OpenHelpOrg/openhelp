@@ -92,7 +92,7 @@ public class UserEvents implements Serializable {
         this.story = story;
     }
 
-    public boolean isAttended() {
+    public boolean getAttended() {
         return attended;
     }
 

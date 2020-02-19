@@ -1,6 +1,7 @@
 package com.capstone.openhelp.controllers;
 
 
+import com.capstone.openhelp.models.Event;
 import com.capstone.openhelp.models.User;
 import com.capstone.openhelp.models.UserEvents;
 import com.capstone.openhelp.models.VerificationToken;
@@ -42,7 +43,7 @@ public class UserController {
                           VerificationTokenRespository verificationDao,
                           EmailService emailService,
                           PasswordChecker checkPassword,
-                          UserEventRepository userEventDao) {
+                          UserEventRepository userEventDao,
                           EventRepository eventdao){
 
         this.userDao = userDao;
@@ -204,12 +205,24 @@ public class UserController {
 
     @PostMapping("/users/confirm-attendance")
     public String confirmAttendance(@RequestParam("users") List<String> users, @RequestParam long id){
-        for(int x=0; x < users.size(); x++){
-            UserEvents event = userEventDao.getOne(Long.parseLong(users.get(x)));
-            event.setAttended(true);
-            userEventDao.save(event);
-            System.out.println(users.get(x));
-        }
+       Event event = eventDao.getOne(id);
+
+       for(int x = 0; x < event.getUserEvents().size(); x++){
+           if(users.contains(Long.toString(event.getUserEvents().get(x).getId()))){
+               event.getUserEvents().get(x).setAttended(true);
+           }else {
+               event.getUserEvents().get(x).setAttended(false);
+           }
+
+           userEventDao.save(event.getUserEvents().get(x));
+       }
+
+//        for(int x=0; x < users.size(); x++){
+//            UserEvents event = userEventDao.getOne(Long.parseLong(users.get(x)));
+//            event.setAttended(true);
+//            userEventDao.save(event);
+//            System.out.println(users.get(x));
+//        }
         return "redirect:/events/edit/" + id;
     }
 }

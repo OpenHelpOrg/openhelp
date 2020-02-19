@@ -31,15 +31,20 @@
 
 <!-- confirm attendees -->
 <form th:method="post" th:action="@{'/users/confirm-attendance'}">
-    <input type="hidden" th:value="${event.getId()}" th:name="id">
-<div th:each="userevent : ${event.getUserEvents()}">
-        <div th:if="${!userevent.isIs_creator()}">
+        <input type="hidden" th:value="${event.getId()}" th:name="id">
+        <div th:each="userevent : ${userevents}">
             <p>
-                <label th:for="users" th:text="${userevent.getUser().getName()}"></label>
-                <input type="checkbox" th:name="users" th:value="${userevent.getId()}">
+                <span th:if="${userevent.getAttended()}">
+                    <label th:for="users" th:text="${userevent.getUser().getName()}"></label>
+                    <input type="checkbox" th:name="users" th:value="${userevent.getId()}" checked>
+                </span>
+                <span th:unless="${userevent.getAttended()}">
+                    <label th:for="users" th:text="${userevent.getUser().getName()}"></label>
+                    <input type="checkbox" th:name="users" th:value="${userevent.getId()}">
+                </span>
             </p>
         </div>
-</div>
+
     <button>Confirm Attendance</button>
 </form>
 
@@ -98,7 +103,7 @@
             </div>
             <div class="input-block">
                 <label for="date">Date</label>
-                <input id="date" type="datetime-local" th:field="*{date_time}" value="2020-06-12T19:30:00.00" required>
+                <input id="date" type="datetime-local" th:field="*{date_time}" required>
             </div>
             <!--                max volunteers-->
             <div class="input-block">
@@ -123,16 +128,16 @@
                           required></textarea>
             </div>
             <!--                event details-->
-            <div class="input-block">
-                <label for="details">Details</label><br>
-                <textarea placeholder="details? " id="details" type="textarea" th:field="*{details}"
-                          required></textarea>
-            </div>
+<!--            <div class="input-block">-->
+<!--                <label for="details">Details</label><br>-->
+<!--                <textarea placeholder="details? " id="details" type="textarea" th:field="*{details}"-->
+<!--                          required></textarea>-->
+<!--            </div>-->
 
             <!-- categories -->
             <div class="input-block" id="checkbox">
                 <div th:each="category : ${categories}">
-                    <input name="categories" type="checkbox" th:value="${category.getId()}" th:text="${category.getName()}"></li>
+                    <input th:field="*{categories}" type="checkbox" th:value="${category.getId()}" th:text="${category.getName()}"></li>
                 </div>
             </div>
 
