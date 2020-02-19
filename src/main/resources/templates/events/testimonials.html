@@ -70,6 +70,10 @@
     <p>I hope next event is just as great!</p>
 </div>
 
+<div th:each="story : ${stories}">
+    <h1 th:text="${story.getUser().getName()}"></h1>
+    <p th:text="${story.getStory()}"></p>
+</div>
 
 </body>
 </html>
