@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class TestimonialController {
 
         @GetMapping("/testimonials")
-        public String userStoryPage() {
-            return "testimonials";
+        public String userTestimonials() {
+            return "events/testimonials";
         }
 
     }
