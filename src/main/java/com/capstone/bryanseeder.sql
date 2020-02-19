@@ -13,3 +13,4 @@ insert into events (address, date_time, location, notes, summary, title, vol_lim
 
 insert into user_event (id, is_creator, story, event_id, user_id)  values (1, false, null, 1,1);
 insert into user_event (id, is_creator, story, event_id, user_id)  values (2, false, null, 2,1);
+
