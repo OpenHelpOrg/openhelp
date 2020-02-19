@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 
 <!--Users picture can show up when creating a testimonial.  I put styling and things here and am planning to move them later to own folder.  This is just barebones just to get it in here.  Can start fleshing it out soon.-->
     <style>
@@ -46,21 +46,28 @@
 
 <h2>User Testimonials</h2>
 
+
+<div class="container">
+    <img src="" alt="" style="">
+    <p><span></span> </p>
+    <p></p>
+</div>
+
 <div class="container">
     <img src="../images/bryan-headshot.png" alt="User" style="width:90px">
-    <p><span>Bryan Walsh.</span> User</p>
+    <p><span>Bryan Walsh</span> User</p>
     <p>Had a great time! Event was very fun!</p>
 </div>
 
 <div class="container">
     <img src="../images/roger-headshot.png" alt="User" style="width:90px">
-    <p><span>Eduardo Valerio Gamez</span> User</p>
+    <p><span>Roger Mayer</span> User</p>
     <p>I can't wait for the next one!</p>
 </div>
 
 <div class="container">
     <img src="../images/eduardo-headshot.jpeg" alt="User" style="width:90px">
-    <p><span>Roger Mayer</span> User</p>
+    <p><span>Eduardo Valerio Gamez</span> User</p>
     <p>Met a lot of great people!</p>
 </div>
 
@@ -70,10 +77,10 @@
     <p>I hope next event is just as great!</p>
 </div>
 
-<div th:each="story : ${stories}">
-    <h1 th:text="${story.getUser().getName()}"></h1>
-    <p th:text="${story.getStory()}"></p>
-</div>
+<!--<div th:each="story : ${stories}">-->
+<!--    <h1 th:text="${story.getUser().getName()}"></h1>-->
+<!--    <p th:text="${story.getStory()}"></p>-->
+<!--</div>-->
 
 </body>
 </html>

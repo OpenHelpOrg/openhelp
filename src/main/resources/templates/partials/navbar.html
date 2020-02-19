@@ -39,44 +39,45 @@
             </li>
 
             <li>
-                <div class="container">
-                    <div class="row">
-                        <form class="form-inline my-2 my-lg-0" th:action="@{/search}">
-                            <div class="input-group-btn search-panel">
-                                <select name="search_param" id="search_param" class="btn btn-default dropdown-toggle"
-                                        data-toggle="dropdown">
-                                    <option value="all">All</option>
-                                    <option value="event">Events</option>
-                                    <option value="user">Users</option>
-                                    <option value="categories">Categories</option>
-                                </select>
-                            </div>
-                            <div>
+                <!--                <div class="container">-->
+                <div class="row">
+                    <form class="form-inline my-2 my-lg-0" th:action="@{/search}">
+                        <div class="input-group-btn search-panel">
+                            <select name="search_param" id="search_param" class="btn btn-default dropdown-toggle"
+                                    data-toggle="dropdown">
+                                <option value="all">All</option>
+                                <option value="event">Events</option>
+                                <option value="user">Users</option>
+                                <option value="category">Categories</p></option>
 
-                                <input class="form-control mr-sm-2" id="searchfield" type="search" placeholder="Search"
-                                       aria-label="Search" name="query">
-                                <button class="btn my-2 my-sm-0" id="searchbutton" type="submit"><span
-                                        class="glyphicon glyphicon-search"></span>Search
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+                            </select>
+                        </div>
+                        <div>
+
+                            <input class="form-control mr-sm-2" id="searchfield" type="search" placeholder="Search"
+                                   aria-label="Search" name="query">
+                            <button class="btn my-2 my-sm-0" id="searchbutton" type="submit"><span
+                                    class="glyphicon glyphicon-search"></span>Search
+                            </button>
+                        </div>
+                    </form>
+                    <!--                    </div>-->
                 </div>
             </li>
 
-<!--            <div class="input-group mb-3">-->
-<!--                <div class="input-group-prepend">-->
-<!--                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>-->
-<!--                    <div class="dropdown-menu">-->
-<!--                        <a class="dropdown-item" href="#">Action</a>-->
-<!--                        <a class="dropdown-item" href="#">Another action</a>-->
-<!--                        <a class="dropdown-item" href="#">Something else here</a>-->
-<!--                        <div role="separator" class="dropdown-divider"></div>-->
-<!--                        <a class="dropdown-item" href="#">Separated link</a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <input type="text" class="form-control" aria-label="Text input with dropdown button">-->
-<!--            </div>-->
+            <!--            <div class="input-group mb-3">-->
+            <!--                <div class="input-group-prepend">-->
+            <!--                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>-->
+            <!--                    <div class="dropdown-menu">-->
+            <!--                        <a class="dropdown-item" href="#">Action</a>-->
+            <!--                        <a class="dropdown-item" href="#">Another action</a>-->
+            <!--                        <a class="dropdown-item" href="#">Something else here</a>-->
+            <!--                        <div role="separator" class="dropdown-divider"></div>-->
+            <!--                        <a class="dropdown-item" href="#">Separated link</a>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                <input type="text" class="form-control" aria-label="Text input with dropdown button">-->
+            <!--            </div>-->
         </ul>
     </div>
 </nav>

@@ -2,20 +2,21 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="partials/head :: head"></th:block>
-<!--    <link rel="stylesheet" href="/css/events.css">-->
-<!--    <link rel="stylesheet" href="/css/navbar.css">-->
-<!--    <link rel="stylesheet" href="/css/openhelp.css">-->
+    <!--    <link rel="stylesheet" href="/css/events.css">-->
+    <!--    <link rel="stylesheet" href="/css/navbar.css">-->
+    <!--    <link rel="stylesheet" href="/css/openhelp.css">-->
     <link rel="stylesheet" href="css/main.css">
 
     <!--    <link rel="stylesheet" href="/css/checkbox.css">-->
 </head>
 <body>
 <nav th:insert="partials/navbar :: navbar"></nav>
-
-<h1 class="text-center">Event Delete</h1>
-
-
 <div class="container">
+
+    <h1 class="text-center">Event Delete</h1>
+
+
+    <div class="container">
         <h1 class="text-center"> Are you sure you want to delete event?</h1>
         <form th:action="@{'/events/delete/'+ ${id}}" method="post">
             <a th:href="@{'events/singleevent/'+ ${id}}" class="mx-3 btn btn-light">
@@ -24,6 +25,7 @@
                 Yes
             </button>
         </form>
+    </div>
 </div>
 
 <nav th:insert="partials/navbar :: footer"></nav>

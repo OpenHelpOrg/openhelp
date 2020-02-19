@@ -22,11 +22,11 @@ public class EventController {
 
     private final EventRepository eventDao;
     private final UserRepository userDao;
-    private final CategoryRespository categoryDao;
+    private final CategoryRepository categoryDao;
     private final UserEventRepository userEventDao;
     private final EmailService emailService;
 
-    public EventController(EventRepository eventDao, UserRepository userDao, UserEventRepository userEventDao, CategoryRespository categoryDao, EmailService emailService) {
+    public EventController(EventRepository eventDao, UserRepository userDao, UserEventRepository userEventDao, CategoryRepository categoryDao, EmailService emailService) {
         this.eventDao = eventDao;
         this.userDao = userDao;
         this.userEventDao = userEventDao;

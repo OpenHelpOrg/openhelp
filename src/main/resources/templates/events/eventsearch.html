@@ -7,11 +7,11 @@
     <!--    <link rel="stylesheet" href="css/home.css">-->
     <link rel="stylesheet" href="css/main.css">
 
-    <link href='../core/main.css' rel='stylesheet' />
-    <link href='../daygrid/main.css' rel='stylesheet' />
-    <link href="../bootstrap/main.css" rel="stylesheet" />
-    <link href='../timegrid/main.css' rel='stylesheet' />
-    <link href='../list/main.css' rel='stylesheet' />
+    <link href='../core/main.css' rel='stylesheet'/>
+    <link href='../daygrid/main.css' rel='stylesheet'/>
+    <link href="../bootstrap/main.css" rel="stylesheet"/>
+    <link href='../timegrid/main.css' rel='stylesheet'/>
+    <link href='../list/main.css' rel='stylesheet'/>
     <script src='../core/main.js'></script>
     <script src='../daygrid/main.js'></script>
     <script src='../bootstrap/main.js'></script>
@@ -20,28 +20,28 @@
 
     <title>Event Index</title>
     <!-- Mapbox CSS -->
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet'/>
     <!-- Custom CSS -->
     <style>
-        #mapShow{
+        #mapShow {
             width: 500px;
             height: 500px;
         }
 
-        #calendarShow{
+        #calendarShow {
             background-color: white;
         }
 
-        .fc-header-toolbar{
+        .fc-header-toolbar {
             background-color: #ea6725;
             color: white;
         }
 
-        .fc-content{
-            color:white;
+        .fc-content {
+            color: white;
         }
 
-        .fc-content:hover{
+        .fc-content:hover {
             background-color: #ea6725;
             cursor: pointer;
         }
@@ -67,6 +67,57 @@
 </head>
 <body>
 <nav th:insert="partials/navbar :: navbar"></nav>
+<div class="container">
+
+    <h1 class="text-center">Search Results</h1>
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="events-tab" data-toggle="tab" href="#events" role="tab"
+               aria-controls="events" aria-selected="true">Events</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="map-tab" data-toggle="tab" href="#map" role="tab" aria-controls="map"
+               aria-selected="false">Map</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="calendar-tab" data-toggle="tab" href="#calendar" role="tab" aria-controls="calendar"
+               aria-selected="false">Calendar</a>
+        </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <!--Events Tab Content-->
+        <div class="tab-pane active" id="events" role="tabpanel" aria-labelledby="events-tab">
+            <!-- Dipplays all upcoming events in card form -->
+            <div class="d-flex flex-wrap p-4 justify-content-center">
+
+                <!--    <div class="d-flex flex-wrap row justify-content-between">-->
+                <div th:each="event : ${results}" class="card hovercard eventcard col-3 d-inline mr-5 mb-5">
+                    <a th:text="${event.title}" class="card-title"></a>
+                    <div class="card-body ">
+                        <p th:text="${event.address}"></p>
+                        <!--                <p th:text="${event.date}"></p>-->
+                        <!--                <p th:text="${event.time}"></p>-->
+                        <!--                <p> created by user with email <span th:text="${event.user.email}"> </span></p>-->
+                    </div>
+                    <div class="d-flex justify-content-center eventindeximageholder">
+
+                        <img th:src="${event.getImages()}" alt="edit event to add image" class="card-img eventindeximg">
+
+                        <!--                <div th:each="image : ${event.images}">-->
+                        <!--                    <div>-->
+                        <!--                        <img th:src="${image}" style="height: 200px; margin: auto"/>-->
+                        <!--                    </div>-->
+                    </div>
+                    <div class="d-flex flex-nowrap btn-div justify-content-around">
+                        <!--view post-->
+                        <a th:href="@{'/events/singleevent/'+${event.id}}" class="btn ">
+                            <button>View Event</button>
+                        </a>
+                    </div>
 
 <h1 class="text-center">Search Results</h1>
 
@@ -95,6 +146,7 @@
                 <a th:text="${event.title}" class="card-title"></a>
                 <div class="card-body ">
                     <p th:text="${event.address}"></p>
+                    <p class="thisDateTime" th:text="${event.date_time}"></p>
                     <!--                <p th:text="${event.date}"></p>-->
                     <!--                <p th:text="${event.time}"></p>-->
                     <!--                <p> created by user with email <span th:text="${event.user.email}"> </span></p>-->
@@ -113,34 +165,41 @@
                     <a th:href="@{'/events/singleevent/'+${event.id}}" class="btn ">
                         <button>View Event</button>
                     </a>
+
                 </div>
 
             </div>
-
+            <!-- End of card display-->
         </div>
-        <!-- End of card display-->
-    </div>
-    <!--Map Tab Content-->
-    <div class="tab-pane" id="map" role="tabpanel" aria-labelledby="map-tab">
-        <!-- display the events in the map-->
-        <div id="mapShow"></div>
-    </div>
-    <!--Calendar Tab Content-->
-    <div class="tab-pane" id="calendar" role="tabpanel" aria-labelledby="calendar-tab">
-        <!-- display events in a calendar-->
-        <div id="calendarShow"></div>
+        <!--Map Tab Content-->
+        <div class="tab-pane" id="map" role="tabpanel" aria-labelledby="map-tab">
+            <!-- display the events in the map-->
+            <div id="mapShow"></div>
+        </div>
+        <!--Calendar Tab Content-->
+        <div class="tab-pane" id="calendar" role="tabpanel" aria-labelledby="calendar-tab">
+            <!-- display events in a calendar-->
+            <div id="calendarShow"></div>
+        </div>
     </div>
 </div>
+<nav th:insert="partials/navbar :: footer"></nav>
 
-
-<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 <!-- Mapbox JS -->
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
 <script src="/js/mapbox-geocoder-utils.js"></script>
 <!-- Custom JS -->
 <script>
+    convertDateTime();
+
     console.log(window.location.href);
     var token = document.querySelector('meta').content;
 
@@ -151,7 +210,7 @@
         zoom: 15
     });
 
-    geocode("600 Navarro St #600, San Antonio, TX 78205",token).then(function (result) {
+    geocode("600 Navarro St #600, San Antonio, TX 78205", token).then(function (result) {
         map.setCenter(result);
     });
 
@@ -167,7 +226,7 @@
         });
     });
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         var request = $.ajax({'url': '/event/events.json'});
         request.done(function (events) {
             var calEvents = [];
@@ -180,20 +239,20 @@
                 });
             });//end of each
             var calendarEl = document.getElementById('calendarShow');
-            var calendar =  new FullCalendar.Calendar(calendarEl, {
-                plugins: [ 'dayGrid', 'timeGrid', 'list','bootstrap' ],
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: ['dayGrid', 'timeGrid', 'list', 'bootstrap'],
                 timeZone: 'UTC',
                 themeSystem: 'bootstrap',
                 defaultView: 'dayGridMonth',
                 height: 'parent',
-                header:{
-                    left:'prev,next today',
+                header: {
+                    left: 'prev,next today',
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
                 },
                 eventLimit: true, // allow "more" link when too many events
                 events: calEvents,
-                eventClick: function(info) {
+                eventClick: function (info) {
                     info.jsEvent.preventDefault(); // don't let the browser navigate
 
                     if (info.event.url) {
@@ -205,8 +264,17 @@
             calendar.render();
         });//end of done
     });
-</script>
-<nav th:insert="partials/navbar :: footer"></nav>
 
+    //    DATE CONVERSION LOGIC
+    function convertDateTime() {
+        $(".thisDateTime").each(function () {
+            var unformattedDate = $(this).text();
+            // console.log(unformattedDate);
+            var formattedDate = moment(unformattedDate).format('MMMM Do YYYY, h:mm a');
+            $(this).text(formattedDate);
+            // console.log(formattedDate);
+        });
+    }
+</script>
 </body>
 </html>
