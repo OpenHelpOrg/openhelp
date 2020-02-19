@@ -31,22 +31,28 @@
 
 <!-- confirm attendees -->
 <form th:method="post" th:action="@{'/users/confirm-attendance'}">
-        <input type="hidden" th:value="${event.getId()}" th:name="id">
-        <div th:each="userevent : ${userevents}">
-            <p>
-                <span th:if="${userevent.getAttended()}">
-                    <label th:for="users" th:text="${userevent.getUser().getName()}"></label>
+    <input type="hidden" th:value="${event.getId()}" th:name="id">
+    <div class="form-row">
+        <div class="input-group" th:each="userevent : ${userevents}">
+            <div class="input-group-prepend">
+            <span th:if="${userevent.getAttended()}">
+                <div class="input-group-text">
                     <input type="checkbox" th:name="users" th:value="${userevent.getId()}" checked>
-                </span>
+                </div>
+            </span>
                 <span th:unless="${userevent.getAttended()}">
-                    <label th:for="users" th:text="${userevent.getUser().getName()}"></label>
+                <div class="input-group-text">
                     <input type="checkbox" th:name="users" th:value="${userevent.getId()}">
-                </span>
-            </p>
+                </div>
+            </span>
+            </div>
+            <label th:for="users" th:text="${userevent.getUser().getName()}"></label>
         </div>
+    </div>
 
     <button>Confirm Attendance</button>
 </form>
+
 
 <!--Modal to send an email to all volunteers-->
 <div class="modal editprofilemodal" tabindex="-1" role="dialog" id="editInfoModal">
@@ -82,50 +88,50 @@
 
 <!--form to edit the event-->
 <div class="forms-section createeventform container">
-    <form class="forms mx-auto" th:action="@{/events/edit}" method="post" th:object="${event}">
+    <form class="forms mx-auto" th:action="@{/events/edit}" method="post" th:object="${event}" th:disabled="${isDisabled}">
         <fieldset>
             <input type="hidden" th:field="*{id}">
-            <legend class="section-title">Enter your event details below</legend>
+            <legend class="section-title" th:text="${titleMsg}"></legend>
             <!--                event title-->
             <div class="input-block">
                 <label for="title">Title</label>
-                <input th:placeholder="Title" id="title" type="text" th:field="*{title}" required>
+                <input th:placeholder="Title" id="title" type="text" th:field="*{title}" required th:disabled="${isDisabled}">
             </div>
             <!--                event address-->
             <div class="input-block">
                 <label for="address">Address</label>
-                <input th:placeholder="Address" id="address" type="text" th:field="*{address}" required>
+                <input th:placeholder="Address" id="address" type="text" th:field="*{address}" required th:disabled="${isDisabled}">
             </div>
             <!--                event location-->
             <div class="input-block">
                 <label for="location">Location</label><br>
-                <input th:placeholder="Location" id="location" th:field="*{location}" required>
+                <input th:placeholder="Location" id="location" th:field="*{location}" required th:disabled="${isDisabled}">
             </div>
             <div class="input-block">
                 <label for="date">Date</label>
-                <input id="date" type="datetime-local" th:field="*{date_time}" required>
+                <input id="date" type="datetime-local" th:field="*{date_time}" required th:disabled="${isDisabled}">
             </div>
             <!--                max volunteers-->
             <div class="input-block">
                 <label for="volume">Max people</label>
-                <input th:placeholder="max" id="volume" type="text" th:field="*{vol_limit}" required>
+                <input th:placeholder="max" id="volume" type="text" th:field="*{vol_limit}" required th:disabled="${isDisabled}">
             </div>
             <!--                image-->
             <div class="input-block">
-                <button class="button btn-doEdit mt-1 mr-2" type="button" id="picker">Change Image</button>
-                <input type="text" name="image" id="fileupload" th:placeholder="image" th:field="*{images}">
+                <button class="button btn-doEdit mt-1 mr-2" type="button" id="picker" th:disabled="${isDisabled}">Change Image</button>
+                <input type="text" name="image" id="fileupload" th:placeholder="image" th:field="*{images}" th:disabled="${isDisabled}">
                 <!--                <button class="button btn-doUpload mt-1" type="submit">Submit Image</button>-->
             </div>
             <!--                event summary-->
             <div class="input-block">
                 <label for="summary">Summary</label><br>
-                <textarea placeholder="Tell us a little about your event!" id="summary" th:field="*{summary}" required></textarea>
+                <textarea placeholder="Tell us a little about your event!" id="summary" th:field="*{summary}" required th:disabled="${isDisabled}"></textarea>
             </div>
             <!--                event notes-->
             <div class="input-block">
                 <label for="notes">Notes</label><br>
                 <textarea placeholder="Is there anything that visitors or volunteers know? Rain or shine, bring comfy shoes, etc..." id="notes" type="textarea" th:field="*{notes}"
-                          required></textarea>
+                          required th:disabled="${isDisabled}"></textarea>
             </div>
             <!--                event details-->
 <!--            <div class="input-block">-->
@@ -137,12 +143,12 @@
             <!-- categories -->
             <div class="input-block" id="checkbox">
                 <div th:each="category : ${categories}">
-                    <input th:field="*{categories}" type="checkbox" th:value="${category.getId()}" th:text="${category.getName()}"></li>
+                    <input th:field="*{categories}" type="checkbox" th:value="${category.getId()}" th:text="${category.getName()}" th:disabled="${isDisabled}"></li>
                 </div>
             </div>
 
             <div class="d-flex m-auto p-1">
-                <button type="submit" class="btn-submit p-2">Continue</button>
+                <button type="submit" class="btn-submit p-2" th:disabled="${isDisabled}">Continue</button>
             </div>
         </fieldset>
     </form>

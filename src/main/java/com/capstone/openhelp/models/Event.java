@@ -5,9 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Entity
 @Table(name = "events")
@@ -26,9 +23,6 @@ public class Event {
     @Column(nullable = false, length = 500)
     private String address;
 
-//    @Column(columnDefinition = "TEXT NOT NULL")
-//    @JsonIgnore
-//    private String details;
 
     @Column(columnDefinition = "DATETIME NOT NULL")
     private String date_time;
@@ -37,9 +31,6 @@ public class Event {
     @JsonIgnore
     private String summary;
 
-
-
-//    @Column(columnDefinition="VARCHAR(500) DEFAULT 'https://storage.jewnetwork.com/content/users/avatars/3746/avatar_3746_500.jpg'")
     @Column(columnDefinition="VARCHAR(500)")
     @JsonIgnore
 
@@ -52,12 +43,6 @@ public class Event {
     @Column
     @JsonIgnore
     private int vol_limit;
-
-    //    relates to User Model
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    @JsonIgnore
-//    private User user;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -112,13 +97,6 @@ public class Event {
         this.notes = notes;
         this.vol_limit = vol_limit;
     }
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
 
     public long getId() {
         return id;
@@ -192,7 +170,6 @@ public class Event {
         this.userEvents = userEvents;
     }
 
-
     public String getSummary() {
         return summary;
     }
@@ -217,11 +194,4 @@ public class Event {
         this.vol_limit = limit;
     }
 
-//    public String getDetails() {
-//        return details;
-//    }
-//
-//    public void setDetails(String details) {
-//        this.details = details;
-//    }
 }

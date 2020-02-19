@@ -24,10 +24,12 @@ import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @Controller
 public class EventController {
@@ -39,6 +41,8 @@ public class EventController {
     private final CategoryRespository categoryDao;
     private final UserEventRepository userEventDao;
     private final EmailService emailService;
+
+    private final DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy/mm/dd hh:mm:ss");
 
     public EventController(EventRepository eventDao, UserRepository userDao, UserEventRepository userEventDao, CategoryRespository categoryDao, EmailService emailService) {
         this.eventDao = eventDao;
@@ -103,23 +107,39 @@ public class EventController {
     public String editEventForm
             (@PathVariable Long id,
              Model model){
+        LocalDateTime currDate = LocalDateTime.now();
         Event event = eventDao.getOne(id);
         String date = event.getDate_time();
         date = date.replace(" ", "T");
         event.setDate_time(date);
+
+        LocalDateTime eventDate = LocalDateTime.parse(event.getDate_time());
+        System.out.println(eventDate);
+        System.out.println(currDate);
+
+        System.out.println("event.compareto.current " + eventDate.compareTo(currDate));
+        System.out.println(currDate.compareTo(eventDate));
+
 
         model.addAttribute("event", event);
         model.addAttribute("categories", categoryDao.findAll());
 
         List<UserEvents> userevents = new ArrayList<>();
 
-        for(int x =0; x < eventDao.getOne(id).getUserEvents().size(); x++){
-            if(!eventDao.getOne(id).getUserEvents().get(x).isIs_creator()){
-                userevents.add(eventDao.getOne(id).getUserEvents().get(x));
+        for(int x =0; x < event.getUserEvents().size(); x++){
+            if(!event.getUserEvents().get(x).isIs_creator()){
+                userevents.add(event.getUserEvents().get(x));
             }
         }
 
         model.addAttribute("userevents", userevents);
+
+        if(eventDate.compareTo(currDate) < 0){
+            model.addAttribute("isDisabled", "disable");
+            model.addAttribute("titleMsg", "You cannot Edit this Event due to past date");
+        }else{
+            model.addAttribute("titleMsg", "Enter you event details below");
+        }
 
         return "events/edit";
     }
