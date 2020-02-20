@@ -1,5 +1,7 @@
 package com.capstone.openhelp.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -16,6 +18,7 @@ public class UserEvents implements Serializable {
 
     @ManyToOne
     @JoinColumn
+    @JsonManagedReference
     private Event event;
 
     @Column(nullable = false)

@@ -13,17 +13,14 @@
 <nav th:insert="partials/navbar :: navbar"></nav>
 <div class="container">
 
-    <h1 class="text-center">Event Delete</h1>
+    <h1 class="text-center" th:text="'Deleting Event ' + ${event.getTitle()}"></h1>
 
 
     <div class="container">
-        <h1 class="text-center"> Are you sure you want to delete event?</h1>
+        <h1 class="text-center" th:text="'Are you sure you want to delete the ' + ${event.getTitle() + ' event?'}"></h1>
         <form th:action="@{'/events/delete/'+ ${id}}" method="post">
-            <a th:href="@{'events/singleevent/'+ ${id}}" class="mx-3 btn btn-light">
-                Go Back</a>
-            <button type="submit" class="btn btn-light">
-                Yes
-            </button>
+            <a th:href="@{'/events/singleevent/'+ ${id}}" class="mx-3 btn btn-light">Go Back</a>
+            <button type="submit" class="btn btn-light">Yes</button>
         </form>
     </div>
 </div>

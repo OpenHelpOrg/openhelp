@@ -1,5 +1,6 @@
 package com.capstone.openhelp.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -54,7 +55,7 @@ public class Event {
     private List<Category> categories;
 
     @OneToMany(mappedBy = "event")
-    @JsonIgnore
+    @JsonBackReference
     private List<UserEvents> userEvents = new ArrayList<>();
 
     public Event() {
