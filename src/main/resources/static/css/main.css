@@ -4,6 +4,7 @@
   box-sizing: border-box;
 }
 
+
 .center {
   text-align: center;
 }
@@ -79,8 +80,15 @@ ul {
 }
 
 .abtcodeuplogo {
-  height: 40px;
-  width: 40px;
+  height: 55px;
+  width: 55px;
+}
+
+.abtcodeuplogo:hover {
+  transition: all .3s ease-in-out;
+  -webkit-box-shadow: 1px 3px 10px 6px #ea6725; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: 1px 3px 10px 6px #ea6725; /* Firefox 3.5 - 3.6 */
+  box-shadow: 1px 3px 10px 6px #ea6725; /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 }
 
 /*USER PROFILE*/
@@ -631,9 +639,9 @@ nav #searchfield {
   /*background-color: #ff6a00!important;*/
   width: 100% !important;
   height: 5em;
-  position: static;
+  position:
   bottom: 0 !important;
-  margin-top: 30px !important;
+  margin-top: auto!important;
   background-color: #ea6725;
   color: black;
   border-top: 2px solid white;
