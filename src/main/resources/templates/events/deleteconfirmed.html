@@ -3,8 +3,7 @@
 <head>
     <th:block th:insert="partials/head :: head"></th:block>
 
-    <link rel="stylesheet" href="/css/home.css">
-    <link rel="stylesheet" href="/css/navbar.css">
+
     <link rel="stylesheet" href="/css/main.css">
 
     <title>Event Deleted</title>
@@ -12,10 +11,33 @@
 </head>
 <body>
 <nav th:insert="partials/navbar :: navbar"></nav>
-<h1 th:text="'Event ' + ${event.getTitle() + ' has been deleted'}"></h1>
-<p>The event has been deleted and cancelled. We sent an email to all register volunteers linked to this event. They
-might reach out to you for any more information</p>
-<p>Use the navigation bar to go to another part of the application.</p>
+
+
+<div class="row p-5 justify-content-center">
+    <div class="col-sm-12 col-md-8">
+        <div class="card mb-3 p-2 border-dark" style="width: 100%;">
+            <div class="row no-gutters">
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h1 class="card-title" th:text="${event.getTitle()}"></h1>
+                        <h4 class="card-text">The event has been deleted and cancelled. We've sent an email to all register volunteers linked to this event. They
+                            might reach out to you for any more information</h4>
+                        <h4 class="card-text">Use the navigation bar to go to another part of the application.</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-------------------------------------------------->
+<!--<h1 th:text="'Event ' + ${event.getTitle() + ' has been deleted'}"></h1>-->
+<!--<p>The event has been deleted and cancelled. We sent an email to all register volunteers linked to this event. They-->
+<!--might reach out to you for any more information</p>-->
+<!--<p>Use the navigation bar to go to another part of the application.</p>-->
+
+
+
 <nav th:insert="partials/navbar :: footer"></nav>
 </body>
 </html>

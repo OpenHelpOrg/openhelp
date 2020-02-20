@@ -49,8 +49,12 @@
                 </div>
                 <!--                max volunteers-->
                 <div class="input-block">
-                    <label for="volume">Max people</label>
-                    <input th:placeholder="max" id="volume" type="text" th:field="*{vol_limit}" required>
+                    <label for="volume">Max people - </label>
+                    <label id="volumeOutput" class="ml-3"></label>
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="volume" th:field="*{vol_limit}" required th:disabled="${isDisabled}">
+                    </div>
+<!--                    <input th:placeholder="max" id="volume" type="text" th:field="*{vol_limit}" required>-->
                 </div>
                 <!--                image-->
                 <div class="input-block">
@@ -76,10 +80,13 @@
                             id="notes" type="textarea" th:field="*{notes}"
                             required></textarea>
                 </div>
+
+
+
                 <!--            &lt;!&ndash;                event details&ndash;&gt;-->
                 <!--            <div class="input-block">-->
                 <!--                <label for="details">Details</label><br>-->
-                <!--                <textarea placeholder="details? " id="details" type="textarea" th:field="*{details}"-->
+<!--                                <textarea placeholder="details? " id="details" type="textarea" th:field="*{details}"-->
                 <!--                          required></textarea>-->
                 <!--            </div>-->
                 <!-- categories -->
@@ -93,7 +100,7 @@
                 </div>
 
                 <div class="d-flex m-auto p-1">
-                    <button type="submit" class="btn-submit p-2">Continue</button>
+                    <button type="submit" class="btn-doEdit p-2">Continue</button>
                 </div>
             </fieldset>
         </form>
@@ -150,6 +157,15 @@
         // urlBox.appendChild(url);
         $('#fileupload').attr('value', url);
 
+    }
+
+    var slider = document.getElementById("volume");
+    var output = document.getElementById("volumeOutput");
+    output.innerHTML = slider.value; // Display the default slider value
+
+    // Update the current slider value (each time you drag the slider handle)
+    slider.oninput = function() {
+        output.innerHTML = this.value;
     }
 
 </script>
