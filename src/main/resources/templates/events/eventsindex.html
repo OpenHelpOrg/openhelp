@@ -65,6 +65,15 @@
             border: 1px solid #ea6725;
             box-shadow: 0 15px 6px -8px #ea6725;
         }
+
+        .card-body {
+            font-size: 20px;
+            }
+
+        .btn {
+            font-size: 15px;
+        }
+
     </style>
 </head>
 <body>
@@ -94,7 +103,7 @@
     <div class="tab-content">
         <!--Events Tab Content-->
         <div class="tab-pane active" id="events" role="tabpanel" aria-labelledby="events-tab">
-            <!-- Dipplays all upcoming events in card form -->
+            <!-- Displays all upcoming events in card form -->
             <div class="d-flex flex-wrap p-4 justify-content-center">
 
                 <!--    <div class="d-flex flex-wrap row justify-content-between">-->
@@ -168,11 +177,8 @@
     var map = new mapboxgl.Map({
         container: 'mapShow',
         style: 'mapbox://styles/mapbox/streets-v9',
+        center: [-98.4916, 29.4252],
         zoom: 15
-    });
-
-    geocode("600 Navarro St #600, San Antonio, TX 78205", token).then(function (result) {
-        map.setCenter(result);
     });
 
     var request = $.ajax({'url': '/event/events.json'});
@@ -198,7 +204,7 @@
         request.done(function (events) {
             var calEvents = [];
             events.forEach(function (event) {
-                console.log(event.userEvents.toString());
+                // console.log(event.userEvents.toString());
                 calEvents.push({
                     title: event.title,
                     start: event.date_time,
@@ -232,6 +238,18 @@
         });//end of done
     });
 
+    var requestUser = $.ajax({'url': '/user/loginUser.json'});
+    requestUser.done(function (user) {
+        if(!isEmpty(user.address)){
+            geocode(user.address, token).then(function (result) {
+                map.setCenter(result);
+            });
+        }
+    }).fail(function (jqXhr, status, error) {
+        console.log("Response status: " + status);
+        console.log("Error object: " + error);
+    });
+
     //    DATE CONVERSION LOGIC
     function convertDateTime() {
         $(".thisDateTime").each(function () {
@@ -241,6 +259,10 @@
             $(this).text(formattedDate);
             // console.log(formattedDate);
         });
+    }
+
+    function isEmpty(str){
+        return !str || str.length === 0 || !str.trim();
     }
 </script>
 
