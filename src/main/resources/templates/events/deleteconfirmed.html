@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="partials/head :: head"></th:block>
+
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/main.css">
+
+    <title>Event Deleted</title>
+
+</head>
+<body>
+<nav th:insert="partials/navbar :: navbar"></nav>
+<h1 th:text="'Event ' + ${event.getTitle() + ' has been deleted'}"></h1>
+<p>The event has been deleted and cancelled. We sent an email to all register volunteers linked to this event. They
+might reach out to you for any more information</p>
+<p>Use the navigation bar to go to another part of the application.</p>
+<nav th:insert="partials/navbar :: footer"></nav>
+</body>
+</html>

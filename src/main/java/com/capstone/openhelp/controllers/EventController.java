@@ -170,16 +170,22 @@ public class EventController {
     public String showDelete(
             @PathVariable long id,
             Model model) {
-        model.addAttribute("id", id);
+        Event event= eventDao.getOne(id);
+        model.addAttribute("event", event);
         return "events/delete";
     }
 
 
     @PostMapping("/events/delete/{id}")
     public String deleteevent(
-            @PathVariable long id){
-        eventDao.deleteById(id);
-        return "redirect:/events";
+            @PathVariable long id, Model model){
+
+        Event event = eventDao.getOne(id);
+        model.addAttribute("event", event);
+
+        userEventDao.deleteAll(event.getUserEvents());
+        eventDao.deleteById(event.getId());
+        return "/events/deleteconfirmed";
     }
 
     @GetMapping("/events/singleevent/{id}")
