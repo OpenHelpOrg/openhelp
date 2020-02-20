@@ -48,6 +48,53 @@
                 display: block;
             }
         }
+        .ribbon {
+            position: absolute;
+            right: -5px; top: -5px;
+            z-index: 1;
+            overflow: hidden;
+            width: 75px; height: 75px;
+            text-align: right;
+        }
+        .ribbon span {
+            font-size: 10px;
+            font-weight: bold;
+            color: #FFF;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 20px;
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            width: 100px;
+            display: block;
+            background: #79A70A;
+            background: linear-gradient(#05EFF7 0%, #087F8F 100%);
+            box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 19px; right: -21px;
+        }
+        .ribbon span::before {
+            content: "";
+            position: absolute; left: 0px; top: 100%;
+            z-index: -1;
+            border-left: 3px solid #087F8F;
+            border-right: 3px solid transparent;
+            border-bottom: 3px solid transparent;
+            border-top: 3px solid #087F8F;
+        }
+        .ribbon span::after {
+            content: "";
+            position: absolute; right: 0px; top: 100%;
+            z-index: -1;
+            border-left: 3px solid transparent;
+            border-right: 3px solid #087F8F;
+            border-bottom: 3px solid transparent;
+            border-top: 3px solid #087F8F;
+        }
+
+        .singleEventCard{
+            position: relative;
+        }
     </style>
 </head>
 <body>
@@ -58,7 +105,8 @@
     <!--    event card-->
     <div class="row p-5 justify-content-center flex-wrap">
         <div class="col-sm-12 col-md-8 col-lg-7">
-            <div class="card mb-3 p-2 border-dark" style="height:100%; width: 100%;">
+            <div class="card singleEventCard mb-3 p-2 border-dark" style="height:100%; width: 100%;">
+                <div class="ribbon"><span th:if="${enrollBanner}">Enrolled</span></div>
                 <div class="row no-gutters">
                     <!--                    card image-->
                     <div class="col-md-5">
@@ -92,7 +140,6 @@
                     </div>
                     <!--                    event card info-->
                     <div class="col-md-7 eventcard">
-                        <span th:if="${enrollBanner}"><span>Enrolled</span></span>
                         <div class="card-body">
                             <div class="card-title"><span th:text="${event.getTitle()}"></span>
                             </div>
