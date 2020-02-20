@@ -585,7 +585,7 @@ ul {
 .nav-link {
   font-size: 2em;
   font-family: 'Roboto', sans-serif;
-  text-shadow: 1px 2px black;
+  /*text-shadow: 1px 2px black;*/
 }
 
 
