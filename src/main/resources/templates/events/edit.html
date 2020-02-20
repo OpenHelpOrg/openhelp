@@ -39,15 +39,15 @@
             <div class="input-group-prepend">
             <span th:if="${userevent.getAttended()}">
                 <div class="input-group-text my-1">
-<!--                    <input class="fancychecks" type="checkbox" data-toggle="toggle" data-on="Confirmed" data-off="Not Confirmed" data-onstyle="primary" data-offstyle="danger" th:name="users" th:value="${userevent.getId()}" checked>-->
-                    <input type="checkbox" th:name="users" th:value="${userevent.getId()}" checked>
+                    <input class="fancychecks" type="checkbox" data-toggle="toggle" data-on="Confirmed" data-off="Not Confirmed" data-onstyle="primary" data-offstyle="danger" th:name="users" th:value="${userevent.getId()}" checked>
+<!--                    <input type="checkbox" th:name="users" th:value="${userevent.getId()}" checked>-->
                 </div>
             </span>
                 <span th:unless="${userevent.getAttended()}">
                 <div class="input-group-text my-1">
-<!--                    <input class="fancychecks" type="checkbox" data-toggle="toggle" data-on="Confirmed" data-off="Not Confirmed" data-onstyle="primary" data-offstyle="danger" th:name="users" th:value="${userevent.getId()}">-->
+                    <input class="fancychecks" type="checkbox" data-toggle="toggle" data-on="Confirmed" data-off="Not Confirmed" data-onstyle="primary" data-offstyle="danger" th:name="users" th:value="${userevent.getId()}">
 
-                    <input type="checkbox" th:name="users" th:value="${userevent.getId()}">
+<!--                    <input type="checkbox" th:name="users" th:value="${userevent.getId()}">-->
                 </div>
             </span>
             </div>
@@ -119,8 +119,12 @@
             </div>
             <!--                max volunteers-->
             <div class="input-block">
-                <label for="volume">Max people</label>
-                <input th:placeholder="max" id="volume" type="text" th:field="*{vol_limit}" required th:disabled="${isDisabled}">
+                <label for="volume">Max people - </label>
+                <label id="volumeOutput" class="ml-3"></label>
+                <div class="slidecontainer">
+                    <input type="range" min="1" max="100" value="50" class="slider" id="volume" th:field="*{vol_limit}" required th:disabled="${isDisabled}">
+                </div>
+<!--                <input th:placeholder="max" id="volume" type="text" th:field="*{vol_limit}" required th:disabled="${isDisabled}">-->
             </div>
             <!--                image-->
             <div class="input-block">
@@ -207,6 +211,17 @@
         // urlBox.appendChild(url);
         $('#fileupload').attr('value', url);
     }
+
+    var slider = document.getElementById("volume");
+    var output = document.getElementById("volumeOutput");
+    output.innerHTML = slider.value; // Display the default slider value
+
+    // Update the current slider value (each time you drag the slider handle)
+    slider.oninput = function() {
+        output.innerHTML = this.value;
+    }
+
+
 
 </script>
 </body>

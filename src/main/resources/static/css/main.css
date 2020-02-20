@@ -111,10 +111,18 @@ ul {
   width: auto;
 }
 
+#uploadConfirm {
+  height: 35px;
+  width: 35px;
+  background-color: yellowgreen;
+  background-image: url("images/checkbox.png");
+  visibility: hidden;
+}
+
 /*EDIT PROFILE MODAL*/
 .editprofilemodal {
-  border: 2px solid #ea6725 !important;
-  border-radius: 5px !important;
+  /*border: 2px solid #ea6725 !important;*/
+  /*border-radius: 5px !important;*/
 }
 
 .editprofilemodal-content {
@@ -148,7 +156,30 @@ ul {
   background-color: white !important;
   color: #4db2f1 !important;
   border: 1px solid #ea6725 !important;
+}
 
+.btn-doDelete {
+  background-color: red !important;
+  color: white !important;
+  border: 1px solid white !important;
+  min-width: 120px;
+  font-size: 18px;
+  line-height: 40px;
+  border-radius: 25px;
+  border: none;
+  transition: all .3s ease-out;
+}
+
+.btn-doAbort {
+  background-color: white !important;
+  color: #4db2f1 !important;
+  border: 1px solid #ea6725 !important;
+  min-width: 120px;
+  font-size: 18px;
+  line-height: 40px;
+  border-radius: 25px;
+  border: none;
+  transition: all .3s ease-out;
 }
 
 .btn-doEdit,
@@ -161,6 +192,13 @@ ul {
   border-radius: 25px;
   border: none;
   transition: all .3s ease-out;
+}
+
+#fileupload {
+  border: 1px solid #ff6a00 !important;
+  border-radius: 5px;
+  margin: 0;
+  font-size: 1.25em;
 }
 
 /*CREATE EVENT*/
@@ -569,6 +607,18 @@ ul {
   transition: all .3s ease-out;
 }
 
+.loginErrorParams{
+  display: inline-block;
+  background-color: lightgrey;
+  text-align: center;
+  font-size: 2em;
+  color: black;
+  border: 1px solid #ff6a00 !important;
+  border-radius: 20px;
+  margin: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
 /*NAVBAR AND FOOTER*/
 
 .navbar {
@@ -829,4 +879,40 @@ nav #searchfield {
 #passwordHelpModal #criteriaList {
   list-style-type: none;
 
+}
+
+/*SLIDER INPUT*/
+.slidecontainer {
+  width: 100%; /* Width of the outside container */
+}
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4db2f1;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4db2f1;
+  cursor: pointer;
 }
