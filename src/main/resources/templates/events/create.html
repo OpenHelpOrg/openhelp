@@ -11,6 +11,7 @@
     <!--    <link rel="stylesheet" href="../css/navbar.css">-->
     <!--    <link rel="stylesheet" href="../css/openhelp.css">-->
     <!--    <link rel="stylesheet" href="css/main.css">-->
+    <link rel="stylesheet" href="../css/checkbox.css">
 
 
 </head>
@@ -94,7 +95,7 @@
                     <div class="input-block" id="checkbox">
                         <div th:each="category : ${categories}">
                             <input name="categories" type="checkbox" th:value="${category.getId()}"
-                                   th:text="${category.getName()}"></li>
+                                   th:text="${category.getName()}">
                         </div>
                     </div>
                 </div>

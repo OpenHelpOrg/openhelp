@@ -5,4 +5,7 @@
     justify-content: space-between;
     align-content: center;
     flex-wrap: wrap;
+    height: 25%;
+    columns: 10em;
+    column-fill: auto;
 }
