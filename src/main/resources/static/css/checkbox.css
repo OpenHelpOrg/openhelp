@@ -1,11 +1,29 @@
 /*needs to be integreated, maybe?*/
 
-#checkbox {
-    display: inline-flex;
-    justify-content: space-between;
-    align-content: center;
+/*#checkbox {*/
+/*    display: inline-flex;*/
+/*    justify-content: space-between;*/
+/*    align-content: center;*/
+/*    flex-wrap: wrap;*/
+/*    height: 25%;*/
+/*    columns: 10em;*/
+/*    column-fill: auto;*/
+/*}*/
+
+/*ul {*/
+/*    height: 25%;*/
+/*    columns: 10em;*/
+/*    column-fill: auto;*/
+/*}*/
+
+.checkboxUL {
+    display: flex;
     flex-wrap: wrap;
-    height: 25%;
-    columns: 10em;
-    column-fill: auto;
+    justify-content: center;
+    width: 450px;
+}
+
+.cat-checkbox {
+    width: 80px;
+    font-size: 20px;
 }

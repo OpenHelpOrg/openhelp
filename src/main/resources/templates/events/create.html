@@ -10,7 +10,7 @@
     <!--    <link rel="stylesheet" href="../css/events.css">-->
     <!--    <link rel="stylesheet" href="../css/navbar.css">-->
     <!--    <link rel="stylesheet" href="../css/openhelp.css">-->
-    <!--    <link rel="stylesheet" href="css/main.css">-->
+        <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="../css/checkbox.css">
 
 
@@ -91,13 +91,13 @@
                 <!--                          required></textarea>-->
                 <!--            </div>-->
                 <!-- categories -->
-                <div class="">
-                    <div class="input-block" id="checkbox">
-                        <div th:each="category : ${categories}">
-                            <input name="categories" type="checkbox" th:value="${category.getId()}"
-                                   th:text="${category.getName()}">
+                <div class="checkboxUL">
+<!--                    <div class="input-block" id="checkbox">-->
+                        <div class="cat-checkbox" th:each="category : ${categories}">
+                            <input class="cat-checkbox" name="categories" type="checkbox" th:value="${category.getId()}"
+                                       th:text="${category.getName()}">
                         </div>
-                    </div>
+<!--                    </div>-->
                 </div>
 
                 <div class="d-flex m-auto p-1">
