@@ -38,21 +38,23 @@
         <div class="input-group" th:each="userevent : ${userevents}">
             <div class="input-group-prepend">
             <span th:if="${userevent.getAttended()}">
-                <div class="input-group-text">
+                <div class="input-group-text my-1">
+<!--                    <input class="fancychecks" type="checkbox" data-toggle="toggle" data-on="Confirmed" data-off="Not Confirmed" data-onstyle="primary" data-offstyle="danger" th:name="users" th:value="${userevent.getId()}" checked>-->
                     <input type="checkbox" th:name="users" th:value="${userevent.getId()}" checked>
                 </div>
             </span>
                 <span th:unless="${userevent.getAttended()}">
-                <div class="input-group-text">
+                <div class="input-group-text my-1">
+<!--                    <input class="fancychecks" type="checkbox" data-toggle="toggle" data-on="Confirmed" data-off="Not Confirmed" data-onstyle="primary" data-offstyle="danger" th:name="users" th:value="${userevent.getId()}">-->
+
                     <input type="checkbox" th:name="users" th:value="${userevent.getId()}">
                 </div>
             </span>
             </div>
-            <label th:for="users" th:text="${userevent.getUser().getName()}"></label>
+            <label class="ml-2" th:for="users" th:text="${userevent.getUser().getName()}"></label>
         </div>
     </div>
-
-    <button>Confirm Attendance</button>
+    <button class="btn-doEdit">Confirm Attendance</button>
 </form>
 
 

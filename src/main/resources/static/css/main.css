@@ -639,7 +639,7 @@ nav #searchfield {
   /*background-color: #ff6a00!important;*/
   width: 100% !important;
   height: 5em;
-  position:
+  position: static;
   bottom: 0 !important;
   margin-top: auto!important;
   background-color: #ea6725;
