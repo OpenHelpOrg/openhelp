@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta name="mapbox" th:content="${mapbox}">
     <th:block th:insert="partials/head :: head"></th:block>
@@ -98,6 +99,17 @@
 
                 <!--    <div class="d-flex flex-wrap row justify-content-between">-->
                 <div th:each="event : ${events}" class="card hovercard eventcard col-3 d-inline mr-5 mb-5">
+
+                    <div sec:authorize="isAuthenticated()">
+                        <span th:each="user : ${event.getUserEvents()}">
+                            <span th:if="${!user.isIs_creator()}">
+                                <span th:if="${user.getUser().getId() == #authentication.principal.id}">
+                                    <div class="card-header bg-info">Enrolled</div>
+                                </span>
+                            </span>
+                        </span>
+                    </div>
+
                     <a th:text="${event.title}" class="card-title"></a>
                     <div class="card-body ">
                         <p th:text="${event.address}"></p>
@@ -109,10 +121,6 @@
 
                         <img th:src="${event.getImages()}" alt="edit event to add image" class="card-img eventindeximg">
 
-                        <!--                <div th:each="image : ${event.images}">-->
-                        <!--                    <div>-->
-                        <!--                        <img th:src="${image}" style="height: 200px; margin: auto"/>-->
-                        <!--                    </div>-->
                     </div>
                     <div class="d-flex flex-nowrap btn-div justify-content-center">
                         <!--view post-->

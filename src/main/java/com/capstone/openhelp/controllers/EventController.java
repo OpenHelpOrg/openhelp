@@ -48,6 +48,7 @@ public class EventController {
         List<User> users = userDao.findAll();
         model.addAttribute("users", users);
         model.addAttribute("mapbox", mapbox);
+        model.addAttribute("loginUser", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         return "events/eventsindex";
     }
 
