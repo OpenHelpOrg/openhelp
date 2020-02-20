@@ -196,10 +196,15 @@ public class EventController {
         LocalDateTime currDate = LocalDateTime.now();
         String date = event.getDate_time();
         Boolean isCreator = false;
+        Boolean isEnrolled = false;
         List<UserEvents> userEvents = new ArrayList<>();
 
         for(int x=0; x < event.getUserEvents().size(); x++){
             UserEvents userevent = event.getUserEvents().get(x);
+
+            if(event.getUserEvents().get(x).getUser().getId() == user.getId()){
+                isEnrolled = true;
+            }
 
             if(event.getUserEvents().get(x).isIs_creator()){
                 model.addAttribute("creator", event.getUserEvents().get(x).getUser());
@@ -216,10 +221,14 @@ public class EventController {
         date = date.replace(" ", "T");
         LocalDateTime eventDate = LocalDateTime.parse(date);
 
-        if(eventDate.compareTo(currDate) < 0 || isCreator){
+        if(eventDate.compareTo(currDate) < 0 || isCreator || isEnrolled){
             model.addAttribute("display", false);
         }else{
             model.addAttribute("display", true);
+        }
+
+        if(!isCreator && isEnrolled){
+            model.addAttribute("enrollBanner", true);
         }
 
         model.addAttribute("userId", user.getId());
