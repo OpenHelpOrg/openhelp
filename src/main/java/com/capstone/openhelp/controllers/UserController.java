@@ -71,6 +71,13 @@ public class UserController {
         return "users/users";
     }
 
+    //Send the current login use as json
+    @GetMapping("/user/loginUser.json")
+    public @ResponseBody User viewCurrentLoginUser(){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return user;
+    }
+
     @GetMapping("/user/{id}")
     public String showSingleUser(
             @PathVariable long id,
@@ -203,6 +210,17 @@ public class UserController {
         return "redirect:/login";
     }
 
+    @PostMapping("/users/confirm-enrollment")
+    public String confirmEnrollment(@RequestParam("users") List<String> users, @RequestParam long id){
+        Event event = eventDao.getOne(id);
+
+        for(int x = 0; x < users.size(); x++){
+            Long idC = Long.parseLong(users.get(x));
+            userEventDao.deleteById(idC);
+        }
+
+        return "redirect:/events/edit/" + id;
+    }
     @PostMapping("/users/confirm-attendance")
     public String confirmAttendance(@RequestParam("users") List<String> users, @RequestParam long id){
        Event event = eventDao.getOne(id);
