@@ -162,7 +162,6 @@
 <!-- Custom JS -->
 <script>
     convertDateTime();
-    console.log(window.location.href);
     var token = document.querySelector('meta').content;
 
     mapboxgl.accessToken = token;
@@ -179,7 +178,6 @@
     var request = $.ajax({'url': '/event/events.json'});
     request.done(function (events) {
         events.forEach(function (event) {
-            console.log(event.date_time);
             geocode(event.address, token).then(function (result) {
                 var popupHTML = "<div class='card'><div class='card-header'>" + event.title + "</div><ul class='list-group list-group-flush'><li class='list-group-item'>" + event.summary + "</li><li class='list-group-item'><a href='/events/singleevent/"+ event.id +"'>View More</a></li></ul></div>";
 
@@ -200,6 +198,7 @@
         request.done(function (events) {
             var calEvents = [];
             events.forEach(function (event) {
+                console.log(event.userEvents.toString());
                 calEvents.push({
                     title: event.title,
                     start: event.date_time,
