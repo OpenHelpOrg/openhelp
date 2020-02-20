@@ -3,7 +3,16 @@
   padding: 0;
   box-sizing: border-box;
 }
+body {
+  min-height: 100vh;
+  position: relative;
+  margin: 0;
+}
 
+/*footer {*/
+/*  position: absolute;*/
+/*  bottom: 0;*/
+/*}*/
 
 .center {
   text-align: center;
@@ -719,6 +728,8 @@ nav #searchfield {
 }
 
 .eventindeximg {
+  /*min-height: 125px;*/
+  /*min-width: 125px;*/
   height: 100%;
   width: auto;
   margin-left: 30%;
