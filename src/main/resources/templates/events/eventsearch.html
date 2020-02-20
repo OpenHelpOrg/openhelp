@@ -7,16 +7,16 @@
     <!--    <link rel="stylesheet" href="css/home.css">-->
     <link rel="stylesheet" href="css/main.css">
 
-    <link href='../core/main.css' rel='stylesheet'/>
-    <link href='../daygrid/main.css' rel='stylesheet'/>
-    <link href="../bootstrap/main.css" rel="stylesheet"/>
-    <link href='../timegrid/main.css' rel='stylesheet'/>
-    <link href='../list/main.css' rel='stylesheet'/>
-    <script src='../core/main.js'></script>
-    <script src='../daygrid/main.js'></script>
-    <script src='../bootstrap/main.js'></script>
-    <script src='../timegrid/main.js'></script>
-    <script src='../list/main.js'></script>
+<!--    <link href='../core/main.css' rel='stylesheet'/>-->
+<!--    <link href='../daygrid/main.css' rel='stylesheet'/>-->
+<!--    <link href="../bootstrap/main.css" rel="stylesheet"/>-->
+<!--    <link href='../timegrid/main.css' rel='stylesheet'/>-->
+<!--    <link href='../list/main.css' rel='stylesheet'/>-->
+<!--    <script src='../core/main.js'></script>-->
+<!--    <script src='../daygrid/main.js'></script>-->
+<!--    <script src='../bootstrap/main.js'></script>-->
+<!--    <script src='../timegrid/main.js'></script>-->
+<!--    <script src='../list/main.js'></script>-->
 
     <title>Event Index</title>
     <!-- Mapbox CSS -->
@@ -68,135 +68,153 @@
 <body>
 <nav th:insert="partials/navbar :: navbar"></nav>
 <div class="container">
-
-    <h1 class="text-center">Search Results</h1>
-
-    <!-- Nav tabs -->
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" id="events-tab" data-toggle="tab" href="#events" role="tab"
-               aria-controls="events" aria-selected="true">Events</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="map-tab" data-toggle="tab" href="#map" role="tab" aria-controls="map"
-               aria-selected="false">Map</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="calendar-tab" data-toggle="tab" href="#calendar" role="tab" aria-controls="calendar"
-               aria-selected="false">Calendar</a>
-        </li>
-    </ul>
-
-    <!-- Tab panes -->
-    <div class="tab-content">
-        <!--Events Tab Content-->
-        <div class="tab-pane active" id="events" role="tabpanel" aria-labelledby="events-tab">
-            <!-- Dipplays all upcoming events in card form -->
-            <div class="d-flex flex-wrap p-4 justify-content-center">
-
-                <!--    <div class="d-flex flex-wrap row justify-content-between">-->
-                <div th:each="event : ${results}" class="card hovercard eventcard col-3 d-inline mr-5 mb-5">
-                    <a th:text="${event.title}" class="card-title"></a>
-                    <div class="card-body ">
-                        <p th:text="${event.address}"></p>
-                        <!--                <p th:text="${event.date}"></p>-->
-                        <!--                <p th:text="${event.time}"></p>-->
-                        <!--                <p> created by user with email <span th:text="${event.user.email}"> </span></p>-->
+    <h1> events that match your search</h1>
+    <div class="d-flex flex-wrap p-4 justify-content-center">
+        <div th:each="event : ${results}">
+            <a th:href="@{'/events/singleevent/'+${event.id}}">
+                <div class="card hovercard mr-5 mb-5" style="width: 18rem;">
+                    <img th:src="@{${event.getImages()}}" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${event.title}"></h5>
+                        <p class="card-text" th:text="${event.location}"></p>
+                        <p class="card-text" th:text="${event.address}"></p>
+                        <p class="card-text thisDateTime" th:text="${event.date_time}"></p>
                     </div>
-                    <div class="d-flex justify-content-center eventindeximageholder">
-
-                        <img th:src="${event.getImages()}" alt="edit event to add image" class="card-img eventindeximg">
-
-                        <!--                <div th:each="image : ${event.images}">-->
-                        <!--                    <div>-->
-                        <!--                        <img th:src="${image}" style="height: 200px; margin: auto"/>-->
-                        <!--                    </div>-->
-                    </div>
-                    <div class="d-flex flex-nowrap btn-div justify-content-around">
-                        <!--view post-->
-                        <a th:href="@{'/events/singleevent/'+${event.id}}" class="btn ">
-                            <button>View Event</button>
-                        </a>
-                    </div>
-
-<h1 class="text-center">Search Results</h1>
-
-<!-- Nav tabs -->
-<ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item">
-        <a class="nav-link active" id="events-tab" data-toggle="tab" href="#events" role="tab" aria-controls="events" aria-selected="true">Events</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" id="map-tab" data-toggle="tab" href="#map" role="tab" aria-controls="map" aria-selected="false">Map</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" id="calendar-tab" data-toggle="tab" href="#calendar" role="tab" aria-controls="calendar" aria-selected="false">Calendar</a>
-    </li>
-</ul>
-
-<!-- Tab panes -->
-<div class="tab-content">
-    <!--Events Tab Content-->
-    <div class="tab-pane active" id="events" role="tabpanel" aria-labelledby="events-tab">
-        <!-- Dipplays all upcoming events in card form -->
-        <div class="d-flex flex-wrap p-4 justify-content-center">
-
-            <!--    <div class="d-flex flex-wrap row justify-content-between">-->
-            <div th:each="event : ${results}" class="card hovercard eventcard col-3 d-inline mr-5 mb-5">
-                <a th:text="${event.title}" class="card-title"></a>
-                <div class="card-body ">
-                    <p th:text="${event.address}"></p>
-                    <p class="thisDateTime" th:text="${event.date_time}"></p>
-                    <!--                <p th:text="${event.date}"></p>-->
-                    <!--                <p th:text="${event.time}"></p>-->
-                    <!--                <p> created by user with email <span th:text="${event.user.email}"> </span></p>-->
                 </div>
-                <div class="d-flex justify-content-center eventindeximageholder">
-
-                    <img th:src="${event.getImages()}" alt="edit event to add image" class="card-img eventindeximg">
-
-                    <!--                <div th:each="image : ${event.images}">-->
-                    <!--                    <div>-->
-                    <!--                        <img th:src="${image}" style="height: 200px; margin: auto"/>-->
-                    <!--                    </div>-->
-                </div>
-                <div class="d-flex flex-nowrap btn-div justify-content-around">
-                    <!--view post-->
-                    <a th:href="@{'/events/singleevent/'+${event.id}}" class="btn ">
-                        <button>View Event</button>
-                    </a>
-
-                </div>
-
-            </div>
-            <!-- End of card display-->
-        </div>
-        <!--Map Tab Content-->
-        <div class="tab-pane" id="map" role="tabpanel" aria-labelledby="map-tab">
-            <!-- display the events in the map-->
-            <div id="mapShow"></div>
-        </div>
-        <!--Calendar Tab Content-->
-        <div class="tab-pane" id="calendar" role="tabpanel" aria-labelledby="calendar-tab">
-            <!-- display events in a calendar-->
-            <div id="calendarShow"></div>
+            </a>
         </div>
     </div>
 </div>
-<nav th:insert="partials/navbar :: footer"></nav>
+</div>
+<!--    <h1 class="text-center">Search Results</h1>-->
 
-<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
-<!-- Mapbox JS -->
-<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
-<script src="/js/mapbox-geocoder-utils.js"></script>
-<!-- Custom JS -->
+<!--    &lt;!&ndash; Nav tabs &ndash;&gt;-->
+<!--    <ul class="nav nav-tabs" id="myTab" role="tablist">-->
+<!--        <li class="nav-item">-->
+<!--            <a class="nav-link active" id="events-tab" data-toggle="tab" href="#events" role="tab"-->
+<!--               aria-controls="events" aria-selected="true">Events</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--            <a class="nav-link" id="map-tab" data-toggle="tab" href="#map" role="tab" aria-controls="map"-->
+<!--               aria-selected="false">Map</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--            <a class="nav-link" id="calendar-tab" data-toggle="tab" href="#calendar" role="tab" aria-controls="calendar"-->
+<!--               aria-selected="false">Calendar</a>-->
+<!--        </li>-->
+<!--    </ul>-->
+
+<!--    &lt;!&ndash; Tab panes &ndash;&gt;-->
+<!--    <div class="tab-content">-->
+<!--        &lt;!&ndash;Events Tab Content&ndash;&gt;-->
+<!--        <div class="tab-pane active" id="events" role="tabpanel" aria-labelledby="events-tab">-->
+<!--            &lt;!&ndash; Dipplays all upcoming events in card form &ndash;&gt;-->
+<!--            <div class="d-flex flex-wrap p-4 justify-content-center">-->
+
+<!--                &lt;!&ndash;    <div class="d-flex flex-wrap row justify-content-between">&ndash;&gt;-->
+<!--                <div th:each="event : ${results}" class="card hovercard eventcard col-3 d-inline mr-5 mb-5">-->
+<!--                    <a th:text="${event.title}" class="card-title"></a>-->
+<!--                    <div class="card-body ">-->
+<!--                        <p th:text="${event.address}"></p>-->
+<!--                        &lt;!&ndash;                <p th:text="${event.date}"></p>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                <p th:text="${event.time}"></p>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                <p> created by user with email <span th:text="${event.user.email}"> </span></p>&ndash;&gt;-->
+<!--                    </div>-->
+<!--                    <div class="d-flex justify-content-center eventindeximageholder">-->
+
+<!--                        <img th:src="${event.getImages()}" alt="edit event to add image" class="card-img eventindeximg">-->
+
+<!--                        &lt;!&ndash;                <div th:each="image : ${event.images}">&ndash;&gt;-->
+<!--                        &lt;!&ndash;                    <div>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        <img th:src="${image}" style="height: 200px; margin: auto"/>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--                    </div>-->
+<!--                    <div class="d-flex flex-nowrap btn-div justify-content-around">-->
+<!--                        &lt;!&ndash;view post&ndash;&gt;-->
+<!--                        <a th:href="@{'/events/singleevent/'+${event.id}}" class="btn ">-->
+<!--                            <button>View Event</button>-->
+<!--                        </a>-->
+<!--                    </div>-->
+
+<!--<h1 class="text-center">Search Results</h1>-->
+
+<!--&lt;!&ndash; Nav tabs &ndash;&gt;-->
+<!--<ul class="nav nav-tabs" id="myTab" role="tablist">-->
+<!--    <li class="nav-item">-->
+<!--        <a class="nav-link active" id="events-tab" data-toggle="tab" href="#events" role="tab" aria-controls="events" aria-selected="true">Events</a>-->
+<!--    </li>-->
+<!--    <li class="nav-item">-->
+<!--        <a class="nav-link" id="map-tab" data-toggle="tab" href="#map" role="tab" aria-controls="map" aria-selected="false">Map</a>-->
+<!--    </li>-->
+<!--    <li class="nav-item">-->
+<!--        <a class="nav-link" id="calendar-tab" data-toggle="tab" href="#calendar" role="tab" aria-controls="calendar" aria-selected="false">Calendar</a>-->
+<!--    </li>-->
+<!--</ul>-->
+
+<!--&lt;!&ndash; Tab panes &ndash;&gt;-->
+<!--<div class="tab-content">-->
+<!--    &lt;!&ndash;Events Tab Content&ndash;&gt;-->
+<!--    <div class="tab-pane active" id="events" role="tabpanel" aria-labelledby="events-tab">-->
+<!--        &lt;!&ndash; Dipplays all upcoming events in card form &ndash;&gt;-->
+<!--        <div class="d-flex flex-wrap p-4 justify-content-center">-->
+
+<!--            &lt;!&ndash;    <div class="d-flex flex-wrap row justify-content-between">&ndash;&gt;-->
+<!--            <div th:each="event : ${results}" class="card hovercard eventcard col-3 d-inline mr-5 mb-5">-->
+<!--                <a th:text="${event.title}" class="card-title"></a>-->
+<!--                <div class="card-body ">-->
+<!--                    <p th:text="${event.address}"></p>-->
+<!--                    <p class="thisDateTime" th:text="${event.date_time}"></p>-->
+<!--                    &lt;!&ndash;                <p th:text="${event.date}"></p>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                <p th:text="${event.time}"></p>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                <p> created by user with email <span th:text="${event.user.email}"> </span></p>&ndash;&gt;-->
+<!--                </div>-->
+<!--                <div class="d-flex justify-content-center eventindeximageholder">-->
+
+<!--                    <img th:src="${event.getImages()}" alt="edit event to add image" class="card-img eventindeximg">-->
+
+<!--                    &lt;!&ndash;                <div th:each="image : ${event.images}">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <img th:src="${image}" style="height: 200px; margin: auto"/>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--                </div>-->
+<!--                <div class="d-flex flex-nowrap btn-div justify-content-around">-->
+<!--                    &lt;!&ndash;view post&ndash;&gt;-->
+<!--                    <a th:href="@{'/events/singleevent/'+${event.id}}" class="btn ">-->
+<!--                        <button>View Event</button>-->
+<!--                    </a>-->
+
+<!--                </div>-->
+
+<!--            </div>-->
+<!--            &lt;!&ndash; End of card display&ndash;&gt;-->
+<!--        </div>-->
+<!--        &lt;!&ndash;Map Tab Content&ndash;&gt;-->
+<!--        <div class="tab-pane" id="map" role="tabpanel" aria-labelledby="map-tab">-->
+<!--            &lt;!&ndash; display the events in the map&ndash;&gt;-->
+<!--            <div id="mapShow"></div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash;Calendar Tab Content&ndash;&gt;-->
+<!--        <div class="tab-pane" id="calendar" role="tabpanel" aria-labelledby="calendar-tab">-->
+<!--            &lt;!&ndash; display events in a calendar&ndash;&gt;-->
+<!--            <div id="calendarShow"></div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--                </div>-->
+<!--<nav th:insert="partials/navbar :: footer"></nav>-->
+
+<!--<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"-->
+<!--        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"-->
+<!--        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--&lt;!&ndash; Mapbox JS &ndash;&gt;-->
+<!--<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>-->
+<!--<script src="/js/mapbox-geocoder-utils.js"></script>-->
+<!--&lt;!&ndash; Custom JS &ndash;&gt;-->
 <script>
     convertDateTime();
 

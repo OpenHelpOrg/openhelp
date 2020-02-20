@@ -14,7 +14,8 @@
 <body>
 <nav th:insert="partials/navbar :: navbar"></nav>
 <div class="container">
-    <h1 class="text-center">Open help Partner Index Page</h1>
+
+    <h1 class="text-center">Users that match your search</h1>
     <div class="d-flex flex-wrap p-4 justify-content-center">
         <div th:each="user : ${resultsuser}">
             <a th:href="@{'/user/' + ${user.getId()}}">
@@ -29,36 +30,69 @@
             </a>
         </div>
     </div>
-
-    <div th:each="event : ${results}" class="card hovercard eventcard col-3 d-inline mr-5 mb-5">
-        <a th:text="${event.title}" class="card-title"></a>
-        <div class="card-body ">
-            <p th:text="${event.address}"></p>
-            <p th:text="${event.date}"></p>
-            <p th:text="${event.time}"></p>
-            <p> created by user with email <span th:text="${event.user.email}"> </span></p>
-        </div>
-        <div class="d-flex justify-content-center eventindeximageholder">
-
-            <img th:src="${event.getImages()}" alt="edit event to add image" class="card-img eventindeximg">
-
-            <!--                <div th:each="image : ${event.images}">-->
-            <!--                    <div>-->
-            <!--                        <img th:src="${image}" style="height: 200px; margin: auto"/>-->
-            <!--                    </div>-->
-        </div>
-        <div class="d-flex flex-nowrap btn-div justify-content-around">
-            <!--view post-->
-            <a th:href="@{'/events/singleevent/'+${event.id}}" class="btn ">
-                <button>View Event</button>
+    <br>
+    <hr>
+    <br>
+    <h1> events that match your search</h1>
+    <div class="d-flex flex-wrap p-4 justify-content-center">
+        <div th:each="event : ${results}">
+            <a th:href="@{'/events/singleevent/'+${event.id}}">
+                <div class="card hovercard mr-5 mb-5" style="width: 18rem;">
+                    <img th:src="@{${event.getImages()}}" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${event.title}"></h5>
+                        <p class="card-text" th:text="${event.location}"></p>
+                        <p class="card-text" th:text="${event.address}"></p>
+                        <p class="card-text thisDateTime" th:text="${event.date_time}"></p>
+                    </div>
+                </div>
             </a>
         </div>
     </div>
-
-
-
-
 </div>
+
+<!--    =====================================-->
+<!--    <div class="d-flex flex-wrap p-4 justify-content-center">-->
+<!--    <div th:each="event : ${results}" class="card hovercard eventcard col-3 d-inline mr-5 mb-5">-->
+<!--        <a th:text="${event.title}" class="card-title"></a>-->
+<!--        <div class="card-body ">-->
+<!--            <p th:text="${event.address}"></p>-->
+<!--            <p class="thisDateTime" th:text="${event.date_time}"></p>-->
+<!--&lt;!&ndash;            <p> created by user with email <span th:text="${event.user.email}"> </span></p>&ndash;&gt;-->
+<!--        </div>-->
+<!--        <div class="d-flex justify-content-center eventindeximageholder">-->
+
+<!--            <img th:src="${event.getImages()}" alt="edit event to add image" class="card-img eventindeximg">-->
+
+<!--            &lt;!&ndash;                <div th:each="image : ${event.images}">&ndash;&gt;-->
+<!--            &lt;!&ndash;                    <div>&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <img th:src="${image}" style="height: 200px; margin: auto"/>&ndash;&gt;-->
+<!--            &lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--        </div>-->
+<!--        <div class="d-flex flex-nowrap btn-div justify-content-around">-->
+<!--            &lt;!&ndash;view post&ndash;&gt;-->
+<!--            <a th:href="@{'/events/singleevent/'+${event.id}}" class="btn ">-->
+<!--                <button>View Event</button>-->
+<!--            </a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+
 <nav th:insert="partials/navbar :: footer"></nav>
+<script>
+    convertDateTime();
+    //    DATE CONVERSION LOGIC
+    function convertDateTime() {
+        $(".thisDateTime").each(function () {
+            var unformattedDate = $(this).text();
+            // console.log(unformattedDate);
+            var formattedDate = moment(unformattedDate).format('MMMM Do YYYY, h:mm a');
+            $(this).text(formattedDate);
+            // console.log(formattedDate);
+        });
+    }
+</script>
 </body>
 </html>

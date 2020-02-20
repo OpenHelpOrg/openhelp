@@ -47,12 +47,8 @@ public class SearchController {
             model.addAttribute("results", results);
 //            System.out.println(model);
             return "users/usersearch";
-        } else if (search_param.equals("category")) {
-            List<Category> catresults = categoryDao.findByNameAllIgnoreCase(query);
-
-
-            return "events/eventsearch";
         } else {
+//            'ALL' search
             List<Event> results = eventDao.findByTitleContainsOrSummaryContainsAllIgnoreCase(query, query);
             model.addAttribute("results", results);
             List<User> resultsuser = userDao.findByNameContainsOrEmailContainsAllIgnoreCase(query, query);

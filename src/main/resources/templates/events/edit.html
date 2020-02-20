@@ -30,17 +30,6 @@
         <p th:text="${confirmation}"></p>
     </div>
 
-  <h1 class="text-center"> Edit Event</h1>
-
-<div class="d-flex justify-content-center">
-    <button type="button" class="btn btn-doEdit d-inline mr-0" data-toggle="modal"
-            data-target="#editInfoModal"
-            id="modalButton">
-        Send Message
-    </button>
-    <p>Send a message to all volunteers for this event.</p>
-    <p th:text="${confirmation}"></p>
-</div>
 
 <!-- confirm attendees -->
 <form th:method="post" th:action="@{'/users/confirm-attendance'}">
