@@ -78,6 +78,11 @@ ul {
   /*position: relative;*/
 }
 
+.abtcodeuplogo {
+  height: 40px;
+  width: 40px;
+}
+
 /*USER PROFILE*/
 .profileeventimgholder {
   height: 125px !important;
@@ -548,6 +553,7 @@ ul {
 }
 
 /*NAVBAR AND FOOTER*/
+
 .navbar {
   /*text-transform: uppercase;*/
   /*letter-spacing: .1rem;*/
@@ -561,11 +567,10 @@ ul {
 }
 
 .navbar-brand {
-
   font-size: 6em;
   font-family: 'Grand Hotel', cursive;
   text-shadow: 1px 1px black;
-  margin-top: -5px;
+  margin-top: -12px;
   padding-top: 0;
 }
 
@@ -606,6 +611,7 @@ nav #searchbutton {
   font-size: 2em;
   color: white;
   font-family: 'Grand Hotel', cursive;
+  height: 34px!important;
 }
 
 nav #searchbutton:hover {
@@ -615,7 +621,7 @@ nav #searchbutton:hover {
 nav #searchfield {
   border: 1px solid #ff6a00 !important;
   border-radius: 5px;
-  margin: .25em;
+  margin: 0;
   font-size: 2em;
 }
 

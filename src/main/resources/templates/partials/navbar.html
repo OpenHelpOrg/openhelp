@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<nav th:fragment="navbar" class="navbar navbar-expand-lg py-3 mb-4">
+<nav th:fragment="navbar" class="navbar navbar-expand-lg pt-3 mb-4">
     <a class="navbar-brand" href="/home">OpenHelp</a>
 
     <div class="collapse navbar-collapse d-flex flex-row" id="navbarSupportedContent">
@@ -39,30 +39,39 @@
             </li>
 
             <li>
-                <!--                <div class="container">-->
-                <div class="row">
-                    <form class="form-inline my-2 my-lg-0" th:action="@{/search}">
-                        <div class="input-group-btn search-panel">
-                            <select name="search_param" id="search_param" class="btn btn-default dropdown-toggle"
-                                    data-toggle="dropdown">
-                                <option value="all">All</option>
-                                <option value="event">Events</option>
-                                <option value="user">Users</option>
-                                <option value="category">Categories</p></option>
+                <!--                ===============================-->
+                <form class="form-inline mt-2" th:action="@{/search}">
+                    <ul class="d-flex">
+                        <input class="form-control" name="query" id="searchfield" type="search" placeholder="Search"
+                           aria-label="Search">
+                        <select class="custom-select" id="inputGroupSelect" name="search_param" style="height: 34px; font-size: 1.5em; border: 1px solid #ea6725; border-radius: 5px;">
+                            <option name="filter" value="all" selected>All</option>
+                            <option name="filter" value="event">Events</option>
+                            <option name="filter" value="user">Users</option>
+                        </select>
+                        <button class="btn" id="searchbutton" type="submit">Search</button>
+                    </ul>
+                </form>
 
-                            </select>
-                        </div>
-                        <div>
+<!--                ================================================-->
+<!--                    <form class="form-inline my-lg-0 mr-0" th:action="@{/search}">-->
+<!--                        <div class="input-group-btn search-panel mr-5">-->
+<!--                            <select name="search_param" id="search_param" class="btn btn-default dropdown-toggle"-->
+<!--                                    data-toggle="dropdown">-->
+<!--                                <option value="all" selected>All</option>-->
+<!--                                <option value="event">Events</option>-->
+<!--                                <option value="user">Users</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                        <div>-->
+<!--                            <input class="form-control mr-sm-2" id="searchfield" type="search" placeholder="Search"-->
+<!--                                   aria-label="Search" name="query">-->
+<!--                            <button class="btn my-1 my-sm-0" id="searchbutton" type="submit"><span-->
+<!--                                    class="glyphicon glyphicon-search"></span>Search-->
+<!--                            </button>-->
+<!--                        </div>-->
+<!--                    </form>-->
 
-                            <input class="form-control mr-sm-2" id="searchfield" type="search" placeholder="Search"
-                                   aria-label="Search" name="query">
-                            <button class="btn my-2 my-sm-0" id="searchbutton" type="submit"><span
-                                    class="glyphicon glyphicon-search"></span>Search
-                            </button>
-                        </div>
-                    </form>
-                    <!--                    </div>-->
-                </div>
             </li>
         </ul>
     </div>
@@ -115,6 +124,5 @@
         });
     });
 </script>
-
 </body>
 </html>
