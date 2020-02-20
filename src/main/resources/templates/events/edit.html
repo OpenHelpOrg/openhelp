@@ -32,6 +32,7 @@
 
 
 <!-- confirm attendees -->
+
     <h2>Confirm Vonlunteer Attendance</h2>
     <form th:method="post" th:action="@{'/users/confirm-attendance'}">
         <input type="hidden" th:value="${event.getId()}" th:name="id">
@@ -66,6 +67,7 @@
             <div class="input-group" th:each="userevent : ${userevents}">
                 <div class="input-group-prepend">
                     <input type="checkbox" th:name="users" th:value="${userevent.getId()}" th:disabled="${isDisabled}">
+
                 </div>
                 <label class="ml-2" th:for="users" th:text="${userevent.getUser().getName()}"></label>
             </div>
@@ -135,8 +137,12 @@
             </div>
             <!--                max volunteers-->
             <div class="input-block">
-                <label for="volume">Max people</label>
-                <input th:placeholder="max" id="volume" type="text" th:field="*{vol_limit}" required th:disabled="${isDisabled}">
+                <label for="volume">Max people - </label>
+                <label id="volumeOutput" class="ml-3"></label>
+                <div class="slidecontainer">
+                    <input type="range" min="1" max="100" value="50" class="slider" id="volume" th:field="*{vol_limit}" required th:disabled="${isDisabled}">
+                </div>
+<!--                <input th:placeholder="max" id="volume" type="text" th:field="*{vol_limit}" required th:disabled="${isDisabled}">-->
             </div>
             <!--                image-->
             <div class="input-block">
@@ -156,18 +162,13 @@
                           required th:disabled="${isDisabled}"></textarea>
             </div>
             <!--                event details-->
-<!--            <div class="input-block">-->
-<!--                <label for="details">Details</label><br>-->
-<!--                <textarea placeholder="details? " id="details" type="textarea" th:field="*{details}"-->
-<!--                          required></textarea>-->
-<!--            </div>-->
 
             <!-- categories -->
             <div class="input-block" id="checkbox">
                 <div th:each="category : ${categories}">
                     <input th:field="*{categories}" type="checkbox" th:value="${category.getId()}" th:text="${category.getName()}" th:disabled="${isDisabled}"></li>
                 </div>
-
+            </div>
             <div class="d-flex m-auto p-1">
                 <button type="submit" class="btn-submit p-2" th:disabled="${isDisabled}">Continue</button>
             </div>
@@ -223,6 +224,17 @@
         // urlBox.appendChild(url);
         $('#fileupload').attr('value', url);
     }
+
+    var slider = document.getElementById("volume");
+    var output = document.getElementById("volumeOutput");
+    output.innerHTML = slider.value; // Display the default slider value
+
+    // Update the current slider value (each time you drag the slider handle)
+    slider.oninput = function() {
+        output.innerHTML = this.value;
+    }
+
+
 
 </script>
 </body>

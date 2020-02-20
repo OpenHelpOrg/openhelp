@@ -3,12 +3,11 @@
 <head>
     <th:block th:insert="partials/head :: head"></th:block>
     <!--    <link rel="stylesheet" href="css/navbar.css">-->
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
     <!--    <link rel="stylesheet" href="css/search-filter.css">-->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
     <title>NavBar</title>
-
 </head>
 <body>
 
@@ -78,7 +77,7 @@
 </nav>
 
 <!-- FOOTER -->
-<footer th:fragment="footer" id="footer" class="footer fixed-footer-bottom">
+<footer th:fragment="footer" id="footer" class="footer fixed-footer-bottom" style="position:absolute; bottom:0;">
     <ul id="footer-ul">
         <li class="footer-link" id="footer-left">
             <a href="/about">
@@ -86,19 +85,19 @@
             </a>
         </li>
         <li class="footer-link">
-            <a href="http://www.github.com/walshcbryan">
+            <a href="https://www.github.com/walshcbryan">
                 <i class="fab fa-github"></i>
                 Github/WalshCBryan
             </a>
         </li>
         <li class="footer-link">
-            <a href="http://www.github.com/https://github.com/evaleriog">
+            <a href="https://github.com/evaleriog">
                 <i class="fab fa-github"></i>
                 Github/Evaleriog
             </a>
         </li>
         <li class="footer-link">
-            <a href="http://www.github.com/roger-mayer">
+            <a href="https://www.github.com/roger-mayer">
                 <i class="fab fa-github"></i>
                 Github/Roger-Mayer
             </a>

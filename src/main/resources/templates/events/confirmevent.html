@@ -15,21 +15,68 @@
 
     <h1 class="text-center">Event Confirmation</h1>
 
-    <div th:if="${response == 'yes'}">
-        <h1>Thank you</h1>
-        <p th:text="'Thank you ' + ${user.getName()} + ', you are now registered to volunteer in the event ' + ${event.getTitle()} + '.'"></p>
-        <p>If you have any questions, please contact <a th:href="@{'/user/' + ${creator.getId()}}"
-                                                        th:text="${creator.getName()}"></a> at <a
-                th:href="@{'mailto:' + ${creator.getEmail()}}" th:text="${creator.getEmail()}"></a>.</p>
+
+    <div class="row p-5 justify-content-center" th:if="${response == 'yes'}">
+        <div class="col-sm-12 col-md-8">
+            <div class="card mb-3 p-2 border-dark" style="width: 100%;">
+                <div class="row no-gutters">
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h1 class="card-title">Thank you!</h1>
+                            <h4 class="card-text"
+                                th:text="'Thank you ' + ${user.getName()} + ', you are now registered to volunteer in the event ' + ${event.getTitle()} + '.'"></h4>
+                            <h4 class="card-text"> If you have any questions, please contact <a
+                                    th:href="@{'/user/' + ${creator.getId()}}"
+                                    th:text="${creator.getName()}"></a> at <a
+                                    th:href="@{'mailto:' + ${creator.getEmail()}}" th:text="${creator.getEmail()}"></a>.
+                            </h4>
+                            <h4 class="card-text">Use the navigation bar to go to another part of the application.</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div th:if="${response == 'no'}">
-        <h1>We Apologize</h1>
-        <p>Looks like the event has reached its maximum amount of volunteers.</p>
-        <p>For more questions about this contact the event creator <a th:href="@{'/user/' + ${creator.getId()}}"
-                                                                      th:text="${creator.getName()}"></a> at <a
-                th:href="@{'mailto:' + ${creator.getEmail()}}" th:text="${creator.getEmail()}"></a>.</p>
+    <div class="row p-5 justify-content-center" th:if="${response == 'no'}">
+        <div class="col-sm-12 col-md-8">
+            <div class="card mb-3 p-2 border-dark" style="width: 100%;">
+                <div class="row no-gutters">
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h1 class="card-title"> We apologize</h1>
+                            <h4 class="card-text">This event has reached it's maximum number of volunteers</h4>
+                            <h4 class="card-text">Use the navigation bar to go to another part of the application.</h4>
+                            <h4 class="card-text">For more questions about this contact the event creator <a
+                                    th:href="@{'/user/' + ${creator.getId()}}"
+                                    th:text="${creator.getName()}"></a> at <a
+                                    th:href="@{'mailto:' + ${creator.getEmail()}}" th:text="${creator.getEmail()}"></a>.
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+
+    <!--  ---------------------------------------------  \-->
+
+<!--    <div th:if="${response == 'yes'}">-->
+<!--        <h1>Thank you</h1>-->
+<!--        <p th:text="'Thank you ' + ${user.getName()} + ', you are now registered to volunteer in the event ' + ${event.getTitle()} + '.'"></p>-->
+<!--        <p>If you have any questions, please contact <a th:href="@{'/user/' + ${creator.getId()}}"-->
+<!--                                                        th:text="${creator.getName()}"></a> at <a-->
+<!--                th:href="@{'mailto:' + ${creator.getEmail()}}" th:text="${creator.getEmail()}"></a>.</p>-->
+<!--    </div>-->
+
+<!--    <div th:if="${response == 'no'}">-->
+<!--        <h1>We Apologize</h1>-->
+<!--        <p>Looks like the event has reached its maximum amount of volunteers.</p>-->
+<!--        <p>For more questions about this contact the event creator <a th:href="@{'/user/' + ${creator.getId()}}"-->
+<!--                                                                      th:text="${creator.getName()}"></a> at <a-->
+<!--                th:href="@{'mailto:' + ${creator.getEmail()}}" th:text="${creator.getEmail()}"></a>.</p>-->
+<!--    </div>-->
 
 </div>
 <nav th:insert="partials/navbar :: footer"></nav>
