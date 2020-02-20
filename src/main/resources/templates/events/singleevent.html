@@ -41,6 +41,7 @@
             .containerStory {
                 text-align: center;
             }
+
             .containerStory img {
                 margin: auto;
                 float: none;
@@ -53,13 +54,13 @@
 <nav th:insert="partials/navbar :: navbar"></nav>
 <div class="container">
 
+<!--    <h1 class="text-center"> Showing Single Event</h1>-->
     <!--    event card-->
-    <h1 class="text-center"> Showing Single Event</h1>
     <div class="row p-5 justify-content-center flex-wrap">
         <div class="col-sm-12 col-md-8 col-lg-7">
             <div class="card mb-3 p-2 border-dark" style="height:100%; width: 100%;">
                 <div class="row no-gutters">
-<!--                    card image-->
+                    <!--                    card image-->
                     <div class="col-md-5">
                         <img th:src="${event.getImages()}" alt="img" class="card-img">
                         <!--    !!!!!!!!!!!!!!!!! Crashing if viewing event not created !!!!!!!!!!!!!!!!!!!!!!!!-->
@@ -78,25 +79,24 @@
                                     </div>
                                 </li>
                             </ul>
-
                             <ul>
+                            <div th:if="${display} != false">
                                 <li class="list-group-item">
-                                    <div th:if="${display} != false">
                                         <div th:if="${event.getUserEvents().size() <= event.getLimit()}">
                                             <a th:href="@{'/events/singleevent/' + ${event.getId()} + '/enroll'}">Enroll</a>
                                         </div>
-                                    </div>
                                 </li>
+                                    </div>
                             </ul>
                         </div>
                     </div>
-<!--                    event card info-->
+                    <!--                    event card info-->
                     <div class="col-md-7 eventcard">
                         <span th:if="${enrollBanner}"><span>Enrolled</span></span>
                         <div class="card-body">
                             <div class="card-title"><span th:text="${event.getTitle()}"></span>
                             </div>
-<!--                            <hr>-->
+                            <!--                            <hr>-->
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">
                                     <h3>Location:</h3>
@@ -128,8 +128,6 @@
                                                    th:text="${ev.getUser().getEmail()}"></a></h4>
                                         </div>
                                     </div>
-
-
                                 </li>
 
                                 <li class="card-footer d-flex">
@@ -158,7 +156,7 @@
         </div>
     </div>
 </div>
-</div>
+<!--</div>-->
 
 <h2>Event Stories</h2>
 <div th:each="story : ${stories}">
