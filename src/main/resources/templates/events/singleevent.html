@@ -13,6 +13,43 @@
 
     <title>Single Event</title>
 
+    <style>
+        .containerStory {
+            border: 2px solid #ccc;
+            background-color: #eee;
+            border-radius: 5px;
+            padding: 16px;
+            margin: 16px 0
+        }
+
+        .containerStory::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .containerStory img {
+            float: left;
+            margin-right: 20px;
+            border-radius: 50%;
+        }
+
+        .containerStory span {
+            font-size: 20px;
+            margin-right: 15px;
+        }
+
+        @media (max-width: 500px) {
+            .containerStory {
+                text-align: center;
+            }
+            .containerStory img {
+                margin: auto;
+                float: none;
+                display: block;
+            }
+        }
+    </style>
 </head>
 <body>
 <nav th:insert="partials/navbar :: navbar"></nav>
@@ -121,10 +158,18 @@
             </div>
         </div>
     </div>
-
-
 </div>
 </div>
+
+<h2>Event Stories</h2>
+<div th:each="story : ${stories}">
+    <div class="containerStory">
+        <img th:src="${story.getUser().getImage()}" alt="User" style="width:90px">
+        <p><span th:text="${story.getUser().getName()}"></span> User</p>
+        <p th:text="${story.getStory()}"></p>
+    </div>
+</div>
+
 <nav th:insert="partials/navbar :: footer"></nav>
 <!-- need jquery for ajax request-->
 <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="

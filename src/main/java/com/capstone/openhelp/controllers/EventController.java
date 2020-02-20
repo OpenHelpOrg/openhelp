@@ -196,13 +196,20 @@ public class EventController {
         LocalDateTime currDate = LocalDateTime.now();
         String date = event.getDate_time();
         Boolean isCreator = false;
+        List<UserEvents> userEvents = new ArrayList<>();
 
         for(int x=0; x < event.getUserEvents().size(); x++){
+            UserEvents userevent = event.getUserEvents().get(x);
+
             if(event.getUserEvents().get(x).isIs_creator()){
                 model.addAttribute("creator", event.getUserEvents().get(x).getUser());
                 if(user.getId() == event.getUserEvents().get(x).getUser().getId()){
                     isCreator = true;
                 }
+            }
+
+            if(userevent.getAttended() && !userevent.getStory().equals("") && !userevent.isIs_creator()){
+                userEvents.add(userevent);
             }
         }
 
@@ -218,6 +225,7 @@ public class EventController {
         model.addAttribute("userId", user.getId());
         model.addAttribute("event", event);
         model.addAttribute("mapbox", mapbox);
+        model.addAttribute("stories", userEvents);
 
         return "events/singleevent";
     }
@@ -226,25 +234,6 @@ public class EventController {
     @GetMapping("/event/{id}/event.json")
     public @ResponseBody Event viewEventInJSON(@PathVariable long id){
         return eventDao.findById(id);
-    }
-
-    //mapping to display user stories for a specific event
-    @GetMapping("/event/{id}/stories")
-    public String displayEventStories(@PathVariable long id, Model model){
-        Event event = eventDao.getOne(id);
-
-        List<UserEvents> userEvents = new ArrayList<>();
-
-        for(int x = 0; x < event.getUserEvents().size(); x++){
-            UserEvents userEvent = event.getUserEvents().get(x);
-
-            if(userEvent.getAttended() && !userEvent.getStory().equals(" ") && !userEvent.isIs_creator()){
-                userEvents.add(userEvent);
-            }
-        }
-
-        model.addAttribute("stories", userEvents);
-        return "/events/testimonials";
     }
 
     @GetMapping("/events/singleevent/{id}/enroll")

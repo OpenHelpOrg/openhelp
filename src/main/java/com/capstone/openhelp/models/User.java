@@ -1,5 +1,6 @@
 package com.capstone.openhelp.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public class User {
     private String email;
 
     @Column(nullable = false)
+    @JsonIgnore
     private String password;
 
     @Column(columnDefinition = "bit(1) DEFAULT 0", nullable = false)
@@ -45,12 +47,15 @@ public class User {
             joinColumns={@JoinColumn(name = "user_id")},
             inverseJoinColumns={@JoinColumn(name = "org_id")}
             )
+    @JsonIgnore
     private List<User> users;
 
     @ManyToMany(mappedBy = "users")
+    @JsonIgnore
     private List<User> organizations;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<UserEvents> userEvents;
 
     //this is for email verification
