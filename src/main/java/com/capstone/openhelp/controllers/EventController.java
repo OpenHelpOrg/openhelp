@@ -66,6 +66,21 @@ public class EventController {
         return events;
     }
 
+    @GetMapping("/events/userevents.json")
+    public @ResponseBody List<Event> viewEventUserEvents(){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<UserEvents> userEvents = userEventDao.findAll();
+        List<Event> events = new ArrayList<>();
+
+        for(int x = 0; x < userEvents.size(); x++){
+            if(userEvents.get(x).getUser().getId() == user.getId()){
+                events.add(userEvents.get(x).getEvent());
+            }
+        }
+
+        return events;
+    }
+
     @PostMapping("/events/edit/{id}/send-message")
     public String eventSendMessageAll(@PathVariable Long id,
                                       Model model,
@@ -83,7 +98,7 @@ public class EventController {
         }
 
         model.addAttribute("confirmation", "Emails were sent to all volunteers");
-        return "/events/edit/" + id;
+        return "redirect:/events/edit/" + id;
     }
 
     @GetMapping("/events/edit/{id}")

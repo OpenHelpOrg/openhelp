@@ -16,17 +16,6 @@
 <nav th:insert="partials/navbar :: navbar"></nav>
 <div class="container">
 
-
-    <div class="d-flex justify-content-center">
-        <button type="button" class="btn btn-doEdit d-inline mr-0" data-toggle="modal"
-                data-target="#editInfoModal"
-                id="modalButton">
-            Send Message
-        </button>
-        <p>Send a message to all volunteers for this event.</p>
-        <p th:text="${confirmation}"></p>
-    </div>
-
     <div class="row d-flex justify-content-center">
         <div class="col-4">
             <!--form to edit the event-->
@@ -127,6 +116,7 @@
                     <p th:text="${confirmation}"></p>
                 </div>
             </div>
+            <p th:text="${confirmation}"></p>
         </div>
         <div class="col-2 ml-0">
             <!--    =confirm attentence -->
