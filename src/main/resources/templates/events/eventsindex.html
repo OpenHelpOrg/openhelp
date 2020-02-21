@@ -94,7 +94,7 @@
             width: 100px;
             display: block;
             background: #79A70A;
-            background: linear-gradient(#05EFF7 0%, #087F8F 100%);
+            background: linear-gradient(#9BC90D 0%, #79A70A 100%);
             box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
             position: absolute;
             top: 19px; right: -21px;
@@ -103,19 +103,19 @@
             content: "";
             position: absolute; left: 0px; top: 100%;
             z-index: -1;
-            border-left: 3px solid #087F8F;
+            border-left: 3px solid #79A70A;
             border-right: 3px solid transparent;
             border-bottom: 3px solid transparent;
-            border-top: 3px solid #087F8F;
+            border-top: 3px solid #79A70A;
         }
         .ribbon span::after {
             content: "";
             position: absolute; right: 0px; top: 100%;
             z-index: -1;
             border-left: 3px solid transparent;
-            border-right: 3px solid #087F8F;
+            border-right: 3px solid #79A70A;
             border-bottom: 3px solid transparent;
-            border-top: 3px solid #087F8F;
+            border-top: 3px solid #79A70A;
         }
 
         .eventcard{
@@ -252,13 +252,16 @@
         request.done(function (events) {
             var calEvents = [];
             events.forEach(function (event) {
-                // console.log(event.userEvents.toString());
-                calEvents.push({
-                    title: event.title,
-                    start: event.date_time,
-                    url: 'http://localhost:8080/events/singleevent/' + event.id
 
-                });
+                    calEvents.push({
+                        id: event.id,
+                        title: event.title,
+                        start: event.date_time,
+                        url: 'http://localhost:8080/events/singleevent/' + event.id
+
+                    });
+
+
             });//end of each
             var calendarEl = document.getElementById('calendarShow');
             var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -274,16 +277,51 @@
                 },
                 eventLimit: true, // allow "more" link when too many events
                 events: calEvents,
+                editable: true,
                 eventClick: function (info) {
                     info.jsEvent.preventDefault(); // don't let the browser navigate
 
                     if (info.event.url) {
                         window.location.href = info.event.url;
                     }
+                },
+                eventRender: function (ev, element) {
+                    var ids = [];
+                    $.ajax({'url' : '/events/userevents.json'}).done(function (userEvents) {
+                        userEvents.forEach(function (eventJSON) {
+                            ids.push(eventJSON.id);
+                        });
+                    });
+
+                    ids.forEach(function (idJSON) {
+                        if(ev.event.id === idJSON){
+                            $(element).css('background-color', 'yellow');
+                        }
+                    });
                 }
             });
+
             calendar.render();
+
+
         });//end of done
+    });
+
+    $.ajax({'url' : '/events/userevents.json'}).done(function (userEvents) {
+        var events = document.getElementsByClassName('fc-title');
+
+        userEvents.forEach(function (eventJSON) {
+            for(var i = 0; i < events.length; i++){
+                console.log(events[i].value);
+                // console.log(eventJSON.title);
+
+                if(events[i].value === eventJSON.title){
+                    events[i].style['background-color'] = 'yellow';
+                }
+            }
+
+
+        });
     });
 
     var requestUser = $.ajax({'url': '/user/loginUser.json'});
