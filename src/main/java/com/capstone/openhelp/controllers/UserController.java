@@ -94,7 +94,7 @@ public class UserController {
 //        String currentImg = user.getImage();
 
         userDao.save(user);
-        return ("redirect:/users/profile");
+        return ("redirect:users/profile");
     }
 
     //! DELETE
@@ -111,7 +111,7 @@ public class UserController {
             @PathVariable long id) {
         User user = userDao.findById(id);
         userDao.delete(user);
-        return "redirect:/events";
+        return "redirect:events";
     }
 
 
@@ -201,13 +201,13 @@ public class UserController {
         User user = userDao.findById(log.getId());
         user.setImage(filetoupload);
         userDao.save(user);
-        return ("redirect:/users/profile");
+        return ("redirect:users/profile");
     }
 
     @GetMapping("/test")
     public String testlogin(Model model) {
 //        model.addAttribute("user", new User());
-        return "redirect:/login";
+        return "redirect:login";
     }
 
     @PostMapping("/users/confirm-enrollment")
@@ -219,7 +219,7 @@ public class UserController {
             userEventDao.deleteById(idC);
         }
 
-        return "redirect:/events/edit/" + id;
+        return "redirect:events/edit/" + id;
     }
     @PostMapping("/users/confirm-attendance")
     public String confirmAttendance(@RequestParam("users") List<String> users, @RequestParam long id){
@@ -241,7 +241,7 @@ public class UserController {
 //            userEventDao.save(event);
 //            System.out.println(users.get(x));
 //        }
-        return "redirect:/events/edit/" + id;
+        return "redirect:events/edit/" + id;
     }
 }
 

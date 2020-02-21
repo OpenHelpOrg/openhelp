@@ -847,7 +847,7 @@ nav #searchfield {
 #mapShow {
   width: 80vh;
   height: 80vh;
-  margin: 1em auto;
+  margin: 1em auto 1em;
   border: 2px solid white;
 }
 
