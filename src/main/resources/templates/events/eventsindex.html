@@ -295,6 +295,7 @@
 
             });
         });
+        map.fitBounds();
     });
 
     $(document).ready(function () {
@@ -341,6 +342,7 @@
 
 
         });//end of done
+        map.fitBounds();
     });
 
     $.ajax({'url' : '/events/userevents.json'}).done(function (userEvents) {
@@ -358,18 +360,7 @@
 
 
         });
-    });
-
-    var requestUser = $.ajax({'url': '/user/loginUser.json'});
-    requestUser.done(function (user) {
-        if (!isEmpty(user.address)) {
-            geocode(user.address, token).then(function (result) {
-                map.setCenter(result);
-            });
-        }
-    }).fail(function (jqXhr, status, error) {
-        console.log("Response status: " + status);
-        console.log("Error object: " + error);
+        map.fitBounds();
     });
 
     //    DATE CONVERSION LOGIC
@@ -386,6 +377,27 @@
     function isEmpty(str) {
         return !str || str.length === 0 || !str.trim();
     }
+
+    map.on('load', function () {
+        map.style.width = '100%';
+        map.style.height = '100%';
+        map.resize();
+
+    });
+
+    var requestUser = $.ajax({'url': '/user/loginUser.json'});
+    requestUser.done(function (user) {
+        if (!isEmpty(user.address)) {
+            geocode(user.address, token).then(function (result) {
+                map.setCenter(result);
+            });
+        }
+        map.fitBounds();
+    }).fail(function (jqXhr, status, error) {
+        console.log("Response status: " + status);
+        console.log("Error object: " + error);
+    });
+
 </script>
 
 
