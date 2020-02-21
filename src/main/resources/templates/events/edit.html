@@ -17,10 +17,10 @@
 <div class="container">
 
     <div class="row d-flex justify-content-center">
-        <div class="col-4">
+        <div class="col-6 d-flex justify-content-center w-75">
             <!--form to edit the event-->
-            <div class="forms-section createeventform ml-5 mr-0">
-                <form class="forms mx-auto" th:action="@{/events/edit}" method="post" th:object="${event}"
+            <div class="forms-section createeventform mr-0 ml-5">
+                <form class="forms mx-auto w-100 ml-5" th:action="@{/events/edit}" method="post" th:object="${event}"
                       th:disabled="${isDisabled}">
                     <fieldset>
                         <input type="hidden" th:field="*{id}">
@@ -101,32 +101,37 @@
                 </form>
             </div><!--end of event edit form-->
         </div>
+<div class="col-6">
+        <div class="row d-flex justify-content-center">
+            <div class="col-8">
+                <div class="editEventAttendanceForm ">
+                    <h5 class="center mt-0 mb-2">Send a message to all volunteers for this event.</h5>
 
-        <div class="col-2">
-            <div class="editEventAttendanceForm ">
-                <h5 class="center mt-0 mb-2">Send a message to all volunteers for this event.</h5>
-
-                <div class="d-flex justify-content-center">
-                    <button type="button" class="btn btn-doEdit d-inline mx-auto mb-0" data-toggle="modal"
-                            data-target="#editInfoModal"
-                            id="modalButton">
-                        Send Message
-                    </button>
-                    <br>
-                    <p th:text="${confirmation}"></p>
+                    <div class="d-flex justify-content-center">
+                        <button type="button" class="btn btn-doEdit d-inline mx-auto mb-0" data-toggle="modal"
+                                data-target="#editInfoModal"
+                                id="modalButton">
+                            Send Message
+                        </button>
+                        <br>
+                        <p th:text="${confirmation}"></p>
+                    </div>
                 </div>
+                <p th:text="${confirmation}"></p>
             </div>
-            <p th:text="${confirmation}"></p>
+
         </div>
-        <div class="col-2 ml-0">
-            <!--    =confirm attentence -->
-            <div class="editEventAttendanceForm ">
-                <h2>Confirm Volunteer Attendance</h2>
-                <form th:method="post" th:action="@{'/users/confirm-attendance'}">
-                    <input type="hidden" th:value="${event.getId()}" th:name="id">
-                    <div class="form-row">
-                        <div class="input-group" th:each="userevent : ${userevents}">
-                            <div class="input-group-prepend">
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-6 ml-0">
+                <!--    =confirm attentence -->
+                <div class="editEventAttendanceForm ">
+                    <h2>Confirm Volunteer Attendance</h2>
+                    <form th:method="post" th:action="@{'/users/confirm-attendance'}">
+                        <input type="hidden" th:value="${event.getId()}" th:name="id">
+                        <div class="form-row">
+                            <div class="input-group" th:each="userevent : ${userevents}">
+                                <div class="input-group-prepend">
                 <span th:if="${userevent.getAttended()}">
                     <div class="input-group">
                         <label class="switch">
@@ -136,7 +141,7 @@
                         <!--                        <input type="checkbox" th:name="users" th:value="${userevent.getId()}" checked>-->
                     </div>
                 </span>
-                                <span th:unless="${userevent.getAttended()}">
+                                    <span th:unless="${userevent.getAttended()}">
                     <div class="input-group">
                             <label class="switch">
                         <input type="checkbox" th:name="users" th:value="${userevent.getId()}">
@@ -145,88 +150,95 @@
                         <!--                        <input type="checkbox" th:name="users" th:value="${userevent.getId()}">-->
                     </div>
                 </span>
+                                </div>
+                                <label class="attendeeName mt-2 ml-2" th:for="users"
+                                       th:text="${userevent.getUser().getName()}"></label>
                             </div>
-                            <label class="attendeeName mt-2 ml-2" th:for="users"
-                                   th:text="${userevent.getUser().getName()}"></label>
                         </div>
-                    </div>
-                    <button class="btn-doEdit">Confirm Attendance</button>
-                </form>
+                        <button class="btn-doEdit">Confirm Attendance</button>
+                    </form>
+                </div>
             </div>
-        </div>
 
-        <div class="col-2 ml-0">
-            <div class="editEventAttendanceForm ">
+            <div class="col-6 ml-0">
+                <div class="editEventAttendanceForm ">
 
-                <!-- Enrollment Management-->
-                <h2>Cancel Enrollment Management</h2>
-                <form th:method="post" th:action="@{'/users/confirm-enrollment'}">
-                    <input type="hidden" th:value="${event.getId()}" th:name="id">
-                    <div class="form-row">
-                        <div class="input-group" th:each="userevent : ${userevents}">
-                            <div class="input-group-prepend">
-                                <label class="switch">
-                                    <input type="checkbox" th:name="users" th:value="${userevent.getId()}"
-                                           th:disabled="${isDisabled}">
-                                    <span class="slider round"></span>
-                                </label>
+                    <!-- Enrollment Management-->
+                    <h2>Cancel Enrollment Management</h2>
+                    <form th:method="post" th:action="@{'/users/confirm-enrollment'}">
+                        <input type="hidden" th:value="${event.getId()}" th:name="id">
+                        <div class="form-row">
+                            <div class="input-group" th:each="userevent : ${userevents}">
+                                <div class="input-group-prepend">
+                                    <label class="switch">
+                                        <input type="checkbox" th:name="users" th:value="${userevent.getId()}"
+                                               th:disabled="${isDisabled}">
+                                        <span class="slider round"></span>
+                                    </label>
 
-                                <!--                                <input type="checkbox" th:name="users" th:value="${userevent.getId()}"-->
-                                <!--                                       th:disabled="${isDisabled}">-->
+                                    <!--                                <input type="checkbox" th:name="users" th:value="${userevent.getId()}"-->
+                                    <!--                                       th:disabled="${isDisabled}">-->
 
+                                </div>
+                                <label class="attendeeName mt-2 ml-2" th:for="users"
+                                       th:text="${userevent.getUser().getName()}"></label>
                             </div>
-                            <label class="attendeeName mt-2 ml-2" th:for="users"
-                                   th:text="${userevent.getUser().getName()}"></label>
-                        </div>
 
-                    </div>
-                    <button class="btn-doEdit" th:disabled="${isDisabled}">Confirm Cancellations</button>
-                </form>
+                        </div>
+                        <button class="btn-doEdit" th:disabled="${isDisabled}">Confirm Cancellations</button>
+                    </form>
+                </div>
+            </div>
             </div>
         </div>
         <!--        end row-->
 
     </div>
 
-<!--Modal to send an email to all volunteers-->
-<div class="modal editprofilemodal" tabindex="-1" role="dialog" id="editInfoModal">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content editprofilemodal-content">
-            <div class="modal-header editprofilemodal-header">
-                <h3 class="modal-title editprofilemodal-title">Send Message to Volunteers</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form th:action="@{'/events/edit/' + ${event.getId()} + '/send-message'}" th:method="post">
-                    <div class="input-block mt-2">
-                        <label for="subject">Subject</label>
-                        <br>
-                        <input class="emailalltitle ml-5 p-2 mt-2" placeholder="Enter your subject" id="subject"
-                               name="subject" type="text" required>
-                    </div>
+    <!--Modal to send an email to all volunteers-->
+    <div class="modal editprofilemodal" tabindex="-1" role="dialog" id="editInfoModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content editprofilemodal-content">
+                <div class="modal-header editprofilemodal-header">
+                    <h3 class="modal-title editprofilemodal-title">Send Message to Volunteers</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{'/events/edit/' + ${event.getId()} + '/send-message'}" th:method="post">
+                        <div class="input-block mt-2">
+                            <label for="subject">Subject</label>
+                            <br>
+                            <input class="emailalltitle ml-5 p-2 mt-2" placeholder="Enter your subject" id="subject"
+                                   name="subject" type="text" required>
+                        </div>
 
-                    <div class="input-block mt-2">
-                        <label for="body">Message</label>
-                        <br>
-                        <textarea class="emailallbody ml-5 p-2 mt-2" placeholder="Enter your message" id="body"
-                                  name="body" rows="6" required></textarea>
-                    </div>
+                        <div class="input-block mt-2">
+                            <label for="body">Message</label>
+                            <br>
+                            <textarea class="emailallbody ml-5 p-2 mt-2" placeholder="Enter your message" id="body"
+                                      name="body" rows="6" required></textarea>
+                        </div>
 
-                    <div class="d-flex m-auto p-1">
-                        <button type="submit" class="btn-submit btn-doEdit p-2">Send Message</button>
-                    </div>
-                </form>
+                        <div class="d-flex m-auto p-1">
+                            <button type="submit" class="btn-submit btn-doEdit p-2">Send Message</button>
+                        </div>
+                    </form>
 
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- end email modal-->
+    <!-- end email modal-->
 
 </div>
-<nav th:insert="partials/navbar :: footer"></nav>
+
+
+<div class="footer mt-5 bottom">
+    <nav th:insert="partials/navbar :: footer"></nav>
+</div>
+
 <script>
     $('#editInfoModal').on('shown.bs.modal', function () {
         $('#modalButton').trigger('focus')

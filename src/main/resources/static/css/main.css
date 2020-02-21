@@ -155,6 +155,11 @@ ul {
   border: 1px solid #ea6725 !important;
 }
 
+button {
+  padding-right:15px;
+  padding-left:15px;
+}
+
 .btn-close {
   background-color: gray !important;
   color: white !important;
@@ -233,7 +238,6 @@ ul {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid #ea6725;
   border-radius:  5px;
 }
 
@@ -249,15 +253,20 @@ ul {
   /*margin-top: 20px;*/
   background-color: #fff;
   padding: 10px !important;
+  border-radius:  5px;
+border: 1px solid #ea6725;
+  margin-bottom: 30px;
 }
 
 .createeventform .form {
   overflow: hidden;
   min-width: 350px;
   margin-top: 10px;
-  padding: 30px 25px;
+  padding-right: 30px;
+  padding-left: 30px;
   border-radius: 5px;
   transform-origin: top;
+  margin-bottom: 60px;
 }
 
 .createeventform .form legend {
@@ -729,7 +738,7 @@ nav #searchfield {
 
 /*FOOTER*/
 
-.footer {
+.OHfooter {
   /*background-color: #ff6a00!important;*/
   width: 100% !important;
   height: 5em;
@@ -855,7 +864,7 @@ nav #searchfield {
   min-height: 310px;
   min-width: 100px;
   width: 100%;
-  height: 100%;
+  height: 95%;
   border: 1px solid black;
 }
 
