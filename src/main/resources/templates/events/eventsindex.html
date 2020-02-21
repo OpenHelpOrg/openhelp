@@ -270,35 +270,40 @@
     convertDateTime();
     var token = document.querySelector('meta').content;
 
-    mapboxgl.accessToken = token;
-    var map = new mapboxgl.Map({
-        container: 'mapShow',
-        style: 'mapbox://styles/mapbox/streets-v9',
-        center: [-98.4916, 29.4252],
-        zoom: 15
-    });
 
-    var request = $.ajax({'url': '/event/events.json'});
-    request.done(function (events) {
-        events.forEach(function (event) {
-            geocode(event.address, token).then(function (result) {
 
-                var popupHTML = "<div class='card'><div class='card-header'>" + event.title + "</div><ul class='list-group list-group-flush'><li class='list-group-item'>" + event.location + "</li><li class='list-group-item'><a href='/events/singleevent/"+ event.id +"'>View More</a></li></ul></div>";
+    $(document).ready(function () {
 
-                var popup = new mapboxgl.Popup()
-                    .setHTML(popupHTML);
 
-                var marker = new mapboxgl.Marker()
-                    .setLngLat(result)
-                    .addTo(map)
-                    .setPopup(popup);
+        var request = $.ajax({'url': '/event/events.json'});
+        request.done(function (events) {
+            mapboxgl.accessToken = token;
+            var map = new mapboxgl.Map({
+                container: 'mapShow',
+                style: 'mapbox://styles/mapbox/streets-v9',
+                center: [-98.4916, 29.4252],
+                zoom: 15
+            });
+            events.forEach(function (event) {
+                geocode(event.address, token).then(function (result) {
 
+                    var popupHTML = "<div class='card'><div class='card-header'>" + event.title + "</div><ul class='list-group list-group-flush'><li class='list-group-item'>" + event.location + "</li><li class='list-group-item'><a href='/events/singleevent/"+ event.id +"'>View More</a></li></ul></div>";
+
+                    var popup = new mapboxgl.Popup()
+                        .setHTML(popupHTML);
+
+                    var marker = new mapboxgl.Marker()
+                        .setLngLat(result)
+                        .addTo(map)
+                        .setPopup(popup);
+                });
             });
         });
+
         map.fitBounds();
     });
 
-    $(document).ready(function () {
+
         var request = $.ajax({'url': '/event/events.json'});
         request.done(function (events) {
             var calEvents = [];

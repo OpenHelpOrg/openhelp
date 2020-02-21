@@ -319,6 +319,13 @@ ul {
 
 /*HOME*/
 #carouselmain {
+  /*border: 1px solid white;*/
+  /*-webkit-box-shadow: 1px 3px 10px 6px gray; !* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ *!*/
+  /*-moz-box-shadow: 1px 3px 10px 6px gray; !* Firefox 3.5 - 3.6 *!*/
+  /*box-shadow: 1px 3px 10px 6px gray; !* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 *!*/
+}
+
+.carousel-inner{
   border: 1px solid white;
   -webkit-box-shadow: 1px 3px 10px 6px gray; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
   -moz-box-shadow: 1px 3px 10px 6px gray; /* Firefox 3.5 - 3.6 */
@@ -787,17 +794,18 @@ nav #searchfield {
   /*border: 1px solid blue;*/
   box-sizing: border-box;
   height: 30%;
+  margin-bottom: 1em;
 }
 
 .eventcard .card-title {
   display: flex;
   justify-content: center;
-  border-bottom: 1px solid blue;
+  /*border-bottom: 1px solid blue;*/
   font-size: 25px;
 }
 
 .eventcard .card-body {
-  border-bottom: 1px solid blue;
+  /*border-bottom: 1px solid blue;*/
   min-height: 200px;
 }
 

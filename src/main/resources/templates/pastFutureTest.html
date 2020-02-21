@@ -285,6 +285,7 @@
     });
 
     $(document).ready(function () {
+
         var request = $.ajax({'url': '/event/events.json'});
         request.done(function (events) {
             var calEvents = [];
