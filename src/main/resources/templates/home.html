@@ -8,6 +8,16 @@
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <link href='../core/main.css' rel='stylesheet'/>
+    <link href='../daygrid/main.css' rel='stylesheet'/>
+    <link href="../bootstrap/main.css" rel="stylesheet"/>
+    <link href='../timegrid/main.css' rel='stylesheet'/>
+    <link href='../list/main.css' rel='stylesheet'/>
+    <script src='../core/main.js'></script>
+    <script src='../daygrid/main.js'></script>
+    <script src='../bootstrap/main.js'></script>
+    <script src='../timegrid/main.js'></script>
+    <script src='../list/main.js'></script>
     <title>Home</title>
 </head>
 <body>
@@ -49,7 +59,7 @@
 
     <div id="upcoming" class="roboto center white lgtext w-50 mx-auto">
         <h1>Upcoming Events</h1>
-        <p> (placeholder for upcoming events)</p>
+        <div id="calendarShow"></div>
     </div>
 </div>
 
@@ -60,6 +70,52 @@
     $('#carousalmain').carousel({
         interval: 1000
     })
+
+    $(document).ready(function () {
+        var request = $.ajax({'url': '/event/events.json'});
+        request.done(function (events) {
+            var calEvents = [];
+            events.forEach(function (event) {
+
+                calEvents.push({
+                    id: event.id,
+                    title: event.title,
+                    start: event.date_time,
+                    url: 'http://myopnehelp.com/events/singleevent/' + event.id
+
+                });
+
+
+            });//end of each
+            var calendarEl = document.getElementById('calendarShow');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: ['dayGrid', 'timeGrid', 'list', 'bootstrap'],
+                timeZone: 'UTC',
+                themeSystem: 'bootstrap',
+                defaultView: 'dayGridMonth',
+                height: 'parent',
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+                },
+                eventLimit: true, // allow "more" link when too many events
+                events: calEvents,
+                editable: true,
+                eventClick: function (info) {
+                    info.jsEvent.preventDefault(); // don't let the browser navigate
+
+                    if (info.event.url) {
+                        window.location.href = info.event.url;
+                    }
+                }
+            });
+
+            calendar.render();
+
+
+        });//end of done
+    });
 </script>
 
 </body>
