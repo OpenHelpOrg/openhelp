@@ -107,16 +107,16 @@
             <div class="editEventAttendanceForm ">
                 <h5 class="center mt-0 mb-2">Send a message to all volunteers for this event.</h5>
 
-            <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-doEdit d-inline mx-auto mb-0" data-toggle="modal"
-                        data-target="#editInfoModal"
-                        id="modalButton">
-                    Send Message
-                </button>
-                <br>
-                <p th:text="${confirmation}"></p>
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-doEdit d-inline mx-auto mb-0" data-toggle="modal"
+                            data-target="#editInfoModal"
+                            id="modalButton">
+                        Send Message
+                    </button>
+                    <br>
+                    <p th:text="${confirmation}"></p>
+                </div>
             </div>
-        </div>
         </div>
         <div class="col-2 ml-0">
             <!--    =confirm attentence -->
@@ -187,7 +187,6 @@
         <!--        end row-->
 
     </div>
-</div>
 
 <!--Modal to send an email to all volunteers-->
 <div class="modal editprofilemodal" tabindex="-1" role="dialog" id="editInfoModal">
@@ -204,13 +203,15 @@
                     <div class="input-block mt-2">
                         <label for="subject">Subject</label>
                         <br>
-                        <input class="emailalltitle ml-5 p-2 mt-2" placeholder="Enter your subject" id="subject" name="subject" type="text" required>
+                        <input class="emailalltitle ml-5 p-2 mt-2" placeholder="Enter your subject" id="subject"
+                               name="subject" type="text" required>
                     </div>
 
                     <div class="input-block mt-2">
                         <label for="body">Message</label>
                         <br>
-                        <textarea class="emailallbody ml-5 p-2 mt-2" placeholder="Enter your message" id="body" name="body" rows="6" required></textarea>
+                        <textarea class="emailallbody ml-5 p-2 mt-2" placeholder="Enter your message" id="body"
+                                  name="body" rows="6" required></textarea>
                     </div>
 
                     <div class="d-flex m-auto p-1">
@@ -223,8 +224,8 @@
     </div>
 </div>
 <!-- end email modal-->
-</div>
 
+</div>
 <nav th:insert="partials/navbar :: footer"></nav>
 <script>
     $('#editInfoModal').on('shown.bs.modal', function () {
@@ -367,13 +368,14 @@
         color: dimgrey;
     }
 
-    .emailalltitle{
+    .emailalltitle {
         width: 80%;
         border: 1px solid #4db2f1;
         border-radius: 5px;
         font-size: 1.5em;
     }
-    .emailallbody{
+
+    .emailallbody {
         width: 80%;
         border: 1px solid #4db2f1;
         border-radius: 5px;

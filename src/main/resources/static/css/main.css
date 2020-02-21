@@ -926,3 +926,9 @@ nav #searchfield {
   background: #4db2f1;
   cursor: pointer;
 }
+
+
+img {
+  min-width: 25px;
+  min-height: 25px;
+}
