@@ -197,10 +197,11 @@ public class EventController {
             @PathVariable long id, Model model){
 
         Event event = eventDao.getOne(id);
-        model.addAttribute("event", event);
+        model.addAttribute("title", event.getTitle());
 
         userEventDao.deleteAll(event.getUserEvents());
-        eventDao.deleteById(event.getId());
+        categoryDao.deleteAll(event.getCategories());
+        eventDao.delete(event);
         return "/events/deleteconfirmed";
     }
 
