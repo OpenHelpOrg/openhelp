@@ -22,8 +22,8 @@
             <div class="d-flex flex-wrap p-4 justify-content-center">
                 <div th:each="user : ${resultsuser}">
                     <a th:href="@{'/user/' + ${user.getId()}}">
-                        <div class="card hovercard mr-5 mb-5" style="width: 24rem;">
-                            <img th:src="@{${user.getImage()}}" class="card-img-top CardImage"
+                        <div class="card hovercard m-5" style="width: 30em;">
+                            <img th:src="@{${user.getImage()}}" class="card-img-top cardImage"
                                  th:alt="${user.getName()} + 'avatar'">
                             <div class="card-body">
                                 <h2 class="card-title" th:text="${user.getName()}"></h2>
@@ -40,7 +40,7 @@
             <div class="d-flex flex-wrap p-4 justify-content-center">
                 <div th:each="event : ${results}">
                     <a th:href="@{'/events/singleevent/'+${event.id}}">
-                        <div class="card hovercard mr-5 mb-5" style="width: 24rem;">
+                        <div class="card hovercard m-5" style="width: 30em;">
                             <img th:src="@{${event.getImages()}}" class="card-img-top cardImage">
                             <div class="card-body cardbodySize">
                                 <h2 class="card-title" th:text="${event.title}"></h2>
