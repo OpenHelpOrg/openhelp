@@ -787,17 +787,18 @@ nav #searchfield {
   /*border: 1px solid blue;*/
   box-sizing: border-box;
   height: 30%;
+  margin-bottom: 1em;
 }
 
 .eventcard .card-title {
   display: flex;
   justify-content: center;
-  border-bottom: 1px solid blue;
+  /*border-bottom: 1px solid blue;*/
   font-size: 25px;
 }
 
 .eventcard .card-body {
-  border-bottom: 1px solid blue;
+  /*border-bottom: 1px solid blue;*/
   min-height: 200px;
 }
 
