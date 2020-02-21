@@ -307,7 +307,7 @@
                         id: event.id,
                         title: event.title,
                         start: event.date_time,
-                        url: 'http://localhost:8080/events/singleevent/' + event.id
+                        url: 'http://myopenhelp.com/events/singleevent/' + event.id
 
                     });
 
@@ -334,20 +334,6 @@
                     if (info.event.url) {
                         window.location.href = info.event.url;
                     }
-                },
-                eventRender: function (ev, element) {
-                    var ids = [];
-                    $.ajax({'url' : '/events/userevents.json'}).done(function (userEvents) {
-                        userEvents.forEach(function (eventJSON) {
-                            ids.push(eventJSON.id);
-                        });
-                    });
-
-                    ids.forEach(function (idJSON) {
-                        if(ev.event.id === idJSON){
-                            $(element).css('background-color', 'yellow');
-                        }
-                    });
                 }
             });
 
