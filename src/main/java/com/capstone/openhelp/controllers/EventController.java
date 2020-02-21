@@ -115,7 +115,7 @@ public class EventController {
             model.addAttribute("isDisabled", "disable");
             model.addAttribute("titleMsg", "You cannot Edit this Event due to past date");
         }else{
-            model.addAttribute("titleMsg", "Enter your event details below");
+            model.addAttribute("titleMsg", "Enter event details below");
         }
 
         return "events/edit";
