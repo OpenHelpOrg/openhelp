@@ -122,6 +122,13 @@
             position: relative;
         }
 
+        .panelText a{
+            color: white !important;
+        }
+
+        .panelText a.active{
+            color: black !important;
+        }
     </style>
 </head>
 <body>
@@ -133,15 +140,15 @@
 
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item">
+        <li class="nav-item panelText">
             <a class="nav-link active" id="events-tab" data-toggle="tab" href="#events" role="tab" aria-controls="events"
                aria-selected="true">Events</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item panelText">
             <a class="nav-link" id="map-tab" data-toggle="tab" href="#map" role="tab" aria-controls="map"
                aria-selected="false">Map</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item panelText">
             <a class="nav-link" id="calendar-tab" data-toggle="tab" href="#calendar" role="tab" aria-controls="calendar"
                aria-selected="false">Calendar</a>
         </li>
@@ -233,7 +240,7 @@
     request.done(function (events) {
         events.forEach(function (event) {
             geocode(event.address, token).then(function (result) {
-                var popupHTML = "<div class='card'><div class='card-header'>" + event.title + "</div><ul class='list-group list-group-flush'><li class='list-group-item'>" + event.summary + "</li><li class='list-group-item'><a href='/events/singleevent/"+ event.id +"'>View More</a></li></ul></div>";
+                var popupHTML = "<div class='card'><div class='card-header'>" + event.title + "</div><ul class='list-group list-group-flush'><li class='list-group-item'>" + event.location + "</li><li class='list-group-item'><a href='/events/singleevent/"+ event.id +"'>View More</a></li></ul></div>";
 
                 var popup = new mapboxgl.Popup()
                     .setHTML(popupHTML);
