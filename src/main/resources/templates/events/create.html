@@ -28,17 +28,17 @@
                 <!--                event title-->
                 <div class="input-block">
                     <label for="title">Title</label>
-                    <input th:placeholder="Title" id="title" type="text" th:field="*{title}" required>
+                    <input th:placeholder="Title" id="title" th:maxlength="25" type="text" th:field="*{title}" required>
                 </div>
                 <!--                event address-->
                 <div class="input-block">
                     <label for="address">Address</label>
-                    <input th:placeholder="Address" id="address" type="text" th:field="*{address}" required>
+                    <input th:placeholder="Address" id="address" th:maxlength="25" type="text" th:field="*{address}" required>
                 </div>
                 <!--                event location-->
                 <div class="input-block">
                     <label for="location">Location</label><br>
-                    <input th:placeholder="Location" id="location" th:field="*{location}" required>
+                    <input th:placeholder="Location" id="location" th:maxlength="50" th:field="*{location}" required>
                 </div>
                 <div class="input-block">
                     <label for="date">Date</label>
@@ -67,7 +67,7 @@
                 <!--                event summary-->
                 <div class="input-block">
                     <label for="summary">Summary</label><br>
-                    <textarea placeholder="Tell us a little about your event!" id="summary" th:field="*{summary}"
+                    <textarea placeholder="Tell us a little about your event!" id="summary" th:maxlength="250" th:field="*{summary}"
                               required></textarea>
                 </div>
                 <!--                event notes-->
@@ -75,7 +75,7 @@
                     <label for="notes">Notes</label><br>
                     <textarea
                             placeholder="Is there anything that visitors or volunteers know? Rain or shine, bring comfy shoes, etc..."
-                            id="notes" type="textarea" th:field="*{notes}"
+                            id="notes" type="textarea" th:maxlength="250" th:field="*{notes}"
                             required></textarea>
                 </div>
 
