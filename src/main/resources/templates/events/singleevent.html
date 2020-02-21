@@ -106,6 +106,10 @@
         .singleEventCard {
             position: relative;
         }
+
+        #story-text-size {
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -220,7 +224,7 @@
         <div class="containerStory">
             <img th:src="${story.getUser().getImage()}" alt="User" style="width:90px">
             <p><span th:text="${story.getUser().getName()}"></span> User</p>
-            <p th:text="${story.getStory()}"></p>
+            <p id="story-text-size" th:text="${story.getStory()}"></p>
         </div>
     </div>
 </div>
