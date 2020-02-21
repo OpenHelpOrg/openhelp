@@ -98,7 +98,7 @@ public class EventController {
         }
 
         model.addAttribute("confirmation", "Emails were sent to all volunteers");
-        return "/events/edit/" + id;
+        return "redirect:/events/edit/" + id;
     }
 
     @GetMapping("/events/edit/{id}")
