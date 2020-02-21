@@ -1,5 +1,6 @@
 package com.capstone.openhelp.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
@@ -55,7 +56,7 @@ public class User {
     private List<User> organizations;
 
     @OneToMany(mappedBy = "user")
-    @JsonIgnore
+    @JsonBackReference
     private List<UserEvents> userEvents;
 
     //this is for email verification

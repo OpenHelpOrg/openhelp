@@ -14,6 +14,7 @@ public class UserEvents implements Serializable {
 
     @ManyToOne
     @JoinColumn
+    @JsonManagedReference
     private User user;
 
     @ManyToOne
