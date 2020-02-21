@@ -7,16 +7,16 @@
     <!--    <link rel="stylesheet" href="css/home.css">-->
     <link rel="stylesheet" href="css/main.css">
 
-<!--    <link href='../core/main.css' rel='stylesheet'/>-->
-<!--    <link href='../daygrid/main.css' rel='stylesheet'/>-->
-<!--    <link href="../bootstrap/main.css" rel="stylesheet"/>-->
-<!--    <link href='../timegrid/main.css' rel='stylesheet'/>-->
-<!--    <link href='../list/main.css' rel='stylesheet'/>-->
-<!--    <script src='../core/main.js'></script>-->
-<!--    <script src='../daygrid/main.js'></script>-->
-<!--    <script src='../bootstrap/main.js'></script>-->
-<!--    <script src='../timegrid/main.js'></script>-->
-<!--    <script src='../list/main.js'></script>-->
+    <!--    <link href='../core/main.css' rel='stylesheet'/>-->
+    <!--    <link href='../daygrid/main.css' rel='stylesheet'/>-->
+    <!--    <link href="../bootstrap/main.css" rel="stylesheet"/>-->
+    <!--    <link href='../timegrid/main.css' rel='stylesheet'/>-->
+    <!--    <link href='../list/main.css' rel='stylesheet'/>-->
+    <!--    <script src='../core/main.js'></script>-->
+    <!--    <script src='../daygrid/main.js'></script>-->
+    <!--    <script src='../bootstrap/main.js'></script>-->
+    <!--    <script src='../timegrid/main.js'></script>-->
+    <!--    <script src='../list/main.js'></script>-->
 
     <title>Event Index</title>
     <!-- Mapbox CSS -->
@@ -68,7 +68,7 @@
 <body>
 <nav th:insert="partials/navbar :: navbar"></nav>
 <div class="container">
-    <h1> events that match your search</h1>
+    <h1 class="text-center header">Events that match your search:</h1>
     <div class="d-flex flex-wrap p-4 justify-content-center">
         <div th:each="event : ${results}">
             <a th:href="@{'/events/singleevent/'+${event.id}}">
@@ -85,7 +85,7 @@
         </div>
     </div>
 </div>
-</div>
+<footer th:insert="partials/navbar :: footer"></footer>
 <!--    <h1 class="text-center">Search Results</h1>-->
 
 <!--    &lt;!&ndash; Nav tabs &ndash;&gt;-->

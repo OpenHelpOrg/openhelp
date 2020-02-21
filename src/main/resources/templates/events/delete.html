@@ -12,12 +12,9 @@
 <body>
 <nav th:insert="partials/navbar :: navbar"></nav>
 
-
-    <h1 class="text-center" th:text="'Deleting Event ' + ${event.getTitle()}"></h1>
-
-
+<!--    <h1 class="text-center" th:text="'Deleting Event ' + ${event.getTitle()}"></h1>-->
     <div class="container">
-        <h1 class="text-center" th:text="'Are you sure you want to delete the ' + ${event.getTitle() + ' event?'}"></h1>
+        <h1 class="text-center header" th:text="'Are you sure you want to delete the ' + ${event.getTitle() + ' event?'}"></h1>
         <form th:action="@{'/events/delete/'+ ${id}}" method="post">
            <div class="d-flex justify-content-center my-5">
             <a th:href="@{'/events/singleevent/'+ ${id}}" class="mx-5 btn btn-doAbort">Go Back</a>

@@ -4,7 +4,7 @@
     <th:block th:insert="partials/head :: head"></th:block>
     <!--    <link rel="stylesheet" href="css/navbar.css">-->
     <!--    <link rel="stylesheet" href="css/home.css">-->
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
 
     <!--    <link rel="stylesheet" href="css/openhelp.css">-->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
@@ -16,10 +16,7 @@
             color: #ea6725;
         }
 
-        h1 {
-            color: white;
-            text-shadow: 2px 2px 4px #000000
-        }
+
 
         a {
             text-decoration: none !important;
@@ -35,10 +32,11 @@
 <body>
     <nav th:insert="partials/navbar :: navbar"></nav>
 
+<nav th:insert="partials/navbar :: navbar"></nav>
 <div class="container">
 
 
-    <h1 class="text-center">All Participating Organizations</h1>
+    <h1 class="text-center header">All Participating Organizations</h1>
 
     <div class="d-flex flex-wrap p-4 justify-content-center">
         <div th:each="corp : ${organizations}">

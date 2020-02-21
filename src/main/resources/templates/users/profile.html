@@ -36,9 +36,9 @@
 <!--<br>-->
 <!--<br>-->
 <div class="container">
-    <h1 class="text-center">Welcome, <span th:text="${user.getName()}"></span></h1>
-    <br>
-    <br>
+<!--    <h1 class="text-center header">Welcome, <span th:text="${user.getName()}"></span></h1>-->
+<!--    <br>-->
+<!--    <br>-->
 
     <div class="row">
         <!--User Profile info -->
@@ -52,7 +52,7 @@
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h1 class="card-title" th:text="${user.getName()}"></h1>
+                            <h1 class="card-title">Welcome, <span th:text="${user.getName()}"></span></h1>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">
                                     <h3>About</h3>
@@ -110,7 +110,7 @@
         <div class="col-sm-12 col-md-4">
             <div class="card mb-3" style="width: 100%">
                 <div class="card-body">
-                    <h1 class="card-title">Your events </h1>
+                    <h1 class="card-title">Your events</h1>
                     <ul class="list-group list-group-flush" th:each="event : ${user.getUserEvents()}">
                         <li class="list-group-item" th:if="${event.isIs_creator() == true}">
                             <a th:href="@{'/events/singleevent/' + ${event.getEvent().getId()}}">
@@ -127,7 +127,7 @@
             <!--     attending events     ---------->
             <div class="attendingevents card mb-3">
                 <div class="card-body">
-                    <h1 class="card-title">Other event you are attending </h1>
+                    <h1 class="card-title">Events you are attending </h1>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item" th:each="events : ${user.getUserEvents()}">
                 <span th:if="${events.isIs_creator() != true}">
