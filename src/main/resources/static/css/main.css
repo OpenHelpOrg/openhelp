@@ -970,4 +970,7 @@ nav #searchfield {
   border-radius: 5px;
 }
 
-
+.mapimg {
+  margin: auto;
+  height: 92%;
+}
