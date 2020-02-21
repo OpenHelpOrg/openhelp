@@ -215,7 +215,6 @@
         </div>
     </div>
     <!--</div>-->
-
     <h2>Event Stories</h2>
     <div th:each="story : ${stories}">
         <div class="containerStory">
@@ -269,6 +268,14 @@
             var formattedDate = moment(unformattedDate).format('MMMM Do YYYY, h:mm a');
             $(this).text(formattedDate);
             // console.log(formattedDate);
+        });
+
+        $('#userstory').keypress(function(){
+
+            if(this.value.length > 250){
+                return false;
+            }
+            $("#textremaining").html("Remaining characters : " +(250 - this.value.length));
         });
     }
 </script>

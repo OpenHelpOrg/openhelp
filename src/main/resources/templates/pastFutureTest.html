@@ -285,6 +285,7 @@
     });
 
     $(document).ready(function () {
+
         var request = $.ajax({'url': '/event/events.json'});
         request.done(function (events) {
             var calEvents = [];
@@ -292,7 +293,7 @@
                 calEvents.push({
                     title: event.title,
                     start: event.date_time,
-                    url: 'http://localhost:8080/events/singleevent/' + event.id
+                    url: 'http://myopenhelp.com/events/singleevent/' + event.id
 
                 });
             });//end of each

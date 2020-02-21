@@ -58,7 +58,7 @@ public class EmailService {
         msg.setTo(user.getEmail());
         msg.setSubject("Confirm your email for OpenHelp");
 
-        String body = "To confirm your account, please click here : http://localhost:8080/confirm-account?token="+ token.getConfirmationToken();
+        String body = "To confirm your account, please click here : http://myopenhelp.com/confirm-account?token="+ token.getConfirmationToken();
         msg.setText(body);
 
         try{
