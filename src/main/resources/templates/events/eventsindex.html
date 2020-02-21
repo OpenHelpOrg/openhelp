@@ -265,57 +265,51 @@
 <!-- Mapbox JS -->
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
 <script src="/js/mapbox-geocoder-utils.js"></script>
+
 <!-- Custom JS -->
 <script>
     convertDateTime();
     var token = document.querySelector('meta').content;
 
-
-
-    $(document).ready(function () {
-
-
-        var request = $.ajax({'url': '/event/events.json'});
-        request.done(function (events) {
-            mapboxgl.accessToken = token;
-            var map = new mapboxgl.Map({
-                container: 'mapShow',
-                style: 'mapbox://styles/mapbox/streets-v9',
-                center: [-98.4916, 29.4252],
-                zoom: 15
-            });
-            events.forEach(function (event) {
-                geocode(event.address, token).then(function (result) {
-
-                    var popupHTML = "<div class='card'><div class='card-header'>" + event.title + "</div><ul class='list-group list-group-flush'><li class='list-group-item'>" + event.location + "</li><li class='list-group-item'><a href='/events/singleevent/"+ event.id +"'>View More</a></li></ul></div>";
-
-                    var popup = new mapboxgl.Popup()
-                        .setHTML(popupHTML);
-
-                    var marker = new mapboxgl.Marker()
-                        .setLngLat(result)
-                        .addTo(map)
-                        .setPopup(popup);
-                });
-            });
-        });
-
-        map.fitBounds();
+    mapboxgl.accessToken = token;
+    var map = new mapboxgl.Map({
+        container: 'mapShow',
+        style: 'mapbox://styles/mapbox/streets-v9',
+        center: [-98.4916, 29.4252],
+        zoom: 15
     });
 
+    var request = $.ajax({'url': '/event/events.json'});
+    request.done(function (events) {
+        events.forEach(function (event) {
+            geocode(event.address, token).then(function (result) {
+                var popupHTML = "<div class='card'><div class='card-header'>" + event.title + "</div><ul class='list-group list-group-flush'><li class='list-group-item'>" + event.location + "</li><li class='list-group-item'><a href='/events/singleevent/"+ event.id +"'>View More</a></li></ul></div>";
 
+                var popup = new mapboxgl.Popup()
+                    .setHTML(popupHTML);
+
+                var marker = new mapboxgl.Marker()
+                    .setLngLat(result)
+                    .addTo(map)
+                    .setPopup(popup);
+
+            });
+        });
+    });
+
+    $(document).ready(function () {
         var request = $.ajax({'url': '/event/events.json'});
         request.done(function (events) {
             var calEvents = [];
             events.forEach(function (event) {
 
-                    calEvents.push({
-                        id: event.id,
-                        title: event.title,
-                        start: event.date_time,
-                        url: 'http://myopenhelp.com/events/singleevent/' + event.id
+                calEvents.push({
+                    id: event.id,
+                    title: event.title,
+                    start: event.date_time,
+                    url: 'http://localhost:8080/events/singleevent/' + event.id
 
-                    });
+                });
 
 
             });//end of each
@@ -340,6 +334,20 @@
                     if (info.event.url) {
                         window.location.href = info.event.url;
                     }
+                },
+                eventRender: function (ev, element) {
+                    var ids = [];
+                    $.ajax({'url' : '/events/userevents.json'}).done(function (userEvents) {
+                        userEvents.forEach(function (eventJSON) {
+                            ids.push(eventJSON.id);
+                        });
+                    });
+
+                    ids.forEach(function (idJSON) {
+                        if(ev.event.id === idJSON){
+                            $(element).css('background-color', 'yellow');
+                        }
+                    });
                 }
             });
 
@@ -347,7 +355,6 @@
 
 
         });//end of done
-        map.fitBounds();
     });
 
     $.ajax({'url' : '/events/userevents.json'}).done(function (userEvents) {
@@ -365,7 +372,18 @@
 
 
         });
-        map.fitBounds();
+    });
+
+    var requestUser = $.ajax({'url': '/user/loginUser.json'});
+    requestUser.done(function (user) {
+        if(!isEmpty(user.address)){
+            geocode(user.address, token).then(function (result) {
+                map.setCenter(result);
+            });
+        }
+    }).fail(function (jqXhr, status, error) {
+        console.log("Response status: " + status);
+        console.log("Error object: " + error);
     });
 
     //    DATE CONVERSION LOGIC
@@ -379,31 +397,11 @@
         });
     }
 
-    function isEmpty(str) {
+    function isEmpty(str){
         return !str || str.length === 0 || !str.trim();
     }
-
-    map.on('load', function () {
-        map.style.width = '100%';
-        map.style.height = '100%';
-        map.resize();
-
-    });
-
-    var requestUser = $.ajax({'url': '/user/loginUser.json'});
-    requestUser.done(function (user) {
-        if (!isEmpty(user.address)) {
-            geocode(user.address, token).then(function (result) {
-                map.setCenter(result);
-            });
-        }
-        map.fitBounds();
-    }).fail(function (jqXhr, status, error) {
-        console.log("Response status: " + status);
-        console.log("Error object: " + error);
-    });
-
 </script>
+
 
 
 </body>
