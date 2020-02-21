@@ -128,7 +128,8 @@
                                 </li>
                             </ul>
                             <ul>
-                            <div th:if="${display} != false">
+                                    <div th:if="${display} != false">
+
                                 <li class="list-group-item">
                                         <div th:if="${event.getUserEvents().size() <= event.getLimit()}">
                                             <a th:href="@{'/events/singleevent/' + ${event.getId()} + '/enroll'}">Enroll</a>

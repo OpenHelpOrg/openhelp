@@ -15,11 +15,12 @@
 <body>
 <nav th:insert="partials/navbar :: navbar"></nav>
 <div class="container">
-    <h1 class="text-center header">Hello!</h1>
-<div class="d-flex justidy-content-center">
-    <p class="loginErrorParams" th:text="${message}"></p>
-</div>
-    <section class="forms-section loginform">
+    <h1 class="text-center">Hello!</h1>
+    <div class="d-flex justidy-content-center">
+        <p class="loginErrorParams" th:text="${message}"></p>
+    </div>
+    <div class="forms-section loginform mb-5">
+
         <div class="forms">
             <!--        swap is-active  -->
             <!--        log in-->
@@ -73,7 +74,6 @@
                             <input id="signup-password" th:name="regPassword" type="password" required>
 
 
-
                         </div>
                         <!--                    need to build in logic to ensure pass and passconfirm match-->
                         <div class="input-block">
@@ -89,7 +89,7 @@
 
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- password help modal -->
 

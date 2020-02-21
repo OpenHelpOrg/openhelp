@@ -134,13 +134,19 @@ ul {
 }
 
 .editprofilemodal-content {
-  background-color: #4db2f1 !important;
+  background-color: white !important;
+  border: 1px solid #ea6725;
+  border-radius: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .editprofilemodal label,
 .editprofilemodal-title {
   font-size: 1.25em;
-  color: white !important;
+  color: black !important;
 }
 
 .editprofilemodal input,
@@ -212,16 +218,18 @@ ul {
 /*CREATE EVENT*/
 
 .createeventform {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border: 1px solid #ea6725;
+  border-radius:  5px;
 }
 
 .createeventform .section-title {
   font-size: 32px;
   letter-spacing: 1px;
-  color: #4db2f1; /*color is different than login.css*/
+  /*color: #4db2f1; !*color is different than login.css*!*/
 }
 
 .createeventform .forms {
@@ -889,13 +897,15 @@ nav #searchfield {
 
 }
 
+
+
 /*SLIDER INPUT*/
-.slidecontainer {
+.createeventform .slidecontainer {
   width: 100%; /* Width of the outside container */
 }
 
 /* The slider itself */
-.slider {
+.createeventform .slider {
   -webkit-appearance: none;
   width: 100%;
   height: 15px;
@@ -907,7 +917,7 @@ nav #searchfield {
   transition: opacity .2s;
 }
 
-.slider::-webkit-slider-thumb {
+.createeventform .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 25px;
@@ -917,10 +927,16 @@ nav #searchfield {
   cursor: pointer;
 }
 
-.slider::-moz-range-thumb {
+.createeventform .slider::-moz-range-thumb {
   width: 25px;
   height: 25px;
   border-radius: 50%;
   background: #4db2f1;
   cursor: pointer;
+}
+
+
+img {
+  min-width: 25px;
+  min-height: 25px;
 }

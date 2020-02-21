@@ -170,9 +170,8 @@
 
                     <a th:text="${event.title}" class="card-title"></a>
                     <div class="card-body ">
+                        <p th:text="${event.location}"></p>
                         <p th:text="${event.address}"></p>
-                        <p th:text="${event.summary}"></p>
-
                         <p class="thisDateTime" th:text="${event.date_time}"></p>
                     </div>
                     <div class="d-flex justify-content-center eventindeximageholder">
