@@ -118,11 +118,11 @@
                                     <!--edit post-->
                                     <div class="d-flex">
                                         <a th:href="@{'/events/edit/'+${event.id}}" class="btn">
-                                            <button>Edit Event</button>
+                                            <button class="btn btn-doEdit mr-3">Edit Event</button>
                                         </a>
                                         <!--delete post-->
                                         <a th:href="@{'/events/delete/'+ ${event.id}}" class="btn">
-                                            <button>Delete Event</button>
+                                            <button class="btn btn-doDelete ml-3">Delete Event</button>
                                         </a>
                                     </div>
                                 </li>

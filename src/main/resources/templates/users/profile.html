@@ -114,8 +114,8 @@
                     <ul class="list-group list-group-flush" th:each="event : ${user.getUserEvents()}">
                         <li class="list-group-item" th:if="${event.isIs_creator() == true}">
                             <a th:href="@{'/events/singleevent/' + ${event.getEvent().getId()}}">
-                                <img th:src="@{${event.getEvent().getImages()}}" alt="event image" width="50px"
-                                     height="50px">
+                                <img th:src="@{${event.getEvent().getImages()}}" alt="event image" width="100px"
+                                     height="100px">
                                 <span th:text="${event.getEvent().getTitle()}"></span>
                                 <span class="thisDateTime" th:text="${event.getEvent().getDate_time()}"></span>
                             </a>
@@ -132,13 +132,13 @@
                         <li class="list-group-item" th:each="events : ${user.getUserEvents()}">
                 <span th:if="${events.isIs_creator() != true}">
                     <a th:href="@{'/events/singleevent/' + ${events.getEvent().getId()}}">
-                        <img th:src="@{${events.getEvent().getImages()}}" alt="event image"/>
+                        <img th:src="@{${events.getEvent().getImages()}}" alt="event image" height="100px" width="100px">
                         <span th:text="${events.getEvent().getTitle()}"></span>
                         <span class="thisDateTime" th:text="${events.getEvent().getDate_time()}"></span>
                     </a>
-                    <button class='accordion'>Leave a Story</button>
+                    <br>
+                    <button class='btn-doEdit accordion'>Leave a Story</button>
                     <div class="panel">
-                            <p>somestuff to hide</p>
                         <form th:method="post" th:action="@{'/events/add-story/' + ${events.getId()}}">
                             <textarea name="story" th:text="${events.getStory()}"></textarea>
                             <button>Post Your Story</button>
@@ -211,7 +211,7 @@
                             <div class="form-group">
                                 <label for="edit-about">Tell us about you!</label>
                                 <textarea class="form-control" id="edit-about" th:text="${user.about}"
-                                          th:field="*{about}"></textarea>
+                                          th:field="*{about}" maxlength="255"></textarea>
                             </div>
                             <!--                    <button type="submit" class="btn btn-primary">Submit</button>-->
                             <button type="submit" class="btn btn-doEdit">Save changes</button>
