@@ -98,7 +98,7 @@ public class EventController {
         }
 
         model.addAttribute("confirmation", "Emails were sent to all volunteers");
-        return "redirect:/events/edit/" + id;
+        return "redirect:events/edit/" + id;
     }
 
     @GetMapping("/events/edit/{id}")
@@ -147,7 +147,7 @@ public class EventController {
             }
         }
 //        return "redirect:/users/profile";
-        return "redirect:/events";
+        return "redirect:events";
     }
 
 
@@ -168,7 +168,7 @@ public class EventController {
         eventDao.save(event);
         userEventDao.save(new UserEvents(user,event, true, ""));
 //        emailService.prepareAndSend(event,"You just made a event","you just made a event"); //EmailService.java model
-        return "redirect:/events";
+        return "redirect:events";
 
     }
 
@@ -178,7 +178,7 @@ public class EventController {
         event.setStory(story);
         userEventDao.save(event);
         model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        return "redirect:/users/profile";
+        return "redirect:users/profile";
     }
 
     //DELETE
@@ -202,7 +202,7 @@ public class EventController {
         userEventDao.deleteAll(event.getUserEvents());
         categoryDao.deleteAll(event.getCategories());
         eventDao.delete(event);
-        return "/events/deleteconfirmed";
+        return "events/deleteconfirmed";
     }
 
     @GetMapping("/events/singleevent/{id}")
@@ -289,7 +289,7 @@ public class EventController {
         model.addAttribute("user", user);
         model.addAttribute("event", event);
 
-        return "/events/confirmevent";
+        return "events/confirmevent";
     }
 
     @GetMapping("/timedEvents")

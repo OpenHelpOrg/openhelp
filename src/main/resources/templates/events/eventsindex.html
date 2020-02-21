@@ -200,45 +200,6 @@
                 </div>
             </div>
 
-            <!--            =================================-->
-            <!--            <div class="d-flex flex-wrap p-4 justify-content-center">-->
-
-            <!--                &lt;!&ndash;    <div class="d-flex flex-wrap row justify-content-between">&ndash;&gt;-->
-            <!--                <div th:each="event : ${events}" class="card hovercard eventcard col-3 d-inline mr-5 mb-5">-->
-
-            <!--                    <div sec:authorize="isAuthenticated()">-->
-            <!--                        <span th:each="user : ${event.getUserEvents()}">-->
-            <!--                            <span th:if="${!user.isIs_creator()}">-->
-            <!--                                <span th:if="${user.getUser().getId() == #authentication.principal.id}">-->
-            <!--&lt;!&ndash;                                    <div class="card-header bg-info">Enrolled</div>&ndash;&gt;-->
-            <!--                                    <div class="ribbon"><span>Enrolled</span></div>-->
-            <!--                                </span>-->
-            <!--                            </span>-->
-            <!--                        </span>-->
-            <!--                    </div>-->
-
-            <!--                    <a th:text="${event.title}" class="card-title"></a>-->
-            <!--                    <div class="card-body ">-->
-            <!--                        <p th:text="${event.location}"></p>-->
-            <!--                        <p th:text="${event.address}"></p>-->
-            <!--                        <p class="thisDateTime" th:text="${event.date_time}"></p>-->
-            <!--                    </div>-->
-            <!--                    <div class="d-flex justify-content-center eventindeximageholder">-->
-
-            <!--                        <img th:src="${event.getImages()}" alt="edit event to add image" class="card-img eventindeximg">-->
-
-            <!--                    </div>-->
-            <!--                    <div class="d-flex flex-nowrap btn-div justify-content-center">-->
-            <!--                        &lt;!&ndash;view post&ndash;&gt;-->
-            <!--                        <a th:href="@{'/events/singleevent/'+${event.id}}" class="btn ">-->
-            <!--                            <button>View Event</button>-->
-            <!--                        </a>-->
-
-            <!--                    </div>-->
-
-            <!--                </div>-->
-            <!--                &lt;!&ndash; End of card display&ndash;&gt;-->
-            <!--            </div>-->
         </div>
         <!--Map Tab Content-->
         <div class="tab-pane" id="map" role="tabpanel" aria-labelledby="map-tab">
@@ -274,33 +235,35 @@
     convertDateTime();
     var token = document.querySelector('meta').content;
 
-    mapboxgl.accessToken = token;
-    var map = new mapboxgl.Map({
-        container: 'mapShow',
-        style: 'mapbox://styles/mapbox/streets-v9',
-        center: [-98.4916, 29.4252],
-        zoom: 15
-    });
+    $(document).ready(function () {
+        //display mapbox
+        mapboxgl.accessToken = token;
+        var map = new mapboxgl.Map({
+            container: 'mapShow',
+            style: 'mapbox://styles/mapbox/streets-v9',
+            center: [-98.4916, 29.4252],
+            zoom: 9
+        });
 
-    var request = $.ajax({'url': '/event/events.json'});
-    request.done(function (events) {
-        events.forEach(function (event) {
-            geocode(event.address, token).then(function (result) {
-                var popupHTML = "<div class='card'><div class='card-header'>" + event.title + "</div><ul class='list-group list-group-flush'><li class='list-group-item'>" + event.location + "</li><li class='list-group-item'><a href='/events/singleevent/"+ event.id +"'>View More</a></li></ul></div>";
+        //adding events to map
+        var request = $.ajax({'url': '/event/events.json'});
+        request.done(function (events) {
+            events.forEach(function (event) {
+                geocode(event.address, token).then(function (result) {
+                    var popupHTML = "<div class='card'><div class='card-header'>" + event.title + "</div><ul class='list-group list-group-flush'><li class='list-group-item'>" + event.location + "</li><li class='list-group-item'><a href='/events/singleevent/"+ event.id +"'>View More</a></li></ul></div>";
 
-                var popup = new mapboxgl.Popup()
-                    .setHTML(popupHTML);
+                    var popup = new mapboxgl.Popup()
+                        .setHTML(popupHTML);
 
-                var marker = new mapboxgl.Marker()
-                    .setLngLat(result)
-                    .addTo(map)
-                    .setPopup(popup);
+                    var marker = new mapboxgl.Marker()
+                        .setLngLat(result)
+                        .addTo(map)
+                        .setPopup(popup);
 
+                });
             });
         });
-    });
-
-    $(document).ready(function () {
+        //creating the calendar and populated with events
         var request = $.ajax({'url': '/event/events.json'});
         request.done(function (events) {
             var calEvents = [];
@@ -310,7 +273,7 @@
                     id: event.id,
                     title: event.title,
                     start: event.date_time,
-                    url: 'http://localhost:8080/events/singleevent/' + event.id
+                    url: 'http://myopenhelp.com/events/singleevent/' + event.id
 
                 });
 
@@ -337,20 +300,6 @@
                     if (info.event.url) {
                         window.location.href = info.event.url;
                     }
-                },
-                eventRender: function (ev, element) {
-                    var ids = [];
-                    $.ajax({'url' : '/events/userevents.json'}).done(function (userEvents) {
-                        userEvents.forEach(function (eventJSON) {
-                            ids.push(eventJSON.id);
-                        });
-                    });
-
-                    ids.forEach(function (idJSON) {
-                        if(ev.event.id === idJSON){
-                            $(element).css('background-color', 'yellow');
-                        }
-                    });
                 }
             });
 
@@ -358,35 +307,15 @@
 
 
         });//end of done
-    });
 
-    $.ajax({'url' : '/events/userevents.json'}).done(function (userEvents) {
-        var events = document.getElementsByClassName('fc-title');
-
-        userEvents.forEach(function (eventJSON) {
-            for(var i = 0; i < events.length; i++){
-                console.log(events[i].value);
-                // console.log(eventJSON.title);
-
-                if(events[i].value === eventJSON.title){
-                    events[i].style['background-color'] = 'yellow';
-                }
-            }
-
+        map.on('load', function () {
+            map.style.width = '100%';
+            map.style.height = '100%';
+            map.resize();
 
         });
-    });
 
-    var requestUser = $.ajax({'url': '/user/loginUser.json'});
-    requestUser.done(function (user) {
-        if(!isEmpty(user.address)){
-            geocode(user.address, token).then(function (result) {
-                map.setCenter(result);
-            });
-        }
-    }).fail(function (jqXhr, status, error) {
-        console.log("Response status: " + status);
-        console.log("Error object: " + error);
+        map.fitBounds([-98.4916, 29.4252]);
     });
 
     //    DATE CONVERSION LOGIC
@@ -403,6 +332,20 @@
     function isEmpty(str){
         return !str || str.length === 0 || !str.trim();
     }
+
+    //checks if a user is logged in
+    var requestUser = $.ajax({'url': '/user/loginUser.json'});
+    requestUser.done(function (user) {
+        if(!isEmpty(user.address)){
+            geocode(user.address, token).then(function (result) {
+                map.setCenter(result);
+                map.fitBounds(result);
+            });
+        }
+    }).fail(function (jqXhr, status, error) {
+        console.log("Response status: " + status);
+        console.log("Error object: " + error);
+    });
 </script>
 
 
