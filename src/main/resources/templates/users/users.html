@@ -30,7 +30,6 @@
     </style>
 </head>
 <body>
-    <nav th:insert="partials/navbar :: navbar"></nav>
 
 <nav th:insert="partials/navbar :: navbar"></nav>
 <div class="container">
@@ -38,22 +37,42 @@
 
     <h1 class="text-center header">All Participating Organizations</h1>
 
-    <div class="d-flex flex-wrap p-4 justify-content-center">
-        <div th:each="corp : ${organizations}">
-
-            <a th:href="@{'/user/' + ${corp.getId()}}">
-                <div class="card hovercard mr-5 mb-5" style="width: 18rem;">
-                    <img th:src="@{${corp.getImage()}}" class="card-img-top" th:alt="${corp.getName()} + 'avatar'">
-                    <div class="card-body">
-                        <h5 class="card-title" th:text="${corp.getName()}"></h5>
-                        <h6>About</h6>
-                        <p class="card-text" th:text="${corp.getAbout()}"></p>
+    <div class="col-12">
+        <!--    <div th:if="${resultsuser != null}">-->
+        <div class="d-flex flex-wrap p-4 justify-content-center">
+            <div th:each="user : ${organizations}">
+                <a th:href="@{'/user/' + ${user.getId()}}">
+                    <div class="card hovercard mr-5 mb-5" style="width: 24rem;">
+                        <img th:src="@{${user.getImage()}}" class="card-img-top CardImage"
+                             th:alt="${user.getName()} + 'avatar'">
+                        <div class="card-body">
+                            <h2 class="card-title" th:text="${user.getName()}"></h2>
+                            <!--                                <h6>About</h6>-->
+                            <!--                                <p class="card-text" th:text="${user.getAbout()}"></p>-->
+                        </div>
                     </div>
-                </div>
-            </a>
-
+                </a>
+            </div>
         </div>
     </div>
+
+
+<!--    <div class="d-flex flex-wrap p-4 justify-content-center">-->
+<!--        <div th:each="corp : ${organizations}">-->
+
+<!--            <a th:href="@{'/user/' + ${corp.getId()}}">-->
+<!--                <div class="card hovercard mr-5 mb-5" style="width: 18rem;">-->
+<!--                    <img th:src="@{${corp.getImage()}}" class="card-img-top" th:alt="${corp.getName()} + 'avatar'">-->
+<!--                    <div class="card-body">-->
+<!--                        <h5 class="card-title" th:text="${corp.getName()}"></h5>-->
+<!--                        <h6>About</h6>-->
+<!--                        <p class="card-text" th:text="${corp.getAbout()}"></p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </a>-->
+
+<!--        </div>-->
+<!--    </div>-->
 </div>
 
 <nav th:insert="partials/navbar :: footer"></nav>

@@ -68,22 +68,41 @@
 <body>
 <nav th:insert="partials/navbar :: navbar"></nav>
 <div class="container">
-    <h1 class="text-center header">Events that match your search:</h1>
-    <div class="d-flex flex-wrap p-4 justify-content-center">
-        <div th:each="event : ${results}">
-            <a th:href="@{'/events/singleevent/'+${event.id}}">
-                <div class="card hovercard mr-5 mb-5" style="width: 18rem;">
-                    <img th:src="@{${event.getImages()}}" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title" th:text="${event.title}"></h5>
-                        <p class="card-text" th:text="${event.location}"></p>
-                        <p class="card-text" th:text="${event.address}"></p>
-                        <p class="card-text thisDateTime" th:text="${event.date_time}"></p>
+
+    <div class="col-12">
+        <h1 class="text-center header">Events that match your search:</h1>
+        <div class="d-flex flex-wrap p-4 justify-content-center">
+            <div th:each="event : ${results}">
+                <a th:href="@{'/events/singleevent/'+${event.id}}">
+                    <div class="card hovercard mr-5 mb-5" style="width: 24rem;">
+                        <img th:src="@{${event.getImages()}}" class="card-img-top cardImage">
+                        <div class="card-body cardbodySize">
+                            <h2 class="card-title" th:text="${event.title}"></h2>
+                            <h4 class="card-text" th:text="${event.location}"></h4>
+                            <h4 class="card-text" th:text="${event.address}"></h4>
+                            <h4 class="card-text thisDateTime" th:text="${event.date_time}"></h4>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
         </div>
     </div>
+
+        <!--    <div class="d-flex flex-wrap p-4 justify-content-center cardSize">-->
+        <!--        <div th:each="event : ${results}">-->
+        <!--            <a th:href="@{'/events/singleevent/'+${event.id}}">-->
+        <!--                <div class="card hovercard mr-5 mb-5" style="width: 18rem;">-->
+        <!--                    <img th:src="@{${event.getImages()}}" class="card-img-top">-->
+        <!--                    <div class="card-body">-->
+        <!--                        <h5 class="card-title" th:text="${event.title}"></h5>-->
+        <!--                        <p class="card-text" th:text="${event.location}"></p>-->
+        <!--                        <p class="card-text" th:text="${event.address}"></p>-->
+        <!--                        <p class="card-text thisDateTime" th:text="${event.date_time}"></p>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--            </a>-->
+        <!--        </div>-->
+        <!--    </div>-->
 </div>
 <footer th:insert="partials/navbar :: footer"></footer>
 <!--    <h1 class="text-center">Search Results</h1>-->

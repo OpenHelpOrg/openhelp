@@ -134,15 +134,15 @@ public class UserController {
 
 //            checks if email already exists in DB
         if (userDao.findByEmail(regEmail) != null) {
-            model.addAttribute("message", "A user with that email already exists");
+            model.addAttribute("message", "*A user with that email already exists");
             return ("login");
 //            checks that password and password confirm match
         } else if (!regPassword.equals(regPasswordConfirm)) {
-            model.addAttribute("message", "Please ensure your passwords match!");
+            model.addAttribute("message", "*Please ensure your passwords match!");
             return ("login");
 //            checks that password meets strength criteria
         } else if (!checkPassword.CheckPassword(regPassword)) {
-            model.addAttribute("message", "Please ensure your password meets the criteria");
+            model.addAttribute("message", "*Please ensure your password meets the criteria");
             return ("login");
         } else {
 

@@ -16,20 +16,19 @@
 <div class="container">
 
     <div class="row">
-
         <div class="col-6">
             <!--    <div th:if="${resultsuser != null}">-->
             <h1 class="text-center header">Users that match your search:</h1>
             <div class="d-flex flex-wrap p-4 justify-content-center">
                 <div th:each="user : ${resultsuser}">
                     <a th:href="@{'/user/' + ${user.getId()}}">
-                        <div class="card hovercard mr-5 mb-5" style="width: 18rem;">
-                            <img th:src="@{${user.getImage()}}" class="card-img-top"
+                        <div class="card hovercard mr-5 mb-5" style="width: 24rem;">
+                            <img th:src="@{${user.getImage()}}" class="card-img-top CardImage"
                                  th:alt="${user.getName()} + 'avatar'">
                             <div class="card-body">
-                                <h5 class="card-title" th:text="${user.getName()}"></h5>
-                                <h6>About</h6>
-                                <p class="card-text" th:text="${user.getAbout()}"></p>
+                                <h2 class="card-title" th:text="${user.getName()}"></h2>
+<!--                                <h6>About</h6>-->
+<!--                                <p class="card-text" th:text="${user.getAbout()}"></p>-->
                             </div>
                         </div>
                     </a>
@@ -41,13 +40,13 @@
             <div class="d-flex flex-wrap p-4 justify-content-center">
                 <div th:each="event : ${results}">
                     <a th:href="@{'/events/singleevent/'+${event.id}}">
-                        <div class="card hovercard mr-5 mb-5" style="width: 18rem;">
-                            <img th:src="@{${event.getImages()}}" class="card-img-top">
-                            <div class="card-body">
-                                <h5 class="card-title" th:text="${event.title}"></h5>
-                                <!--                                <p class="card-text" th:text="${event.location}"></p>-->
-                                <p class="card-text" th:text="${event.address}"></p>
-                                <p class="card-text thisDateTime" th:text="${event.date_time}"></p>
+                        <div class="card hovercard mr-5 mb-5" style="width: 24rem;">
+                            <img th:src="@{${event.getImages()}}" class="card-img-top cardImage">
+                            <div class="card-body cardbodySize">
+                                <h2 class="card-title" th:text="${event.title}"></h2>
+                                <h4 class="card-text" th:text="${event.location}"></h4>
+                                <h4 class="card-text" th:text="${event.address}"></h4>
+                                <h4 class="card-text thisDateTime" th:text="${event.date_time}"></h4>
                             </div>
                         </div>
                     </a>
@@ -55,6 +54,7 @@
             </div>
         </div>
     </div>
+</div>
 
     <!--    =====================================-->
     <!--    <div class="d-flex flex-wrap p-4 justify-content-center">-->
