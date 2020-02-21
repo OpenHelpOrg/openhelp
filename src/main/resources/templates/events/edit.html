@@ -10,172 +10,222 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="/css/main.css">
-
     <title>Edit Event</title>
 </head>
-
 <body>
 <nav th:insert="partials/navbar :: navbar"></nav>
 <div class="container">
 
-    <h1 class="text-center"> Edit Event</h1>
-
-    <div class="d-flex justify-content-center">
-        <button type="button" class="btn btn-doEdit d-inline mr-0" data-toggle="modal"
-                data-target="#editInfoModal"
-                id="modalButton">
-            Send Message
-        </button>
-        <p>Send a message to all volunteers for this event.</p>
-        <p th:text="${confirmation}"></p>
-    </div>
-
-
-<!-- confirm attendees -->
-
-    <h2>Confirm Vonlunteer Attendance</h2>
-    <form th:method="post" th:action="@{'/users/confirm-attendance'}">
-        <input type="hidden" th:value="${event.getId()}" th:name="id">
-        <div class="form-row">
-            <div class="input-group" th:each="userevent : ${userevents}">
-                <div class="input-group-prepend">
-                <span th:if="${userevent.getAttended()}">
-                    <div class="input-group-text my-1">
-    <!--                    <input class="fancychecks" type="checkbox" data-toggle="toggle" data-on="Confirmed" data-off="Not Confirmed" data-onstyle="primary" data-offstyle="danger" th:name="users" th:value="${userevent.getId()}" checked>-->
-                        <input type="checkbox" th:name="users" th:value="${userevent.getId()}" checked>
-                    </div>
-                </span>
-                    <span th:unless="${userevent.getAttended()}">
-                    <div class="input-group-text my-1">
-    <!--                    <input class="fancychecks" type="checkbox" data-toggle="toggle" data-on="Confirmed" data-off="Not Confirmed" data-onstyle="primary" data-offstyle="danger" th:name="users" th:value="${userevent.getId()}">-->
-
-                        <input type="checkbox" th:name="users" th:value="${userevent.getId()}">
-                    </div>
-                </span>
-                </div>
-                <label class="ml-2" th:for="users" th:text="${userevent.getUser().getName()}"></label>
-            </div>
-        </div>
-        <button class="btn-doEdit">Confirm Attendance</button>
-    </form>
-
-    <!-- Enrollment Management-->
-    <h2>Cancel Enrollment Management</h2>
-    <form th:method="post" th:action="@{'/users/confirm-enrollment'}">
-        <input type="hidden" th:value="${event.getId()}" th:name="id">
-        <div class="form-row">
-            <div class="input-group" th:each="userevent : ${userevents}">
-                <div class="input-group-prepend">
-                    <input type="checkbox" th:name="users" th:value="${userevent.getId()}" th:disabled="${isDisabled}">
-
-                </div>
-                <label class="ml-2" th:for="users" th:text="${userevent.getUser().getName()}"></label>
-            </div>
-
-        </div>
-        <button class="btn-doEdit" th:disabled="${isDisabled}">Confirm Enrollment Cancellations</button>
-    </form>
-
-
-    <!--Modal to send an email to all volunteers-->
-    <div class="modal editprofilemodal" tabindex="-1" role="dialog" id="editInfoModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content editprofilemodal-content">
-                <div class="modal-header editprofilemodal-header">
-                    <h5 class="modal-title editprofilemodal-title">Send Message to Volunteers</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form th:action="@{'/events/edit/' + ${event.getId()} + '/send-message'}" th:method="post">
+    <div class="row d-flex justify-content-center">
+        <div class="col-4">
+            <!--form to edit the event-->
+            <div class="forms-section createeventform ml-5 mr-0">
+                <form class="forms mx-auto" th:action="@{/events/edit}" method="post" th:object="${event}"
+                      th:disabled="${isDisabled}">
+                    <fieldset>
+                        <input type="hidden" th:field="*{id}">
+                        <legend class="section-title titleMsg" th:text="${titleMsg}"></legend>
+                        <!--                event title-->
                         <div class="input-block">
-                            <label for="subject">Subject</label>
-                            <input placeholder="Enter your subject" id="subject" name="subject" type="text" required>
+                            <label for="title">Title</label>
+                            <input th:placeholder="Title" id="title" type="text" th:field="*{title}" required
+                                   th:disabled="${isDisabled}">
                         </div>
-
+                        <!--                event address-->
                         <div class="input-block">
-                            <label for="body">Message</label>
-                            <textarea placeholder="Enter your message" id="body" name="body" required></textarea>
+                            <label for="address">Address</label>
+                            <input th:placeholder="Address" id="address" type="text" th:field="*{address}" required
+                                   th:disabled="${isDisabled}">
                         </div>
+                        <!--                event location-->
+                        <div class="input-block">
+                            <label for="location">Location</label><br>
+                            <input th:placeholder="Location" id="location" th:field="*{location}" required
+                                   th:disabled="${isDisabled}">
+                        </div>
+                        <div class="input-block">
+                            <label for="date">Date</label>
+                            <input id="date" type="datetime-local" th:field="*{date_time}" required
+                                   th:disabled="${isDisabled}">
+                        </div>
+                        <!--                max volunteers-->
+                        <div class="input-block">
+                            <label for="volume">Max people - </label>
+                            <label id="volumeOutput" class="ml-3"></label>
+                            <div class="slidecontainer">
+                                <input type="range" min="1" max="100" value="50" class="slider" id="volume"
+                                       th:field="*{vol_limit}"
+                                       required th:disabled="${isDisabled}">
+                            </div>
+                            <!--                <input th:placeholder="max" id="volume" type="text" th:field="*{vol_limit}" required th:disabled="${isDisabled}">-->
+                        </div>
+                        <!--                image-->
+                        <div class="input-block">
+                            <button class="button btn-doEdit mt-1 mr-2" type="button" id="picker"
+                                    th:disabled="${isDisabled}">Change
+                                Image
+                            </button>
+                            <input type="text" name="image" id="fileupload" th:placeholder="image" th:field="*{images}"
+                                   th:disabled="${isDisabled}">
+                            <!--                <button class="button btn-doUpload mt-1" type="submit">Submit Image</button>-->
+                        </div>
+                        <!--                event summary-->
+                        <div class="input-block">
+                            <label for="summary">Summary</label><br>
+                            <textarea placeholder="Tell us a little about your event!" id="summary"
+                                      th:field="*{summary}"
+                                      required
+                                      th:disabled="${isDisabled}"></textarea>
+                        </div>
+                        <!--                event notes-->
+                        <div class="input-block">
+                            <label for="notes">Notes</label><br>
+                            <textarea
+                                    placeholder="Is there anything that visitors or volunteers know? Rain or shine, bring comfy shoes, etc..."
+                                    id="notes" type="textarea" th:field="*{notes}"
+                                    required th:disabled="${isDisabled}"></textarea>
+                        </div>
+                        <!--                event details-->
 
+                        <!-- categories -->
+                        <div class="input-block" id="checkbox">
+                            <div th:each="category : ${categories}">
+                                <input th:field="*{categories}" type="checkbox" th:value="${category.getId()}"
+                                       th:text="${category.getName()}" th:disabled="${isDisabled}"></li>
+                            </div>
+                        </div>
                         <div class="d-flex m-auto p-1">
-                            <button type="submit" class="btn-submit p-2">Send Message</button>
+                            <button type="submit" class="btn-submit p-2" th:disabled="${isDisabled}">Continue</button>
                         </div>
-                    </form>
+                    </fieldset>
+                </form>
+            </div><!--end of event edit form-->
+        </div>
 
+        <div class="col-2">
+            <div class="editEventAttendanceForm ">
+                <h5 class="center mt-0 mb-2">Send a message to all volunteers for this event.</h5>
+
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-doEdit d-inline mx-auto mb-0" data-toggle="modal"
+                            data-target="#editInfoModal"
+                            id="modalButton">
+                        Send Message
+                    </button>
+                    <br>
+                    <p th:text="${confirmation}"></p>
                 </div>
+            </div>
+            <p th:text="${confirmation}"></p>
+        </div>
+        <div class="col-2 ml-0">
+            <!--    =confirm attentence -->
+            <div class="editEventAttendanceForm ">
+                <h2>Confirm Volunteer Attendance</h2>
+                <form th:method="post" th:action="@{'/users/confirm-attendance'}">
+                    <input type="hidden" th:value="${event.getId()}" th:name="id">
+                    <div class="form-row">
+                        <div class="input-group" th:each="userevent : ${userevents}">
+                            <div class="input-group-prepend">
+                <span th:if="${userevent.getAttended()}">
+                    <div class="input-group">
+                        <label class="switch">
+                        <input type="checkbox" th:name="users" th:value="${userevent.getId()}" checked>
+                         <span class="slider round"></span>
+                            </label>
+                        <!--                        <input type="checkbox" th:name="users" th:value="${userevent.getId()}" checked>-->
+                    </div>
+                </span>
+                                <span th:unless="${userevent.getAttended()}">
+                    <div class="input-group">
+                            <label class="switch">
+                        <input type="checkbox" th:name="users" th:value="${userevent.getId()}">
+                         <span class="slider round"></span>
+                            </label>
+                        <!--                        <input type="checkbox" th:name="users" th:value="${userevent.getId()}">-->
+                    </div>
+                </span>
+                            </div>
+                            <label class="attendeeName mt-2 ml-2" th:for="users"
+                                   th:text="${userevent.getUser().getName()}"></label>
+                        </div>
+                    </div>
+                    <button class="btn-doEdit">Confirm Attendance</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-2 ml-0">
+            <div class="editEventAttendanceForm ">
+
+                <!-- Enrollment Management-->
+                <h2>Cancel Enrollment Management</h2>
+                <form th:method="post" th:action="@{'/users/confirm-enrollment'}">
+                    <input type="hidden" th:value="${event.getId()}" th:name="id">
+                    <div class="form-row">
+                        <div class="input-group" th:each="userevent : ${userevents}">
+                            <div class="input-group-prepend">
+                                <label class="switch">
+                                    <input type="checkbox" th:name="users" th:value="${userevent.getId()}"
+                                           th:disabled="${isDisabled}">
+                                    <span class="slider round"></span>
+                                </label>
+
+                                <!--                                <input type="checkbox" th:name="users" th:value="${userevent.getId()}"-->
+                                <!--                                       th:disabled="${isDisabled}">-->
+
+                            </div>
+                            <label class="attendeeName mt-2 ml-2" th:for="users"
+                                   th:text="${userevent.getUser().getName()}"></label>
+                        </div>
+
+                    </div>
+                    <button class="btn-doEdit" th:disabled="${isDisabled}">Confirm Cancellations</button>
+                </form>
+            </div>
+        </div>
+        <!--        end row-->
+
+    </div>
+
+<!--Modal to send an email to all volunteers-->
+<div class="modal editprofilemodal" tabindex="-1" role="dialog" id="editInfoModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content editprofilemodal-content">
+            <div class="modal-header editprofilemodal-header">
+                <h3 class="modal-title editprofilemodal-title">Send Message to Volunteers</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{'/events/edit/' + ${event.getId()} + '/send-message'}" th:method="post">
+                    <div class="input-block mt-2">
+                        <label for="subject">Subject</label>
+                        <br>
+                        <input class="emailalltitle ml-5 p-2 mt-2" placeholder="Enter your subject" id="subject"
+                               name="subject" type="text" required>
+                    </div>
+
+                    <div class="input-block mt-2">
+                        <label for="body">Message</label>
+                        <br>
+                        <textarea class="emailallbody ml-5 p-2 mt-2" placeholder="Enter your message" id="body"
+                                  name="body" rows="6" required></textarea>
+                    </div>
+
+                    <div class="d-flex m-auto p-1">
+                        <button type="submit" class="btn-submit btn-doEdit p-2">Send Message</button>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>
-</div> <!-- end email modal-->
+</div>
+<!-- end email modal-->
 
-<!--form to edit the event-->
-<div class="forms-section createeventform container">
-    <form class="forms mx-auto" th:action="@{/events/edit}" method="post" th:object="${event}" th:disabled="${isDisabled}">
-        <fieldset>
-            <input type="hidden" th:field="*{id}">
-            <legend class="section-title" th:text="${titleMsg}"></legend>
-            <!--                event title-->
-            <div class="input-block">
-                <label for="title">Title</label>
-                <input th:placeholder="Title" id="title" type="text" th:field="*{title}" required th:disabled="${isDisabled}">
-            </div>
-            <!--                event address-->
-            <div class="input-block">
-                <label for="address">Address</label>
-                <input th:placeholder="Address" id="address" type="text" th:field="*{address}" required th:disabled="${isDisabled}">
-            </div>
-            <!--                event location-->
-            <div class="input-block">
-                <label for="location">Location</label><br>
-                <input th:placeholder="Location" id="location" th:field="*{location}" required th:disabled="${isDisabled}">
-            </div>
-            <div class="input-block">
-                <label for="date">Date</label>
-                <input id="date" type="datetime-local" th:field="*{date_time}" required th:disabled="${isDisabled}">
-            </div>
-            <!--                max volunteers-->
-            <div class="input-block">
-                <label for="volume">Max people - </label>
-                <label id="volumeOutput" class="ml-3"></label>
-                <div class="slidecontainer">
-                    <input type="range" min="1" max="100" value="50" class="slider" id="volume" th:field="*{vol_limit}" required th:disabled="${isDisabled}">
-                </div>
-<!--                <input th:placeholder="max" id="volume" type="text" th:field="*{vol_limit}" required th:disabled="${isDisabled}">-->
-            </div>
-            <!--                image-->
-            <div class="input-block">
-                <button class="button btn-doEdit mt-1 mr-2" type="button" id="picker" th:disabled="${isDisabled}">Change Image</button>
-                <input type="text" name="image" id="fileupload" th:placeholder="image" th:field="*{images}" th:disabled="${isDisabled}">
-                <!--                <button class="button btn-doUpload mt-1" type="submit">Submit Image</button>-->
-            </div>
-            <!--                event summary-->
-            <div class="input-block">
-                <label for="summary">Summary</label><br>
-                <textarea placeholder="Tell us a little about your event!" id="summary" th:field="*{summary}" required th:disabled="${isDisabled}"></textarea>
-            </div>
-            <!--                event notes-->
-            <div class="input-block">
-                <label for="notes">Notes</label><br>
-                <textarea placeholder="Is there anything that visitors or volunteers know? Rain or shine, bring comfy shoes, etc..." id="notes" type="textarea" th:field="*{notes}"
-                          required th:disabled="${isDisabled}"></textarea>
-            </div>
-            <!--                event details-->
-
-            <!-- categories -->
-            <div class="input-block" id="checkbox">
-                <div th:each="category : ${categories}">
-                    <input th:field="*{categories}" type="checkbox" th:value="${category.getId()}" th:text="${category.getName()}" th:disabled="${isDisabled}"></li>
-                </div>
-            </div>
-            <div class="d-flex m-auto p-1">
-                <button type="submit" class="btn-submit p-2" th:disabled="${isDisabled}">Continue</button>
-            </div>
-        </fieldset>
-    </form>
-</div><!--end of event edit form-->
-
+</div>
 <nav th:insert="partials/navbar :: footer"></nav>
 <script>
     $('#editInfoModal').on('shown.bs.modal', function () {
@@ -230,12 +280,110 @@
     output.innerHTML = slider.value; // Display the default slider value
 
     // Update the current slider value (each time you drag the slider handle)
-    slider.oninput = function() {
+    slider.oninput = function () {
         output.innerHTML = this.value;
     }
 
 
-
 </script>
+
+<style>
+
+    .editEventAttendanceForm {
+        background-color: white;
+        border: 1px solid #ea6725;
+        border-radius: 5px;
+        padding: 5%;
+    }
+
+    .attendeeName {
+        font-size: 1.5em;
+    }
+
+
+    /* The switch - the box around the slider */
+    .editEventAttendanceForm .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+    /* Hide default HTML checkbox */
+    .editEventAttendanceForm .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    /* The slider */
+    .editEventAttendanceForm .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .editEventAttendanceForm .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .editEventAttendanceForm input:checked + .slider {
+        background-color: #2196F3;
+    }
+
+    .editEventAttendanceForm input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    .editEventAttendanceForm input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .editEventAttendanceForm .slider.round {
+        border-radius: 34px;
+    }
+
+    .editEventAttendanceForm .slider.round:before {
+        border-radius: 50%;
+    }
+
+    .titleMsg {
+        color: dimgrey;
+    }
+
+    .emailalltitle {
+        width: 80%;
+        border: 1px solid #4db2f1;
+        border-radius: 5px;
+        font-size: 1.5em;
+    }
+
+    .emailallbody {
+        width: 80%;
+        border: 1px solid #4db2f1;
+        border-radius: 5px;
+        font-size: 1.5em;
+    }
+
+</style>
 </body>
+
+
 </html>

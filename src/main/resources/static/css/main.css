@@ -14,6 +14,14 @@ body {
 /*  bottom: 0;*/
 /*}*/
 
+
+h1.header{
+  color: white;
+  text-shadow: 2px 2px 4px #000000
+}
+
+
+
 .center {
   text-align: center;
 }
@@ -126,13 +134,19 @@ ul {
 }
 
 .editprofilemodal-content {
-  background-color: #4db2f1 !important;
+  background-color: white !important;
+  border: 1px solid #ea6725;
+  border-radius: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .editprofilemodal label,
 .editprofilemodal-title {
   font-size: 1.25em;
-  color: white !important;
+  color: black !important;
 }
 
 .editprofilemodal input,
@@ -144,6 +158,13 @@ ul {
   background-color: gray !important;
   color: white !important;
   border: 1px solid white !important;
+  min-width: 120px;
+  margin: 30px auto 10px;
+  height: 50px;
+  font-size: 18px;
+  line-height: 40px;
+  border-radius: 25px;
+  transition: all .3s ease-out;
 }
 
 .btn-doEdit {
@@ -162,11 +183,13 @@ ul {
   background-color: red !important;
   color: white !important;
   border: 1px solid white !important;
+  margin: 30px auto 10px;
+
   min-width: 120px;
+  height: 50px;
   font-size: 18px;
   line-height: 40px;
   border-radius: 25px;
-  border: none;
   transition: all .3s ease-out;
 }
 
@@ -174,11 +197,12 @@ ul {
   background-color: white !important;
   color: #4db2f1 !important;
   border: 1px solid #ea6725 !important;
+  margin: 30px auto 10px;
+
   min-width: 120px;
   font-size: 18px;
   line-height: 40px;
   border-radius: 25px;
-  border: none;
   transition: all .3s ease-out;
 }
 
@@ -204,16 +228,18 @@ ul {
 /*CREATE EVENT*/
 
 .createeventform {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border: 1px solid #ea6725;
+  border-radius:  5px;
 }
 
 .createeventform .section-title {
   font-size: 32px;
   letter-spacing: 1px;
-  color: #4db2f1; /*color is different than login.css*/
+  /*color: #4db2f1; !*color is different than login.css*!*/
 }
 
 .createeventform .forms {
@@ -644,6 +670,7 @@ ul {
 .nav-link {
   font-size: 2em;
   font-family: 'Roboto', sans-serif;
+  text-shadow: 1px 1px black;
   /*text-shadow: 1px 2px black;*/
 }
 
@@ -861,11 +888,12 @@ nav #searchfield {
 
 /*password helper modal on login page*/
 #passwordHelpModal .modal-content {
-  background-color: #4db2f1;
-  border: 1px solid #ea6725;
+  background-color: white;
+  border: 4px solid #ea6725;
   border-radius: 5px;
-  color: #303030;
+  color: black;
   font-family: 'Roboto', sans-serif;
+  font-size: 1.5em;
 }
 
 #passwordHelpModal .modal-title {
@@ -881,13 +909,15 @@ nav #searchfield {
 
 }
 
+
+
 /*SLIDER INPUT*/
-.slidecontainer {
+.createeventform .slidecontainer {
   width: 100%; /* Width of the outside container */
 }
 
 /* The slider itself */
-.slider {
+.createeventform .slider {
   -webkit-appearance: none;
   width: 100%;
   height: 15px;
@@ -899,7 +929,7 @@ nav #searchfield {
   transition: opacity .2s;
 }
 
-.slider::-webkit-slider-thumb {
+.createeventform .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 25px;
@@ -909,10 +939,34 @@ nav #searchfield {
   cursor: pointer;
 }
 
-.slider::-moz-range-thumb {
+.createeventform .slider::-moz-range-thumb {
   width: 25px;
   height: 25px;
   border-radius: 50%;
   background: #4db2f1;
   cursor: pointer;
 }
+
+.cardSize {
+
+}
+
+.cardImage {
+
+  height: 250px;
+  width: auto;
+  border-bottom: 1px solid #4db2f1;
+}
+
+.cardbodySize {
+  min-height: 170px;
+}
+
+#whitebox {
+  width: 60%;
+  background-color: white;
+  border: 1px solid #ea6725;
+  border-radius: 5px;
+}
+
+

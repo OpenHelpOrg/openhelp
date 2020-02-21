@@ -21,9 +21,6 @@
 <!--    <h1 class="text-center display-1">Create Event: <span th:text="${email}">holder</span></h1>-->
 <!--</header>-->
 <div class="container">
-
-    <h1 class="text-center">Create An Event</h1>
-
     <div class="forms-section createeventform container">
         <form class="forms mx-auto" th:action="@{/events/create}" th:method="post" th:object="${event}">
             <fieldset>

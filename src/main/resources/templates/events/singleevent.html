@@ -41,12 +41,14 @@
             .containerStory {
                 text-align: center;
             }
+
             .containerStory img {
                 margin: auto;
                 float: none;
                 display: block;
             }
         }
+
         .ribbon {
             position: absolute;
             right: -5px; top: -5px;
@@ -67,7 +69,7 @@
             width: 100px;
             display: block;
             background: #79A70A;
-            background: linear-gradient(#05EFF7 0%, #087F8F 100%);
+            background: linear-gradient(#9BC90D 0%, #79A70A 100%);
             box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
             position: absolute;
             top: 19px; right: -21px;
@@ -76,19 +78,19 @@
             content: "";
             position: absolute; left: 0px; top: 100%;
             z-index: -1;
-            border-left: 3px solid #087F8F;
+            border-left: 3px solid #79A70A;
             border-right: 3px solid transparent;
             border-bottom: 3px solid transparent;
-            border-top: 3px solid #087F8F;
+            border-top: 3px solid #79A70A;
         }
         .ribbon span::after {
             content: "";
             position: absolute; right: 0px; top: 100%;
             z-index: -1;
             border-left: 3px solid transparent;
-            border-right: 3px solid #087F8F;
+            border-right: 3px solid #79A70A;
             border-bottom: 3px solid transparent;
-            border-top: 3px solid #087F8F;
+            border-top: 3px solid #79A70A;
         }
 
         .singleEventCard{
@@ -100,14 +102,14 @@
 <nav th:insert="partials/navbar :: navbar"></nav>
 <div class="container">
 
+<!--    <h1 class="text-center"> Showing Single Event</h1>-->
     <!--    event card-->
-    <h1 class="text-center"> Showing Single Event</h1>
     <div class="row p-5 justify-content-center flex-wrap">
         <div class="col-sm-12 col-md-8 col-lg-7">
             <div class="card singleEventCard mb-3 p-2 border-dark" style="height:100%; width: 100%;">
                 <div class="ribbon"><span th:if="${enrollBanner}">Enrolled</span></div>
                 <div class="row no-gutters">
-<!--                    card image-->
+                    <!--                    card image-->
                     <div class="col-md-5">
                         <img th:src="${event.getImages()}" alt="img" class="card-img">
                         <!--    !!!!!!!!!!!!!!!!! Crashing if viewing event not created !!!!!!!!!!!!!!!!!!!!!!!!-->
@@ -117,33 +119,33 @@
                                     <!--edit post-->
                                     <div class="d-flex">
                                         <a th:href="@{'/events/edit/'+${event.id}}" class="btn">
-                                            <button>Edit Event</button>
+                                            <button class="btn btn-doEdit mr-3">Edit Event</button>
                                         </a>
                                         <!--delete post-->
                                         <a th:href="@{'/events/delete/'+ ${event.id}}" class="btn">
-                                            <button>Delete Event</button>
+                                            <button class="btn btn-doDelete ml-3">Delete Event</button>
                                         </a>
                                     </div>
                                 </li>
                             </ul>
-
                             <ul>
-                                <li class="list-group-item">
                                     <div th:if="${display} != false">
+
+                                <li class="list-group-item">
                                         <div th:if="${event.getUserEvents().size() <= event.getLimit()}">
                                             <a th:href="@{'/events/singleevent/' + ${event.getId()} + '/enroll'}">Enroll</a>
                                         </div>
-                                    </div>
                                 </li>
+                                    </div>
                             </ul>
                         </div>
                     </div>
-<!--                    event card info-->
+                    <!--                    event card info-->
                     <div class="col-md-7 eventcard">
                         <div class="card-body">
                             <div class="card-title"><span th:text="${event.getTitle()}"></span>
                             </div>
-<!--                            <hr>-->
+                            <!--                            <hr>-->
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">
                                     <h3>Location:</h3>
@@ -175,8 +177,6 @@
                                                    th:text="${ev.getUser().getEmail()}"></a></h4>
                                         </div>
                                     </div>
-
-
                                 </li>
 
                                 <li class="card-footer d-flex">
@@ -205,7 +205,7 @@
         </div>
     </div>
 </div>
-</div>
+<!--</div>-->
 
 <h2>Event Stories</h2>
 <div th:each="story : ${stories}">

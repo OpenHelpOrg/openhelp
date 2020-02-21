@@ -68,7 +68,7 @@
 
         .card-body {
             font-size: 20px;
-            }
+        }
 
         .btn {
             font-size: 15px;
@@ -76,12 +76,15 @@
 
         .ribbon {
             position: absolute;
-            right: -5px; top: -5px;
+            right: -5px;
+            top: -5px;
             z-index: 1;
             overflow: hidden;
-            width: 75px; height: 75px;
+            width: 75px;
+            height: 75px;
             text-align: right;
         }
+
         .ribbon span {
             font-size: 10px;
             font-weight: bold;
@@ -94,34 +97,48 @@
             width: 100px;
             display: block;
             background: #79A70A;
-            background: linear-gradient(#05EFF7 0%, #087F8F 100%);
+            background: linear-gradient(#9BC90D 0%, #79A70A 100%);
             box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
             position: absolute;
-            top: 19px; right: -21px;
-        }
-        .ribbon span::before {
-            content: "";
-            position: absolute; left: 0px; top: 100%;
-            z-index: -1;
-            border-left: 3px solid #087F8F;
-            border-right: 3px solid transparent;
-            border-bottom: 3px solid transparent;
-            border-top: 3px solid #087F8F;
-        }
-        .ribbon span::after {
-            content: "";
-            position: absolute; right: 0px; top: 100%;
-            z-index: -1;
-            border-left: 3px solid transparent;
-            border-right: 3px solid #087F8F;
-            border-bottom: 3px solid transparent;
-            border-top: 3px solid #087F8F;
+            top: 19px;
+            right: -21px;
         }
 
-        .eventcard{
+        .ribbon span::before {
+            content: "";
+            position: absolute;
+            left: 0px;
+            top: 100%;
+            z-index: -1;
+            border-left: 3px solid #79A70A;
+            border-right: 3px solid transparent;
+            border-bottom: 3px solid transparent;
+            border-top: 3px solid #79A70A;
+        }
+
+        .ribbon span::after {
+            content: "";
+            position: absolute;
+            right: 0px;
+            top: 100%;
+            z-index: -1;
+            border-left: 3px solid transparent;
+            border-right: 3px solid #79A70A;
+            border-bottom: 3px solid transparent;
+            border-top: 3px solid #79A70A;
+        }
+
+        .eventcard {
             position: relative;
         }
 
+        .panelText a{
+            color: white !important;
+        }
+
+        .panelText a.active{
+            color: black !important;
+        }
     </style>
 </head>
 <body>
@@ -129,19 +146,20 @@
 
 <div class="container">
 
-    <h1 class="text-center">All Upcoming Events</h1>
+    <!--    <h1 class="text-center header">All Upcoming Events</h1>-->
 
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item">
+
+        <li class="nav-item panelText">
             <a class="nav-link active" id="events-tab" data-toggle="tab" href="#events" role="tab" aria-controls="events"
                aria-selected="true">Events</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item panelText">
             <a class="nav-link" id="map-tab" data-toggle="tab" href="#map" role="tab" aria-controls="map"
                aria-selected="false">Map</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item panelText">
             <a class="nav-link" id="calendar-tab" data-toggle="tab" href="#calendar" role="tab" aria-controls="calendar"
                aria-selected="false">Calendar</a>
         </li>
@@ -152,12 +170,14 @@
         <!--Events Tab Content-->
         <div class="tab-pane active" id="events" role="tabpanel" aria-labelledby="events-tab">
             <!-- Displays all upcoming events in card form -->
-            <div class="d-flex flex-wrap p-4 justify-content-center">
+            <!--            =================================-->
+            <div class="col-12">
+                <div class="d-flex flex-wrap p-4 justify-content-center">
+                    <div th:each="event : ${events}">
+                        <a th:href="@{'/events/singleevent/'+${event.id}}">
 
-                <!--    <div class="d-flex flex-wrap row justify-content-between">-->
-                <div th:each="event : ${events}" class="card hovercard eventcard col-3 d-inline mr-5 mb-5">
-
-                    <div sec:authorize="isAuthenticated()">
+                            <div class="card hovercard mr-5 mb-5" style="width: 24rem;">
+                                <div sec:authorize="isAuthenticated()">
                         <span th:each="user : ${event.getUserEvents()}">
                             <span th:if="${!user.isIs_creator()}">
                                 <span th:if="${user.getUser().getId() == #authentication.principal.id}">
@@ -166,31 +186,59 @@
                                 </span>
                             </span>
                         </span>
-                    </div>
-
-                    <a th:text="${event.title}" class="card-title"></a>
-                    <div class="card-body ">
-                        <p th:text="${event.address}"></p>
-                        <p th:text="${event.summary}"></p>
-
-                        <p class="thisDateTime" th:text="${event.date_time}"></p>
-                    </div>
-                    <div class="d-flex justify-content-center eventindeximageholder">
-
-                        <img th:src="${event.getImages()}" alt="edit event to add image" class="card-img eventindeximg">
-
-                    </div>
-                    <div class="d-flex flex-nowrap btn-div justify-content-center">
-                        <!--view post-->
-                        <a th:href="@{'/events/singleevent/'+${event.id}}" class="btn ">
-                            <button>View Event</button>
+                                </div>
+                                <img th:src="@{${event.getImages()}}" class="card-img-top cardImage">
+                                <div class="card-body cardbodySize">
+                                    <h2 class="card-title" th:text="${event.title}"></h2>
+                                    <h4 class="card-text" th:text="${event.location}"></h4>
+                                    <h4 class="card-text" th:text="${event.address}"></h4>
+                                    <h4 class="card-text thisDateTime" th:text="${event.date_time}"></h4>
+                                </div>
+                            </div>
                         </a>
-
                     </div>
-
                 </div>
-                <!-- End of card display-->
             </div>
+
+            <!--            =================================-->
+            <!--            <div class="d-flex flex-wrap p-4 justify-content-center">-->
+
+            <!--                &lt;!&ndash;    <div class="d-flex flex-wrap row justify-content-between">&ndash;&gt;-->
+            <!--                <div th:each="event : ${events}" class="card hovercard eventcard col-3 d-inline mr-5 mb-5">-->
+
+            <!--                    <div sec:authorize="isAuthenticated()">-->
+            <!--                        <span th:each="user : ${event.getUserEvents()}">-->
+            <!--                            <span th:if="${!user.isIs_creator()}">-->
+            <!--                                <span th:if="${user.getUser().getId() == #authentication.principal.id}">-->
+            <!--&lt;!&ndash;                                    <div class="card-header bg-info">Enrolled</div>&ndash;&gt;-->
+            <!--                                    <div class="ribbon"><span>Enrolled</span></div>-->
+            <!--                                </span>-->
+            <!--                            </span>-->
+            <!--                        </span>-->
+            <!--                    </div>-->
+
+            <!--                    <a th:text="${event.title}" class="card-title"></a>-->
+            <!--                    <div class="card-body ">-->
+            <!--                        <p th:text="${event.location}"></p>-->
+            <!--                        <p th:text="${event.address}"></p>-->
+            <!--                        <p class="thisDateTime" th:text="${event.date_time}"></p>-->
+            <!--                    </div>-->
+            <!--                    <div class="d-flex justify-content-center eventindeximageholder">-->
+
+            <!--                        <img th:src="${event.getImages()}" alt="edit event to add image" class="card-img eventindeximg">-->
+
+            <!--                    </div>-->
+            <!--                    <div class="d-flex flex-nowrap btn-div justify-content-center">-->
+            <!--                        &lt;!&ndash;view post&ndash;&gt;-->
+            <!--                        <a th:href="@{'/events/singleevent/'+${event.id}}" class="btn ">-->
+            <!--                            <button>View Event</button>-->
+            <!--                        </a>-->
+
+            <!--                    </div>-->
+
+            <!--                </div>-->
+            <!--                &lt;!&ndash; End of card display&ndash;&gt;-->
+            <!--            </div>-->
         </div>
         <!--Map Tab Content-->
         <div class="tab-pane" id="map" role="tabpanel" aria-labelledby="map-tab">
@@ -234,7 +282,8 @@
     request.done(function (events) {
         events.forEach(function (event) {
             geocode(event.address, token).then(function (result) {
-                var popupHTML = "<div class='card'><div class='card-header'>" + event.title + "</div><ul class='list-group list-group-flush'><li class='list-group-item'>" + event.summary + "</li><li class='list-group-item'><a href='/events/singleevent/"+ event.id +"'>View More</a></li></ul></div>";
+
+                var popupHTML = "<div class='card'><div class='card-header'>" + event.title + "</div><ul class='list-group list-group-flush'><li class='list-group-item'>" + event.location + "</li><li class='list-group-item'><a href='/events/singleevent/"+ event.id +"'>View More</a></li></ul></div>";
 
                 var popup = new mapboxgl.Popup()
                     .setHTML(popupHTML);
@@ -253,13 +302,16 @@
         request.done(function (events) {
             var calEvents = [];
             events.forEach(function (event) {
-                // console.log(event.userEvents.toString());
-                calEvents.push({
-                    title: event.title,
-                    start: event.date_time,
-                    url: 'http://localhost:8080/events/singleevent/' + event.id
 
-                });
+                    calEvents.push({
+                        id: event.id,
+                        title: event.title,
+                        start: event.date_time,
+                        url: 'http://localhost:8080/events/singleevent/' + event.id
+
+                    });
+
+
             });//end of each
             var calendarEl = document.getElementById('calendarShow');
             var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -275,21 +327,56 @@
                 },
                 eventLimit: true, // allow "more" link when too many events
                 events: calEvents,
+                editable: true,
                 eventClick: function (info) {
                     info.jsEvent.preventDefault(); // don't let the browser navigate
 
                     if (info.event.url) {
                         window.location.href = info.event.url;
                     }
+                },
+                eventRender: function (ev, element) {
+                    var ids = [];
+                    $.ajax({'url' : '/events/userevents.json'}).done(function (userEvents) {
+                        userEvents.forEach(function (eventJSON) {
+                            ids.push(eventJSON.id);
+                        });
+                    });
+
+                    ids.forEach(function (idJSON) {
+                        if(ev.event.id === idJSON){
+                            $(element).css('background-color', 'yellow');
+                        }
+                    });
                 }
             });
+
             calendar.render();
+
+
         });//end of done
+    });
+
+    $.ajax({'url' : '/events/userevents.json'}).done(function (userEvents) {
+        var events = document.getElementsByClassName('fc-title');
+
+        userEvents.forEach(function (eventJSON) {
+            for(var i = 0; i < events.length; i++){
+                console.log(events[i].value);
+                // console.log(eventJSON.title);
+
+                if(events[i].value === eventJSON.title){
+                    events[i].style['background-color'] = 'yellow';
+                }
+            }
+
+
+        });
     });
 
     var requestUser = $.ajax({'url': '/user/loginUser.json'});
     requestUser.done(function (user) {
-        if(!isEmpty(user.address)){
+        if (!isEmpty(user.address)) {
             geocode(user.address, token).then(function (result) {
                 map.setCenter(result);
             });
@@ -310,7 +397,7 @@
         });
     }
 
-    function isEmpty(str){
+    function isEmpty(str) {
         return !str || str.length === 0 || !str.trim();
     }
 </script>
