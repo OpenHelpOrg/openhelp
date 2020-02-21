@@ -53,7 +53,7 @@ public class SearchController {
             model.addAttribute("results", results);
             List<User> resultsuser = userDao.findByNameContainsOrEmailContainsAllIgnoreCase(query, query);
             model.addAttribute("resultsuser", resultsuser);
-            return "/index";
+            return "index";
         }
     }
 }
