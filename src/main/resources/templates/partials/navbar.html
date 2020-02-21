@@ -10,10 +10,8 @@
     <title>NavBar</title>
 </head>
 <body>
-
 <nav th:fragment="navbar" class="navbar navbar-expand-md pt-3 mb-4">
     <a class="navbar-brand" href="/home">OpenHelp</a>
-
     <div class="collapse navbar-collapse d-flex flex-row" id="navbarSupportedContent">
         <!--        ml-auto vs mr-auto-->
         <ul class="navbar-nav ml-auto ">
@@ -29,9 +27,7 @@
             <li class="nav-item mx-2" sec:authorize="isAuthenticated()">
                 <a class="nav-link" href="/events/create">Create an Event</a>
             </li>
-            <li class="nav-item mx-2" sec:authorize="isAuthenticated()">
-                <a class="nav-link" href="/logout">Logout</a>
-            </li>
+
             <li class="nav-item mx-2" sec:authorize="!isAuthenticated()">
                 <a class="nav-link" href="/sign-up">Login/Signup</a>
             </li>
@@ -51,13 +47,14 @@
                     </ul>
                 </form>
             </li>
+            <li class="nav-item mx-2" sec:authorize="isAuthenticated()">
+                <a class="nav-link" href="/logout">Logout</a>
+            </li>
         </ul>
     </div>
-
 </nav>
-
 <!-- FOOTER -->
-<footer th:fragment="footer" id="footer" class="footer fixed-footer-bottom"
+<footer th:fragment="footer" id="footer" class="footer OHfooter fixed-footer-bottom"
         style="position:absolute; bottom:0; margin-top: 100px;">
     <ul id="footer-ul">
         <li class="footer-link" id="footer-left">
@@ -67,8 +64,6 @@
         </li>
     </ul>
 </footer>
-
-
 <script>
     $(document).ready(function (e) {
         $('.search-panel .dropdown-menu').find('a').click(function (e) {
