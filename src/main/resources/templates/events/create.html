@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <th:block th:insert="partials/head :: head"></th:block>
     <title>Create</title>
@@ -33,7 +33,7 @@
                 <!--                event address-->
                 <div class="input-block">
                     <label for="address">Address</label>
-                    <input th:placeholder="Address" id="address" th:maxlength="25" type="text" th:field="*{address}" required>
+                    <input th:placeholder="Address" id="address" th:maxlength="50" type="text" th:field="*{address}" required>
                 </div>
                 <!--                event location-->
                 <div class="input-block">
@@ -69,6 +69,7 @@
                     <label for="summary">Summary</label><br>
                     <textarea placeholder="Tell us a little about your event!" id="summary" th:maxlength="250" th:field="*{summary}"
                               required></textarea>
+                    <span id="remaining1"></span>
                 </div>
                 <!--                event notes-->
                 <div class="input-block">
@@ -77,6 +78,7 @@
                             placeholder="Is there anything that visitors or volunteers know? Rain or shine, bring comfy shoes, etc..."
                             id="notes" type="textarea" th:maxlength="250" th:field="*{notes}"
                             required></textarea>
+                    <span id="remaining"></span>
                 </div>
 
 
@@ -164,7 +166,23 @@
     // Update the current slider value (each time you drag the slider handle)
     slider.oninput = function() {
         output.innerHTML = this.value;
-    }
+    };
+
+    $('#notes').keypress(function(){
+
+        if(this.value.length > 250){
+            return false;
+        }
+        $("#remaining").html("Remaining characters : " +(250 - this.value.length));
+    });
+
+    $('#summary').keypress(function(){
+
+        if(this.value.length > 250){
+            return false;
+        }
+        $("#remaining1").html("Remaining characters : " +(250 - this.value.length));
+    });
 
 </script>
 </body>
