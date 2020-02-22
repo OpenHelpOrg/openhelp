@@ -684,7 +684,9 @@ nav #searchfield {
 .footer-link a:active {
   color: #ffffff;
 }
+
 /*EVENTS INDEX*/
+
 .eventcard {
   /*border: 1px solid blue;*/
   box-sizing: border-box;
@@ -737,6 +739,12 @@ nav #searchfield {
   margin: 1em auto 1em;
   border: 2px solid white;
 }
+
+.singleEventImg{
+  width: auto;
+  height: 90%;
+}
+
 .singleeventmap {
   min-height: 310px;
   min-width: 100px;
@@ -824,15 +832,19 @@ nav #searchfield {
   background: #4db2f1;
   cursor: pointer;
 }
-.cardSize {
-}
-.cardImage {
-  height: 250px;
-  width: auto;
+.card-title{
   border-bottom: 1px solid #4db2f1;
+  display: flex;
+  justify-content: center;
+}
+
+.cardImage {
+  height: 300px;
+  width: auto;
+  /*border-bottom: 1px solid #4db2f1;*/
 }
 .cardbodySize {
-  min-height: 150px;
+  min-height: 200px;
 }
 #whitebox {
   width: 60%;

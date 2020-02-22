@@ -53,12 +53,12 @@
         }
 
         h1 {
-            color: white;
-            text-shadow: 2px 2px 4px #000000
+
         }
 
         a {
             text-decoration: none !important;
+            color: black;
         }
 
         .card:hover {
@@ -172,11 +172,11 @@
             <!-- Displays all upcoming events in card form -->
             <!--            =================================-->
             <div class="col-12">
-                <div class="d-flex flex-wrap p-4 justify-content-around">
+                <div class="d-flex flex-wrap justify-content-around">
                     <div th:each="event : ${events}">
                         <a th:href="@{'/events/singleevent/'+${event.id}}">
 
-                            <div class="card hovercard m-5" style="width: 30rem;">
+                            <div class="card hovercard m-2" style="width: 40rem;">
                                 <div sec:authorize="isAuthenticated()">
                         <span th:each="user : ${event.getUserEvents()}">
                             <span th:if="${!user.isIs_creator()}">
@@ -190,9 +190,15 @@
                                 <img th:src="@{${event.getImages()}}" class="card-img-top cardImage">
                                 <div class="card-body cardbodySize">
                                     <h1 class="card-title" th:text="${event.title}"></h1>
-                                    <h2 class="card-text" th:text="${event.location}"></h2>
-                                    <h2 class="card-text" th:text="${event.address}"></h2>
-                                    <h2 class="card-text thisDateTime" th:text="${event.date_time}"></h2>
+                                    <h2>Location:
+                                    <span class="card-text" th:text="${event.location}"></span>
+                                    </h2>
+                                    <h2>Address:
+                                    <span class="card-text" th:text="${event.address}"></span>
+                                    </h2>
+                                    <h2>Date / Time :
+                                    <span class="card-text thisDateTime" th:text="${event.date_time}"></span>
+                                    </h2>
                                 </div>
                             </div>
                         </a>
