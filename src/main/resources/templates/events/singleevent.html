@@ -125,7 +125,7 @@
                 <div class="row no-gutters">
                     <!--                    card image-->
                     <div class="col-md-5">
-                        <img th:src="${event.getImages()}" alt="img" class="card-img">
+                        <img th:src="${event.getImages()}" alt="img" class="singleEventImg">
                         <!--    !!!!!!!!!!!!!!!!! Crashing if viewing event not created !!!!!!!!!!!!!!!!!!!!!!!!-->
                         <div class="row m-1">
                             <ul th:if="${creator.getId() == userId}">
