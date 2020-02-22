@@ -8,10 +8,12 @@ body {
   position: relative;
   margin: 0!important;
 }
+
 h1.header{
   color: white;
   /*text-shadow: 2px 2px 4px #000000*/
 }
+
 .center {
   text-align: center;
 }
@@ -38,6 +40,7 @@ body {
   background-color: #4db2f1;
   height: 100%;
 }
+
 .container{
   /*padding-: 2em !important;*/
   padding-left: 2em;
@@ -640,9 +643,11 @@ nav #searchfield {
   border-top: 2px solid white;
   /*padding-top: 10px!important;*/
 }
+
 .footer {
   height: 5em;
 }
+
 #footer-ul {
   display: flex;
   /*justify-content: flex-end !important;*/
