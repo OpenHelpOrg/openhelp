@@ -6,13 +6,11 @@
 body {
   min-height: 100vh;
   position: relative;
-  margin: 0;
+  margin: 0!important;
 }
 
-/*footer {*/
-/*  position: absolute;*/
-/*  bottom: 0;*/
-/*}*/
+
+
 
 
 h1.header{
@@ -56,9 +54,14 @@ body {
   background-color: #4db2f1;
   height: 100%;
 }
+
 .container{
-  padding: 2em !important;
+  /*padding-: 2em !important;*/
+  padding-left: 2em;
+  padding-right: 2em;
+  margin-bottom: 2em;
   min-width: 100%!important;
+  min-height: 100vh!important;
 }
 
 ul {
@@ -254,7 +257,7 @@ button {
   background-color: #fff;
   padding: 10px !important;
   border-radius:  5px;
-border: 1px solid #ea6725;
+  border: 1px solid #ea6725;
   margin-bottom: 30px;
 }
 
@@ -751,12 +754,17 @@ nav #searchfield {
   /*padding-top: 10px!important;*/
 }
 
+.footer {
+  height: 5em;
+}
 
 #footer-ul {
   display: flex;
-  justify-content: flex-end !important;
-  margin: 0;
-  padding: 0;
+  /*justify-content: flex-end !important;*/
+  margin: 0!important;
+  padding: 0!important;
+  margin-block-end: 0!important;
+  margin-block-start: 0!important;
   list-style: none;
   line-height: 4em;
 

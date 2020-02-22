@@ -179,6 +179,7 @@
                                 </li>
                                 <li class="list-group-item">
                                     <h3>Volunteer Limit</h3>
+                                    <span th:text="${registered} + ' have registered of '"></span>
                                     <span th:text="${event.getVol_limit()}"></span>
                                 </li>
                                 <li class="list-group-item">

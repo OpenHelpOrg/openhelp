@@ -35,7 +35,7 @@
         }
 
         .fc-header-toolbar {
-            background-color: #ea6725;
+            /*background-color: #ea6725;*/
             color: white;
         }
 
@@ -46,6 +46,10 @@
         .fc-content:hover {
             background-color: #ea6725;
             cursor: pointer;
+        }
+
+        .fc-today-button:disabled{
+            display: none;
         }
 
         h5 {
@@ -139,6 +143,20 @@
         .panelText a.active{
             color: black !important;
         }
+
+        .loader {
+            border: 16px solid #f3f3f3; /* Light grey */
+            border-top: 16px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -204,7 +222,9 @@
         <!--Map Tab Content-->
         <div class="tab-pane" id="map" role="tabpanel" aria-labelledby="map-tab">
             <!-- display the events in the map-->
-            <div id="mapShow"></div>
+            <div id="mapShow">
+                <div class="loader"></div>
+            </div>
         </div>
         <!--Calendar Tab Content-->
         <div class="tab-pane" id="calendar" role="tabpanel" aria-labelledby="calendar-tab">
@@ -235,88 +255,85 @@
     convertDateTime();
     var token = document.querySelector('meta').content;
 
-    $(document).ready(function () {
-        //display mapbox
-        mapboxgl.accessToken = token;
-        var map = new mapboxgl.Map({
-            container: 'mapShow',
-            style: 'mapbox://styles/mapbox/streets-v9',
-            center: [-98.4916, 29.4252],
-            zoom: 9
-        });
+    //display mapbox
+    mapboxgl.accessToken = token;
+    var map = new mapboxgl.Map({
+        container: 'mapShow',
+        style: 'mapbox://styles/mapbox/streets-v9',
+        center: [-98.4916, 29.4252],
+        zoom: 9
+    });
 
-        //adding events to map
-        var request = $.ajax({'url': '/event/events.json'});
-        request.done(function (events) {
-            events.forEach(function (event) {
-                geocode(event.address, token).then(function (result) {
-                    var popupHTML = "<div class='card'><div class='card-header'>" + event.title + "</div><ul class='list-group list-group-flush'><li class='list-group-item'>" + event.location + "</li><li class='list-group-item'><a href='/events/singleevent/"+ event.id +"'>View More</a></li></ul></div>";
+    //adding events to map
+    var requestMap = $.ajax({'url': '/event/events.json'});
+    requestMap.done(function (events) {
+        events.forEach(function (event) {
+            geocode(event.address, token).then(function (result) {
+                var popupHTML = "<div class='card'><div class='card-header'>" + event.title + "</div><ul class='list-group list-group-flush'><li class='list-group-item'>" + event.location + "</li><li class='list-group-item'><a href='/events/singleevent/"+ event.id +"'>View More</a></li></ul></div>";
 
-                    var popup = new mapboxgl.Popup()
-                        .setHTML(popupHTML);
+                var popup = new mapboxgl.Popup()
+                    .setHTML(popupHTML);
 
-                    var marker = new mapboxgl.Marker()
-                        .setLngLat(result)
-                        .addTo(map)
-                        .setPopup(popup);
+                var marker = new mapboxgl.Marker()
+                    .setLngLat(result)
+                    .addTo(map)
+                    .setPopup(popup);
 
-                });
             });
         });
-        //creating the calendar and populated with events
-        var request = $.ajax({'url': '/event/events.json'});
-        request.done(function (events) {
-            var calEvents = [];
-            events.forEach(function (event) {
-
-                calEvents.push({
-                    id: event.id,
-                    title: event.title,
-                    start: event.date_time,
-                    url: 'http://myopenhelp.com/events/singleevent/' + event.id
-
-                });
-
-
-            });//end of each
-            var calendarEl = document.getElementById('calendarShow');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                plugins: ['dayGrid', 'timeGrid', 'list', 'bootstrap'],
-                timeZone: 'UTC',
-                themeSystem: 'bootstrap',
-                defaultView: 'dayGridMonth',
-                height: 'parent',
-                header: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
-                },
-                eventLimit: true, // allow "more" link when too many events
-                events: calEvents,
-                editable: true,
-                eventClick: function (info) {
-                    info.jsEvent.preventDefault(); // don't let the browser navigate
-
-                    if (info.event.url) {
-                        window.location.href = info.event.url;
-                    }
-                }
-            });
-
-            calendar.render();
-
-
-        });//end of done
-
-        map.on('load', function () {
+    }).always(function () {
+        setTimeout(function () {
             map.style.width = '100%';
             map.style.height = '100%';
             map.resize();
+            $('.loader').css('display', 'none');
+        }, 2000);
+    });
 
+    //creating the calendar and populated with events
+    var request = $.ajax({'url': '/event/events.json'});
+    request.done(function (events) {
+        var calEvents = [];
+        events.forEach(function (event) {
+
+            calEvents.push({
+                id: event.id,
+                title: event.title,
+                start: event.date_time,
+                url: 'http://myopenhelp.com/events/singleevent/' + event.id
+
+            });
+
+
+        });//end of each
+        var calendarEl = document.getElementById('calendarShow');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            plugins: ['dayGrid', 'timeGrid', 'list', 'bootstrap'],
+            timeZone: 'UTC',
+            themeSystem: 'bootstrap',
+            defaultView: 'dayGridMonth',
+            height: 'parent',
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+            },
+            eventLimit: true, // allow "more" link when too many events
+            events: calEvents,
+            editable: true,
+            eventClick: function (info) {
+                info.jsEvent.preventDefault(); // don't let the browser navigate
+
+                if (info.event.url) {
+                    window.location.href = info.event.url;
+                }
+            }
         });
 
-        map.fitBounds([-98.4916, 29.4252]);
-    });
+        calendar.render();
+
+
+    });//end of done
 
     //    DATE CONVERSION LOGIC
     function convertDateTime() {
