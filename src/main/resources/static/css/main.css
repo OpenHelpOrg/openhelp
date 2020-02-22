@@ -9,46 +9,32 @@ body {
   margin: 0!important;
 }
 
-
-
-
-
 h1.header{
   color: white;
   /*text-shadow: 2px 2px 4px #000000*/
 }
 
-
-
-
 .center {
   text-align: center;
 }
-
 .roboto {
   font-family: Roboto, -apple-system, 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
 }
-
 .white {
   color: white;
 }
-
 .lgtext h1 {
   font-size: 4em;
 }
-
 .lgtext h2 {
   font-size: 3em;
 }
-
 .underline {
   text-decoration: underline double #ff6a00;
 }
-
 .orange {
   background-color: #ff6a00;
 }
-
 body {
   /*background-image: linear-gradient(135deg, #4db2f1, darkblue);*/
   background-color: #4db2f1;
@@ -63,11 +49,9 @@ body {
   min-width: 100%!important;
   min-height: 100vh!important;
 }
-
 ul {
   list-style: none;
 }
-
 /*ABOUT US PAGE*/
 .headshot {
   height: 260px;
@@ -76,14 +60,12 @@ ul {
   border: 1px solid black;
   border-radius: 5px;
 }
-
 .whoIs-links {
   font-size: 18px;
   line-height: 18px;
   margin-left: 10px;
   margin-right: 10px;
 }
-
 .aboutlinksUL {
   list-style-type: none;
   align-items: flex-end !important;
@@ -91,7 +73,6 @@ ul {
   /*position: absolute;*/
   /*bottom: 2px;*/
 }
-
 .aboutcard {
   width: 300px;
   border: 1px solid #ea6725;
@@ -99,30 +80,25 @@ ul {
   margin: 10px;
   /*position: relative;*/
 }
-
 .abtcodeuplogo {
   height: 55px;
   width: 55px;
 }
-
 .abtcodeuplogo:hover {
   transition: all .3s ease-in-out;
   -webkit-box-shadow: 1px 3px 10px 6px #ea6725; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
   -moz-box-shadow: 1px 3px 10px 6px #ea6725; /* Firefox 3.5 - 3.6 */
   box-shadow: 1px 3px 10px 6px #ea6725; /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 }
-
 /*USER PROFILE*/
 .profileeventimgholder {
   height: 125px !important;
   width: 125px !important;
 }
-
 . profileeventimg {
   height: 100%;
   width: auto;
 }
-
 #uploadConfirm {
   height: 35px;
   width: 35px;
@@ -130,13 +106,11 @@ ul {
   background-image: url("images/checkbox.png");
   visibility: hidden;
 }
-
 /*EDIT PROFILE MODAL*/
 .editprofilemodal {
   /*border: 2px solid #ea6725 !important;*/
   /*border-radius: 5px !important;*/
 }
-
 .editprofilemodal-content {
   background-color: white !important;
   border: 1px solid #ea6725;
@@ -146,23 +120,19 @@ ul {
   margin-left: 20px;
   margin-right: 20px;
 }
-
 .editprofilemodal label,
 .editprofilemodal-title {
   font-size: 1.25em;
   color: black !important;
 }
-
 .editprofilemodal input,
 .editprofilemodal textarea {
   border: 1px solid #ea6725 !important;
 }
-
 button {
   padding-right:15px;
   padding-left:15px;
 }
-
 .btn-close {
   background-color: gray !important;
   color: white !important;
@@ -175,25 +145,21 @@ button {
   border-radius: 25px;
   transition: all .3s ease-out;
 }
-
 .btn-doEdit {
   background-color: #ea6725 !important;
   color: white !important;
   border: 1px solid white !important;
 }
-
 .btn-doUpload {
   background-color: white !important;
   color: #4db2f1 !important;
   border: 1px solid #ea6725 !important;
 }
-
 .btn-doDelete {
   background-color: red !important;
   color: white !important;
   border: 1px solid white !important;
   margin: 30px auto 10px;
-
   min-width: 120px;
   height: 50px;
   font-size: 18px;
@@ -201,20 +167,17 @@ button {
   border-radius: 25px;
   transition: all .3s ease-out;
 }
-
 .btn-doAbort {
   background-color: white !important;
   color: #4db2f1 !important;
   border: 1px solid #ea6725 !important;
   margin: 30px auto 10px;
-
   min-width: 120px;
   font-size: 18px;
   line-height: 40px;
   border-radius: 25px;
   transition: all .3s ease-out;
 }
-
 .btn-doEdit,
 .btn-close,
 .btn-doUpload {
@@ -226,16 +189,13 @@ button {
   border: none;
   transition: all .3s ease-out;
 }
-
 #fileupload {
   border: 1px solid #ff6a00 !important;
   border-radius: 5px;
   margin: 0;
   font-size: 1.25em;
 }
-
 /*CREATE EVENT*/
-
 .createeventform {
   display: inline-flex;
   flex-direction: column;
@@ -243,13 +203,11 @@ button {
   align-items: center;
   border-radius:  5px;
 }
-
 .createeventform .section-title {
   font-size: 32px;
   letter-spacing: 1px;
   /*color: #4db2f1; !*color is different than login.css*!*/
 }
-
 .createeventform .forms {
   display: flex;
   /*align-items: flex-start;*/
@@ -260,7 +218,6 @@ button {
   border: 1px solid #ea6725;
   margin-bottom: 30px;
 }
-
 .createeventform .form {
   overflow: hidden;
   min-width: 350px;
@@ -271,7 +228,6 @@ button {
   transform-origin: top;
   margin-bottom: 60px;
 }
-
 .createeventform .form legend {
   position: absolute;
   overflow: hidden;
@@ -279,16 +235,13 @@ button {
   height: 2px;
   clip: rect(0 0 0 0);
 }
-
 .createeventform .input-block {
   margin-bottom: 20px;
 }
-
 .createeventform .input-block label {
   font-size: 20px;
   color: dimgrey;
 }
-
 .createeventform .input-block input {
   display: block;
   width: 100%;
@@ -302,7 +255,6 @@ button {
   border: 1px solid #ea6725;
   border-radius: 2px;
 }
-
 .createeventform .input-block textarea {
   /*this background color does not match other input blocks*/
   background-color: #eef9fe;
@@ -312,7 +264,6 @@ button {
   border-radius: 2px;
   font-size: 20px;
 }
-
 .createeventform .btn-submit {
   margin-right: auto;
   color: #fbfdff;
@@ -321,14 +272,12 @@ button {
   box-shadow: inset 0 0 0 2px #fbfdff;
   transform: translateX(30%);
 }
-
 .createeventform #checkbox {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   align-content: center;
 }
-
 /*HOME*/
 #carouselmain {
   /*border: 1px solid white;*/
@@ -336,50 +285,39 @@ button {
   /*-moz-box-shadow: 1px 3px 10px 6px gray; !* Firefox 3.5 - 3.6 *!*/
   /*box-shadow: 1px 3px 10px 6px gray; !* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 *!*/
 }
-
 .carousel-inner{
   border: 1px solid white;
   -webkit-box-shadow: 1px 3px 10px 6px gray; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
   -moz-box-shadow: 1px 3px 10px 6px gray; /* Firefox 3.5 - 3.6 */
   box-shadow: 1px 3px 10px 6px gray; /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 }
-
 #upcoming {
   border: 2px solid #ff6a00;
   border-radius: 5px;
 }
-
 /*LOGIN SWITCHER FORM*/
-
 .loginform {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-
 .loginform .section-title {
   font-size: 32px;
   letter-spacing: 1px;
   color: #fff;
 }
-
 .loginform .forms {
   display: flex;
   align-items: flex-start;
   margin-top: 30px;
-
 }
-
 .loginform .form-wrapper {
   animation: hideLayer .3s ease-out forwards;
-
 }
-
 .loginform .form-wrapper.is-active {
   animation: showLayer .3s ease-in forwards;
 }
-
 @keyframes showLayer {
   50% {
     z-index: 1;
@@ -388,7 +326,6 @@ button {
     z-index: 1;
   }
 }
-
 @keyframes hideLayer {
   0% {
     z-index: 1;
@@ -397,7 +334,6 @@ button {
     z-index: 1;
   }
 }
-
 .loginform .switcher {
   position: relative;
   cursor: pointer;
@@ -416,17 +352,14 @@ button {
   transform: translateX(0);
   transition: all .3s ease-out;
 }
-
 .loginform .form-wrapper.is-active .switcher-login {
   color: lightgrey;
   /*transform: translateX(90px);*/
 }
-
 .loginform .form-wrapper.is-active .switcher-signup {
   color: lightgrey;
   /*transform: translateX(-90px);*/
 }
-
 .loginform .underline {
   position: absolute;
   bottom: -5px;
@@ -436,7 +369,6 @@ button {
   width: 100%;
   height: 2px;
 }
-
 .loginform .underline::before {
   content: '';
   position: absolute;
@@ -448,19 +380,15 @@ button {
   background-color: currentColor;
   transition: transform .2s ease-out;
 }
-
 .loginform .switcher-login .underline::before {
   transform: translateX(101%);
 }
-
 .loginform .switcher-signup .underline::before {
   transform: translateX(-101%);
 }
-
 .loginform .form-wrapper.is-active .underline::before {
   transform: translateX(0);
 }
-
 .loginform .form {
   overflow: hidden;
   min-width: 260px;
@@ -469,17 +397,14 @@ button {
   border-radius: 5px;
   transform-origin: top;
 }
-
 .loginform .form-login {
   animation: hideLogin .3s ease-out forwards;
   border: 1px solid #ea6725;
   border-radius: 5px;
 }
-
 .loginform .form-wrapper.is-active .form-login {
   animation: showLogin .3s ease-in forwards;
 }
-
 @keyframes showLogin {
   0% {
     background: #d7e7f1;
@@ -493,7 +418,6 @@ button {
     transform: translate(35%, -20px);
   }
 }
-
 @keyframes hideLogin {
   0% {
     background-color: lightgrey;
@@ -507,17 +431,14 @@ button {
     transform: translate(40%, 10px);
   }
 }
-
 .loginform .form-signup {
   animation: hideSignup .3s ease-out forwards;
   border: 1px solid #ea6725;
   border-radius: 5px;
 }
-
 .loginform .form-wrapper.is-active .form-signup {
   animation: showSignup .3s ease-in forwards;
 }
-
 @keyframes showSignup {
   0% {
     background: #d7e7f1;
@@ -531,7 +452,6 @@ button {
     transform: translate(-35%, -20px) scaleY(1);
   }
 }
-
 @keyframes hideSignup {
   0% {
     background-color: lightgrey;
@@ -545,7 +465,6 @@ button {
     transform: translate(-40%, 10px) scaleY(.8);
   }
 }
-
 .loginform .form fieldset {
   position: relative;
   opacity: 0;
@@ -554,21 +473,17 @@ button {
   border: 0;
   transition: all .3s ease-out;
 }
-
 .loginform .form-login fieldset {
   transform: translateX(-50%);
 }
-
 .loginform .form-signup fieldset {
   transform: translateX(50%);
 }
-
 .loginform .form-wrapper.is-active fieldset {
   opacity: 1;
   transform: translateX(0);
   transition: opacity .4s ease-in, transform .35s ease-in;
 }
-
 .loginform .form legend {
   position: absolute;
   overflow: hidden;
@@ -576,16 +491,13 @@ button {
   height: 1px;
   clip: rect(0 0 0 0);
 }
-
 .loginform .input-block {
   margin-bottom: 20px;
 }
-
 .loginform .input-block label {
   font-size: 14px;
   color: dimgrey;
 }
-
 /*4db2f1*/
 /*ea6725*/
 .loginform .input-block input {
@@ -601,7 +513,6 @@ button {
   border: 1px solid #ea6725;
   border-radius: 2px;
 }
-
 .loginform .form [type='submit'] {
   opacity: 0;
   display: block;
@@ -613,27 +524,22 @@ button {
   border: none;
   transition: all .3s ease-out;
 }
-
 .loginform .form-wrapper.is-active .form [type='submit'] {
   opacity: 1;
   transform: translateX(0);
   transition: all .4s ease-in;
 }
-
 .loginform .btn-login {
   color: #fbfdff;
   background: #ea6725;
   transform: translateX(-30%);
 }
-
-
 .loginform .btn-signup {
   color: #fbfdff;
   background: #ea6725;
   box-shadow: inset 0 0 0 2px #fbfdff;
   transform: translateX(30%);
 }
-
 .loginform .loginerrortext {
   position: relative;
   cursor: pointer;
@@ -652,7 +558,6 @@ button {
   transform: translateX(0);
   transition: all .3s ease-out;
 }
-
 .loginErrorParams{
   display: inline-block;
   background-color: lightgrey;
@@ -666,7 +571,6 @@ button {
   padding-right: 10px;
 }
 /*NAVBAR AND FOOTER*/
-
 .navbar {
   /*text-transform: uppercase;*/
   /*letter-spacing: .1rem;*/
@@ -678,7 +582,6 @@ button {
   margin-top: 0 !important;
   /*margin-bottom: 20px !important;*/
 }
-
 .navbar-brand {
   font-size: 6em;
   font-family: 'Grand Hotel', cursive;
@@ -686,38 +589,29 @@ button {
   margin-top: -12px;
   padding-top: 0;
 }
-
 .nav-link {
   font-size: 2em;
   font-family: 'Roboto', sans-serif;
   text-shadow: 1px 1px black;
   /*text-shadow: 1px 2px black;*/
 }
-
-
 nav a {
   color: white;
   padding: .75em;
 }
-
 .nav-link:hover {
   color: #ea6725;
   text-shadow: 1px 1px black;
 }
-
 .navbar-brand:hover {
   color: #ea6725;
   text-shadow: 1px 1px white;
-
 }
-
 nav a:active,
   /*nav a:link,*/
 nav a:visited {
   color: white;
 }
-
-
 nav #searchbutton {
   background-color: #ea6725 !important;
   border: 1px solid white;
@@ -727,20 +621,16 @@ nav #searchbutton {
   font-family: 'Grand Hotel', cursive;
   height: 34px!important;
 }
-
 nav #searchbutton:hover {
   color: #4db2f1;
 }
-
 nav #searchfield {
   border: 1px solid #ff6a00 !important;
   border-radius: 5px;
   margin: 0;
   font-size: 2em;
 }
-
 /*FOOTER*/
-
 .OHfooter {
   /*background-color: #ff6a00!important;*/
   width: 100% !important;
@@ -767,45 +657,35 @@ nav #searchfield {
   margin-block-start: 0!important;
   list-style: none;
   line-height: 4em;
-
 }
-
 #footer-left {
   margin-right: auto;
   margin-left: .5%;
 }
-
 .footer-link {
-
   font-size: 1.5em;
   margin-right: 1%;
   margin-left: 1%;
   /*width: 15%;*/
 }
-
 /* unvisited link */
 .footer-link a:link {
   color: #ffffff;
 }
-
 /* visited link */
 .footer-link a:visited {
   color: #ffffff;
 }
-
 /* mouse over link */
 .footer-link a:hover {
   color: #4db2f1;
 }
-
 /* selected link */
 .footer-link a:active {
   color: #ffffff;
 }
 
-
 /*EVENTS INDEX*/
-
 
 .eventcard {
   /*border: 1px solid blue;*/
@@ -813,23 +693,19 @@ nav #searchfield {
   height: 30%;
   margin-bottom: 1em;
 }
-
 .eventcard .card-title {
   display: flex;
   justify-content: center;
   /*border-bottom: 1px solid blue;*/
   font-size: 25px;
 }
-
 .eventcard .card-body {
   /*border-bottom: 1px solid blue;*/
   min-height: 200px;
 }
-
 .eventcard .btn-div {
   margin-top: auto;
 }
-
 .eventindeximg {
   /*min-height: 125px;*/
   /*min-width: 125px;*/
@@ -837,12 +713,10 @@ nav #searchfield {
   width: auto;
   margin-left: 30%;
 }
-
 .eventindeximageholder {
   height: 125px;
   width: 125px;
 }
-
 .btn-enroll {
   background-color: lightgreen !important;
   color: black !important;
@@ -855,17 +729,20 @@ nav #searchfield {
   border: none;
   transition: all .3s ease-out;
 }
-
 .list-group-item {
   font-size: 17px;
 }
-
 /*MAP AND CALENDAR*/
 #mapShow {
   width: 80vh;
   height: 80vh;
   margin: 1em auto 1em;
   border: 2px solid white;
+}
+
+.singleEventImg{
+  width: auto;
+  height: 90%;
 }
 
 .singleeventmap {
@@ -875,30 +752,24 @@ nav #searchfield {
   height: 95%;
   border: 1px solid black;
 }
-
 #calendarShow {
   background-color: white;
 }
-
 .fc-header-toolbar {
   background-color: #ea6725;
   color: white;
 }
-
 .fc-content {
   color: white;
 }
-
 .fc-content:hover {
   background-color: #ea6725;
   cursor: pointer;
 }
-
 .hovercard:hover {
   border: 1px solid #ea6725;
   box-shadow: 0 15px 6px -8px #ea6725;
 }
-
 /*EDIT EVENT*/
 .editevent {
   display: flex;
@@ -911,7 +782,6 @@ nav #searchfield {
   /* Pad bottom by footer height */
   padding: 20px 0 60px;
 }
-
 /*password helper modal on login page*/
 #passwordHelpModal .modal-content {
   background-color: white;
@@ -921,27 +791,19 @@ nav #searchfield {
   font-family: 'Roboto', sans-serif;
   font-size: 1.5em;
 }
-
 #passwordHelpModal .modal-title {
   font-size: 2em;
 }
-
 #passwordHelpModal .modal-body {
   font-size: 1.5em;
 }
-
 #passwordHelpModal #criteriaList {
   list-style-type: none;
-
 }
-
-
-
 /*SLIDER INPUT*/
 .createeventform .slidecontainer {
   width: 100%; /* Width of the outside container */
 }
-
 /* The slider itself */
 .createeventform .slider {
   -webkit-appearance: none;
@@ -954,7 +816,6 @@ nav #searchfield {
   -webkit-transition: .2s;
   transition: opacity .2s;
 }
-
 .createeventform .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
@@ -964,7 +825,6 @@ nav #searchfield {
   background: #4db2f1;
   cursor: pointer;
 }
-
 .createeventform .slider::-moz-range-thumb {
   width: 25px;
   height: 25px;
@@ -972,29 +832,26 @@ nav #searchfield {
   background: #4db2f1;
   cursor: pointer;
 }
-
-.cardSize {
-
+.card-title{
+  border-bottom: 1px solid #4db2f1;
+  display: flex;
+  justify-content: center;
 }
 
 .cardImage {
-
-  height: 250px;
+  height: 300px;
   width: auto;
-  border-bottom: 1px solid #4db2f1;
+  /*border-bottom: 1px solid #4db2f1;*/
 }
-
 .cardbodySize {
-  min-height: 150px;
+  min-height: 200px;
 }
-
 #whitebox {
   width: 60%;
   background-color: white;
   border: 1px solid #ea6725;
   border-radius: 5px;
 }
-
 .mapimg {
   margin: auto;
   height: 92%;
