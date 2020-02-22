@@ -8,10 +8,12 @@ body {
   position: relative;
   margin: 0!important;
 }
+
 h1.header{
   color: white;
   /*text-shadow: 2px 2px 4px #000000*/
 }
+
 .center {
   text-align: center;
 }
@@ -38,6 +40,7 @@ body {
   background-color: #4db2f1;
   height: 100%;
 }
+
 .container{
   /*padding-: 2em !important;*/
   padding-left: 2em;
@@ -640,9 +643,11 @@ nav #searchfield {
   border-top: 2px solid white;
   /*padding-top: 10px!important;*/
 }
+
 .footer {
   height: 5em;
 }
+
 #footer-ul {
   display: flex;
   /*justify-content: flex-end !important;*/
@@ -679,7 +684,9 @@ nav #searchfield {
 .footer-link a:active {
   color: #ffffff;
 }
-/*SINGLE EVENT*/
+
+/*EVENTS INDEX*/
+
 .eventcard {
   /*border: 1px solid blue;*/
   box-sizing: border-box;
@@ -733,13 +740,11 @@ nav #searchfield {
   border: 2px solid white;
 }
 
-.singleEventCard{
-
-}
 .singleEventImg{
   width: auto;
   height: 90%;
 }
+
 .singleeventmap {
   min-height: 310px;
   min-width: 100px;
@@ -827,22 +832,10 @@ nav #searchfield {
   background: #4db2f1;
   cursor: pointer;
 }
-
-.card{
-
-
-}
-.cardSize {
-
-
-}
 .card-title{
   border-bottom: 1px solid #4db2f1;
   display: flex;
   justify-content: center;
-}
-.card-text{
-  /*border-bottom: 1px solid #4db2f1;*/
 }
 
 .cardImage {
@@ -850,7 +843,6 @@ nav #searchfield {
   width: auto;
   /*border-bottom: 1px solid #4db2f1;*/
 }
-
 .cardbodySize {
   min-height: 200px;
 }
