@@ -223,8 +223,9 @@
     <div th:each="story : ${stories}">
         <div class="containerStory">
             <img th:src="${story.getUser().getImage()}" alt="User" style="width:90px">
-            <p><span th:text="${story.getUser().getName()}"></span> User</p>
-            <p id="story-text-size" th:text="${story.getStory()}"></p>
+            <span th:text="${story.getUser().getName()}"></span>
+            <p id="story-text-size" th:maxlength="250" th:text="${story.getStory()}"></p>
+            <span id="text-remaining"></span>
         </div>
     </div>
 </div>
@@ -276,7 +277,7 @@
             // console.log(formattedDate);
         });
 
-        $('#userstory').keypress(function(){
+        $('#story-text-size').keypress(function(){
 
             if(this.value.length > 250){
                 return false;
