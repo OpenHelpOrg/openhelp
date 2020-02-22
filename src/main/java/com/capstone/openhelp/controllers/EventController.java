@@ -247,6 +247,7 @@ public class EventController {
             model.addAttribute("enrollBanner", true);
         }
 
+        model.addAttribute("registered", event.getUserEvents().size() - 1);
         model.addAttribute("userId", user.getId());
         model.addAttribute("event", event);
         model.addAttribute("mapbox", mapbox);
