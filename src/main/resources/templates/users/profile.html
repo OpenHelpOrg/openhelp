@@ -36,34 +36,34 @@
 <!--<br>-->
 <!--<br>-->
 <div class="container">
-<!--    <h1 class="text-center header">Welcome, <span th:text="${user.getName()}"></span></h1>-->
-<!--    <br>-->
-<!--    <br>-->
+    <!--    <h1 class="text-center header">Welcome, <span th:text="${user.getName()}"></span></h1>-->
+    <!--    <br>-->
+    <!--    <br>-->
 
     <div class="row">
         <!--User Profile info -->
         <div class="col-sm-12 col-md-8 mx-auto">
             <div class="card mb-3" style="width: 100%;">
                 <div class="row no-gutters">
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                         <!--                    <img th:src="@{${user.getImage()}}" alt="user avatar" class="card-img">-->
                         <img th:src="${user.getImage()}"
                              alt="user avatar" class="card-img">
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-7">
                         <div class="card-body">
-                            <h1 class="card-title">Welcome, <span th:text="${user.getName()}"></span></h1>
+                            <h1 class="card-title">Welcome, <span th:text=" ${user.getName()}"></span></h1>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">
-                                    <h3>About</h3>
+                                    <h2>About</h2>
                                     <span th:text="${user.getAbout()}"></span>
                                 </li>
                                 <li class="list-group-item">
-                                    <h3>Address</h3>
+                                    <h2>Address</h2>
                                     <span th:text="${user.getAddress()}"></span>
                                 </li>
                                 <li class="list-group-item">
-                                    <h3>Phone</h3>
+                                    <h2>Phone</h2>
                                     <span th:text="${user.getPhone()}"></span>
                                 </li>
                                 <li class="list-group-item">
@@ -94,7 +94,8 @@
                             </button>
                         </div>
                         <div class="control d-flex justify-content-start">
-                            <input type="text" name="filetoupload" id="fileupload" style="width:35%"
+                            <input type="text" name="filetoupload" id="fileupload"
+                                   style="width:40%; font-size: large; padding:5px;"
                                    placeholder="Include url of image here or use our filepicker above!">
                         </div>
                     </div>
@@ -107,17 +108,24 @@
         </div>
 
         <!--User Events info-->
+
         <div class="col-sm-12 col-md-4">
-            <div class="card mb-3" style="width: 100%">
-                <div class="card-body">
-                    <h1 class="card-title">Your events</h1>
+            <div class="card mb-3" style="width: 100%; ">
+                <div class="card-body" style="min-height: 150px;" >
+                    <h1 class="card-title">Your Events</h1>
                     <ul class="list-group list-group-flush" th:each="event : ${user.getUserEvents()}">
                         <li class="list-group-item" th:if="${event.isIs_creator() == true}">
                             <a th:href="@{'/events/singleevent/' + ${event.getEvent().getId()}}">
-                                <img th:src="@{${event.getEvent().getImages()}}" alt="event image" width="100px"
-                                     height="100px">
-                                <span th:text="${event.getEvent().getTitle()}"></span>
-                                <span class="thisDateTime" th:text="${event.getEvent().getDate_time()}"></span>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <img th:src="@{${event.getEvent().getImages()}}" alt="event image" width="100px"
+                                             height="100px">
+                                    </div>
+                                    <div class="col-8">
+                                        <span><h3 th:text="${event.getEvent().getTitle()}"></h3></span>
+                                        <span class="thisDateTime" th:text="${event.getEvent().getDate_time()}"></span>
+                                    </div>
+                                </div>
                             </a>
                         </li>
                     </ul>
@@ -132,9 +140,16 @@
                         <li class="list-group-item" th:each="events : ${user.getUserEvents()}">
                 <span th:if="${events.isIs_creator() != true}">
                     <a th:href="@{'/events/singleevent/' + ${events.getEvent().getId()}}">
-                        <img th:src="@{${events.getEvent().getImages()}}" alt="event image" height="100px" width="100px">
-                        <span th:text="${events.getEvent().getTitle()}"></span>
+                        <div class="row">
+                                <div class="col-4">
+                                    <img th:src="@{${events.getEvent().getImages()}}" alt="event image" height="100px"
+                                         width="100px">
+                                </div>
+                            <div class="col-8">
+                            <span><h3 th:text="${events.getEvent().getTitle()}"></h3></span>
                         <span class="thisDateTime" th:text="${events.getEvent().getDate_time()}"></span>
+                                    </div>
+                        </div>
                     </a>
                     <br>
                     <button class='btn-doEdit accordion'>Leave a Story</button>
@@ -242,7 +257,7 @@
     var i;
 
     for (i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function() {
+        acc[i].addEventListener("click", function () {
             this.classList.toggle("active");
             var panel = this.nextElementSibling;
             if (panel.style.maxHeight) {
