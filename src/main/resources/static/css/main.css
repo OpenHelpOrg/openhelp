@@ -860,6 +860,16 @@ nav #searchfield {
   height: 92%;
 }
 
+#login-icon {
+  height: 20px;
+  width: 20px;
+}
+
+#events-icon {
+  height: 20px;
+  width: 20px;
+
 .fc-today-button:disabled{
   display: none;
+
 }
