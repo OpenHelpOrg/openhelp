@@ -334,6 +334,23 @@ button {
     z-index: 1;
   }
 }
+
+@-webkit-keyframes showLayer {
+  50% {
+    z-index: 1;
+  }
+  100% {
+    z-index: 1;
+  }
+}
+@-webkit-keyframes hideLayer {
+  0% {
+    z-index: 1;
+  }
+  49.999% {
+    z-index: 1;
+  }
+}
 .loginform .switcher {
   position: relative;
   cursor: pointer;
@@ -431,6 +448,33 @@ button {
     transform: translate(40%, 10px);
   }
 }
+
+@-webkit-keyframes showLogin {
+  0% {
+    background: #d7e7f1;
+    transform: translate(40%, 10px);
+  }
+  50% {
+    transform: translate(0, 0);
+  }
+  100% {
+    background-color: #fff;
+    transform: translate(35%, -20px);
+  }
+}
+@-webkit-keyframes hideLogin {
+  0% {
+    background-color: lightgrey;
+    transform: translate(35%, -20px);
+  }
+  50% {
+    transform: translate(0, 0);
+  }
+  100% {
+    background: lightgrey;
+    transform: translate(40%, 10px);
+  }
+}
 .loginform .form-signup {
   animation: hideSignup .3s ease-out forwards;
   border: 1px solid #ea6725;
@@ -453,6 +497,33 @@ button {
   }
 }
 @keyframes hideSignup {
+  0% {
+    background-color: lightgrey;
+    transform: translate(-35%, -20px) scaleY(1);
+  }
+  50% {
+    transform: translate(0, 0) scaleY(.8);
+  }
+  100% {
+    background: lightgrey;
+    transform: translate(-40%, 10px) scaleY(.8);
+  }
+}
+
+@-webkit-keyframes showSignup {
+  0% {
+    background: #d7e7f1;
+    transform: translate(-40%, 10px) scaleY(.8);
+  }
+  50% {
+    transform: translate(0, 0) scaleY(.8);
+  }
+  100% {
+    background-color: #fff;
+    transform: translate(-35%, -20px) scaleY(1);
+  }
+}
+@-webkit-keyframes hideSignup {
   0% {
     background-color: lightgrey;
     transform: translate(-35%, -20px) scaleY(1);
@@ -734,7 +805,7 @@ nav #searchfield {
 }
 /*MAP AND CALENDAR*/
 #mapShow {
-  width: 80vh;
+  width: 80vw;
   height: 80vh;
   margin: 1em auto 1em;
   border: 2px solid white;

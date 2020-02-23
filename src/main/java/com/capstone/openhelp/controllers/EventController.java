@@ -167,7 +167,7 @@ public class EventController {
 
         eventDao.save(event);
         userEventDao.save(new UserEvents(user,event, true, ""));
-//        emailService.prepareAndSend(event,"You just made a event","you just made a event"); //EmailService.java model
+        emailService.createEventEmail(user, event);
         return "redirect:/events";
 
     }
@@ -201,6 +201,7 @@ public class EventController {
 
         userEventDao.deleteAll(event.getUserEvents());
         categoryDao.deleteAll(event.getCategories());
+        emailService.deleteEventEmail((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal(), event);
         eventDao.delete(event);
         return "events/deleteconfirmed";
     }
@@ -266,7 +267,6 @@ public class EventController {
     public String enrollEvent(@PathVariable long id, Model model){
         Event event = eventDao.findById(id);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        emailService.enrollEventEmail(eventDao);
 
         int limit = event.getVol_limit();
         int current = 0;
@@ -281,7 +281,7 @@ public class EventController {
 
         if(current < limit){
             userEventDao.save(new UserEvents(user,event, false, ""));
-
+            emailService.enrollEventEmail(event, user);
             model.addAttribute("response", "yes");
         }else {
             model.addAttribute("response", "no");
