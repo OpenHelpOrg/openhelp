@@ -10,50 +10,103 @@
     <title>NavBar</title>
 </head>
 <body>
-<nav th:fragment="navbar" class="navbar navbar-expand-md pt-3 mb-4">
-    <a class="navbar-brand" href="/home">OpenHelp</a>
-    <div class="collapse navbar-collapse d-flex flex-row" id="navbarSupportedContent">
-        <!--        ml-auto vs mr-auto-->
-        <ul class="navbar-nav ml-auto ">
-            <li class="nav-item mx-2">
-                <a class="nav-link" href="/users">Partners</a>
-            </li>
-            <li class="nav-item mx-2">
-                <a class="nav-link" href="/events">Events</a>
-            </li>
-            <li class="nav-item mx-2" sec:authorize="isAuthenticated()">
-                <a class="nav-link" href="/users/profile">View My Profile</a>
-            </li>
-            <li class="nav-item mx-2" sec:authorize="isAuthenticated()">
-                <a class="nav-link" href="/events/create">Create an Event</a>
-<!--                <img src="images/events-icon.png" alt="events" id="events-icon">-->
-            </li>
 
-            <li class="nav-item mx-2" sec:authorize="!isAuthenticated()">
-                <a class="nav-link" href="/sign-up">Login/Signup</a>
-<!--                <img src="images/login-icon.png" alt="login" id="login-icon">-->
-            </li>
-            <li>
-                <!--                ===============================-->
-                <form class="form-inline mt-2" th:action="@{/search}">
-                    <ul class="d-flex">
-                        <input class="form-control" name="query" id="searchfield" type="search" placeholder="Search"
-                               aria-label="Search">
-                        <select class="custom-select" id="inputGroupSelect" name="search_param"
-                                style="height: 34px; font-size: 1.5em; border: 1px solid #ea6725; border-radius: 5px;">
-                            <option name="filter" value="all" selected>All</option>
-                            <option name="filter" value="event">Events</option>
-                            <option name="filter" value="user">Users</option>
-                        </select>
-                        <button class="btn" id="searchbutton" type="submit">Search</button>
-                    </ul>
-                </form>
-            </li>
-            <li class="nav-item mx-2" sec:authorize="isAuthenticated()">
-                <a class="nav-link" href="/logout">Logout</a>
-            </li>
-        </ul>
+<nav th:fragment="navbar">
+    <div class="navbar navbar-expand-md lg-nav mb-4 d-none d-md-block" style="height: 80px;">
+        <a class="navbar-brand fullsizenav-brand" href="/home">OpenHelp</a>
+        <div class="collapse navbar-collapse d-flex flex-row" id="navbarSupportedContent">
+            <!--        ml-auto vs mr-auto-->
+            <ul class="navbar-nav ml-auto ">
+                <li class="nav-item mx-2">
+                    <a class="nav-link" href="/users">Partners</a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link" href="/events">Events</a>
+                </li>
+                <li class="nav-item mx-2" sec:authorize="isAuthenticated()">
+                    <a class="nav-link" href="/users/profile">View My Profile</a>
+                </li>
+                <li class="nav-item mx-2" sec:authorize="isAuthenticated()">
+                    <a class="nav-link" href="/events/create">Create an Event</a>
+                </li>
+
+                <li class="nav-item mx-2" sec:authorize="!isAuthenticated()">
+                    <a class="nav-link" href="/sign-up">Login/Signup</a>
+                </li>
+                <li>
+                    <!--                ===============================-->
+                    <form class="form-inline mt-2" th:action="@{/search}">
+                        <ul class="d-flex">
+                            <input class="form-control" name="query" id="searchfield" type="search" placeholder="Search"
+                                   aria-label="Search">
+                            <select class="custom-select" id="inputGroupSelect" name="search_param"
+                                    style="height: 34px; font-size: 1.5em; border: 1px solid #ea6725; border-radius: 5px;">
+                                <option name="filter" value="all" selected>All</option>
+                                <option name="filter" value="event">Events</option>
+                                <option name="filter" value="user">Users</option>
+                            </select>
+                            <button class="btn" id="searchbutton" type="submit">Search</button>
+                        </ul>
+                    </form>
+                </li>
+                <li class="nav-item mx-2" sec:authorize="isAuthenticated()">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+
     </div>
+
+
+    <!--    MOBILE NAV\-->
+
+    <div class="navbar navbar-expand-lg navbar-light d-md-none">
+        <a class="sm-navbar-brand mr-auto" href="/home">OpenHelp</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item mx-1 mt-5">
+                    <a class="sm-nav-link" href="/users">Partners</a>
+                </li>
+                <li class="nav-item mx-1 mt-4">
+                    <a class="sm-nav-link" href="/events">Events</a>
+                </li>
+                <li class="nav-item mx-1 mt-4" sec:authorize="isAuthenticated()">
+                    <a class="sm-nav-link" href="/users/profile">View My Profile</a>
+                </li>
+                <li class="nav-item mx-1 mt-4" sec:authorize="isAuthenticated()">
+                    <a class="sm-nav-link" href="/events/create">Create an Event</a>
+                </li>
+
+                <li class="nav-item mx-1 mt-4" sec:authorize="!isAuthenticated()">
+                    <a class="sm-nav-link" href="/sign-up">Login/Signup</a>
+                </li>
+                <li class="nav-item mx-1 mt-4" sec:authorize="isAuthenticated()">
+                    <a class="sm-nav-link" href="/logout">Logout</a>
+                </li>
+                <li>
+                    <form class="form-inline mt-2" th:action="@{/search}">
+                        <ul class="d-flex w-100">
+                            <input class="form-control" name="query" id="searchfield" type="search" placeholder="Search"
+                                   aria-label="Search" style="width: 75%;">
+                            <select class="custom-select" id="inputGroupSelect" name="search_param"
+                                    style="height: 34px; width:100px; font-size: 1.5em; border: 1px solid #ea6725; border-radius: 5px;">
+                                <option name="filter" value="all" selected>All</option>
+                                <option name="filter" value="event">Events</option>
+                                <option name="filter" value="user">Users</option>
+                            </select>
+                            <button class="btn" id="searchbutton" type="submit">Search</button>
+                        </ul>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
 </nav>
 <!-- FOOTER -->
 <footer th:fragment="footer" id="footer" class="footer OHfooter fixed-footer-bottom"

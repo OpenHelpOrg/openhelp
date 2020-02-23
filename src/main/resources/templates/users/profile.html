@@ -152,11 +152,12 @@
                         </div>
                     </a>
                     <br>
-                    <button class='btn-doEdit accordion'>Leave a Story</button>
+                    <button class='btn-doAccordion accordion' style="border: 1px solid #4db2f1;">Leave a Story</button>
                     <div class="panel">
                         <form th:method="post" th:action="@{'/events/add-story/' + ${events.getId()}}">
                             <textarea name="story" th:text="${events.getStory()}"></textarea>
-                            <button>Post Your Story</button>
+                            <br>
+                            <button class="btn-doPost">Post Your Story</button>
                         </form>
                     </div>
                     </button>

@@ -86,6 +86,7 @@ ul {
 }
 .abtcodeuplogo:hover {
   transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
   -webkit-box-shadow: 1px 3px 10px 6px #ea6725; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
   -moz-box-shadow: 1px 3px 10px 6px #ea6725; /* Firefox 3.5 - 3.6 */
   box-shadow: 1px 3px 10px 6px #ea6725; /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
@@ -154,7 +155,54 @@ button {
   background-color: white !important;
   color: #4db2f1 !important;
   border: 1px solid #ea6725 !important;
+  margin: 30px auto 10px;
+  min-width: 120px;
+  height: 50px;
+  font-size: 18px;
+  line-height: 40px;
+  border-radius: 25px;
+  transition: all .3s ease-out;
 }
+
+.btn-doAccordion {
+  background-color: #ea6725 !important;
+  color: white !important;
+  border: 1px solid #4db2f1 !important;
+  min-width: 120px;
+  margin: 30px auto 10px;
+  height: 50px;
+  font-size: 18px;
+  line-height: 40px;
+  border-radius: 25px;
+  transition: all .3s ease-out;
+}
+
+.btn-doUpload {
+   background-color: #4db2f1 !important;
+   color: white !important;
+   border: 1px solid #ea6725 !important;
+   min-width: 120px;
+   height: 50px;
+   font-size: 18px;
+   line-height: 40px;
+   border-radius: 25px;
+   transition: all .3s ease-out;
+ }
+
+.btn-doPost {
+  background-color: #4db2f1 !important;
+  color: white !important;
+  border: 1px solid #ea6725 !important;
+  min-width: 120px;
+  height: 50px;
+  font-size: 18px;
+  line-height: 40px;
+  border-radius: 25px;
+  transition: all .3s ease-out;
+  margin-bottom: 10px;
+  margin-left: -18px;
+}
+
 .btn-doDelete {
   background-color: red !important;
   color: white !important;
@@ -271,6 +319,7 @@ button {
   padding: 1em;
   box-shadow: inset 0 0 0 2px #fbfdff;
   transform: translateX(30%);
+  -webkit-transform: translateX(30%);
 }
 .createeventform #checkbox {
   display: flex;
@@ -314,9 +363,11 @@ button {
 }
 .loginform .form-wrapper {
   animation: hideLayer .3s ease-out forwards;
+  -webkit-animation: hideLayer .3s ease-out forwards;
 }
 .loginform .form-wrapper.is-active {
   animation: showLayer .3s ease-in forwards;
+  -webkit-animation: showLayer .3s ease-in forwards;
 }
 @keyframes showLayer {
   50% {
@@ -367,7 +418,9 @@ button {
   border: none;
   outline: none;
   transform: translateX(0);
+  -webkit-transform: translateX(0);
   transition: all .3s ease-out;
+  -webkit-transition: all .3s ease-out;
 }
 .loginform .form-wrapper.is-active .switcher-login {
   color: lightgrey;
@@ -396,15 +449,19 @@ button {
   height: inherit;
   background-color: currentColor;
   transition: transform .2s ease-out;
+  -webkit-transition: transform .2s ease-out;
 }
 .loginform .switcher-login .underline::before {
   transform: translateX(101%);
+  -webkit-transform: translateX(101%);
 }
 .loginform .switcher-signup .underline::before {
   transform: translateX(-101%);
+  -webkit-transform: translateX(-101%);
 }
 .loginform .form-wrapper.is-active .underline::before {
   transform: translateX(0);
+  -webkit-transform: translateX(0);
 }
 .loginform .form {
   overflow: hidden;
@@ -416,36 +473,44 @@ button {
 }
 .loginform .form-login {
   animation: hideLogin .3s ease-out forwards;
+  -webkit-animation: hideLogin .3s ease-out forwards;
   border: 1px solid #ea6725;
   border-radius: 5px;
 }
 .loginform .form-wrapper.is-active .form-login {
   animation: showLogin .3s ease-in forwards;
+  -webkit-animation: showLogin .3s ease-in forwards;
 }
 @keyframes showLogin {
   0% {
     background: #d7e7f1;
     transform: translate(40%, 10px);
+    -webkit-transform: translate(40%, 10px);
   }
   50% {
     transform: translate(0, 0);
+    -webkit-transform: translate(0, 0);
   }
   100% {
     background-color: #fff;
     transform: translate(35%, -20px);
+    -webkit-transform: translate(35%, -20px);
   }
 }
 @keyframes hideLogin {
   0% {
     background-color: lightgrey;
     transform: translate(35%, -20px);
+    -webkit-transform: translate(35%, -20px);
   }
   50% {
     transform: translate(0, 0);
+    -webkit-transform: translate(0, 0);
   }
   100% {
     background: lightgrey;
     transform: translate(40%, 10px);
+    -webkit-transform: translate(40%, 10px);
   }
 }
 
@@ -477,36 +542,44 @@ button {
 }
 .loginform .form-signup {
   animation: hideSignup .3s ease-out forwards;
+  -webkit-animation: hideSignup .3s ease-out forwards;
   border: 1px solid #ea6725;
   border-radius: 5px;
 }
 .loginform .form-wrapper.is-active .form-signup {
   animation: showSignup .3s ease-in forwards;
+  -webkit-animation: showSignup .3s ease-in forwards;
 }
 @keyframes showSignup {
   0% {
     background: #d7e7f1;
     transform: translate(-40%, 10px) scaleY(.8);
+    -webkit-transform: translate(-40%, 10px) scaleY(.8);
   }
   50% {
     transform: translate(0, 0) scaleY(.8);
+    -webkit-transform: translate(0, 0) scaleY(.8);
   }
   100% {
     background-color: #fff;
     transform: translate(-35%, -20px) scaleY(1);
+    -webkit-transform: translate(-35%, -20px) scaleY(1);
   }
 }
 @keyframes hideSignup {
   0% {
     background-color: lightgrey;
     transform: translate(-35%, -20px) scaleY(1);
+    -webkit-transform: translate(-35%, -20px) scaleY(1);
   }
   50% {
     transform: translate(0, 0) scaleY(.8);
+    -webkit-transform: translate(0, 0) scaleY(.8);
   }
   100% {
     background: lightgrey;
     transform: translate(-40%, 10px) scaleY(.8);
+    -webkit-transform: translate(-40%, 10px) scaleY(.8);
   }
 }
 
@@ -543,17 +616,22 @@ button {
   padding: 0;
   border: 0;
   transition: all .3s ease-out;
+  -webkit-transition: all .3s ease-out;
 }
 .loginform .form-login fieldset {
   transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
 }
 .loginform .form-signup fieldset {
   transform: translateX(50%);
+  -webkit-transform: translateX(50%);
 }
 .loginform .form-wrapper.is-active fieldset {
   opacity: 1;
   transform: translateX(0);
+  -webkit-transform: translateX(0);
   transition: opacity .4s ease-in, transform .35s ease-in;
+  -webkit-transition: opacity .4s ease-in, transform .35s ease-in;
 }
 .loginform .form legend {
   position: absolute;
@@ -594,22 +672,27 @@ button {
   border-radius: 25px;
   border: none;
   transition: all .3s ease-out;
+  -webkit-transition: all .3s ease-out;
 }
 .loginform .form-wrapper.is-active .form [type='submit'] {
   opacity: 1;
   transform: translateX(0);
+  -webkit-transform: translateX(0);
   transition: all .4s ease-in;
+  -webkit-transition: all .4s ease-in;
 }
 .loginform .btn-login {
   color: #fbfdff;
   background: #ea6725;
   transform: translateX(-30%);
+  -webkit-transform: translateX(-30%);
 }
 .loginform .btn-signup {
   color: #fbfdff;
   background: #ea6725;
   box-shadow: inset 0 0 0 2px #fbfdff;
   transform: translateX(30%);
+  -webkit-transform: translateX(30%);
 }
 .loginform .loginerrortext {
   position: relative;
@@ -627,7 +710,9 @@ button {
   border: none;
   outline: none;
   transform: translateX(0);
+  -webkit-transform: translateX(0);
   transition: all .3s ease-out;
+  -webkit-transition: all .3s ease-out;
 }
 .loginErrorParams{
   display: inline-block;
@@ -645,13 +730,17 @@ button {
 .navbar {
   /*text-transform: uppercase;*/
   /*letter-spacing: .1rem;*/
-  background-color: #4db2f1;
+  background-color: #4db2f1!important;
   /*background-image: linear-gradient(90deg, #4db2f1, darkblue);*/
   border-bottom: 4px solid #ea6725;
-  align-items: center;
+  align-items: center!important;
   top: 0 !important;
   margin-top: 0 !important;
   /*margin-bottom: 20px !important;*/
+}
+
+.lg-nav{
+  padding-top:2.5em;
 }
 .navbar-brand {
   font-size: 6em;
@@ -659,21 +748,39 @@ button {
   text-shadow: 1px 1px black;
   margin-top: -12px;
   padding-top: 0;
+  color: white;
 }
+
+.sm-navbar-brand {
+  font-size: 6em;
+  font-family: 'Grand Hotel', cursive;
+  text-shadow: 1px 1px black;
+  margin-top: -12px;
+  margin-left: 0!important;
+  margin-right: auto;
+  padding: 0;
+  color: white;
+}
+
+
+.sm-nav-link,
 .nav-link {
   font-size: 2em;
   font-family: 'Roboto', sans-serif;
   text-shadow: 1px 1px black;
   /*text-shadow: 1px 2px black;*/
+
 }
 nav a {
   color: white;
   padding: .75em;
 }
+.sm-nav-link:hover,
 .nav-link:hover {
   color: #ea6725;
   text-shadow: 1px 1px black;
 }
+
 .navbar-brand:hover {
   color: #ea6725;
   text-shadow: 1px 1px white;
@@ -799,6 +906,7 @@ nav #searchfield {
   border-radius: 25px;
   border: none;
   transition: all .3s ease-out;
+  -webkit-transition: all .3s ease-out;
 }
 .list-group-item {
   font-size: 17px;
@@ -887,7 +995,7 @@ nav #searchfield {
   background: #d3d3d3;
   outline: none;
   opacity: 0.7;
-  -webkit-transition: .2s;
+  -webkit-transition: opacity .2s;
   transition: opacity .2s;
 }
 .createeventform .slider::-webkit-slider-thumb {
@@ -911,10 +1019,9 @@ nav #searchfield {
   display: flex;
   justify-content: center;
 }
-
 .cardImage {
-  height: 300px;
-  width: auto;
+  height: auto;
+  width: 100%;
   /*border-bottom: 1px solid #4db2f1;*/
 }
 .cardbodySize {

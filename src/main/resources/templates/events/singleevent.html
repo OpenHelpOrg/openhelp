@@ -232,7 +232,7 @@
     <h2>Event Stories</h2>
     <div th:each="story : ${stories}">
         <div class="containerStory">
-            <img th:src="${story.getUser().getImage()}" alt="User" style="width:90px">
+            <img th:src="${story.getUser().getImage()}" alt="User" style="width:90px; height:90px;">
             <span th:text="${story.getUser().getName()}"></span>
             <p id="story-text-size" th:maxlength="250" th:text="${story.getStory()}"></p>
             <span id="text-remaining"></span>
