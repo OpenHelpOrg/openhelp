@@ -197,7 +197,7 @@
                     <div th:each="event : ${events}">
                         <a th:href="@{'/events/singleevent/'+${event.id}}">
 
-                            <div class="card hovercard m-2" style="width: 40rem;">
+                            <div class="card hovercard m-2 mt-5 mb-b" style="width: 40rem;">
                                 <div sec:authorize="isAuthenticated()">
                         <span th:each="user : ${event.getUserEvents()}">
                             <span th:if="${!user.isIs_creator()}">

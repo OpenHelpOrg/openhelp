@@ -116,11 +116,12 @@
 <nav th:insert="partials/navbar :: navbar"></nav>
 <div class="container">
 
-        <h1 class="text-center header"> Showing Single Event</h1>
+    <h1 class="text-center header"> Showing Single Event</h1>
     <!--    event card-->
     <div class="row p-5 justify-content-center flex-wrap mb-3">
-        <div class="col-sm-12 col-md-8 col-lg-7">
-            <div class="card singleEventCard  p-2 border-dark" style="height:100%; width: 100%;">
+
+        <div class="col-sm-12 col-md-12 col-lg-6 mb-4">
+            <div class="card singleEventCard  p-2 border-dark">
                 <div class="ribbon"><span th:if="${enrollBanner}">Enrolled</span></div>
                 <div class="row no-gutters">
                     <!--                    card image-->
@@ -131,20 +132,25 @@
                             <ul th:if="${creator.getId() == userId}">
                                 <li>
                                     <!--edit post-->
-                                    <div class="d-flex">
-                                        <a th:href="@{'/events/edit/'+${event.id}}" class="btn">
-                                            <button class="btn btn-doEdit mr-2">Edit Event</button>
-                                        </a>
-                                        <!--delete post-->
-                                        <a th:href="@{'/events/delete/'+ ${event.id}}" class="btn">
-                                            <button class="btn btn-doDelete ml-2">Delete Event</button>
-                                        </a>
-                                    </div>
+<!--                                    <div class="row">-->
+                                        <div class="col-sm-12 col-md-6">
+<!--                                            <div class="d-flex justify-space-around">-->
+                                                <a th:href="@{'/events/edit/'+${event.id}}" class="btn">
+                                                    <button class="btn btn-doEdit">Edit Event</button>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6">
+                                                <!--delete post-->
+                                                <a th:href="@{'/events/delete/'+ ${event.id}}" class="btn">
+                                                    <button class="btn btn-doDelete">Delete Event</button>
+                                                </a>
+                                            </div>
+<!--                                        </div>-->
+<!--                                    </div>-->
                                 </li>
                             </ul>
                             <ul>
                                 <div th:if="${display} != false">
-
                                     <li class="list-group-item">
                                         <div th:if="${event.getUserEvents().size() <= event.getLimit()}">
                                             <a th:href="@{'/events/singleevent/' + ${event.getId()} + '/enroll'}">Enroll</a>
@@ -154,8 +160,9 @@
                             </ul>
                         </div>
                     </div>
+
                     <!--                    event card info-->
-                    <div class="col-md-7 eventcard">
+                    <div class="col-md-12 col-lg-6 eventcard card">
                         <div class="card-body">
                             <div class="card-title"><span th:text="${event.getTitle()}"></span>
                             </div>
@@ -278,12 +285,12 @@
             // console.log(formattedDate);
         });
 
-        $('#story-text-size').keypress(function(){
+        $('#story-text-size').keypress(function () {
 
-            if(this.value.length > 250){
+            if (this.value.length > 250) {
                 return false;
             }
-            $("#textremaining").html("Remaining characters : " +(250 - this.value.length));
+            $("#textremaining").html("Remaining characters : " + (250 - this.value.length));
         });
     }
 </script>
