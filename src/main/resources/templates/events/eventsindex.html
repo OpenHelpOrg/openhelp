@@ -368,7 +368,6 @@
         if(!isEmpty(user.address)){
             geocode(user.address, token).then(function (result) {
                 map.setCenter(result);
-                map.fitBounds(result);
             });
         }
     }).fail(function (jqXhr, status, error) {
