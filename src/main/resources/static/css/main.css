@@ -856,3 +856,7 @@ nav #searchfield {
   margin: auto;
   height: 92%;
 }
+
+.fc-today-button:disabled{
+  display: none;
+}

@@ -54,8 +54,9 @@
         <br>
     </div>
 
+    <h1 class="center">Upcoming Events</h1>
+
     <div id="upcoming" class="roboto center white lgtext w-50 mx-auto">
-        <h1>Upcoming Events</h1>
         <div id="calendarShow"></div>
     </div>
 </div>
@@ -92,7 +93,8 @@
                 timeZone: 'UTC',
                 themeSystem: 'bootstrap',
                 defaultView: 'dayGridMonth',
-                height: 'parent',
+                height: 500,
+                contentHeight: 500,
                 header: {
                     left: 'prev,next today',
                     center: 'title',
@@ -116,6 +118,11 @@
         });//end of done
     });
 </script>
-
+<style>
+    #upcoming {
+        width: 100%!important;
+        height: auto!important;
+    }
+</style>
 </body>
 </html>
