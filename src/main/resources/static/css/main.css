@@ -856,3 +856,13 @@ nav #searchfield {
   margin: auto;
   height: 92%;
 }
+
+#login-icon {
+  height: 20px;
+  width: 20px;
+}
+
+#events-icon {
+  height: 20px;
+  width: 20px;
+}
