@@ -24,21 +24,20 @@
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet'/>
     <!-- Custom CSS -->
     <style>
-        /*#mapShow {*/
-        /*    margin: 1em auto;*/
-        /*    !*width: 50%;*!*/
-        /*    !*height: 50%;*!*/
-        /*}*/
 
         #calendarShow {
             background-color: white;
+            position: relative;
+        }
+
+        .mapEvents{
+            width: 80vw;
         }
 
         #calendar{
             height: calc(100vh - 25%);
         }
         .fc-header-toolbar {
-            /*background-color: #ea6725;*/
             color: white;
         }
 
@@ -57,10 +56,6 @@
 
         h5 {
             color: #ea6725;
-        }
-
-        h1 {
-
         }
 
         a {
@@ -149,11 +144,16 @@
 
         .loader {
             border: 16px solid #f3f3f3; /* Light grey */
-            border-top: 16px solid #3498db; /* Blue */
+            border-top: 16px solid #79A70A; /* Light Green */
             border-radius: 50%;
             width: 120px;
             height: 120px;
             animation: spin 2s linear infinite;
+            position: absolute;
+            left: 50%;
+            margin-left: -60px;
+            top: 50%;
+            margin-top: -60px;
         }
 
         @keyframes spin {
@@ -197,7 +197,9 @@
                     <div th:each="event : ${events}">
                         <a th:href="@{'/events/singleevent/'+${event.id}}">
 
+
                             <div class="card hovercard m-2 mt-5" style="width: 40rem; height: 60rem;">
+
                                 <div sec:authorize="isAuthenticated()">
                         <span th:each="user : ${event.getUserEvents()}">
                             <span th:if="${!user.isIs_creator()}">
@@ -231,7 +233,7 @@
         <!--Map Tab Content-->
         <div class="tab-pane" id="map" role="tabpanel" aria-labelledby="map-tab">
             <!-- display the events in the map-->
-            <div id="mapShow">
+            <div id="mapShow" class="mapEvents">
                 <div class="loader"></div>
             </div>
         </div>

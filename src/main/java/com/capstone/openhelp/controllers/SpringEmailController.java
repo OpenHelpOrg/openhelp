@@ -16,7 +16,7 @@ class SpringEmailController {
     @GetMapping("/email")
     @ResponseBody
     public String testemail() {
-        emailsvc.prepareAndSend(new Event(), "Test","This is kinda working how I would like it");
+//        emailsvc.prepareAndSend(new Event(), "Test","This is kinda working how I would like it");
         return "test email";
     }
 

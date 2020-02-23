@@ -23,21 +23,6 @@ public class EmailService {
     @Value("${spring.mail.from")
     private String from;
 
-
-    public void prepareAndSend(Event event, String subject, String description) {
-        SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setFrom(from);
-        msg.setTo("christian.crousserkaiman@gmail.com");
-        msg.setSubject(subject);
-        msg.setText(description);
-
-        try{
-            this.emailSender.send(msg);
-        }catch(MailException ex){
-            System.err.println(ex.getMessage());
-        }
-    }
-
     public void sendEmailAllVolunteers(User user, String userTo, String subject, String body){
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setFrom(user.getEmail());
@@ -116,10 +101,38 @@ public class EmailService {
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setFrom(from);
         msg.setTo(user.getEmail());
-        msg.setSubject("Event Creation");
+        msg.setSubject("You created the event " + event.getTitle());
 
-        String body = "You have successfully created an event! " + user.getName() + " Here are the details.";
+        String body = "Hello " + user.getName() + ", \n\nLooks like you just created an event." +
+                " These are the new details of the event for your information:\nTitle: " + event.getTitle() + "\nLocation: " + event.getLocation() +
+                "\nAddress: " + event.getAddress() + "\nSummary: " + event.getSummary() + "\nDate and Time: " + event.getDate_time() +
+                "\nNotes: " + event.getNotes() + "\n\nThank you,\n\nOpenHelp Team.";
         msg.setText(body);
+
+        try{
+            this.emailSender.send(msg);
+        }catch (MailException ex){
+            System.err.println(ex.getMessage());
+        }
+    }
+
+    public void deleteEventEmail(User user, Event event) {
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setFrom(from);
+        msg.setTo(user.getEmail());
+        msg.setSubject("You deleted the event " + event.getTitle());
+
+        String body = "Hello " + user.getName() + ", \n\nLooks like you just deleted an event." +
+                " These are the details of the event for your information:\nTitle: " + event.getTitle() + "\nLocation: " + event.getLocation() +
+                "\nAddress: " + event.getAddress() + "\nSummary: " + event.getSummary() + "\nDate and Time: " + event.getDate_time() +
+                "\nNotes: " + event.getNotes() + "\n\nThank you,\n\nOpenHelp Team.";
+        msg.setText(body);
+
+        try{
+            this.emailSender.send(msg);
+        }catch (MailException ex){
+            System.err.println(ex.getMessage());
+        }
     }
 
 
@@ -127,22 +140,81 @@ public class EmailService {
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setFrom(from);
         msg.setTo(user.getEmail());
-        msg.setSubject("Attendance confirmation");
+        msg.setSubject(event.getTitle() + "attendance confirmation");
 
-        String body = "You have confirmed yourself for this event";
+        User creator = new User();
+        for(int x = 0; x < event.getUserEvents().size(); x++){
+            if(event.getUserEvents().get(x).isIs_creator()){
+                creator = event.getUserEvents().get(x).getUser();
+            }
+        }
+
+        String body = "Hello " + user.getName() + ", \n\nYour attendance in the event " + event.getTitle() + " have been confirmed." +
+        "\nIf you have any questions or need to cancel your enrollment. Please contact the event creator for more "
+                + "information (" + creator.getName() + ") at " + creator.getEmail() + ".\n\nThank you,\n\nOpenHelp Team.";;
         msg.setText(body);
+
+        try{
+            this.emailSender.send(msg);
+        }catch (MailException ex){
+            System.err.println(ex.getMessage());
+        }
     }
 
 
-    public void enrollEventEmail(EventRepository eventDao, User user) {
+    public void enrollEventEmail(Event event, User user) {
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setFrom(from);
         msg.setTo(user.getEmail());
-        msg.setSubject("Thank you for enrolling");
+        msg.setSubject("Thank you for enrolling on the " + event.getTitle() + " event.");
 
-        String body = "Thank you for enrolling in this event!  For more details please contact your event organizer.  Thank you for using OpenHelp!";
+        User creator = new User();
+        for(int x = 0; x < event.getUserEvents().size(); x++){
+            if(event.getUserEvents().get(x).isIs_creator()){
+                creator = event.getUserEvents().get(x).getUser();
+            }
+        }
+
+        String body = "Hello " + user.getName() + ", \n\nYou have been enrolled in the event " + event.getTitle() +
+                ". Here are the details of the event for your information:\nTitle: " + event.getTitle() + "\nLocation: " + event.getLocation() +
+                "\nAddress: " + event.getAddress() + "\nSummary: " + event.getSummary() + "\nDate and Time: " + event.getDate_time() +
+                "\nNotes: " + event.getNotes() + "\nIf you have any questions or need to cancel your enrollment. Please contact the event creator for more "
+                + "information (" + creator.getName() + ") at " + creator.getEmail() + ".\n\nThank you,\n\nOpenHelp Team.";
         msg.setText(body);
 
+        try{
+            this.emailSender.send(msg);
+        }catch (MailException ex){
+            System.err.println(ex.getMessage());
+        }
+
+    }
+
+    public void unEnrollEvent(Event event, User user){
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setFrom(from);
+        msg.setTo(user.getEmail());
+        msg.setSubject("Unenrollment on the " + event.getTitle() + " event.");
+
+        User creator = new User();
+        for(int x = 0; x < event.getUserEvents().size(); x++){
+            if(event.getUserEvents().get(x).isIs_creator()){
+                creator = event.getUserEvents().get(x).getUser();
+            }
+        }
+
+        String body = "Hello " + user.getName() + ", \n\nYou have been unenrolled in the event " + event.getTitle() +
+                ". Here are the details of the event for your information:\nTitle: " + event.getTitle() + "\nLocation: " + event.getLocation() +
+                "\nAddress: " + event.getAddress() + "\nSummary: " + event.getSummary() + "\nDate and Time: " + event.getDate_time() +
+                "\nNotes: " + event.getNotes() + "\nIf you have any questions or need clarification of your unenrollment. Please contact the event creator for more "
+                + "information (" + creator.getName() + ") at " + creator.getEmail() + ".\n\nThank you,\n\nOpenHelp Team.";
+        msg.setText(body);
+
+        try{
+            this.emailSender.send(msg);
+        }catch (MailException ex){
+            System.err.println(ex.getMessage());
+        }
     }
 }
 

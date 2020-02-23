@@ -216,6 +216,7 @@ public class UserController {
 
         for(int x = 0; x < users.size(); x++){
             Long idC = Long.parseLong(users.get(x));
+            emailService.unEnrollEvent(event,userEventDao.getOne(idC).getUser());
             userEventDao.deleteById(idC);
         }
 
@@ -235,12 +236,12 @@ public class UserController {
            userEventDao.save(event.getUserEvents().get(x));
        }
 
-//        for(int x=0; x < users.size(); x++){
-//            UserEvents event = userEventDao.getOne(Long.parseLong(users.get(x)));
-//            event.setAttended(true);
-//            userEventDao.save(event);
-//            System.out.println(users.get(x));
-//        }
+       for(int i = 0; i < event.getUserEvents().size(); i++){
+           if(!event.getUserEvents().get(1).isIs_creator()){
+               emailService.confirmEventEmail(event.getUserEvents().get(i).getUser(),event);
+           }
+       }
+
         return "redirect:/events/edit/" + id;
     }
 }
