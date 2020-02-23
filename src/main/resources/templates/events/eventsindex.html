@@ -34,6 +34,9 @@
             background-color: white;
         }
 
+        #calendar{
+            height: calc(100vh - 25%);
+        }
         .fc-header-toolbar {
             /*background-color: #ea6725;*/
             color: white;
@@ -194,7 +197,7 @@
                     <div th:each="event : ${events}">
                         <a th:href="@{'/events/singleevent/'+${event.id}}">
 
-                            <div class="card hovercard m-2" style="width: 40rem;">
+                            <div class="card hovercard m-2 mt-5 mb-b" style="width: 40rem;">
                                 <div sec:authorize="isAuthenticated()">
                         <span th:each="user : ${event.getUserEvents()}">
                             <span th:if="${!user.isIs_creator()}">
@@ -318,7 +321,8 @@
             timeZone: 'UTC',
             themeSystem: 'bootstrap',
             defaultView: 'dayGridMonth',
-            height: 'parent',
+            height: 500,
+            contentHeight: 500,
             header: {
                 left: 'prev,next today',
                 center: 'title',
