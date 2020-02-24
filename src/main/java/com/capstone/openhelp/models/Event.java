@@ -32,9 +32,8 @@ public class Event {
     @JsonIgnore
     private String summary;
 
-    @Column(columnDefinition="VARCHAR(500)")
+    @Column(columnDefinition="VARCHAR", length = 500)
     @JsonIgnore
-
     private String images;
 
     @Column(columnDefinition = "TEXT")

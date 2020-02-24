@@ -124,10 +124,10 @@
             <div class="card mb-3" style="width: 100%; height: 100%">
                 <div class="ribbon"><span th:if="${enrollBanner}">Enrolled</span></div>
                 <div class="row no-gutters">
-                    <div class="col-md-5">
+                    <div class="col-md-5" style="height: 300px; width: 300px;">
                         <!--                    <img th:src="@{${user.getImage()}}" alt="user avatar" class="card-img">-->
                         <img th:src="${event.getImages()}"
-                             alt="image placeholder" class="card-img">
+                             alt="image placeholder" class="card-img" style="object-fit: contain;">
                     </div>
                     <div class="col-7">
                         <div class="card-body">
