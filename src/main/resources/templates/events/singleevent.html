@@ -120,7 +120,7 @@
     <!--=========================================================-->
     <h1 class="text-center header"> Showing Single Event</h1>
     <div class="row">
-        <div class="col-sm-12 col-md-8 mx-auto" style="height: 500px;">
+        <div class="col-sm-12 col-md-8 mx-auto" style="height: 520px;">
             <div class="card mb-3" style="width: 100%; height: 100%">
                 <div class="ribbon"><span th:if="${enrollBanner}">Enrolled</span></div>
                 <div class="row no-gutters">
@@ -137,10 +137,10 @@
                                     <h2>Location</h2>
                                     <span th:text="${event.getLocation()}"></span>
                                 </li>
-<!--                                <li class="list-group-item">-->
-<!--                                    <h2>Address</h2>-->
-<!--                                    <span th:text="${event.getAddress()}"></span>-->
-<!--                                </li>-->
+                                <!--                                <li class="list-group-item">-->
+                                <!--                                    <h2>Address</h2>-->
+                                <!--                                    <span th:text="${event.getAddress()}"></span>-->
+                                <!--                                </li>-->
                                 <li class="list-group-item">
                                     <h2>Date & Time</h2>
                                     <span class="thisDateTime" th:text="${event.getDate_time()}"></span>
@@ -167,17 +167,21 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="card-footer d-flex">
-                                    <div th:each="category : ${event.getCategories()}">
-                                        <span class="badge badge-pill badge-light"
-                                              th:text="${category.getName()}"></span>
+                                <li class="d-flex justify-content-around">
+                                    <!--                                    <div class="row">-->
+                                    <div class="" th:each="category : ${event.getCategories()}">
+                                        <button class="btn btn-doEdit">
+                                            <a th:text="${category.getName()}"></a></button>
                                     </div>
+                                    <!--                                    </div>-->
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
+
+<!--            edit delete / enroll buttons-->
             <div class="box mb-5">
                 <ul class="d-flex justify-content-start" th:if="${creator.getId() == userId}">
                     <li>
@@ -196,126 +200,18 @@
                 </ul>
                 <ul th:if="${display} != false">
                     <li>
-                        <div class="col-sm-12 col-md-6 mb-5" th:if="${event.getUserEvents().size() <= event.getLimit()}">
+                        <div class="col-sm-12 col-md-6 mb-5"
+                             th:if="${event.getUserEvents().size() <= event.getLimit()}">
                             <a th:href="@{'/events/singleevent/' + ${event.getId()} + '/enroll'}">
                                 <button class="btn btn-enroll">Enroll</button>
                             </a>
                         </div>
                     </li>
-
-                    <!--                    <div th:if="${display} != false">-->
-                    <!--                        <li class="list-group-item">-->
-                    <!--                            <div th:if="${event.getUserEvents().size() <= event.getLimit()}">-->
-                    <!--                                <button class="btn-enroll">-->
-                    <!--                                    <a th:href="@{'/events/singleevent/' + ${event.getId()} + '/enroll'}">Enroll</a>-->
-                    <!--                                </button>-->
-                    <!--                            </div>-->
-                    <!--                        </li>-->
-                    <!--                    </div>-->
                 </ul>
             </div>
         </div>
-
-
-        <!--    ======================================================-->
-        <!--    <h1 class="text-center header"> Showing Single Event</h1>-->
-        <!--    &lt;!&ndash;    event card&ndash;&gt;-->
-        <!--    <div class="row p-5 justify-content-center flex-wrap mb-3">-->
-
-        <!--        <div class="col-sm-12 col-md-12 col-lg-6 mb-4">-->
-        <!--            <div class="card singleEventCard  p-2 border-dark">-->
-        <!--                <div class="ribbon"><span th:if="${enrollBanner}">Enrolled</span></div>-->
-        <!--                <div class="row no-gutters">-->
-        <!--                    &lt;!&ndash;                    card image&ndash;&gt;-->
-        <!--                    <div class="col-md-5">-->
-        <!--                        <img th:src="${event.getImages()}" alt="img" class="singleEventImg">-->
-        <!--                        &lt;!&ndash;    !!!!!!!!!!!!!!!!! Crashing if viewing event not created !!!!!!!!!!!!!!!!!!!!!!!!&ndash;&gt;-->
-        <!--                        <div class="row m-1">-->
-        <!--                            <ul th:if="${creator.getId() == userId}">-->
-        <!--                                <li>-->
-        <!--                                    &lt;!&ndash;edit post&ndash;&gt;-->
-        <!--                                    &lt;!&ndash;                                    <div class="row">&ndash;&gt;-->
-        <!--                                    <div class="col-sm-12 col-md-6">-->
-        <!--                                        &lt;!&ndash;                                            <div class="d-flex justify-space-around">&ndash;&gt;-->
-        <!--                                        <a th:href="@{'/events/edit/'+${event.id}}" class="btn">-->
-        <!--                                            <button class="btn btn-doEdit">Edit Event</button>-->
-        <!--                                        </a>-->
-        <!--                                    </div>-->
-        <!--                                    <div class="col-sm-12 col-md-6">-->
-        <!--                                        &lt;!&ndash;delete post&ndash;&gt;-->
-        <!--                                        <a th:href="@{'/events/delete/'+ ${event.id}}" class="btn">-->
-        <!--                                            <button class="btn btn-doDelete">Delete Event</button>-->
-        <!--                                        </a>-->
-        <!--                                    </div>-->
-        <!--                                    &lt;!&ndash;                                        </div>&ndash;&gt;-->
-        <!--                                    &lt;!&ndash;                                    </div>&ndash;&gt;-->
-        <!--                                </li>-->
-        <!--                            </ul>-->
-        <!--                            <ul>-->
-        <!--                                <div th:if="${display} != false">-->
-        <!--                                    <li class="list-group-item">-->
-        <!--                                        <div th:if="${event.getUserEvents().size() <= event.getLimit()}">-->
-        <!--                                            <a th:href="@{'/events/singleevent/' + ${event.getId()} + '/enroll'}">Enroll</a>-->
-        <!--                                        </div>-->
-        <!--                                    </li>-->
-        <!--                                </div>-->
-        <!--                            </ul>-->
-        <!--                        </div>-->
-        <!--                    </div>-->
-
-        <!--                    &lt;!&ndash;                    event card info&ndash;&gt;-->
-        <!--                    <div class="col-md-12 col-lg-6 eventcard card">-->
-        <!--                        <div class="card-body">-->
-        <!--                            <div class="card-title"><span th:text="${event.getTitle()}"></span>-->
-        <!--                            </div>-->
-        <!--                            &lt;!&ndash;                            <hr>&ndash;&gt;-->
-        <!--                            <ul class="list-group list-group-flush">-->
-        <!--                                <li class="list-group-item">-->
-        <!--                                    <h3>Location:</h3>-->
-        <!--                                    <span th:text="${event.getLocation()}"></span>-->
-        <!--                                </li>-->
-        <!--                                <li class="list-group-item">-->
-        <!--                                    <h3>Date:</h3>-->
-        <!--                                    <span class="thisDateTime" th:text="${event.getDate_time()}"></span>-->
-        <!--                                </li>-->
-        <!--                                <li class="list-group-item">-->
-        <!--                                    <h3>Event Summary</h3>-->
-        <!--                                    <span th:text="${event.getSummary()}"></span>-->
-        <!--                                </li>-->
-        <!--                                <li class="list-group-item">-->
-        <!--                                    <h3>Notes</h3>-->
-        <!--                                    <span th:text="${event.getNotes()}"></span>-->
-        <!--                                </li>-->
-        <!--                                <li class="list-group-item">-->
-        <!--                                    <h3>Volunteer Limit</h3>-->
-        <!--                                    <span th:text="${registered} + ' have registered of '"></span>-->
-        <!--                                    <span th:text="${event.getVol_limit()}"></span>-->
-        <!--                                </li>-->
-        <!--                                <li class="list-group-item">-->
-        <!--                                    <div th:each="ev : ${event.getUserEvents()}">-->
-        <!--                                        <div th:if="${ev.isIs_creator()}">-->
-        <!--                                            <h3>Created by: </h3>-->
-        <!--                                            <h4><a th:href="@{'/user/' + ${ev.getUser().getId()}}"-->
-        <!--                                                   th:text="${ev.getUser().getName()}"></a></h4>-->
-        <!--                                            <h4><a th:href="@{'mailto:' + ${ev.getUser().getEmail()}}"-->
-        <!--                                                   th:text="${ev.getUser().getEmail()}"></a></h4>-->
-        <!--                                        </div>-->
-        <!--                                    </div>-->
-        <!--                                </li>-->
-
-        <!--                                <li class="card-footer d-flex">-->
-        <!--                                    <div th:each="category : ${event.getCategories()}">-->
-        <!--                                        <span class="badge badge-pill badge-light"-->
-        <!--                                              th:text="${category.getName()}"></span>-->
-        <!--                                    </div>-->
-        <!--                                </li>-->
-        <!--                            </ul>-->
-        <!--                        </div>-->
-        <!--                    </div>-->
-        <!--                </div>-->
-        <!--            </div>-->
-        <!--        </div> &lt;!&ndash;        end of event card&ndash;&gt;-->
-        <div class="col-4">
+<!--map card-->
+        <div class="col-sm-12 col-md-4">
             <div class="card mb-3 border-dark" style="height: 100%">
                 <div class="card-body" style="height: 500px;">
                     <h1 class="card-title"><span th:text="${event.getAddress()}"></span></h1>
