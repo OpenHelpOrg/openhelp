@@ -12,4 +12,10 @@ public class AboutController {
         return "about";
     }
 
+    @GetMapping("/500")
+    public String errorPage(){
+        return  "error/500";
+    }
+
+
 }
