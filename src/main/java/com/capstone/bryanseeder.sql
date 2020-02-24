@@ -19,3 +19,6 @@ insert into user_event (id, is_creator, story, event_id, user_id)  values (2, fa
 
 # ALTER TABLE events DROP COLUMN details;
 
+ALTER TABLE events MODIFY COLUMN images varchar(500);
+
+ALTER TABLE users MODIFY COLUMN image varchar(500);

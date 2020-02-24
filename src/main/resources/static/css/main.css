@@ -1065,3 +1065,10 @@ nav #searchfield {
   display: none;
 
 }
+
+img, image {
+  /*max-height: 500px;*/
+  overflow: hidden;
+  object-fit: contain;
+  max-height: 500px;
+}
