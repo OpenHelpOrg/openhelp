@@ -34,7 +34,6 @@ public class Event {
 
     @Column(columnDefinition="VARCHAR(500)")
     @JsonIgnore
-
     private String images;
 
     @Column(columnDefinition = "TEXT")
