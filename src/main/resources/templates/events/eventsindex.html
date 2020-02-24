@@ -43,6 +43,7 @@
 
         .fc-content {
             color: white;
+            font-size: 2em;
         }
 
         .fc-content:hover {
@@ -361,19 +362,6 @@
     function isEmpty(str){
         return !str || str.length === 0 || !str.trim();
     }
-
-    //checks if a user is logged in
-    var requestUser = $.ajax({'url': '/user/loginUser.json'});
-    requestUser.done(function (user) {
-        if(!isEmpty(user.address)){
-            geocode(user.address, token).then(function (result) {
-                map.setCenter(result);
-            });
-        }
-    }).fail(function (jqXhr, status, error) {
-        console.log("Response status: " + status);
-        console.log("Error object: " + error);
-    });
 </script>
 
 
