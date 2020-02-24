@@ -169,9 +169,8 @@
                                 </li>
                                 <li class="d-flex justify-content-around">
                                     <!--                                    <div class="row">-->
-                                    <div class="" th:each="category : ${event.getCategories()}">
-                                        <button class="btn btn-doEdit">
-                                            <a th:text="${category.getName()}"></a></button>
+                                    <div class="d-none d-xl-block mt-4" th:each="category : ${event.getCategories()}">
+                                            <span class="cat-pill" th:text="${category.getName()}"></span>
                                     </div>
                                     <!--                                    </div>-->
                                 </li>
