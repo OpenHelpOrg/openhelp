@@ -74,8 +74,8 @@
         <div class="d-flex flex-wrap p-4 justify-content-around">
             <div th:each="event : ${results}">
                 <a th:href="@{'/events/singleevent/'+${event.id}}">
-                    <div class="card hovercard mr-5 mb-5" style="width: 32rem;">
-                        <img th:src="@{${event.getImages()}}" class="card-img-top cardImage">
+                    <div class="card hovercard mr-5 mb-5" style="width: 32rem; min-height: 500px;">
+                        <img th:src="@{${event.getImages()}}" class="card-img-top cardImage" style="max-height: 300px;">
                         <div class="card-body cardbodySize">
                             <h2 class="card-title" th:text="${event.title}"></h2>
                             <h4 class="card-text" th:text="${event.location}"></h4>
