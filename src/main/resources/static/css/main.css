@@ -191,6 +191,10 @@ button {
   transition: all .3s ease-out;
 }
 
+.white {
+  color: white;
+}
+
 .btn-doUpload {
    background-color: #4db2f1 !important;
    color: white !important;
@@ -988,7 +992,6 @@ nav #searchfield {
   font-size: 1.5em;
 }
 #passwordHelpModal #criteriaList {
-  list-style-type: none;
 }
 /*SLIDER INPUT*/
 .createeventform .slidecontainer {
