@@ -164,6 +164,20 @@ button {
   transition: all .3s ease-out;
 }
 
+.btn-enroll {
+  background-color: limegreen !important;
+  color: black !important;
+  border: 1px solid white !important;
+  min-width: 100px;
+  margin: 30px auto 10px;
+  font-size: 18px;
+  line-height: 40px;
+  border-radius: 25px;
+  transition: all .3s ease-out;
+  -webkit-transition: all .3s ease-out;
+  height: 55px;
+}
+
 .btn-doAccordion {
   background-color: #ea6725 !important;
   color: white !important;
@@ -228,7 +242,8 @@ button {
 }
 .btn-doEdit,
 .btn-close,
-.btn-doUpload {
+.btn-doUpload,
+.btn-enroll {
   min-width: 120px;
   margin: 30px auto 5px;
   font-size: 18px;
@@ -236,6 +251,10 @@ button {
   border-radius: 25px;
   border: none;
   transition: all .3s ease-out;
+}
+
+.btn {
+  height: 50px;
 }
 #fileupload {
   border: 1px solid #ff6a00 !important;
@@ -895,19 +914,7 @@ nav #searchfield {
   height: 125px;
   width: 125px;
 }
-.btn-enroll {
-  background-color: lightgreen !important;
-  color: black !important;
-  /*border: 1px solid white !important;*/
-  min-width: 100px;
-  margin: 30px auto 10px;
-  font-size: 18px;
-  line-height: 20px;
-  border-radius: 25px;
-  border: none;
-  transition: all .3s ease-out;
-  -webkit-transition: all .3s ease-out;
-}
+
 .list-group-item {
   font-size: 17px;
 }
@@ -1022,8 +1029,15 @@ nav #searchfield {
 .cardImage {
   height: auto;
   width: 100%;
+
   /*border-bottom: 1px solid #4db2f1;*/
 }
+
+.card-img {
+  border: 1px solid #4db2f1;
+  border-radius: 2px;
+}
+
 .cardbodySize {
   min-height: 200px;
 }

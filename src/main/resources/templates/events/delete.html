@@ -16,13 +16,13 @@
 <div class="container d-flex justify-content-center">
 
 
-    <div id="whitebox">
+    <div id="whitebox" style="height: 250px; margin-top: 10%">
         <h1 class="text-center mt-4"
             th:text="'Are you sure you want to delete the ' + ${event.getTitle() + ' event?'}"></h1>
         <form th:action="@{'/events/delete/'+ ${id}}" method="post">
             <div class="d-flex justify-content-center my-5">
                 <a th:href="@{'/events/singleevent/'+ ${id}}" class="mx-5 btn btn-close">Go Back</a>
-                <button type="submit" class="btn btn-doDelete mx-5">Confirm</button>
+                <button type="submit" class="btn btn-doDelete my-5 mx-5">Confirm</button>
             </div>
         </form>
     </div>
