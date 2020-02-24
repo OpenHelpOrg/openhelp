@@ -950,6 +950,7 @@ nav #searchfield {
 }
 .fc-content {
   color: white;
+  font-size: 2em;
 }
 .fc-content:hover {
   background-color: #ea6725;
@@ -1029,7 +1030,8 @@ nav #searchfield {
 .cardImage {
   height: auto;
   width: 100%;
-
+  max-height: 400px;
+  object-fit: contain;
   /*border-bottom: 1px solid #4db2f1;*/
 }
 
@@ -1068,7 +1070,16 @@ nav #searchfield {
 
 img, image {
   /*max-height: 500px;*/
-  overflow: hidden;
-  object-fit: contain;
-  max-height: 500px;
+
+}
+
+.cat-pill {
+  color: white;
+  background-color: #ea6725;
+  border: 1px solid white;
+  border-radius: 25px;
+  height: 50px;
+  font-size: 1.5em;
+  padding: 10px;
+  margin-top: 50px;
 }
