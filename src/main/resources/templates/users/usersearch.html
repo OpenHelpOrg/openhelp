@@ -44,9 +44,9 @@
             <div class="d-flex flex-wrap m-2 justify-content-around">
                 <div th:each="user : ${results}">
                     <a th:href="@{'/user/' + ${user.getId()}}">
-                        <div class="card hovercard m-1" style="width: 40rem;">
+                        <div class="card hovercard m-1" style="width: 40rem; min-height: 460px;">
                             <img th:src="@{${user.getImage()}}" class="card-img-top cardImage"
-                                 th:alt="${user.getName()} + 'avatar'">
+                                 th:alt="${user.getName()} + 'avatar'" >
                             <div class="card-body">
                                 <h2 class="card-title" th:text="${user.getName()}"></h2>
                                 <!--                                <h6>About</h6>-->
