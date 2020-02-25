@@ -70,7 +70,7 @@
 <div class="container">
 
     <div class="col-12">
-        <h1 class="text-center header">Events that match your search</h1>
+        <h1 class="text-center header white medium my-5">Events that match your search</h1>
         <div class="d-flex flex-wrap p-4 justify-content-around">
             <div th:each="event : ${results}">
                 <a th:href="@{'/events/singleevent/'+${event.id}}">

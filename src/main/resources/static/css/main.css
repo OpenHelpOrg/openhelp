@@ -13,6 +13,24 @@ h1.header{
   color: white;
   /*text-shadow: 2px 2px 4px #000000*/
 }
+.xsmall {
+  font-size: 2em!important;
+}
+
+.small {
+  font-size: 3em!important;
+}
+
+.medium {
+  font-size: 4em!important;
+}
+.large {
+  font-size: 5em!important;
+}
+
+.xlarge {
+  font-size: 10em!important;
+}
 
 .center {
   text-align: center;
@@ -23,6 +41,15 @@ h1.header{
 .white {
   color: white;
 }
+
+.black {
+  color: black!important;
+}
+
+.black:hover {
+  color: #ea6725!important;
+}
+
 .lgtext h1 {
   font-size: 4em;
 }
@@ -192,8 +219,14 @@ button {
 }
 
 .white {
-  color: white;
+  color: white!important;
 }
+
+.thank-you {
+  font-family:'Grand Hotel', cursive!important;
+}
+
+
 
 .btn-doUpload {
    background-color: #4db2f1 !important;
@@ -792,8 +825,9 @@ button {
   font-family: 'Roboto', sans-serif;
   text-shadow: 1px 1px black;
   /*text-shadow: 1px 2px black;*/
-
 }
+
+
 nav a {
   color: white;
   padding: .75em;
@@ -835,7 +869,7 @@ nav #searchfield {
 .OHfooter {
   /*background-color: #ff6a00!important;*/
   width: 100% !important;
-  height: 5em;
+  height: 6.5em;
   position: static;
   bottom: 0 !important;
   margin-top: auto!important;
@@ -846,7 +880,7 @@ nav #searchfield {
 }
 
 .footer {
-  height: 5em;
+  height: 6.5em;
 }
 
 #footer-ul {
