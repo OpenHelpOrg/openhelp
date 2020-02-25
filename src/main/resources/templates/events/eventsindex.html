@@ -4,8 +4,6 @@
 <head>
     <meta name="mapbox" th:content="${mapbox}">
     <th:block th:insert="partials/head :: head"></th:block>
-    <!--    <link rel="stylesheet" href="css/navbar.css">-->
-    <!--    <link rel="stylesheet" href="css/home.css">-->
     <link rel="stylesheet" href="css/main.css">
 
     <link href='../core/main.css' rel='stylesheet'/>
@@ -161,6 +159,10 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        .menu_links{
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -171,16 +173,13 @@
     <h1 class="text-center header white medium my-5">All Upcoming Events</h1>
 
     <!-- Nav tabs -->
+    <p class="text-right"><a href="#mapShow" class="menu_links nav-link">View the Events Map</a></p>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
-
         <li class="nav-item panelText">
             <a class="nav-link active" id="events-tab" data-toggle="tab" href="#events" role="tab" aria-controls="events"
                aria-selected="true">Events</a>
         </li>
-        <li class="nav-item panelText">
-            <a class="nav-link" id="map-tab" data-toggle="tab" href="#map" role="tab" aria-controls="map"
-               aria-selected="false">Map</a>
-        </li>
+
         <li class="nav-item panelText">
             <a class="nav-link" id="calendar-tab" data-toggle="tab" href="#calendar" role="tab" aria-controls="calendar"
                aria-selected="false">Calendar</a>
@@ -231,18 +230,16 @@
             </div>
 
         </div>
-        <!--Map Tab Content-->
-        <div class="tab-pane" id="map" role="tabpanel" aria-labelledby="map-tab">
-            <!-- display the events in the map-->
-            <div id="mapShow" class="mapEvents">
-                <div class="loader"></div>
-            </div>
-        </div>
         <!--Calendar Tab Content-->
         <div class="tab-pane" id="calendar" role="tabpanel" aria-labelledby="calendar-tab">
             <!-- display events in a calendar-->
             <div id="calendarShow"></div>
         </div>
+    </div>
+
+    <h1 class="text-center header mt-5">Events Map</h1>
+    <div id="mapShow" class="mapEvents">
+        <div class="loader"></div>
     </div>
 </div>
 
@@ -273,80 +270,81 @@
         container: 'mapShow',
         style: 'mapbox://styles/mapbox/streets-v9',
         center: [-98.4916, 29.4252],
-        zoom: 9
+        zoom: 11
     });
 
-    //adding events to map
-    var requestMap = $.ajax({'url': '/event/events.json'});
-    requestMap.done(function (events) {
-        events.forEach(function (event) {
-            geocode(event.address, token).then(function (result) {
-                var popupHTML = "<div class='card'><div class='card-header'>" + event.title + "</div><ul class='list-group list-group-flush'><li class='list-group-item'>" + event.location + "</li><li class='list-group-item'><a href='/events/singleevent/"+ event.id +"'>View More</a></li></ul></div>";
+    $(document).ready(function () {
+        //creating the calendar and populated with events
+        var request = $.ajax({'url': '/event/events.json'});
+        request.done(function (events) {
+            var calEvents = [];
+            events.forEach(function (event) {
 
-                var popup = new mapboxgl.Popup()
-                    .setHTML(popupHTML);
+                calEvents.push({
+                    id: event.id,
+                    title: event.title,
+                    start: event.date_time,
+                    url: 'http://myopenhelp.com/events/singleevent/' + event.id
 
-                var marker = new mapboxgl.Marker()
-                    .setLngLat(result)
-                    .addTo(map)
-                    .setPopup(popup);
-
-            });
-        });
-    }).always(function () {
-        setTimeout(function () {
-            map.style.width = '100%';
-            map.style.height = '100%';
-            map.resize();
-            $('.loader').css('display', 'none');
-        }, 2000);
-    });
-
-    //creating the calendar and populated with events
-    var request = $.ajax({'url': '/event/events.json'});
-    request.done(function (events) {
-        var calEvents = [];
-        events.forEach(function (event) {
-
-            calEvents.push({
-                id: event.id,
-                title: event.title,
-                start: event.date_time,
-                url: 'http://myopenhelp.com/events/singleevent/' + event.id
-
-            });
+                });
 
 
-        });//end of each
-        var calendarEl = document.getElementById('calendarShow');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            plugins: ['dayGrid', 'timeGrid', 'list', 'bootstrap'],
-            timeZone: 'UTC',
-            themeSystem: 'bootstrap',
-            defaultView: 'dayGridMonth',
-            height: 500,
-            contentHeight: 500,
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
-            },
-            eventLimit: true, // allow "more" link when too many events
-            events: calEvents,
-            editable: true,
-            eventClick: function (info) {
-                info.jsEvent.preventDefault(); // don't let the browser navigate
+            });//end of each
+            var calendarEl = document.getElementById('calendarShow');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: ['dayGrid', 'timeGrid', 'list', 'bootstrap'],
+                timeZone: 'UTC',
+                themeSystem: 'bootstrap',
+                defaultView: 'dayGridMonth',
+                height: 500,
+                contentHeight: 500,
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+                },
+                eventLimit: true, // allow "more" link when too many events
+                events: calEvents,
+                editable: true,
+                eventClick: function (info) {
+                    info.jsEvent.preventDefault(); // don't let the browser navigate
 
-                if (info.event.url) {
-                    window.location.href = info.event.url;
+                    if (info.event.url) {
+                        window.location.href = info.event.url;
+                    }
                 }
-            }
+            });
+
+            calendar.render();
+
+        });//end of done
+
+        //adding events to map
+        var requestMap = $.ajax({'url': '/event/events.json'});
+        requestMap.done(function (events) {
+            events.forEach(function (event) {
+                geocode(event.address, token).then(function (result) {
+                    var popupHTML = "<div class='card'><div class='card-header'>" + event.title + "</div><ul class='list-group list-group-flush'><li class='list-group-item'>" + event.location + "</li><li class='list-group-item'><a href='/events/singleevent/"+ event.id +"'>View More</a></li></ul></div>";
+
+                    var popup = new mapboxgl.Popup()
+                        .setHTML(popupHTML);
+
+                    var marker = new mapboxgl.Marker()
+                        .setLngLat(result)
+                        .addTo(map)
+                        .setPopup(popup);
+
+                });
+            });
+        }).always(function () {
+            setTimeout(function () {
+                map.style.width = '100%';
+                map.style.height = '100%';
+                map.resize();
+                $('.loader').css('display', 'none');
+            }, 2000);
         });
-
-        calendar.render();
-
-
-    });//end of done
+    });
 
     //    DATE CONVERSION LOGIC
     function convertDateTime() {
@@ -362,6 +360,33 @@
     function isEmpty(str){
         return !str || str.length === 0 || !str.trim();
     }
+
+    setTimeout(function () {
+        map.resize();
+    }, 250);
+
+    $('#map-tab').on('click', function () {
+        map.resize();
+        $(window).trigger('resize');
+    });
+
+    window.onresize = function () {
+        map.zoomOut();
+        map.zoomIn();
+        map.resize();
+    };
+
+    $('.menu_links').click(function (e) {
+        if(this.hash !== ""){
+            e.preventDefault();
+
+            var hash = this.hash;
+
+            $('html, body').animate({scrollTop: $(hash).offset().top}, 900, function () {
+                window.location.hash = hash;
+            });
+        }//end if
+    });
 </script>
 
 
