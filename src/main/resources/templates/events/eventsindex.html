@@ -188,7 +188,7 @@
     </ul>
 
     <!-- Tab panes -->
-    <div class="tab-content">
+    <div class="tab-content mt-5 mx-auto" style="width:90%;">
         <!--Events Tab Content-->
         <div class="tab-pane active" id="events" role="tabpanel" aria-labelledby="events-tab">
             <!-- Displays all upcoming events in card form -->
@@ -199,7 +199,7 @@
                         <a th:href="@{'/events/singleevent/'+${event.id}}">
 
 
-                            <div class="card hovercard m-2 mt-5" style="width: 40rem; height: 60rem;">
+                            <div class="card hovercard m-2" style="width: 40rem; height: 60rem;">
 
                                 <div sec:authorize="isAuthenticated()">
                         <span th:each="user : ${event.getUserEvents()}">
