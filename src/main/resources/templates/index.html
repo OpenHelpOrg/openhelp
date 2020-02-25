@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-6">
             <!--    <div th:if="${resultsuser != null}">-->
-            <h1 class="text-center header">Users that match your search:</h1>
+            <h1 class="text-center header white medium">Users that match your search:</h1>
             <div class="d-flex flex-wrap p-4 justify-content-center">
                 <div th:each="user : ${resultsuser}">
                     <a th:href="@{'/user/' + ${user.getId()}}">
@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="col-6">
-            <h1 class="text-center header">Events that match your search:</h1>
+            <h1 class="text-center header white medium">Events that match your search:</h1>
             <div class="d-flex flex-wrap p-4 justify-content-center">
                 <div th:each="event : ${results}">
                     <a th:href="@{'/events/singleevent/'+${event.id}}">

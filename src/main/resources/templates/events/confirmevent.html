@@ -13,24 +13,27 @@
 <nav th:insert="partials/navbar :: navbar"></nav>
 <div class="container">
 
-    <h1 class="text-center header">Event Confirmation</h1>
+    <h1 class="text-center medium header my-5">Event Confirmation</h1>
 
+    <h1 class="card-title thank-you white xlarge center">Thank you!</h1>
 
     <div class="row p-5 justify-content-center" th:if="${response == 'yes'}">
         <div class="col-sm-12 col-md-8">
             <div class="card mb-3 p-2 border-dark" style="width: 100%;">
                 <div class="row no-gutters">
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h1 class="card-title">Thank you!</h1>
-                            <h4 class="card-text"
-                                th:text="'Thank you ' + ${user.getName()} + ', you are now registered to volunteer in the event ' + ${event.getTitle()} + '.'"></h4>
-                            <h4 class="card-text"> If you have any questions, please contact <a
+                    <div class="col-md-12">
+                        <div class="card-body center">
+                            <h1 class="card-text center small"
+                                th:text="'Thank you ' + ${user.getName()} + ', you are now registered to volunteer in the event ' + ${event.getTitle()} + '.'"></h1>
+                            <br>
+                            <h1 class="card-text center small"> If you have any questions, please contact <a
                                     th:href="@{'/user/' + ${creator.getId()}}"
                                     th:text="${creator.getName()}"></a> at <a
                                     th:href="@{'mailto:' + ${creator.getEmail()}}" th:text="${creator.getEmail()}"></a>.
-                            </h4>
-                            <h4 class="card-text">Use the navigation bar to go to another part of the application.</h4>
+                            <br>
+                            </h1>
+                            <h4 class="card-text center small">Use the navigation bar to go to another part of the application.</h4>
+                            <a class="thank-you mt-3" href="/events"><h4 style="font-size: 50px;">Back to Events</h4></a>
                         </div>
                     </div>
                 </div>
@@ -42,16 +45,18 @@
         <div class="col-sm-12 col-md-8">
             <div class="card mb-3 p-2 border-dark" style="width: 100%;">
                 <div class="row no-gutters">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div class="card-body">
-                            <h1 class="card-title"> We apologize</h1>
-                            <h4 class="card-text">This event has reached it's maximum number of volunteers</h4>
-                            <h4 class="card-text">Use the navigation bar to go to another part of the application.</h4>
-                            <h4 class="card-text">For more questions about this contact the event creator <a
+                            <h1 class="card-title center medium"> We Apologize</h1>
+                            <h4 class="card-text center small">This event has reached it's maximum number of volunteers</h4>
+                            <h4 class="card-text center small">For more questions about this contact the event creator <a
                                     th:href="@{'/user/' + ${creator.getId()}}"
                                     th:text="${creator.getName()}"></a> at <a
                                     th:href="@{'mailto:' + ${creator.getEmail()}}" th:text="${creator.getEmail()}"></a>.
                             </h4>
+                            <h4 class="card-text center small">Use the navigation bar to go to another part of the application.</h4>
+                            <a class="thank-you mt-3 center" href="/events"><h4 style="font-size: 50px;">Back to Events</h4></a>
+
                         </div>
                     </div>
                 </div>
