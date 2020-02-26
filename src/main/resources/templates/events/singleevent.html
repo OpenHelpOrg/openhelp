@@ -216,15 +216,16 @@
         </div>
         <!--map card-->
         <div class="col-sm-12 col-md-4 mx-0">
-            <div class="card mb-3 border-dark" style="height: 100%">
-                <div class="card-body" style="height: 500px;">
+            <div class="card mb-3 border-dark" style="height: 99%; min-height: 600px;">
+                <div class="card-body">
                     <h1 class="card-title large"><span th:text="${event.getAddress()}"></span></h1>
                     <!--                    <div class="d-flex">-->
-                    <div class="card-img-top img-fluid justify-center mt-1 mapimg">
+                    <div class="card-img-top img-fluid justify-center my-1 mapimg">
                         <div id="map" class="singleeventmap"></div>
                     </div>
                     <!--                    </div>-->
                 </div>
+                <br>
             </div>
         </div>
     </div>
