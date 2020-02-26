@@ -83,7 +83,7 @@
 
     <div th:if="${#lists.size(resultsuser) > 0 and #lists.size(results) > 0}">
             <div class="row">
-                <div class="col-6"> <!-- Users -->
+                <div class="col-12 col-md-6"> <!-- Users -->
                     <h1 class="text-center header white medium">Users that match your search:</h1>
                     <div class="d-flex flex-wrap p-4 justify-content-center">
                         <div th:each="user : ${resultsuser}">
@@ -99,7 +99,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6"> <!--Events -->
+                <div class="col-12 col-md-6"> <!--Events -->
                     <h1 class="text-center header white medium">Events that match your search:</h1>
                     <div class="d-flex flex-wrap p-4 justify-content-center">
                         <div th:each="event : ${results}">
@@ -165,7 +165,7 @@
                     <div class="d-flex flex-wrap p-4 justify-content-center">
                         <div th:each="event : ${results}">
                             <a th:href="@{'/events/singleevent/'+${event.id}}">
-                                <div class="card hovercard m-3" style="width: 40rem; height: 50rem;">
+                                <div class="card hovercard m-3" style="width: 30rem; height: 50rem;">
                                     <div sec:authorize="isAuthenticated()">
                                     <span th:each="user : ${event.getUserEvents()}">
                                         <span th:if="${!user.isIs_creator()}">

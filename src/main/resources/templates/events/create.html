@@ -22,11 +22,12 @@
 <!--</header>-->
 <div class="container">
     <h1 class="text-center header white medium my-5">Create Event</h1>
-<!--wide form for larger screens-->
+    <!--wide form for larger screens-->
     <div class="col-12 d-none d-md-block">
-        <div class="forms-section createeventform container">
+        <div class="forms-section createeventform">
             <legend class="section-title white">Enter your event details below</legend>
-            <form class="forms mr-auto ml-auto pt-0" th:action="@{/events/create}" th:method="post" th:object="${event}">
+            <form class="forms mr-auto ml-auto pt-0" th:action="@{/events/create}" th:method="post"
+                  th:object="${event}">
                 <div class="row">
                     <!--                    column 1-->
                     <div class="col-6">
@@ -95,28 +96,28 @@
                         </div>
                     </div>
 
-<!--                    <div class="row">-->
-<!--                        <div class="col-12">-->
-                            <!-- categories -->
-                            <div class="checkboxUL w-100">
-                                <div class="cat-checkbox" th:each="category : ${categories}">
-                                    <input class="cat-checkbox" name="categories" type="checkbox"
-                                           th:value="${category.getId()}"
-                                           th:text="${category.getName()}">
-                                </div>
-                            </div>
-                            <div class="d-flex m-auto p-1">
-                                <button type="submit" class="btn-doEdit p-2">Continue</button>
-                            </div>
+                    <!--                    <div class="row">-->
+                    <!--                        <div class="col-12">-->
+                    <!-- categories -->
+                    <div class="checkboxUL w-100 justify-content-around">
+                        <div class="cat-checkbox" th:each="category : ${categories}">
+                            <input class="cat-checkbox" name="categories" type="checkbox"
+                                   th:value="${category.getId()}"
+                                   th:text="${category.getName()}">
                         </div>
+                    </div>
+                    <div class="d-flex m-auto p-1">
+                        <button type="submit" class="btn-doEdit p-2">Continue</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
 
-<!--inline form for smaller screens-->
-    <div class="col-10 d-md-none">
-        <div class="forms-section createeventform container">
-            <form class="forms mx-auto" th:action="@{/events/create}" th:method="post" th:object="${event}">
+    <!--inline form for smaller screens-->
+    <div class="col-12 d-md-none">
+        <div class="forms-section createeventform w-100">
+            <form class="forms mx-auto createeventformSmall" th:action="@{/events/create}" th:method="post" th:object="${event}">
                 <fieldset>
                     <legend class="section-title">Enter your event details below</legend>
                     <!--                event title-->
@@ -180,7 +181,7 @@
                     </div>
                     <!-- categories -->
                     <div class="checkboxUL">
-                        <div class="cat-checkbox" th:each="category : ${categories}">
+                        <div class="cat-checkbox mx-4 px-2" th:each="category : ${categories}">
                             <input class="cat-checkbox" name="categories" type="checkbox"
                                    th:value="${category.getId()}"
                                    th:text="${category.getName()}">
@@ -196,7 +197,6 @@
         </div>
     </div>
 </div>
-
 
 
 <div class="footer mt-5 mb-0">
@@ -299,6 +299,10 @@
         margin: 0;
         padding: 0;
         opacity: 50%;
+    }
+
+    .createeventformSmall{
+        width: 100% !important;
     }
 </style>
 </body>
