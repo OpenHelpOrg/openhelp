@@ -16,7 +16,7 @@
 <div class="container d-flex justify-content-center">
 
 
-    <div id="whitebox my-5" style="height: 250px; margin-top: 10%">
+    <div class="whitebox my-5" style="height: 250px; margin-top: 10%">
         <h1 class="text-center mt-4"
             th:text="'Are you sure you want to delete the ' + ${event.getTitle() + ' event?'}"></h1>
         <form th:action="@{'/events/delete/'+ ${id}}" method="post">

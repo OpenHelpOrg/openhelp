@@ -175,9 +175,9 @@
                             <li class="d-flex justify-content-around">
                                 <h3 class="d-none d-xl-block mt-5 block">Categories:</h3>
 
-                                    <div class="d-none d-xl-block mt-5 block" th:each="category : ${event.getCategories()}">
-                                        <span class="cat-pill" th:text="${category.getName()}"></span>
-                                    </div>
+                                <div class="d-none d-xl-block mt-5 block" th:each="category : ${event.getCategories()}">
+                                    <span class="cat-pill" th:text="${category.getName()}"></span>
+                                </div>
 
                                 <!--                                    </div>-->
                             </li>
@@ -220,7 +220,7 @@
         <div class="col-sm-12 col-md-4 ">
             <div class="card mb-3 border-dark " style="height: 100%; min-height: 600px;">
                 <div class="card-body">
-                    <h1 class="card-title large"><span th:text="${event.getAddress()}"></span></h1>
+                    <h1 class="card-title xsmall center"><span th:text="${event.getAddress()}"></span></h1>
                     <!--                    <div class="d-flex">-->
                     <div class="card-img-top img-fluid justify-center my-1 mapimg">
                         <div id="map" class="singleeventmap"></div>
@@ -235,7 +235,7 @@
 
     <!--</div>-->
     <h2 class="white medium" style="margin-top: 100px;">Event Stories:</h2>
-  
+
     <div th:each="story : ${stories}">
         <div class="containerStory">
             <img th:src="${story.getUser().getImage()}" alt="User" style="width:90px; height:90px;">
