@@ -195,7 +195,7 @@
         <div class="tab-pane active" id="events" role="tabpanel" aria-labelledby="events-tab">
             <!-- Displays all upcoming events in card form -->
             <!--            =================================-->
-            <div class="col-12">
+            <div class="col-12 col-sm-10">
                 <div class="d-flex flex-wrap justify-content-around">
                     <div th:each="event : ${events}">
                         <a th:href="@{'/events/singleevent/'+${event.id}}">
