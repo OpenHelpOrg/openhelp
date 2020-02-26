@@ -204,14 +204,14 @@
                             <div class="card hovercard m-2" style="width: 40rem; height: 60rem;">
 
                                 <div sec:authorize="isAuthenticated()">
-                        <span th:each="user : ${event.getUserEvents()}">
-                            <span th:if="${!user.isIs_creator()}">
-                                <span th:if="${user.getUser().getId() == #authentication.principal.id}">
-<!--                                    <div class="card-header bg-info">Enrolled</div>-->
-                                    <div class="ribbon"><span>Enrolled</span></div>
-                                </span>
-                            </span>
-                        </span>
+                                    <span th:each="user : ${event.getUserEvents()}">
+                                        <span th:if="${!user.isIs_creator()}">
+                                            <span th:if="${user.getUser().getId() == #authentication.principal.id}">
+            <!--                                    <div class="card-header bg-info">Enrolled</div>-->
+                                                <div class="ribbon"><span>Enrolled</span></div>
+                                            </span>
+                                        </span>
+                                    </span>
                                 </div>
                                 <img th:src="@{${event.getImages()}}" class="card-img-top cardImage">
                                 <div class="card-body cardbodySize">
