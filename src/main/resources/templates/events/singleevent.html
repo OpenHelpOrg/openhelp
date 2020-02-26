@@ -132,7 +132,7 @@
                 </div>
                 <div class="col-sm-12 col-md-7">
                     <div class="card-body">
-                        <h1 class="card-title"><span th:text=" ${event.getTitle()}"></span></h1>
+                        <h1 class="card-title large"><span th:text=" ${event.getTitle()}"></span></h1>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
                                 <h2>Location:</h2>
@@ -218,7 +218,7 @@
         <div class="col-sm-12 col-md-4 mx-0">
             <div class="card mb-3 border-dark" style="height: 100%">
                 <div class="card-body" style="height: 500px;">
-                    <h1 class="card-title"><span th:text="${event.getAddress()}"></span></h1>
+                    <h1 class="card-title large"><span th:text="${event.getAddress()}"></span></h1>
                     <!--                    <div class="d-flex">-->
                     <div class="card-img-top img-fluid justify-center mt-1 mapimg">
                         <div id="map" class="singleeventmap"></div>
@@ -231,7 +231,7 @@
 
 
     <!--</div>-->
-    <h2 style="margin-top: 100px;">Event Stories</h2>
+    <h2 class="white medium" style="margin-top: 100px; margin-left: 14px;">Event Stories:</h2>
     <div th:each="story : ${stories}">
         <div class="containerStory">
             <img th:src="${story.getUser().getImage()}" alt="User" style="width:90px; height:90px;">
