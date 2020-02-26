@@ -201,30 +201,30 @@
                         <a th:href="@{'/events/singleevent/'+${event.id}}">
 
 
-                            <div class="card hovercard m-2" style="width: 40rem; height: 60rem;">
+                            <div class="card hovercard m-2" style="width: 40rem; height: 50rem;">
 
                                 <div sec:authorize="isAuthenticated()">
                                     <span th:each="user : ${event.getUserEvents()}">
                                         <span th:if="${!user.isIs_creator()}">
                                             <span th:if="${user.getUser().getId() == #authentication.principal.id}">
-            <!--                                    <div class="card-header bg-info">Enrolled</div>-->
+            <!--                                    <div class="card-hea
+            der bg-info">Enrolled</div>-->
                                                 <div class="ribbon"><span>Enrolled</span></div>
                                             </span>
                                         </span>
                                     </span>
                                 </div>
-                                <img th:src="@{${event.getImages()}}" class="card-img-top cardImage">
+                                <img th:src="@{${event.getImages()}}" class="card-img-top cardImage" style="max-height: 250px;">
                                 <div class="card-body cardbodySize">
-                                    <h1 class="card-title" th:text="${event.title}"></h1>
-                                    <h2>Location:
-                                    <span class="card-text" th:text="${event.location}"></span>
-                                    </h2>
-                                    <h2>Address:
-                                    <span class="card-text" th:text="${event.address}"></span>
-                                    </h2>
-                                    <h2>Date / Time :
-                                    <span class="card-text thisDateTime" th:text="${event.date_time}"></span>
-                                    </h2>
+                                    <h1 class="card-title bold" th:text="${event.title}"></h1>
+                                    <h2 class="bold d-inline">Location:</h2>
+                                    <span class="card-text d-inline" th:text="${event.location}"></span>
+                                    <br>
+                                    <h2 class="bold d-inline">Address:</h2>
+                                    <span class="card-text d-inline" th:text="${event.address}"></span>
+                                    <br>
+                                    <h2 class="bold d-inline">Date / Time:</h2>
+                                    <span class="card-text thisDateTime d-inline" th:text="${event.date_time}"></span>
                                 </div>
                             </div>
                         </a>

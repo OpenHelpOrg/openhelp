@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <th:block th:insert="partials/head :: head"></th:block>
     <!--    <link rel="stylesheet" href="css/navbar.css">-->
@@ -12,6 +13,15 @@
     <title>OpenHelp : Partner Index</title>
 
     <style>
+        .card-body {
+            font-size: 20px;
+        }
+
+        a {
+            text-decoration: none !important;
+            color: black;
+        }
+
         .ribbon {
             position: absolute;
             right: -5px;
@@ -71,33 +81,31 @@
 <nav th:insert="partials/navbar :: navbar"></nav>
 <div class="container">
 
-    <div class="row">
-        <div class="col-6">
-            <!--    <div th:if="${resultsuser != null}">-->
-            <h1 class="text-center header white medium">Users that match your search:</h1>
-            <div class="d-flex flex-wrap p-4 justify-content-center">
-                <div th:each="user : ${resultsuser}">
-                    <a th:href="@{'/user/' + ${user.getId()}}">
-                        <div class="card hovercard m-3" style="width: 30em; min-height: 400px;">
-                            <img th:src="@{${user.getImage()}}" class="card-img-top cardImage"
-                                 th:alt="${user.getName()} + 'avatar'">
-                            <div class="card-body">
-                                <h2 class="card-title" th:text="${user.getName()}"></h2>
-<!--                                <h6>About</h6>-->
-<!--                                <p class="card-text" th:text="${user.getAbout()}"></p>-->
-                            </div>
+    <div th:if="${#lists.size(resultsuser) > 0 and #lists.size(results) > 0}">
+            <div class="row">
+                <div class="col-6"> <!-- Users -->
+                    <h1 class="text-center header white medium">Users that match your search:</h1>
+                    <div class="d-flex flex-wrap p-4 justify-content-center">
+                        <div th:each="user : ${resultsuser}">
+                            <a th:href="@{'/user/' + ${user.getId()}}">
+                                <div class="card hovercard m-3" style="width: 30em; min-height: 400px;">
+                                    <img th:src="@{${user.getImage()}}" class="card-img-top cardImage"
+                                         th:alt="${user.getName()} + 'avatar'">
+                                    <div class="card-body">
+                                        <h2 class="card-title" th:text="${user.getName()}"></h2>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    </a>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-6">
-            <h1 class="text-center header white medium">Events that match your search:</h1>
-            <div class="d-flex flex-wrap p-4 justify-content-center">
-                <div th:each="event : ${results}">
-                    <a th:href="@{'/events/singleevent/'+${event.id}}">
-                        <div class="card hovercard m-3" style="width: 30em; height: 500px">
-                            <div sec:authorize="isAuthenticated()">
+                <div class="col-6"> <!--Events -->
+                    <h1 class="text-center header white medium">Events that match your search:</h1>
+                    <div class="d-flex flex-wrap p-4 justify-content-center">
+                        <div th:each="event : ${results}">
+                            <a th:href="@{'/events/singleevent/'+${event.id}}">
+                                <div class="card hovercard m-3" style="width: 30em; height: 500px">
+                                    <div sec:authorize="isAuthenticated()">
                                     <span th:each="user : ${event.getUserEvents()}">
                                         <span th:if="${!user.isIs_creator()}">
                                             <span th:if="${user.getUser().getId() == #authentication.principal.id}">
@@ -105,50 +113,109 @@
                                             </span>
                                         </span>
                                     </span>
-                            </div>
+                                    </div>
 
-                            <img th:src="@{${event.getImages()}}" class="card-img-top cardImage" style=" max-height: 300px;">
-                            <div class="card-body cardbodySize">
-                                <h2 class="card-title" th:text="${event.title}"></h2>
-                                <h4 class="card-text" th:text="${event.location}"></h4>
-                                <h4 class="card-text" th:text="${event.address}"></h4>
-                                <h4 class="card-text thisDateTime" th:text="${event.date_time}"></h4>
+                                    <img th:src="@{${event.getImages()}}" class="card-img-top cardImage" style="max-height: 250px;">
+                                    <div class="card-body cardbodySize">
+                                        <h1 class="card-title bold" th:text="${event.title}"></h1>
+                                        <h2 class="bold d-inline">Location:</h2>
+                                        <span class="card-text d-inline" th:text="${event.location}"></span>
+                                        <br>
+                                        <h2 class="bold d-inline">Address:</h2>
+                                        <span class="card-text d-inline" th:text="${event.address}"></span>
+                                        <br>
+                                        <h2 class="bold d-inline">Date / Time:</h2>
+                                        <span class="card-text thisDateTime d-inline" th:text="${event.date_time}"></span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    <div th:if="${#lists.size(resultsuser) > 0 and #lists.isEmpty(results)}">
+            <div class="row">
+                <div class="col-10"> <!-- Users -->
+                    <h1 class="text-center header white medium">Users that match your search:</h1>
+                    <div class="d-flex flex-wrap p-4 justify-content-center">
+                        <div th:each="user : ${resultsuser}">
+                            <a th:href="@{'/user/' + ${user.getId()}}">
+                                <div class="card hovercard m-3" style="width: 30em; min-height: 400px;">
+                                    <img th:src="@{${user.getImage()}}" class="card-img-top cardImage"
+                                         th:alt="${user.getName()} + 'avatar'">
+                                    <div class="card-body">
+                                        <h2 class="card-title" th:text="${user.getName()}"></h2>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    <div th:if="${#lists.isEmpty(resultsuser) and #lists.size(results) > 0}">
+            <div class="row">
+                <div class="col-10"> <!--Events -->
+                    <h1 class="text-center header white medium">Events that match your search:</h1>
+                    <div class="d-flex flex-wrap p-4 justify-content-center">
+                        <div th:each="event : ${results}">
+                            <a th:href="@{'/events/singleevent/'+${event.id}}">
+                                <div class="card hovercard m-3" style="width: 40rem; height: 50rem;">
+                                    <div sec:authorize="isAuthenticated()">
+                                    <span th:each="user : ${event.getUserEvents()}">
+                                        <span th:if="${!user.isIs_creator()}">
+                                            <span th:if="${user.getUser().getId() == #authentication.principal.id}">
+                                                <div class="ribbon"><span>Enrolled</span></div>
+                                            </span>
+                                        </span>
+                                    </span>
+                                    </div>
+
+                                    <img th:src="@{${event.getImages()}}" class="card-img-top cardImage" style="max-height: 250px;">
+                                    <div class="card-body cardbodySize">
+                                        <h1 class="card-title bold" th:text="${event.title}"></h1>
+                                        <h2 class="bold d-inline">Location:</h2>
+                                        <span class="card-text d-inline" th:text="${event.location}"></span>
+                                        <br>
+                                        <h2 class="bold d-inline">Address:</h2>
+                                        <span class="card-text d-inline" th:text="${event.address}"></span>
+                                        <br>
+                                        <h2 class="bold d-inline">Date / Time:</h2>
+                                        <span class="card-text thisDateTime d-inline" th:text="${event.date_time}"></span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    <div th:if="${#lists.isEmpty(resultsuser) and #lists.isEmpty(results)}">
+        <h1 class="card-title thank-you white xlarge center">Results</h1>
+
+        <div class="row p-5 justify-content-center">
+            <div class="col-sm-12 col-md-8">
+                <div class="card mb-3 p-2 border-dark" style="width: 100%;">
+                    <div class="row no-gutters">
+                        <div class="col-md-12">
+                            <div class="card-body center">
+                                <h1 class="card-text center small">No results were found</h1>
                             </div>
                         </div>
-                    </a>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
-
-    <!--    =====================================-->
-    <!--    <div class="d-flex flex-wrap p-4 justify-content-center">-->
-    <!--    <div th:each="event : ${results}" class="card hovercard eventcard col-3 d-inline mr-5 mb-5">-->
-    <!--        <a th:text="${event.title}" class="card-title"></a>-->
-    <!--        <div class="card-body ">-->
-    <!--            <p th:text="${event.address}"></p>-->
-    <!--            <p class="thisDateTime" th:text="${event.date_time}"></p>-->
-    <!--&lt;!&ndash;            <p> created by user with email <span th:text="${event.user.email}"> </span></p>&ndash;&gt;-->
-    <!--        </div>-->
-    <!--        <div class="d-flex justify-content-center eventindeximageholder">-->
-
-    <!--            <img th:src="${event.getImages()}" alt="edit event to add image" class="card-img eventindeximg">-->
-
-    <!--            &lt;!&ndash;                <div th:each="image : ${event.images}">&ndash;&gt;-->
-    <!--            &lt;!&ndash;                    <div>&ndash;&gt;-->
-    <!--            &lt;!&ndash;                        <img th:src="${image}" style="height: 200px; margin: auto"/>&ndash;&gt;-->
-    <!--            &lt;!&ndash;                    </div>&ndash;&gt;-->
-    <!--        </div>-->
-    <!--        <div class="d-flex flex-nowrap btn-div justify-content-around">-->
-    <!--            &lt;!&ndash;view post&ndash;&gt;-->
-    <!--            <a th:href="@{'/events/singleevent/'+${event.id}}" class="btn ">-->
-    <!--                <button>View Event</button>-->
-    <!--            </a>-->
-    <!--        </div>-->
-    <!--    </div>-->
-    <!--</div>-->
-
 
 <div class="footer mt-5 mb-0">
     <nav th:insert="partials/navbar :: footer"></nav>
