@@ -17,9 +17,9 @@
 <div class="container">
     <h1 class="text-center header white medium my-5">Event Dashboard</h1>
     <div class="row d-flex justify-content-center">
-        <div class="col-6 d-flex justify-content-center w-75">
+        <div class="col-12 col-md-6 d-flex justify-content-center w-75">
             <!--form to edit the event-->
-            <div class="forms-section createeventform mr-0 ml-5">
+            <div class="forms-section createeventform mr-0">
                 <form class="forms mx-auto w-100 ml-5" th:action="@{/events/edit}" method="post" th:object="${event}"
                       th:disabled="${isDisabled}">
                     <fieldset>
@@ -95,43 +95,44 @@
                             </div>
                         </div>
                         <div class="d-flex m-auto p-1">
-                            <button type="submit" class="btn btn-doEdit p-2" th:disabled="${isDisabled}">Continue</button>
+                            <button type="submit" class="btn btn-doEdit p-2" th:disabled="${isDisabled}">Continue
+                            </button>
                         </div>
                     </fieldset>
                 </form>
             </div><!--end of event edit form-->
         </div>
-<div class="col-6">
-        <div class="row d-flex justify-content-center">
-            <div class="col-8">
-                <div class="editEventAttendanceForm ">
-                    <h5 class="center mt-0 mb-2 xsmall">Send a message to all volunteers for this event.</h5>
+        <div class="col-12 col-md-6">
+            <div class="row d-flex justify-content-center">
+                <div class="col-8">
+                    <div class="editEventAttendanceForm ">
+                        <h5 class="center mt-0 mb-2 xsmall">Send a message to all volunteers for this event.</h5>
 
-                    <div class="d-flex justify-content-center">
-                        <button type="button" class="btn btn-doEdit d-inline mx-auto mb-0" data-toggle="modal"
-                                data-target="#editInfoModal"
-                                id="modalButton">
-                            Send Message
-                        </button>
-                        <br>
-                        <p th:text="${confirmation}"></p>
+                        <div class="d-flex justify-content-center">
+                            <button type="button" class="btn btn-doEdit d-inline mx-auto mb-0" data-toggle="modal"
+                                    data-target="#editInfoModal"
+                                    id="modalButton">
+                                Send Message
+                            </button>
+                            <br>
+                            <p th:text="${confirmation}"></p>
+                        </div>
                     </div>
+                    <p th:text="${confirmation}"></p>
                 </div>
-                <p th:text="${confirmation}"></p>
+
             </div>
 
-        </div>
-
-        <div class="row d-flex justify-content-center">
-            <div class="col-6 ml-0">
-                <!--    =confirm attentence -->
-                <div class="editEventAttendanceForm ">
-                    <h2>Confirm Volunteer Attendance</h2>
-                    <form th:method="post" th:action="@{'/users/confirm-attendance'}">
-                        <input type="hidden" th:value="${event.getId()}" th:name="id">
-                        <div class="form-row">
-                            <div class="input-group" th:each="userevent : ${userevents}">
-                                <div class="input-group-prepend">
+            <div class="row d-flex justify-content-center">
+                <div class="col-6 ml-0">
+                    <!--    =confirm attentence -->
+                    <div class="editEventAttendanceForm ">
+                        <h2>Confirm Volunteer Attendance</h2>
+                        <form th:method="post" th:action="@{'/users/confirm-attendance'}">
+                            <input type="hidden" th:value="${event.getId()}" th:name="id">
+                            <div class="form-row">
+                                <div class="input-group" th:each="userevent : ${userevents}">
+                                    <div class="input-group-prepend">
                 <span th:if="${userevent.getAttended()}">
                     <div class="input-group">
                         <label class="switch">
@@ -141,7 +142,7 @@
                         <!--                        <input type="checkbox" th:name="users" th:value="${userevent.getId()}" checked>-->
                     </div>
                 </span>
-                                    <span th:unless="${userevent.getAttended()}">
+                                        <span th:unless="${userevent.getAttended()}">
                     <div class="input-group">
                             <label class="switch">
                         <input type="checkbox" th:name="users" th:value="${userevent.getId()}">
@@ -150,45 +151,45 @@
                         <!--                        <input type="checkbox" th:name="users" th:value="${userevent.getId()}">-->
                     </div>
                 </span>
+                                    </div>
+                                    <label class="attendeeName mt-2 ml-2" th:for="users"
+                                           th:text="${userevent.getUser().getName()}"></label>
                                 </div>
-                                <label class="attendeeName mt-2 ml-2" th:for="users"
-                                       th:text="${userevent.getUser().getName()}"></label>
                             </div>
-                        </div>
-                        <button class="btn-doEdit">Confirm Attendance</button>
-                    </form>
+                            <button class="btn-doEdit">Confirm Attendance</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-6 ml-0">
-                <div class="editEventAttendanceForm ">
+                <div class="col-6 ml-0">
+                    <div class="editEventAttendanceForm ">
 
-                    <!-- Enrollment Management-->
-                    <h2>Cancel Enrollment Management</h2>
-                    <form th:method="post" th:action="@{'/users/confirm-enrollment'}">
-                        <input type="hidden" th:value="${event.getId()}" th:name="id">
-                        <div class="form-row">
-                            <div class="input-group" th:each="userevent : ${userevents}">
-                                <div class="input-group-prepend">
-                                    <label class="switch">
-                                        <input type="checkbox" th:name="users" th:value="${userevent.getId()}"
-                                               th:disabled="${isDisabled}">
-                                        <span class="slider round"></span>
-                                    </label>
+                        <!-- Enrollment Management-->
+                        <h2>Cancel Enrollment Management</h2>
+                        <form th:method="post" th:action="@{'/users/confirm-enrollment'}">
+                            <input type="hidden" th:value="${event.getId()}" th:name="id">
+                            <div class="form-row">
+                                <div class="input-group" th:each="userevent : ${userevents}">
+                                    <div class="input-group-prepend">
+                                        <label class="switch">
+                                            <input type="checkbox" th:name="users" th:value="${userevent.getId()}"
+                                                   th:disabled="${isDisabled}">
+                                            <span class="slider round"></span>
+                                        </label>
 
-                                    <!--                                <input type="checkbox" th:name="users" th:value="${userevent.getId()}"-->
-                                    <!--                                       th:disabled="${isDisabled}">-->
+                                        <!--                                <input type="checkbox" th:name="users" th:value="${userevent.getId()}"-->
+                                        <!--                                       th:disabled="${isDisabled}">-->
 
+                                    </div>
+                                    <label class="attendeeName mt-2 ml-2" th:for="users"
+                                           th:text="${userevent.getUser().getName()}"></label>
                                 </div>
-                                <label class="attendeeName mt-2 ml-2" th:for="users"
-                                       th:text="${userevent.getUser().getName()}"></label>
-                            </div>
 
-                        </div>
-                        <button class="btn-doEdit" th:disabled="${isDisabled}">Confirm Cancellations</button>
-                    </form>
+                            </div>
+                            <button class="btn-doEdit" th:disabled="${isDisabled}">Confirm Cancellations</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
         <!--        end row-->

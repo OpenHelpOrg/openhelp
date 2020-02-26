@@ -77,14 +77,14 @@
                     </div>
                 </div>
             </div>
-            <div class="box">
+            <div class="box col-12 p-0">
                 <form id="pick-form" th:action="@{/users/imageupload}" th:method="post">
-                    <div class="field">
-                        <div class="control d-flex justify-content-start">
-                            <button class="button btn-doEdit mt-1 ml-0 mr-3" type="button" id="picker">Change Image
+                    <div class="field p-0">
+                        <div class="control d-flex justify-content-start p-0">
+                            <button class="button btn-doEdit mt-1 ml-0 mr-0" type="button" id="picker">Change Image
                             </button>
 
-                            <button class="button btn btn-enroll mt-1 mr-0 ml-3" type="submit">Submit Image</button>
+                            <button class="button btn btn-enroll mt-1 mr-auto ml-0 px-2" type="submit">Submit Image</button>
                             <!--                            <div id="uploadConfirm" class="d-inline"></div>-->
                             <button type="button" class="button btn-doEdit mt-1 mr-2 ml-auto"
                                     data-toggle="modal"
@@ -95,7 +95,7 @@
                         </div>
                         <div class="control d-flex justify-content-start mt-2 mb-5">
                             <input type="text" name="filetoupload" id="fileupload"
-                                   style="width:60%; font-size: large; padding:5px;"
+                                   style="width:75%; font-size: large; padding:5px;"
                                    placeholder="Include url of image here or use our filepicker above!">
                         </div>
                     </div>
@@ -155,7 +155,7 @@
                     <button class='btn-doAccordion accordion' style="border: 1px solid #4db2f1;">Leave a Story</button>
                     <div class="panel">
                         <form th:method="post" th:action="@{'/events/add-story/' + ${events.getId()}}">
-                            <textarea name="story" th:text="${events.getStory()}"></textarea>
+                            <textarea name="story" class="eventStoryINP w-100" th:text="${events.getStory()}"></textarea>
                             <br>
                             <button class="btn-doPost">Post Your Story</button>
                         </form>
@@ -342,6 +342,11 @@
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.2s ease-out;
+    }
+
+    .eventStoryINP{
+        border: 1px solid gray;
+        border-radius: 5px;
     }
 </style>
 </body>
