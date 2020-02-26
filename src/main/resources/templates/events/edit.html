@@ -105,7 +105,7 @@
         <div class="row d-flex justify-content-center">
             <div class="col-8">
                 <div class="editEventAttendanceForm ">
-                    <h5 class="center mt-0 mb-2">Send a message to all volunteers for this event.</h5>
+                    <h5 class="center mt-0 mb-2 xsmall">Send a message to all volunteers for this event.</h5>
 
                     <div class="d-flex justify-content-center">
                         <button type="button" class="btn btn-doEdit d-inline mx-auto mb-0" data-toggle="modal"
@@ -200,7 +200,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content editprofilemodal-content">
                 <div class="modal-header editprofilemodal-header">
-                    <h3 class="modal-title editprofilemodal-title">Send Message to Volunteers</h3>
+                    <h3 class="modal-title editprofilemodal-title small">Send Message to Volunteers</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -208,14 +208,14 @@
                 <div class="modal-body">
                     <form th:action="@{'/events/edit/' + ${event.getId()} + '/send-message'}" th:method="post">
                         <div class="input-block mt-2">
-                            <label for="subject">Subject</label>
+                            <label class="xsmall" for="subject">Subject</label>
                             <br>
                             <input class="emailalltitle ml-5 p-2 mt-2" placeholder="Enter your subject" id="subject"
                                    name="subject" type="text" required>
                         </div>
 
                         <div class="input-block mt-2">
-                            <label for="body">Message</label>
+                            <label class="xsmall" for="body">Message</label>
                             <br>
                             <textarea class="emailallbody ml-5 p-2 mt-2" placeholder="Enter your message" id="body"
                                       name="body" rows="6" required></textarea>
