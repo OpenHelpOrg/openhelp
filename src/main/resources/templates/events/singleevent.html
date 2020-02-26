@@ -173,9 +173,9 @@
                             <li class="d-flex justify-content-around">
                                 <h3 class="d-none d-xl-block mt-5 block">Categories:</h3>
 
-                                <div class="d-none d-xl-block mt-5 block" th:each="category : ${event.getCategories()}">
-                                    <span class="cat-pill" th:text="${category.getName()}"></span>
-                                </div>
+                                    <div class="d-none d-xl-block mt-5 block" th:each="category : ${event.getCategories()}">
+                                        <span class="cat-pill" th:text="${category.getName()}"></span>
+                                    </div>
 
                                 <!--                                    </div>-->
                             </li>
@@ -216,8 +216,8 @@
         </div>
         <!--map card-->
         <div class="col-sm-12 col-md-4 mx-0">
-            <div class="card mb-3 border-dark" style="min-height: 520px; box-sizing: border-box;">
-                <div class="card-body" style="height: 500px">
+            <div class="card mb-3 border-dark" style="height: 100%">
+                <div class="card-body" style="height: 500px;">
                     <h1 class="card-title large"><span th:text="${event.getAddress()}"></span></h1>
                     <!--                    <div class="d-flex">-->
                     <div class="card-img-top img-fluid justify-center mt-1 mapimg">
@@ -231,7 +231,8 @@
 
 
     <!--</div>-->
-    <h2 class="white medium" style="margin-top: 100px;">Event Stories:</h2>
+    <h2 class="white medium" style="margin-top: 100px; margin-left: 14px;">Event Stories:</h2>
+  
     <div th:each="story : ${stories}">
         <div class="containerStory">
             <img th:src="${story.getUser().getImage()}" alt="User" style="width:90px; height:90px;">
