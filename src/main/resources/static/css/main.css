@@ -987,10 +987,10 @@ nav #searchfield {
 }
 
 .singleeventmap {
-  min-height: 20px;
+  min-height: 100px;
   /*min-width: 100px;*/
   width: 100%;
-  height: 100%;
+  height: 80%;
   border: 1px solid black;
 }
 #upcoming {
